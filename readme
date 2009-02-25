@@ -1,5 +1,10 @@
 Comenzi de baza:
 
+* [RECOMANDAT] pentru a va seta numele si emailul global:
+	git config --global user.name "Prenume Nume"
+	git config --global user.email "your@email.com"
+	Aceste informatii vor fi incluse de fiecare data cand comiteti ceva, pentru a sti cine ce modificari a facut. Nu trebuie rulate decat o singura data aceste comenzi, dupa ce instalati git.
+
 * pentru a adauga fisiere noi la repository:
 	git add file1 file2 ...
 
@@ -7,7 +12,8 @@ Comenzi de baza:
 	git add .
 
 * pentru a include toate schimbarile de la ultimul commit in repo:
-	git commit -a -m "mesaj obligatoriu unde fiecare specifica ce modificari a facut fata de ultimul commit"
+	git commit -a
+	Va trebui sa scrieti un mesaj obligatoriu in care specificati ce modificari ati facut fata de ultimul commit
 	Atentie! Daca ati adaugat si fisiere noi, trebuie mai intai sa le adaugati folosind git add
 
 * pentru a uploada schimbarile la repo-ul de pe server, folositi comanda:
