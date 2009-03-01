@@ -1,0 +1,25 @@
+Template pentru prezentările CDL
+================================
+
+What you need:
+ * LaTeX and Unicode for it
+ * http://latex-beamer.sf.net/
+ * highlight: http://www.andre-simon.de/ (just apt-get it, it's called
+highlight)
+ * you also need to tell me if anything's wrong.
+
+Intrucţiuni:
+ * run `make' in top dir; should be enough, as it also makes in code/
+ * dacă adăugaţi cod nou, update the makefile
+
+Still to do:
+ **** Don't use this -- just play with it. Will build a standard style file or
+maybe make a single presentation with multiple lectures (Beamer does that).
+ * ales o temă vizuală (beamer and highlight)
+ * decis un format uniform al titlurilor/subtitlurilor
+ * specificarea fiecărui fişier sursă în code/Makefile e long and error-prone.
+Ideas?
+ * dacă nu există code/highlight? Ni se garantează că există?
+ * investigate if we can do handouts.
+
+ vim:tw=78:
