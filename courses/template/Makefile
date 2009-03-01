@@ -6,4 +6,4 @@ template.pdf: template.tex code/Makefile
 .PHONY: clean
 clean:
 	cd code && make clean
-	rm -f template.{pdf,aux,log,nav,out,snm,toc}
+	rm -f template.pdf template.aux template.log template.nav template.out template.snm template.toc
