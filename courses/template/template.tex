@@ -1,0 +1,122 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc}		% diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			% highlight
+\usepackage{alltt}			% highlight
+\usepackage{code/highlight}		% highlight
+\mode<presentation>
+{ \usetheme{Rochester} }		% TODO: settle this
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[Introducere \^in FLOSS]{Introducere \^in Free/Libre Open Source Software}
+\subtitle{CDL - Cursul 1}
+\institute{ROSEdu}
+\author{Tibi Turbureanu \and Another Author}
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{Istorie}
+
+% Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
+\frame{\tableofcontents[currentsection]}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Preambul}
+\begin{itemize} % Just like normal LaTeX
+\item Prezentarea încearcă să atragă persoanele implicate în CDL spre a folosi
+\LaTeX Beamer.
+\item Am copiat cu neruşinare schiţele lui Tibi pentru prima parte.
+\item Be sure to check the code: lots of comments and TODOs.
+\item Spam the list, IRC, or Vlad (nu la telefon) for more info.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
+% Atenţie: allowframebreaks nu funcţionează cu overlay-uri
+\frametitle{Câte ceva despre istoria FLOSS}
+\begin{itemize}
+\item Punctul de plecare: noua imprimantă de la MIT
+\item Proiectul GNU, activismul lui Richard Stallman (1983)
+\item Cele patru drepturi. Programele libere nu sunt neapărat gratuite
+\item Minix, sistem de operare UNIX educațional. Micronucleu (1987)
+\item GNU: un sistem de operare liber dar incomplet. Hurd nu este gata (1990)
+\item Linux: nucleul monolitic devenit liber (1991). Primele distribuții
+GNU/Linux
+\item Afaceri. Companiile multinaționale devin și ele contribuitori la
+programele libere
+\item OSI și definiția Open Source (1998). Diferențe de perspectivă și
+aplicabilitate
+\item Patentele pe programe din SUA amenință programele libere. Procese (2004
+- prezent)
+\item Microsot, Adobe și Nokia încep să dezvolte programe Open Source, nu
+toate libere (2008)
+\item Echipa Debian se alătură efortului internațional de a termina
+revoluționarul GNU Hurd
+\end{itemize}
+\end{frame}
+
+\section{Cod}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}
+\frametitle{Exemplu de cod}
+Acesta este un script bash:\\
+\input{code/01} % includem codul
+\end{frame}
+
+\begin{frame}{Încă un exemplu de cod}
+Acesta este un program C:
+
+\input{code/02}
+\end{frame}
+
+\section{Overlay-uri}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{Comanda `pause'}
+`Pause' ne lasă să arătăm textul `gradual'.
+
+\pause Putem să folosim pause cu itemize sau orice altă facilitate.
+\begin{itemize}
+\pause \item De exemplu.
+\pause \item Încă un exemplu.
+\pause \item Dar nu e foarte flexibil...
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Overlay-uri mai avansate}
+\only<1>{Cue chapter 9.3 from the Beamer manual.}
+\only<2>{Facem o mare ciorbă de overlay-uri. \textbf{Notă:} E vorba de un
+singur slide -- numărul şi titlul se păstrează.}
+\begin{itemize}
+\item<3-> orice comandă poate fi urmată (fără spaţiu) de un specificator de
+overlay;
+\item<4-> specificatoarele sunt marcate cu \texttt{<} şi \texttt{>};
+\item<5-> \texttt{<4>} înseamnă ``doar pe overlay-ul 4'';
+\item<5-> \texttt{<1-3>} înseamnă ``doar pe overlay-urile de la 1 până la 3,
+inclusiv'';
+\item<6-> \texttt{<5->} înseamnă ``de la overlay-ul 5 până la sfârşit'' (de
+fapt, până la slide-ul următor, fireşte);
+\item<6-> \texttt{<-4>} înseamnă ``de la început până la overlay-ul 4'';
+\item<7-> Toate exemplele de mai sus au avut comanda \texttt{item} urmată de
+un overlay. Trebuie să ţinem cont de ordine manual, dar nu cred că vom avea
+nevoie de cine-ştie-ce efecte.
+\end{itemize}
+\end{frame}
+
+
+\end{document}
