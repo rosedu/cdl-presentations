@@ -19,4 +19,4 @@ Comenzi de baza:
 * pentru a uploada schimbarile la repo-ul de pe server, folositi comanda:
 	git push origin master:refs/heads/master
 
-ok.
+ok și cu diacrițică.
