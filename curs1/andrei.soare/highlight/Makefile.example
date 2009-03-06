@@ -1,9 +1,8 @@
-BINARY=avl
-LIB=ar
-LIBFLAGS=rcs
-LDFLAGS=-L./lib
-CC=gcc
-CFLAGS= -g -Wall -I./include 
+BINARY = exec
+LDFLAGS = -L./lib
+CC = gcc
+CFLAGS = -g -Wall 
+CPPFLAGS = -I./include 
 LIBS = 
 
 SRCS := $(wildcard *.c)
@@ -12,7 +11,7 @@ OBJS := $(patsubst %.c,%.o,$(SRCS))
 all: $(BINARY)
 
 $(BINARY): $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS)  -o $@ $(OBJS) $(LIBS)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
 
 clean:
 	rm -f $(OBJS) $(BINARY)

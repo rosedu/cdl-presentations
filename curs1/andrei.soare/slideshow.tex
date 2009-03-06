@@ -98,8 +98,8 @@
     \begin{item}
     Variabile implicite:\\
     \$@ se expandeaza la numele target-ului\\
-    \$\^{} se expandeaza la lista de cerinte\\
-    \$$<$ se expandeaza la prima cerinta
+    \$\^{} se expandeaza la lista de dependente\\
+    \$$<$ se expandeaza la prima dependenta
     \end{item}
     \item Functii utile pentru declararea variabilelor:\\\begin{itemize}\item \$(wildcard pattern)\item \$(patsubst pattern, replacement, text)\item \$(addsuffix suffix, names...)\item \$(addprefix prefix, names...)\end{itemize}
     \item Variabilele pot fi definite/suprascrise si la rularea comenzii make. Exemplu:\\{\ttfamily make "CFLAGS = -O2 -g -Wall"}
@@ -166,11 +166,32 @@
 
 \section{Alternative}
     \frame{\tableofcontents[currentsection]}
+    
+    \begin{frame}{Ant}
+    \begin{itemize}
+    \setlength{\itemsep}{0.8cm}
+    \item Similar cu make
+    \item Implementat in Java
+    \item Folosit in special pentru proiecte scrise in Java
+    \item make VS Ant:\\Ant foloseste fisiere xml in loc de Makefile ({\ttfamily build.xml})
+    \item \url{http://ant.apache.org/}
+    \end{itemize}
+    \end{frame}
 
-\section{Further Reading}
+    \begin{frame}{SCons}
+    \begin{itemize}
+    \setlength{\itemsep}{1cm}
+    \item O imbunatatire a utilitarului make
+    \item Fisierele de configurare sunt scripturi Python
+    \item Detectarea automata a dependentelor
+    \item \url{http://www.scons.org/}
+    \end{itemize}
+    \end{frame}
+
+\section{Link-uri Utile}
     \frame{\tableofcontents[currentsection]}
 
-    \begin{frame}{Further Reading}
+    \begin{frame}{Link-uri Utile}
     \begin{itemize}
     \setlength{\itemsep}{0.5cm}
     \footnotesize
