@@ -1,18 +1,9 @@
-BINARY=avl
-LIB=ar
-LIBFLAGS=rcs
-LDFLAGS=-L./lib
-CC=gcc
-CFLAGS= -g -Wall -I./include 
-LIBS = 
+template.pdf: andrei.soare.tex code/Makefile
+	cd code && make
+	pdflatex $<
+	pdflatex $< # Twice, so TOC is also updated
 
-SRCS := $(wildcard *.c)
-OBJS := $(patsubst %.c,%.o,$(SRCS))
-
-all: $(BINARY)
-
-$(BINARY): $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS)  -o $@ $(OBJS) $(LIBS)
-
+.PHONY: clean
 clean:
-	rm -f $(OBJS) $(BINARY)
+	cd code && make clean
+	rm -f andrei.soare.pdf andrei.soare.aux andrei.soare.log andrei.soare.nav andrei.soare.out andrei.soare.snm andrei.soare.toc
