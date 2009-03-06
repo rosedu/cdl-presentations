@@ -4,13 +4,14 @@
 \usepackage[romanian]{babel}
 \usepackage{color}
 \usepackage{alltt}
+\usepackage{hyperref}
 \usepackage{code/highlight}
 \mode<presentation>
 \usetheme{Rochester}
 
 \title[Makefile]{Makefile}
 \institute{ROSEdu}
-\author{Andrei Soare}
+\author{Andrei Soare\\{\footnotesize andrei.soare@rosedu.org}}
 
 \begin{document}
 
@@ -27,7 +28,8 @@
     \begin{frame}{Definitie}
     \begin{itemize}
     \setlength{\itemsep}{0.8cm}
-    \item Este un fisier care se include in orice proiect pentru a automatiza procesul de compilare al surselor.\\
+    \item Fisier inclus in majoritatea proiectelor
+    \item Folosit pentru automatizarea procesului de compilare a surselor
     \item Compilarea efectiva: comanda make, care citeste un set de reguli din Makefile
     \end{itemize}
     \end{frame}
@@ -35,21 +37,21 @@
     \begin{frame}{De ce Makefile ?}
     \begin{itemize}
     \setlength{\itemsep}{0.4cm}
-    \item Scuteste de compilarea manuala a fiecarei surse.
+    \item Scuteste de compilarea manuala a fiecarei surse
     \item Daca modificam surse si vrem sa recompilam proiectul, make va recompila doar fisierele modificate
-    \item Asigura o anumita ordine a compilarii surselor - rezolva dependintele
-    \item Instalarea foarte rapida si usoara a programelor din surse.\\Exemplu: Kernel-ul de Linux, - instalare usoara, in cativa pasi:\\\vspace{0.2cm}\input{code/01}
+    \item Asigura o anumita ordine a compilarii surselor - rezolva dependentele
+    \item Instalarea rapida si usoara a programelor din surse.\\Exemplu: Kernel-ul Linux - instalare usoara, in cativa pasi:\\\vspace{0.2cm}\input{code/01}
     \end{itemize}
     \end{frame}
 
-\section{Procesul de instalare al pachetelor}
+\section{Procesul de instalare a pachetelor din surse}
     \frame{\tableofcontents[currentsection]}
 
     \begin{frame}{Comparatie - Sisteme de Operare}
     \begin{itemize}
     \setlength{\itemsep}{0.5cm}
     \item Pe Windows: double click, next, next, ... next, finish
-    \item Pe MacOS: double click, drag \& drop :)
+    \item Pe OS X: double click, drag \& drop :)
     \item Pe Linux: \ttfamily./configure \&\& make \&\& make install\normalfont
     \end{itemize}
     \end{frame}
@@ -58,14 +60,14 @@
     \begin{itemize}
     \setlength{\itemsep}{0.7cm}
     \item {\ttfamily tar -x[zj]f nume\_arhiva}
-    \item {\ttfamily ./configure}\\$\rightarrow$ verifica detalii despre sistem, dependinte, etc.\\$\rightarrow$ creeaza un Makefile pentru compilarea proiectului
-    \item {\ttfamily make}\\$\rightarrow$ compileaza fiecare sursa din proiect $\Rightarrow$ executabile
+    \item {\ttfamily ./configure}\\$\rightarrow$ verifica detalii despre sistem, dependente, etc.\\$\rightarrow$ creeaza un Makefile pentru compilarea proiectului
+    \item {\ttfamily make}\\$\rightarrow$ compileaza fiecare sursa din proiect $\Rightarrow$ executabile si biblioteci
     \item {\ttfamily make install}\\$\rightarrow$ copiaza in sistem executabilele si alte fisiere necesare rularii programului (ex: in {\ttfamily /usr/bin})
     \end{itemize}
     \end{frame}
 
     \begin{frame}{Practice}
-    \par Luati codul sursa al programului hello si instalati-l.
+    \par Luati codul sursa al programului hello si instalati-l
     \vspace{0.6cm}
     \par $\rightarrow$ {\ttfamily apt-get source hello}
     \end{frame}
@@ -85,26 +87,21 @@
     \begin{frame}[allowframebreaks]
     \frametitle{Variabile}
     \begin{itemize}
-    \setlength{\itemsep}{0.6cm}
-    \item Declarare: {\ttfamily nume\_variabila = valoare1 valoare2 ...}
+    \setlength{\itemsep}{0.5cm}
+    \item Declarare: 2 moduri\\
+        \begin{itemize}
+        \item {\ttfamily\ NUME = valori}
+        \item {\ttfamily\ NUME := valori}
+        \end{itemize}
     \item Folosire: expandarea unei variabile se face astfel: {\ttfamily\$(nume\_varabila)}
-    \begin{item}
-    Exemplu:\\{\ttfamily CFLAGS = \$(include\_dirs) -O\\include\_dirs = -Ifoo -Ibar}
-    \end{item}
+    \item Exemplu:\\{\ttfamily CFLAGS = -Wall -g -O\\CPPFLAGS = \$(include\_dirs) -D\\include\_dirs = -Ifoo -Ibar}
     \begin{item}
     Variabile implicite:\\
     \$@ se expandeaza la numele target-ului\\
     \$\^{} se expandeaza la lista de cerinte\\
     \$$<$ se expandeaza la prima cerinta
     \end{item}
-    \begin{item}
-    Exista 2 moduri de a declara variabile:
-        \begin{itemize}
-        \item \ttfamily\ NUME = valori\normalfont\\Atribuirea valorii se face de fiecare data cand se expandeaza variabila
-        \item \ttfamily\ NUME := valori\normalfont\\Variabilei ii va fi atribuita o valoare o singura data, la definitie
-        \end{itemize}
-    \end{item}
-    \item Functii utile pentru declararea variabilelor:\\\begin{itemize}\item wildcard\item patsubst\end{itemize}
+    \item Functii utile pentru declararea variabilelor:\\\begin{itemize}\item \$(wildcard pattern)\item \$(patsubst pattern, replacement, text)\item \$(addsuffix suffix, names...)\item \$(addprefix prefix, names...)\end{itemize}
     \item Variabilele pot fi definite/suprascrise si la rularea comenzii make. Exemplu:\\{\ttfamily make "CFLAGS = -O2 -g -Wall"}
     \end{itemize}
     \end{frame}
@@ -113,9 +110,9 @@
     \frametitle{Reguli}
     \begin{itemize}
     \setlength{\itemsep}{0.3cm}
-    \item sintaxa unei reguli:\\ \ttfamily target: dependinte\\ <tab>comenzi\\ <tab>comenzi\\ ...\normalfont
-    \item target - numele fisierului care se va obtine in urma comenzilor\\target-uri tipice: install, clean
-    \item dependinte - fisiere necesare comenzilor care urmeaza
+    \item sintaxa unei reguli:\\ {\ttfamily target: dependente\\ <tab>comenzi\\ <tab>comenzi\\ ...}
+    \item target - numele fisierului care se va obtine in urma comenzilor\\target-uri tipice: all, install, clean
+    \item dependente - fisiere necesare comenzilor care urmeaza
     \begin{item} Problema: target-ul ``\texttt{clean}'' care sterge toate executabilele: daca exista deja un fisier cu numele clean ?\\Solutia: .PHONY\\
     \vspace{0.3cm}
     \input{code/03}
@@ -126,9 +123,22 @@
     \begin{frame}{Reguli Implicite}
     \begin{itemize}
     \setlength{\itemsep}{0.5cm}
-    \item Make are un set de reguli implicite. Acestea pot fi vizualizate cu \ttfamily make -p\normalfont
-    \item Comanda care trebuie rulata poate fi detectata implicit. De exemplu, pentru regula \ttfamily hello.o: hello.c\normalfont \ se va considera implicit comanda:\\ {\ttfamily \$(CC) \$(CFLAGS) -c -o \$@ \$$<$}
+    \item Make are un set de reguli implicite
+    \item Acestea pot fi vizualizate cu {\ttfamily make -p}
+    \item Comanda care trebuie rulata poate fi detectata implicit
+    \item De exemplu, pentru regula {\ttfamily hello.o:\ hello.c}\ se va considera implicit comanda:\\ {\ttfamily \$(CC) \$(CFLAGS) -c -o \$@ \$$<$}
     \end{itemize}
+    \end{frame}
+
+    \begin{frame}[allowframebreaks]
+    \frametitle{Reguli Implicite - Exemplu}
+    \input{code/makefile1}\\
+    \framebreak
+    \input{code/makefile2}\\
+    \framebreak
+    \input{code/makefile3}\\
+    \framebreak
+    \input{code/makefile4}
     \end{frame}
 
     \begin{frame}{Exemplu}
@@ -139,16 +149,18 @@
     \frametitle{Ce face make?}
     \begin{itemize}
     \setlength{\itemsep}{0.6cm}
-    \item Inainte de a citi fisierul Makefile, utilitarul make isi incarca setul de reguli si variabile implicite.
+    \item Inainte de a citi fisierul Makefile, utilitarul make isi incarca setul de reguli si variabile implicite
     \item OBS: se poate executa make si fara a exista un Makefile, el incarcandu-si doar regulile implicite. Exemplu:\\ \vspace{0.4cm}\input{code/06}
-    \item In momentul rularii comenzii make i se poate preciza target-ul care se doreste a fi obtinut (ex: make install). Daca acesta nu este precizat, este considerat implicit primul target intalnit în fisierul Makefile folosit.
-    \item La executie, make compara timpul ultimei schimbari al target-ului cu timpii dependintelor si daca oricare din dependinte este mai noua, target-ul va fi refacut.
+    \item In momentul rularii comenzii make i se poate preciza target-ul care se doreste a fi obtinut (ex: make install)\begin{itemize}\item \vspace{0.6cm}Daca acesta nu este precizat, este considerat implicit primul target intalnit in fisierul Makefile folosit (de obicei, {\ttfamily all}) \end{itemize}
+    \item La executie, make compara timpul ultimei schimbari al target-ului cu timpii dependentelor \begin{itemize}\item \vspace{0.6cm}Daca oricare din dependente este mai noua, target-ul va fi refacut \end{itemize}
     \end{itemize}
     \end{frame}
 
     \begin{frame}{Practice}
     \begin{itemize}
-    \item In folderul ... aveti un mic proiect. Faceti un Makefile care sa contina reguli pentru compilarea surselor, pentru install si pentru clean
+    \setlength{\itemsep}{1cm}
+    \item In folderul .../trunk/src/polish/ aveti un mic proiect
+    \item Faceti un Makefile care sa contina reguli pentru compilarea surselor, pentru install si pentru clean
     \end{itemize}
     \end{frame}
 
@@ -160,12 +172,14 @@
 
     \begin{frame}{Further Reading}
     \begin{itemize}
-    %must make the smaller
-    \item http://www.gnu.org/software/make/manual/make.html
-    \item http://cs.pub.ro/~so/index.php?section=Laboratoare\&file=01.\%20Introducere\#GNU\_Make
-    \item http://www.hsrl.rutgers.edu/ug/make\_help.html
-    \item http://www.opussoftware.com/tutorial/TutMakefile.htm
+    \setlength{\itemsep}{0.5cm}
+    \footnotesize
+    \item \url{http://www.gnu.org/software/make/manual/make.html}
+    \item \url{http://cs.pub.ro/~so/index.php?section=Laboratoare\&file=01.\%20Introducere\#GNU\_Make}
+    \item \url{http://www.hsrl.rutgers.edu/ug/make\_help.html}
+    \item \url{http://www.opussoftware.com/tutorial/TutMakefile.htm}
+    \item \url{irc://irc.freenode.net/\# \# workingset}
+    \normalfont
     \end{itemize}
     \end{frame}
-
 \end{document}

@@ -1,0 +1,11 @@
+CC = gcc 
+CFLAGS = -Wall -g
+
+ex1: ex1.o ex2.o
+	    $(CC) -o $@ $<
+
+ex1.o: ex1.c
+	    $(CC) $(CFLAGS) -c -o $@ $<
+
+ex2.o: ex1.c
+	    $(CC) $(CFLAGS) -c -o $@ $<
