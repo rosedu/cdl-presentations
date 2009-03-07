@@ -1,4 +1,5 @@
-template.pdf: template.tex code/Makefile
+DIST = template
+$(DIST).pdf: $(DIST).tex code/Makefile
 	cd code && make
 	pdflatex $<
 	pdflatex $< # Twice, so TOC is also updated
@@ -6,4 +7,4 @@ template.pdf: template.tex code/Makefile
 .PHONY: clean
 clean:
 	cd code && make clean
-	rm -f template.pdf template.aux template.log template.nav template.out template.snm template.toc
+	rm -f $(DIST).pdf $(DIST).aux $(DIST).log $(DIST).nav $(DIST).out $(DIST).snm $(DIST).toc
