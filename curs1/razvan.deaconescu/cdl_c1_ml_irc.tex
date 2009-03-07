@@ -2,6 +2,7 @@
 
 \usepackage[utf8x]{inputenc}
 \usepackage[romanian]{babel}
+\usepackage{url}
 \usepackage{color}
 \usepackage{alltt}
 %\usepackage{code/highlight}
@@ -26,7 +27,7 @@
     
     \begin{frame}{Comunicare}
     \begin{itemize}
-    \setlength{\itemsep}{0.8cm}
+    \setlength{\itemsep}{0.4cm}
     \item Informații, anunțuri, opinii, feedback, întrebări
     \item Liste de discuții
     \item Forumuri
@@ -46,10 +47,11 @@
 
     \begin{frame}{Liste de discuții}
     \begin{itemize}
-    \setlength{\itemsep}{0.5cm}
+    \setlength{\itemsep}{0.8cm}
     \item În general, principala formă de comunicare în proiectele FOSS
     \item Exemple de liste de discuții?
         \begin{itemize}
+        \setlength{\itemsep}{0.4cm}
         \item<2-> Linux kernel mailing lists
         \item<3-> Debian mailing lists
         \item<4-> RedHat mailing lists
@@ -60,7 +62,7 @@
 
     \begin{frame}{Funcționare listă de discuții}
     \begin{itemize}
-    \setlength{\itemsep}{0.5cm}
+    \setlength{\itemsep}{0.4cm}
     \item Înscriere (subscribe) (adresă de e-mail)
     \item Confirmare
     \item Citire/scriere de mesaje
@@ -69,9 +71,300 @@
     \item Funcționare one-to-many
     \item Aplicații de mailing list
         \begin{itemize}
-            \item Mailman (http://www.gnu.org/software/mailman/index.html)
-            \item Ecartis (http://www.ecartis.org/)
+            \item Mailman (\url{http://www.gnu.org/software/mailman/index.html})
+            \item Ecartis (\url{http://www.ecartis.org/})
         \end{itemize}
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Exercițiu}
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \item Înscrieți-vă pe lista de discuții \url{cdl-studenti@rosedu.org}
+        \begin{itemize}
+        \item \url{http://rosedu.org/cgi-bin/mailman/listinfo/cdl-studenti}
+        \end{itemize}
+    \item Creați un filtru în clientul vostru web de e-mail pentru \\
+        mesajele de la această listă
+    \item Trimiteți un mesaj de salut pe listă
+    \item Înscrieți-vă pe lista kernelnewbies și creați un filtru
+        \begin{itemize}
+        \item \url{http://kernelnewbies.org/MailingList}
+        \end{itemize}
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Liste de discuții vs. forumuri}
+    \begin{itemize}
+    \setlength{\itemsep}{0.6cm}
+    \item Forumuri
+        \begin{itemize}
+        \setlength{\itemsep}{0.3cm}
+        \item autentificare
+        \item organizarea informației/thread-uri de discuție
+        \item citești doar ce vrei
+        \end{itemize}
+    \item Liste de discuții
+        \begin{itemize}
+        \setlength{\itemsep}{0.3cm}
+        \item fără operații "suplimentare"
+        \item se garantează că mesajul "ajunge" la destinație
+        \item se pot transmite ușor atașamente și alte fișiere
+        \end{itemize}
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Tipuri de liste de discuție}
+    \begin{itemize}
+    \setlength{\itemsep}{0.3cm}
+    \item Development (-devel)
+    \item Utilizatori (-user)
+    \item Anunturi (-announce)
+    \item Specializate (linux-net, debian-mips)
+    \item Offtopic
+    \item Humor
+    \item Unele liste nu sunt asociate unui proiect; sunt folosite pentru \\
+        întrebări generale
+        \begin{itemize}
+        \item rlug (\url{rlug@lists.lug.ro})
+        \item kernelnewbies (\url{kernelnewbies@nl.linux.org})
+        \end{itemize}
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Exerciții}
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \item Identificați 5 liste de discuții folosite de dezvoltatorii Linux \\
+        și rolul acestora
+    \item Identificați 5 liste de discuții folosite de dezvoltatorii Debian \\
+        și rolul acestora
+    \item Identificați 5 liste de discuții folosite de dezvoltatorii Gnome \\
+        și rolul acestora
+    \item Identificați 5 liste de discuții folosite în diferite proiecte \\
+        sau organizații din România
+    \item Hint: folosiți Google
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Netiquette}
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \item<2-> Scurt și la obiect
+    \item<3-> Don't double-post!
+    \item<4-> Lurk before you leap!
+    \item<5-> Vorbește corect
+    \item<6-> Fii amabil
+    \item<7-> Răspunde când știi
+    \item<8-> Precizează răspunsul la întrebarea proprie dacă l-ai găsit
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Netiquette (2)}
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \item<2-> Folosește interleaved-posting
+    \item<3-> Semnează mesajul
+    \item<4-> Taie semnătura mesajului anterior
+    \item<5-> Încearcă să nu provoci flame-uri (nu pune paie pe foc)
+    \item<6-> Folosește mesaje text (ASCII/non-HTML)
+    \item<7-> Limitează liniile mesajului la 72-80 de caractere
+    \end{itemize}
+    \end{frame}
+
+\section{Internet Relay Chat}
+    \begin{frame}{IRC}
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \item Internet Relay Chat
+    \item More than "asl pls"
+    \item<2-> De ce? De ce nu liste de discuții sau forumuri?
+        \begin{itemize}
+        \setlength{\itemsep}{0.2cm}
+        \item<3-> răspunsuri în timp real
+        \end{itemize}
+    \item<4-> Se folosește?
+        \begin{itemize}
+        \setlength{\itemsep}{0.2cm}
+        \item<5-> \#bash, \#linux, \#\#c, \#workingset
+        \item<5-> \#rosedu, \#cdl :-)
+        \end{itemize}
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Funcționare IRC}
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \item IRC itself is a teleconferencing system, which (through the \\
+        use of the client-server model) is well-suited to running on \\
+        many machines in a distributed fashion. A typical setup involves \\
+        a single process (the server) forming a central point for clients \\
+        (or other servers) to connect to, performing the required message \\
+        delivery/multiplexing and other functions.
+    \item J. Oikarinen, D. Reed; Internet Relay Chat Protocol; RFC 1459; May 1993
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Funcționare IRC (2)}
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \item Server IRC
+        \begin{itemize}
+        \setlength{\itemsep}{0.2cm}
+        \item retransmite mesajele în cadrul unei camere de chat tuturor utilizatorilor conectați
+        \item oferă participanților iluzia existenței unei camere virtuale de chat proprii
+        \item lem.freenode.net, calvino.freenode.net etc.
+        \end{itemize}
+    \item Client IRC
+        \begin{itemize}
+        \setlength{\itemsep}{0.2cm}
+        \item A client is anything connecting to a server that is not a server
+        \item connect, disconnect, send, receive
+        \end{itemize}
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Funcționare IRC (3)}
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \item Canal IRC
+        \begin{itemize}
+        \setlength{\itemsep}{0.2cm}
+        \item locație virtuală de întâlnire
+        \item textbased
+        \item "chatroom"
+        \end{itemize}
+    \item Operații
+        \begin{itemize}
+        \setlength{\itemsep}{0.2cm}
+        \item join
+        \item leave
+        \item create
+        \item find
+        \end{itemize}
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Funcționare IRC (4)}
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \item Rețele IRC (IRC networks)
+        \begin{itemize}
+        \item mai multe servere conectate
+        \item serverele partajează canalele de IRC ale rețelei
+        \item toate serverele primesc mesajele din toate camerele de chat
+        \end{itemize}
+    \item The Big Four
+        \begin{itemize}
+        \item EFnet
+        \item IRCnet
+        \item QuakNet
+        \item Undernet
+        \end{itemize}
+    \item Freenode
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Clienți IRC}
+    \begin{itemize}
+    \setlength{\itemsep}{0.3cm}
+    \item mIRC
+    \item ircll
+    \item Pidgin
+    \item XChat
+    \item irssi
+    \item Konversation
+    \item ChatZilla
+    \item bots - automated clients
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Folosirea unui client IRC}
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \item Rulare client
+    \item Alegere rețea IRC
+    \item Creare cont de utilizare
+    \item Conectare la server IRC din rețea
+    \item Join pe diverse canale din rețea
+    \item chat :-)
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Comenzi IRC de bază}
+    \begin{itemize}
+    \setlength{\itemsep}{0.3cm}
+    \item /msg NickServ REGISTER myshinypass my@shiny.email
+    \item /msg NickServ IDENTIFY $<$password$>$
+    \item /join \#\#c
+    \item /part
+    \item /me
+    \item /ping
+    \item /quit
+    \item /help
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Exerciții}
+    \begin{itemize}
+    \setlength{\itemsep}{0.4cm}
+    \item Instalați și folosiți XChat pentru conectare la
+        \begin{itemize}
+        \item rețeaua Freenode
+        \item serverul lem.freenode.net
+        \item canalele \#rosedu, \#cdl, \#linux, \#bash
+        \end{itemize}
+    \item Nu uitați să vă autentificați
+    \item Daca nu aveți cont creați-vă unul (/msg ...)
+    \item Pe canalul \#cdl salutați pe ceilalți și spuneți-vă numele
+    \item Pe canalul \#cdl transmiteți un mesaj de forma \\
+          "*user vorbește mult", unde user este nick-ul vostru
+    \item Configurați XChat pentru a se conecta automat la canalele \\
+        de mai sus la fiecare pornire
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Exerciții (2) :}
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \item Folosire ajutor
+        \begin{itemize}
+        \item folosiți comanda /help pentru a naviga printre comenzile \\
+            posibile IRC
+        \item Pe canalul \#bash folosiți bot-ul de ajutor pentru a obține \\
+            ajutor referitor la redirectare
+        \end{itemize}
+    \item Folosire pastebin
+        \begin{itemize}
+        \item folosiți un site de paste în care să scrieți un program "Hello, World!"
+        \item dați paste la mesaj pe \#cdl
+        \end{itemize}
+    \item Marcați-vă ca fiind away pe canalul \#cdl
+    \item Reveniți la statutul "online"
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{IRC netiquette}
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \item Puneți întrebări clare
+    \item Nu oferiti răspunsuri "pe pâine" - indicați documentația sau botul de documantare
+    \item Folosiți un canal IRC specific problemei
+        \begin{itemize}
+        \item nu puneți întrebări legate de Linux sau de apeluri C non-standard pe \#\#c
+        \end{itemize}
+    \item Răspundeți (doar) acolo unde știți
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Legături utile}
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \item \url{http://www.irchelp.org/}
+    \item \url{http://en.wikipedia.org/wiki/Internet\_Relay\_Chat}
+    \item \url{http://www.ircbeginner.com/ircinfo/ircc-commands.html}
+    \item \url{http://www.livinginternet.com/r/r.htm}
+    \item \url{http://www.faqs.org/rfcs/rfc1459.html}
     \end{itemize}
     \end{frame}
 
