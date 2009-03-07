@@ -18,5 +18,11 @@ Comenzi de baza:
 
 * pentru a uploada schimbarile la repo-ul de pe server, folositi comanda:
 	git push origin master:refs/heads/master
+    daca nu merge, atunci git push git@git.rosedu.org:cdl.git master
 
-ok și cu diacrițică.
+* pentru a trage ultimele modificari de pe server si a face merge cu repo-ul local:
+    git pull
+    daca nu merge, atunci git pull git://git.rosedu.org/cdl.git
+
+* pentru a vedea cine este responsabil pentru fiecare linie dintr-un fisier:
+    git blame nume_fisier

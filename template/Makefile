@@ -1,4 +1,7 @@
 DIST = template
+TRASHEXT = .pdf .aux .log .nav .out .snm .toc
+TRASH = $(addprefix $(DIST), $(TRASHEXT))
+
 $(DIST).pdf: $(DIST).tex code/Makefile
 	cd code && make
 	pdflatex $<
@@ -7,4 +10,4 @@ $(DIST).pdf: $(DIST).tex code/Makefile
 .PHONY: clean
 clean:
 	cd code && make clean
-	rm -f $(DIST).pdf $(DIST).aux $(DIST).log $(DIST).nav $(DIST).out $(DIST).snm $(DIST).toc
+	rm -f $(TRASH)
