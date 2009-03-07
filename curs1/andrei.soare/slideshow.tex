@@ -62,7 +62,7 @@
     \item {\ttfamily tar -x[zj]f nume\_arhiva}
     \item {\ttfamily ./configure}\\$\rightarrow$ verifica detalii despre sistem, dependente, etc.\\$\rightarrow$ creeaza un Makefile pentru compilarea proiectului
     \item {\ttfamily make}\\$\rightarrow$ compileaza fiecare sursa din proiect $\Rightarrow$ executabile si biblioteci
-    \item {\ttfamily make install}\\$\rightarrow$ copiaza in sistem executabilele si alte fisiere necesare rularii programului (ex: in {\ttfamily /usr/bin})
+    \item {\ttfamily make install}\\$\rightarrow$ copiaza in sistem executabilele si alte fisiere necesare rularii programului (ex: in {\ttfamily /usr/bin, /usr/lib})
     \end{itemize}
     \end{frame}
 
@@ -142,7 +142,7 @@
     \end{frame}
 
     \begin{frame}{Exemplu}
-    \input{highlight/makefile}
+    \input{highlight/makefile5}
     \end{frame}
 
     \begin{frame}[allowframebreaks]
@@ -150,7 +150,9 @@
     \begin{itemize}
     \setlength{\itemsep}{0.6cm}
     \item Inainte de a citi fisierul Makefile, utilitarul make isi incarca setul de reguli si variabile implicite
-    \item OBS: se poate executa make si fara a exista un Makefile, el incarcandu-si doar regulile implicite. Exemplu:\\ \vspace{0.4cm}\input{highlight/06}
+    \item OBS: se poate executa make si fara a exista un Makefile, el incarcandu-si doar regulile implicite.
+    \item Practice: creati directorul {\ttfamily tmp} si programul {\ttfamily tmp/hello.c}\\Rulati comanda {\ttfamily make hello}
+    \framebreak
     \item In momentul rularii comenzii make i se poate preciza target-ul care se doreste a fi obtinut (ex: make install)\begin{itemize}\item \vspace{0.6cm}Daca acesta nu este precizat, este considerat implicit primul target intalnit in fisierul Makefile folosit (de obicei, {\ttfamily all}) \end{itemize}
     \item La executie, make compara timpul ultimei schimbari al target-ului cu timpii dependentelor \begin{itemize}\item \vspace{0.6cm}Daca oricare din dependente este mai noua, target-ul va fi refacut \end{itemize}
     \end{itemize}
