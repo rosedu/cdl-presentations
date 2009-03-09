@@ -1,0 +1,88 @@
+% vim: set tw=78 aw sw=2 sts=2 noet:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{code/highlight}	 % highlight
+\usepackage{ulem} % not in the template; used for strikethrough (sout)
+\usepackage{hyperref}        % folositi \url{http://...}
+                             % sau \href{http://...}{Nume Link}
+\mode<presentation>
+{ \usetheme{Rochester} }		% TODO: settle this
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title{Editorul Vim}
+\subtitle{CDL - Cursul 2}
+\institute{ROSEdu}
+\author{Vlad Dogaru \\ \texttt{ddvlad@rosedu.org}}
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\begin{frame}{Where do we stand?}
+Până acum, la CDL, am învăţat:
+\begin{itemize}
+  \item<2-> ce este Free/Libre/Open/Open Source Software
+  \item<3-> cum să comunicăm în cadrul unui proiect
+  \item<4-> cum să automatizăm procesul de compilare
+  \item<5-> cum să ţinem sursele programului undeva sigur
+\end{itemize}
+\onslide<6>{Când învăţăm să \textit{scriem} cod?}
+\end{frame}
+
+\begin{frame}
+  \frametitle{}
+  \begin{center}
+  {\Huge \bfseries Acum!}
+  \vspace{2cm}
+
+  \pause De fapt, azi, dar puţin mai târziu.
+
+  \pause Acum învăţăm cum să \textit{edităm}, nu cum să scriem cod.
+  \end{center}
+\end{frame}
+
+\begin{frame}{Importanţa eficienţei}
+De ce e important să scriem cod eficient:
+\begin{itemize}
+  \item<2-> când scriem repede, scriem mai mult
+    \begin{itemize}
+    \item<3-> mai mult nu înseamnă mai bine
+    \item<4-> but we're sometimes ``in the zone''
+    \end{itemize}
+  \item<5-> dacă scriem mult şi ineficient, o să ajungem să urâm ce facem
+    \begin{itemize}
+    \item<6-> Da, o să ne doară mâinile. \onslide<7->{\textbf{Tare.}}
+    \end{itemize}
+  \item<8-> e un exerciţiu al minţii să edităm eficient
+\end{itemize}
+\end{frame}
+
+\section{Introducere}
+\frame{\tableofcontents}
+
+\begin{frame}{De ce Vim?}
+\begin{itemize}
+  \item<1-> \sout{un editor text-mode este mult mai eficient decât un IDE
+  grafic}
+  \item<2-> \sout{vim face treaba mai bine decât emacs}
+  \item<3-> contează cu ce ne obişnuim
+    \begin{itemize}
+    \item<4-> dar ar trebui să ne obişnuim cu ceva flexibil şi portabil
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+% Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
+%\frame{\tableofcontents[currentsection]}
+
+\end{document}
