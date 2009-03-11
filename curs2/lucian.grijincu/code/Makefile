@@ -1,15 +1,27 @@
-TEXFILES = 01.tex 02.tex
+DIST := diff_u.tex diff_c.tex diff_no_params.tex
+TEX_FILES   := $(DIST)
+PATCH_FILES := $(patsubst %.tex, %.patch, $(DIST))
 HIGHLIGHT_OPTS = -L -l -f -t 8 -c highlight.sty
 
-all: $(TEXFILES)
+ORIGINAL_FILE = f_original
+MODIFIED_FILE = f_modificat
+SOURCE_FILES := $(ORIGINAL_FILE) $(MODIFIED_FILE)
 
-01.tex: 01.sh
+all: $(TEX_FILES)
+
+%.tex: %.patch
 	highlight $(HIGHLIGHT_OPTS) -i $< -o $@
 
-02.tex: 02.c
-	highlight $(HIGHLIGHT_OPTS) -i $< -o $@
+# make diff files
+diff_u.patch: $(SOURCE_FILES)
+	diff -u $^ > $@ || true
+diff_c.patch: $(SOURCE_FILES)
+	diff -c $^ > $@ || true
+diff_no_params.patch: $(SOURCE_FILES)
+	diff    $^ > $@ || true
+
 
 .PHONY: clean
 clean:
-	rm -f $(TEXFILES) highlight.sty
+	rm -f $(TEX_FILES) $(PATCH_FILES) highlight.sty
 	rm -f *~
