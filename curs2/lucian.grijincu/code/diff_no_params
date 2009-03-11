@@ -1,0 +1,12 @@
+3,4c3,4
+< A treia linie diferă
+< A patră tot
+---
+> A treia linie diferă puțin
+> A patră e diferită
+7,8c7,8
+< A șaptea puțin.
+< A opta tot.
+---
+> A șaptea puțintel.
+> A opta e diferită.

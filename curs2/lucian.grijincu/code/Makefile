@@ -12,3 +12,4 @@ all: $(TEXFILES)
 .PHONY: clean
 clean:
 	rm -f $(TEXFILES) highlight.sty
+	rm -f *~
