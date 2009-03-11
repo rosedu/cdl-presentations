@@ -30,17 +30,55 @@
 \frame{\tableofcontents}
 
 % NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
-\section{Istorie}
+\section{Diff}
 
 % Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
 \frame{\tableofcontents[currentsection]}
 
 % Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
 % fie folosind \frametitle
-\begin{frame}{Preambul}
+\begin{frame}{Diff – Ce face?}
 \begin{itemize} % Just like normal LaTeX
-\item Prezentarea încearcă să atragă persoanele implicate în CDL spre a folosi
-\LaTeX Beamer.
+  \item calculează diferențele dintre două fișiere
+  \item afișează diferențele într-un mod standardizat
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Diff – Fișiere de exemplificare}
+  \begin{columns}[t]
+    \column{5cm}
+    {\LARGE{f\_original}}         \\
+    Prima linie comună fișierelor \\
+    A doua linie la fel           \\
+    A treia linie diferă          \\
+    A patră tot                   \\
+    A cincia nu                   \\
+    Și nici a șasea.              \\
+    A șaptea puțin.               \\
+    A opta tot.                   \\
+    Ultima e comună.
+    \column{5cm}
+    {\LARGE{f\_modificat}}        \\
+    Prima linie comună fișierelor \\
+    A doua linie la fel           \\
+    A treia linie diferă puțin    \\
+    A patră e diferită            \\
+    A cincia nu                   \\
+    Și nici a șasea.              \\
+    A șaptea puțintel.            \\
+    A opta e diferită.            \\
+    Ultima e comună.
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Vizualizare diferențe dintre două fișiere.}
+\begin{itemize} % Just like normal LaTeX
+\item Soluții:
+  \begin{itemize}
+  \item diferențe minimale între fișiere
+  \item diferențe între liniile a două fișiere
+  \end{itemize}
 \item Am copiat cu neruşinare schiţele lui Tibi pentru prima parte.
 \item Be sure to check the code: lots of comments and TODOs.
 \item Spam the list, IRC, or Vlad (nu la telefon) for more info.

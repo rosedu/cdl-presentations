@@ -11,3 +11,5 @@ $(DIST).pdf: $(DIST).tex code/Makefile
 clean:
 	cd code && make clean
 	rm -f $(TRASH)
+	rm -f *~
+
