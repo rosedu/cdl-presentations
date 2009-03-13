@@ -1,0 +1,194 @@
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{highlight/highlight}	 % highlight
+\usepackage{hyperref}        % folositi \url{http://...}
+                             % sau \href{http://...}{Nume Link}
+\mode<presentation>
+{\usetheme{Rochester}}
+
+\title[Coding Style]{Coding Stile}
+\subtitle{CDL - Cursul 2}
+\institute{ROSEdu}
+\author{Andrei Soare \\ {\footnotesize andrei.soare@rosedu.org}}
+
+\begin{document}
+\setbeamertemplate{frametitle continuation}[from second]
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+
+\section{Introducere}
+
+  \frame{\tableofcontents[currentsection]}
+
+  \begin{frame}{De ce avem nevoie de Coding Style ?}
+  Pentru ca:
+  \begin{itemize}
+  \pause \item Vrem sa intelegem si peste o luna codul propriu
+  \pause \item Vrem sa poata contribui si altcineva la proiectul nostru
+  \pause \item Vrem sa putem modifica rapid codul:\begin{itemize} \item debug \item adaugare functionalitati \end{itemize}
+  \pause \item Vrem ca proiectul nostru sa aiba viitor :)
+  \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Ce presupune Coding Style ?}
+  \begin{itemize}
+  \item Indentarea codului
+  \item Folosirea de spatii
+  \item Nume de variabile/functii bine alese
+  \item Comentarii sugestive ({\ttfamily `Ce ?'}, nu {\ttfamily `Cum ?'})
+  \item Functii de marime rezonabila
+  \item Organizarea codului (headere, module, functii, structuri)
+  \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Anti-pattern}
+  Design pattern aparent benefic, dar care in final este foarte ineficient
+  \pause \\\vspace{0.3cm}Exemple:\vspace{0.3cm}
+  \begin{itemize}
+  \item Organizationale \begin{itemize} \item Design by committee \item Escalation of commitment \item Mushroom Management \end{itemize}
+  \item Programare \begin{itemize} \item Accidental Complexity \item Action at a distance \item Hard Code \end{itemize}
+  \item ...
+  \end{itemize}
+  \url{http://en.wikipedia.org/wiki/Anti-pattern}
+  \end{frame} 
+
+
+\section{Exemple de stiluri}
+
+  \frame{\tableofcontents[currentsection]}
+
+  \begin{frame}[allowframebreaks]
+  \frametitle{K\&R Coding Style}
+  Nume de functii/variabile:\vspace{0.5cm}
+  \begin{itemize}
+  \item Lungimea numelui direct proportionala cu scope-ul si cu importanta
+  \item locale: scurte si la obiect\\tmp, nu TemporaryVariable
+  \item globale: explicative\\count\_active\_users(), nu cntusr()
+  \item macrouri: LITERE\_MARI
+  \end{itemize}
+  \framebreak
+  Indentare si spatiere:\vspace{0.5cm}
+  \begin{itemize}
+  \item TAB, nu spatii
+  \item TAB de 8 spatii
+  \item Latimea unei surse: maxim 80 de caractere
+  \end{itemize}
+  \framebreak
+  Acolade:\\ \vspace{0.5cm} \input{highlight/kr1} \\ \framebreak \input{highlight/kr3} \\
+  \framebreak
+  Comentarii:\\\vspace{0.5cm}
+  \begin{itemize}
+  \item {\ttfamily /*  ...  */}, nu {\ttfamily //  ...}
+  \item CE?, nu CUM?
+  \item Nu se pun in interiorul functiilor, ci la inceputul lor\\\vspace{0.2cm}
+  \end{itemize}
+  \input{highlight/kr2}
+  \end{frame}
+
+  \begin{frame}[allowframebreaks]
+  \frametitle{GNU Coding Style}
+  \input{highlight/gnu} \\ {\footnotesize  (sursa:wikipedia)}
+  \end{frame}
+
+  \begin{frame}{Java Coding Style}
+  \input{highlight/j1}
+  \end{frame}
+
+
+\section{Organizarea Proiectelor in C}
+  
+  \frame{\tableofcontents[currentsection]}
+
+  \begin{frame}[allowframebreaks]  
+  \frametitle{Organizarea Proiectelor}
+  \begin{itemize}
+  \item Codul prea mare $\Rightarrow$ nu incape intr-o sursa
+  \item Impartirea codului in module (fisiere .c) cu functionalitate bine definita
+  \item Latimea unei surse: 80
+  \item Lungimea unei functii: invers proportionala cu complexitatea ei\\De obicei, maxim un ecran
+  \framebreak
+  \item Fisierele header (.h): declaratii publice de variabile, functii si macro-uri
+  \item Fisierele sursa (.c): codul executabil (implementarea functiilor din header)
+  \vspace{1cm}
+  \item {\ttfamily static}
+  \item {\ttfamily extern}
+  \framebreak
+  \item Fiecare header trebuie sa aiba o protectie:\\\input{highlight/header}
+  \framebreak
+  \item Atentie! Un proiect contine o singura functie {\ttfamily main()}\begin{itemize} \item Compilatorul produce fisiere obiect din fiecare sursa, care sunt unite de catre "linker" intr-un singur fisier output (executabil / biblioteca)\end{itemize}
+  \item \url{http://www.cs.cf.ac.uk/Dave/C/node35.html}
+  \end{itemize}
+  \end{frame}
+
+\section{Documentatie. Doxygen}
+
+  \frame{\tableofcontents[currentsection]}
+
+  \begin{frame}[allowframebreaks]
+  \frametitle{Documentatie}
+  \begin{itemize}
+  \item Documentatia si codul unui proiect sunt la fel de importante
+  \item De multe ori, este neglijata :( \\ $\rightarrow$ motiv comun pentru esecul proiectelor Open Source \\ \vspace{1.5cm}
+  \item Vrem sa atragem contribuitori
+  \item Vrem sa le fie usor sa se adapteze la codul proiectului
+  \end{itemize}
+  \framebreak
+  Ce trebuie sa cuprinda documentatia ?\\
+% \begin{itemize}
+% \item Ce face ?
+% \item Cum functioneaza?
+% \item De ce a fost scris asa ?
+% \item Ce face fiecare parte ?
+% \item Unde gasesc fiecare parte ?
+% \item Cine l-a scris ?
+% \item Cand a fost scris ?
+% \end{itemize} \\ \vspace{0.5cm}
+% Tool-uri care genereaza pagini de documentatie din comentariile surselor:\\
+% \begin{itemize}
+% \item Doxygen
+% \item Javadoc
+% \end{itemize}
+  \end{frame}
+
+  \begin{frame}[allowframebreaks]
+  \frametitle{Doxygen}
+  \begin{itemize}
+  \item Extrage comentariile functiilor, claselor, structurilor de date din codul sursa si in formateaza in:\\ \begin{itemize} \item HTML \item CHM \item RTF \item PDF \item LaTeX \item manpages \end{itemize}
+  \item Este necesar un anumit format al comentariilor in surse
+  \end{itemize}
+  \framebreak
+  Exemplu comentarii:\\ \input{highlight/dox}
+  \framebreak
+  \\ Cum folosim doxygen ? \\
+  \begin{itemize}
+  \item {\ttfamily doxygen -g <config\_file>}
+  \item edit config\_file
+  \item {\ttfamily doxygen <config\_file>} 
+  \end{itemize}
+  \framebreak
+  Cum documentam sursele in format doxygen ? \\ 
+  \vspace{0.5cm} 
+  \input{highlight/dox2} \\
+  \framebreak
+  \input{highlight/dox3}
+  \end{frame}
+
+ section{Concluzie}
+  
+  \frame{\tableofcontents[currentsection]}
+  
+  \begin{frame}{Concluzie:}
+  \begin{itemize}
+  \item ``e mai bine prost dar consecvent prost decat bine dar in 20 de moduri''\\ \begin{flushright}-- Razvan Deaconescu \end{flushright}
+  \end{itemize}
+  \end{frame}
+
+\end{document}
