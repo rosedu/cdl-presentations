@@ -31,7 +31,7 @@
 \begin{frame}{Where do we stand?}
 Până acum, la CDL, am învăţat:
 \begin{itemize}
-  \item<2-> ce este Free/Libre/Open/Open Source Software
+  \item<2-> ce este Free/Libre/Open Source Software
   \item<3-> cum să comunicăm în cadrul unui proiect
   \item<4-> cum să automatizăm procesul de compilare
   \item<5-> cum să ţinem sursele programului undeva sigur
@@ -51,6 +51,20 @@ Până acum, la CDL, am învăţat:
   \end{center}
 \end{frame}
 
+\begin{frame}{Warning!}
+\begin{itemize}
+  \item<2-> Morocănos
+  \item<3-> Prezentare tehnică
+  \item<4-> Exerciţii puţine
+  \item<5-> Puneţi mâna singuri
+    \begin{itemize}
+    \item<6-> nu neapărat pe Vim
+    \item<7-> vreau să vă conving că e important să ştim bine \textit{un}
+    editor, nu editorul meu preferat
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Importanţa eficienţei}
 De ce e important să scriem cod eficient:
 \begin{itemize}
@@ -68,7 +82,7 @@ De ce e important să scriem cod eficient:
 \end{frame}
 
 \section{Introducere}
-\frame{\tableofcontents}
+\frame{\tableofcontents[currentsection]}
 
 \begin{frame}{De ce Vim?}
 \begin{itemize}
@@ -81,6 +95,341 @@ De ce e important să scriem cod eficient:
     \end{itemize}
 \end{itemize}
 \end{frame}
+
+\begin{frame}{vi şi Vim}
+\onslide<1-> \texttt{vi}
+\begin{itemize}
+  \item<1-> Bill Joy, 1976
+  \item<1-> parte a standardului POSIX
+\end{itemize}
+
+\onslide<2-> Vim
+\begin{itemize}
+  \item<2-> clonă de \texttt{vi} (Vi iMproved)
+  \item<2-> Bram Moolenaar, 1991
+  \item<2-> free and open source
+  \item<2-> portabil
+  \item<2-> interfaţă grafică
+  \item<2-> multe alte facilităţi
+    %\begin{itemize}
+    %\item personalizare folosind un limbaj intern
+    %\item auto-complete
+\end{itemize}
+
+Cei doi termeni (\texttt{vi} şi Vim) vor fi folosiţi ca sinonime în
+prezentare, deşi nu sunt.
+\end{frame}
+
+\begin{frame}{Editor modal}
+Câteva moduri importante:
+\begin{itemize}
+  \item<1-> Normal -- implicit, aşa porneşte \texttt{vi}
+    \begin{itemize}
+    \item<1-> deplasare rapidă
+    \end{itemize}
+  \item<2-> Insert -- introducere de text
+    \begin{itemize}
+    \item<2-> din Normal, apăsăm \texttt{i}
+    \item<2-> ne întoarcem în Normal cu \texttt{Esc}
+    \item<2-> nu rămânem în Insert mai mult decât e necesar
+    \end{itemize}
+  \item<3-> Command -- introducere de comenzi ``avansate''
+    \begin{itemize}
+    \item<3-> apăsăm \texttt{:} din Normal şi ne fuge cursorul pe ultima linie
+    \item<3-> ne întoarcem lansând comanda (\texttt{Enter}) sau cu
+    \texttt{Esc}
+    \end{itemize}
+  \item<4-> Visual -- ``selectăm'' bucăţi de text
+    \begin{itemize}
+    \item<4-> din Normal, apăsând \texttt{v}
+    \item<4-> ne întoarcem cu \texttt{Esc} sau lansând o comandă de editare
+    asupra textului
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\section{Editare}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{Cum edităm un fişier}
+\begin{itemize}
+  \item<1-> Lansăm Vim în execuţie cu \texttt{vim filename}
+  \item<2-> Pentru a salva schimbările, \texttt{:w}
+    \begin{itemize}
+    \item<3-> ``save as'' -- \texttt{:w new-filename}
+    \end{itemize}
+  \item<4-> Ieşim din Vim cu \texttt{:q}
+    \begin{itemize}
+    \item<5-> ne ``răstim'' pentru a nu salva modificările: \texttt{:q!}
+    \item<6-> salvăm şi închidem dintr-o singură comandă: \texttt{:wq}
+    \end{itemize}
+\end{itemize}
+
+\onslide<7->\textbf{Exerciţiu:} creaţi un fişier cu numele \texttt{test-01} şi
+scrieţi numele cursului la care participaţi în el. Exersaţi salvând în alt
+fişier şi renunţând la unele modificări mai puţin utile la ieşirea din Vim.
+\end{frame}
+
+\begin{frame}{Basic movement and first aid}
+\begin{itemize}
+  \item<1-> Ne deplasăm cu \texttt{hjkl} (\textit{în modul Normal})
+    \begin{itemize}
+    \item<2-> \texttt{h} şi \texttt{l} -- stânga şi dreapta
+    \item<3-> \texttt{j} şi \texttt{k} -- sus şi jos
+    \item<4-> mai rapid -- suntem pe ``home row''
+    \item<5-> \texttt{j} are un semn pe unele tastaturi
+    \end{itemize}
+  \item<6-> \texttt{:help} -- de departe cea mai utilă comandă Vim
+    \begin{itemize}
+    \item<7-> folosiţi \texttt{:q} pentru a închide fereastra pe care o
+    deschide \texttt{:h}
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{More advanced movement}
+Cum suntem eficienţi în modul Normal?
+\begin{itemize}
+  \item<2-> \texttt{\^} şi \texttt{\$} -- home şi end
+  \item<3-> \texttt{w} şi \texttt{b} -- sărim peste un cuvânt la dreapta / la
+  stânga (\textit{word / back})
+  \item<4-> \texttt{gg} şi \texttt{G} -- prima / ultima linie din fişier
+    \begin{itemize}
+    \item<5-> \texttt{:42} sau \texttt{42G} ne duce la linia 42
+    \end{itemize}
+  \item<6-> \texttt{\{} şi \texttt{\}} -- paragraful precedent / paragraful
+  următor
+  \item<7-> \texttt{fx} şi \texttt{Fx} -- ne poziţionează pe prima apariţie a
+  caracterului x de pe linia curentă, căutând spre dreapta / stânga
+    \begin{itemize}
+    \item<8-> \texttt{\underline{i}nt main(char argc, char **argv)} 
+    \item<9-> \texttt{fc}, apoi \texttt{cw} pentru a schimba \texttt{char} în
+    \texttt{int}
+    \end{itemize}
+  \item<10-> \texttt{\%} mă duce la perechea parantezei pe care mă aflu
+\end{itemize}
+\end{frame}
+
+\begin{frame}{More advanced editing (1)}
+Ştergere:
+\begin{itemize}
+  \item<1-> \texttt{x} şterge caracterul de sub cursor
+  \item<2-> \texttt{d} şterge caracterele date de mişcarea care îl urmează
+    \begin{itemize}
+    \item<3-> \texttt{dl} este echivalent cu \texttt{x}
+    \item<4-> \texttt{dj} şterge linia curentă şi pe cea de sub ea
+    \item<5-> \texttt{d\%} şterge o pereche de paranteze
+    \item<6-> \texttt{dd} şterge o linie (shortcut)
+    \end{itemize}
+\end{itemize}
+
+\onslide<7->Copy and Paste:
+\begin{itemize}
+  \item<8-> \texttt{y} (yank) copiază caracterele date de mişcarea care îl urmează
+  \item<9-> \texttt{p} (put) este echivalentul lui \textit{paste}
+    \begin{itemize}
+    \item<10-> \texttt{P} puts \textit{before} the character under cursor
+    \end{itemize}
+  \item<11-> \textbf{Atenţie:} \texttt{d} pune ce şterge în ``clipboard''
+    \begin{itemize}
+    \item<12-> dacă ştergem o linie goală înainte de a face \texttt{p}, tocmai
+    am pierdut conţinutul ``clipboard-ului''
+    \item<13-> \textbf{Soluţia:} mai multe registre: \texttt{"ry},
+    \texttt{"rp}
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{More advanced editing (2)}
+\begin{itemize}
+  \item<1-> \texttt{rx} -- înlocuieşte caracterul de sub cursor cu \texttt{x}
+  \item<2-> \texttt{c} (change) -- şterge caracterele de sub mişcarea
+  următoare şi intră în modul Insert pentru a introduce text
+    \begin{itemize}
+    \item<3-> \texttt{C} -- echivalent cu \texttt{c\$}
+    \item<4-> textul şters se duce în registrul implicit
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Visual}
+Modul Visual:
+\begin{itemize}
+  \item<1-> putem selecta o regiune complexă pentru a opera asupra ei
+  \item<2-> \texttt{v} pentru a intra în modul Visual
+  \item<3-> ne mişcăm pentru a selecta text
+  \item<4-> \texttt{d}, \texttt{y}, etc. pentru a opera asupra lui şi a ieşi
+  din modul Visual
+\end{itemize}
+
+\onslide<5-> Variaţiuni pe aceeaşi temă:
+\begin{itemize}
+  \item<6-> \texttt{V} -- Visual Line mode; selectăm numai linii întregi
+  \item<7-> \texttt{Ctrl-V} -- Visual Block mode; selectăm ``un dreptunghi''
+  de text
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Loose ends}
+\begin{itemize}
+  \item<1-> \texttt{u} şi \texttt{Ctrl-R} -- undo şi redo
+  \item<2-> \texttt{/text} caută \texttt{text}
+    \begin{itemize}
+    \item<2-> \texttt{n} şi \texttt{N} -- next şi previous
+    \end{itemize}
+  \item<3-> \texttt{:s/old\_pattern/new\_pattern/[options]} -- substituie
+  \texttt{old\_pattern} cu \texttt{new\_pattern}
+    \begin{itemize}
+    \item<4-> operează implicit asupra liniei curente
+    \item<5-> folosim Visual pentru a selecta uşor mai multe linii
+    \item<6-> sau folosim \texttt{\%} între \texttt{:} şi \texttt{s} pentru a
+    selecta întregul fişier
+    \item<7-> opţiunea \texttt{g} înlocuieşte toate apariţiile de pe o linie
+    \item<8-> \texttt{:\%s/old/new/g} ar înlocui toate instanţele lui
+    \texttt{old} cu \texttt{new}
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Exerciţiu}
+\begin{itemize} % TODO
+  \item descărcaţi şi dezarhivaţi arhiva TODO
+  \item trebuie să faceţi fişierul \texttt{myfile} să fie identic cu
+  \texttt{myfile.original}, folosind unele dintre comenzile de editare
+  prezentate
+  \item \textbf{nu rămâneţi în Insert mai mult decât este necesar}
+  \item pentru a vedea cele două fişiere unul lângă altul, deschideţi
+  \texttt{myfile.original}, apoi scrieţi \texttt{:vsp myfile}
+  \item vă deplasaţi între cele două jumătăţi cu \texttt{Ctrl-W Ctrl-W} (da,
+  de două ori)
+  \item \textbf{maximizaţi terminalul înainte de a începe}
+\end{itemize}
+\end{frame}
+
+\section{Opţiuni Vim}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{Ce sunt opţiunile}
+\begin{itemize}
+  \item<1-> comportamentul Vim poate fi modificat de opţiuni
+  \item<2-> folosim \texttt{:set} pentru a modifica sau interoga opţiunile
+  \item<3-> modificăm folosind \texttt{:set optiune=valoare}
+    \begin{itemize}
+    \item<4-> pentru help despre o opţiune, \texttt{:h 'opţiune'} (observaţi
+    apostroafele)
+    \end{itemize}
+  \item<5-> aflăm valoarea unei opţiuni cu \texttt{:set optiune?}
+  \item<6-> unele opţiuni sunt de tip boolean; convenţia este \texttt{:set opt}
+  şi \texttt{:set noopt}
+  \item<7-> foarte multe opţiuni au şi forme prescurtate
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Exemple de opţiuni}
+\begin{itemize}
+  \item<1-> \texttt{textwidth (tw)} -- la dimensiunea liniei curente de mai
+  mult de \texttt{tw} caractere, linia este spartă; \texttt{tw=0} înseamnă că
+  nu există limită;
+  \item<2-> \texttt{filetype (ft)} -- tipul fişierului curent, aşa cum îl
+  ``vede'' Vim; poate fi sursă (C, bash, etc.), Makefile, fişier de
+  configurare, sau chiar mesaj e-mail;
+  \item<3-> \texttt{softtabstop (sts)} şi \texttt{shiftwidth (sw)} --
+  controlează cu câte spaţii se indentează codul când apăsăm pe \texttt{Tab};
+  \item<4-> \texttt{autoindent (ai)} şi \texttt{cindent (cin)} -- opţiuni care
+  controlează modul în care textul este (sau nu) indentat automat; încercaţi
+  \texttt{cin} pentru cod C;
+  \item<5-> \texttt{wildmenu} -- face tab-completion în Command să funcţioneze
+  asemănător cu bash.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Vimrc}
+Putem automatiza şi personaliza Vim folosind fişierul vimrc.
+\begin{itemize}
+  \item<2-> vimrc local este în \texttt{\$HOME/.vimrc}
+  \item<3-> conţine comenzi care sunt executate de Vim la începutul sesiunii
+    \begin{itemize}
+    \item<3-> fără prefixul \texttt{:}
+    \end{itemize}
+  \item<4-> putem pune comenzi \texttt{set} în vimrc
+\end{itemize}
+\end{frame}
+
+\section{Editarea mai multor fişiere}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{Mai multe buffere}
+\begin{itemize}
+  \item<1-> Vim poate edita mai multe fişiere odată
+  \item<2-> vedem uşor: \texttt{vim file1 file2 ... filen}
+  \item<3-> \texttt{:next} şi \texttt{:Next} -- următorul fişier / fişierul
+  precedent
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Mai multe tab-uri}
+\begin{itemize}
+  \item<1-> Hello, Firefox!
+  \item<2-> tab-uri -- indiciu vizual permanent cu privire la fişierele deschise
+  \item<3-> deschidem un tab nou cu \texttt{:tabnew filename}
+  \item<4-> \texttt{gt} şi \texttt{gT} ciclează prin taburi
+  \item<5-> \texttt{ngt} ne duce la al n-lea tab
+  \item<6-> închidem un tab cu \texttt{:q}
+  \item<7-> \texttt{:qa}, \texttt{:qa!}, \texttt{:wqa} -- operează asupra
+  tutror tab-urilor
+\end{itemize}
+\end{frame}
+
+\section{...and beyond}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{Make şi ctags}
+Make:
+\begin{itemize}
+  \item<1-> putem rula \texttt{make} direct din Vim -- \texttt{:make}
+  \item<2-> în cazul eventualelor erori, folosim \texttt{:cnext} pentru a
+  merge la linia care conţine eroarea următoare
+\end{itemize}
+
+\onslide<3-> ctags:
+\begin{itemize}
+  \item<4-> fişier care conţine informaţii despre definirea funcţiilor C
+  \item<5-> \texttt{ctags -aR *} pentru a genera fişierul
+  \item<6-> opţiunea \texttt{tags} din Vim ţine numele fişierului în care
+  căutăm definiţiile
+  \item<7-> \texttt{:tag tagname}, \texttt{Ctrl-]}, \texttt{Ctrl-T}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Modeline}
+Ce problemă rezolvă un modeline?
+\begin{itemize}
+  \item<1-> vreau să îţi dau un fişier
+    \begin{itemize}
+    \item<2-> dar vreau să îl vezi aşa cum vreau eu
+    \item<3-> şi ştiu că foloseşti vim :-)
+    \end{itemize}
+  \item<4-> un modeline conţine comenzi pe care vim trebuie să le execute când
+  citeşte fişierul
+  \item<5-> \texttt{/* vim: set tw=72 sts=4 sw=4 cindent: */}
+  \item<6-> utilizatorul trebuie să aibă \texttt{modeline} setat
+    \begin{itemize}
+    \item<7-> \texttt{set modeline} e un candidat bun pentru orice vimrc
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Random Goodness for your vimrc}
+\begin{itemize}
+  \item<1-> \texttt{imap jj <Esc>}
+  \item<2-> \texttt{autocmd FileType c 	set tw=72 cindent}
+\end{itemize}
+\end{frame}
+
+% A, I, repetarea operaţiilor
+% make
+% modeline
+% autocmd
 
 % Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
 %\frame{\tableofcontents[currentsection]}
