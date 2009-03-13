@@ -80,14 +80,15 @@
 \begin{frame}
   \frametitle{\textbf{diff -c} – Context copiat – Structura}
   \begin{itemize}
-    \item antet: cui îi corespund liniile din blocul cu ``***'' sau ``---''
+    \item antet: cui îi corespund liniile din blocul cu ``***'' sau ``{-}{-}{-}''
     \item o serie de blocuri:
       \begin{itemize}
         \item bloc (cu context) care arată liniile din fișierul originalv
           \begin{itemize} 
           \item *** startOrig, stopOrig ***
-          \item --- startModif, stopModif ---
+          \item {-}{-}{-} startModif, stopModif {-}{-}{-}
           \end{itemize}
+        \item `` '' în fața liniilor \textit{nemodificate} (context)
         \item ``!'' în fața liniilor \textit{modificate}
         \item ``-'' în fața liniilor \textit{șterse}
         \item ``+'' în fața liniilor \textit{adăugate}
@@ -100,7 +101,45 @@
   \tt{\input{code/diff_u}}
 \end{frame}
 
+\begin{frame}
+  \frametitle{\textbf{diff -u} – Context unificat – Structura}
+  \begin{itemize}
+  \item antet: cui îi corespund liniile din blocul cu ``+++'' sau ``{-}{-}{-}''
+    \item o serie de blocuri:
+      \begin{itemize}
+      \item bloc (cu context) care arată liniile din fișierul originalv
+        \begin{itemize} 
+        \item +++ startOrig, stopOrig +++
+        \item {-}{-}{-} startModif, stopModif {-}{-}{-}
+        \end{itemize}
+      \item `` '' în fața liniilor nemodificate (context)
+      \item ``-'' în fața liniilor modificate din fișierul original
+      \item ``+'' în fața liniilor modificate din fișierul modificat
+      \end{itemize}
+  \end{itemize}
+\end{frame}
 
+\begin{frame}
+  \frametitle{\textbf Formate afișare \textit{diff}}
+  \begin{itemize}[<+->]
+    \item \textbf{normal}
+      \begin{itemize}[<+->]
+        \item nu are nici un fel de context
+        \item greu de urmărit ce s-a modificat
+      \end{itemize}
+
+    \item \textbf{context copiat}
+      \begin{itemize}
+        \item greu de urmărit ce s-a modificat 
+      \end{itemize}
+      
+    \item \textbf{context unificat}
+      \begin{itemize}
+        \item cea mai folosită variantă
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+    
 \begin{frame}{Vizualizare diferențe dintre două fișiere.}
 \begin{itemize} % Just like normal LaTeX
 \item Soluții:
