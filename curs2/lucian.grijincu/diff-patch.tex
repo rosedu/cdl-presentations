@@ -48,29 +48,53 @@
 \begin{frame}{Diff – Fișiere de exemplificare}
   \begin{columns}[t]
     \column{5cm}
-    {\LARGE{f\_original}}         \\
-    Prima linie comună fișierelor \\
-    A doua linie la fel           \\
-    A treia linie diferă          \\
-    A patră tot                   \\
-    A cincia nu                   \\
-    Și nici a șasea.              \\
-    A șaptea puțin.               \\
-    A opta tot.                   \\
-    Ultima e comună.
+    {\LARGE{f\_original}}\\
+    {\tt{\small \input{code/f_original}}}
     \column{5cm}
-    {\LARGE{f\_modificat}}        \\
-    Prima linie comună fișierelor \\
-    A doua linie la fel           \\
-    A treia linie diferă puțin    \\
-    A patră e diferită            \\
-    A cincia nu                   \\
-    Și nici a șasea.              \\
-    A șaptea puțintel.            \\
-    A opta e diferită.            \\
-    Ultima e comună.
+    {\LARGE{f\_modificat}}\\
+    {\tt \small \input{code/f_modificat}}
   \end{columns}
 \end{frame}
+
+\begin{frame}
+  \frametitle{\textbf{diff} (fără parametri) – Modul normal}
+  \tt \input{code/diff_no_params}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\textbf{diff} (fără parametri) – Modul normal – Structura}
+  \begin{itemize}
+    \item startOrig \textit{[,stopOrig]} \textbf{codOp} startModif \textit{[,stopModif]}
+    \item ``\textless'' în fața liniilor \textit{modificate} în fișierul original
+    \item ``\textgreater'' în fața liniilor \textit{modificate} în fișierul modificat
+    \item ``-'' în fața liniilor \textit{șterse} din fișierul original
+    \item ``+'' în fața liniilor \textit{adăugate} din fișierul original
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\textbf{diff -c} – Context copiat}
+  \footnotesize \tt \input{code/diff_c}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\textbf{diff -c} – Context copiat – Structura}
+  \begin{itemize}
+    \item cui îi corespund liniile din blocul cu ``***'' sau ``---''
+      \item bloc (cu context) care arată liniile din fișierul originalv
+    \item ``***'' startOrig, stopOrig ``***''
+    \item ``\textless'' în fața liniilor modificate (din fișierul original)
+    \item ``\textgreater'' în fața liniilor modificate (în fișierul modificat)
+    \item ``-'' în fața liniilor \textit{șterse} din fișierul original
+    \item ``+'' în fața liniilor \textit{adăugate} din fișierul original
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\textbf{diff -u} – Context unificat}
+  \tt{\input{code/diff_u}}
+\end{frame}
+
 
 \begin{frame}{Vizualizare diferențe dintre două fișiere.}
 \begin{itemize} % Just like normal LaTeX
@@ -112,17 +136,7 @@ revoluționarul GNU Hurd
 \section{Cod}
 \frame{\tableofcontents[currentsection]}
 
-\begin{frame}
-\frametitle{Exemplu de cod}
-Acesta este un script bash:\\
-\input{code/01} % includem codul
-\end{frame}
 
-\begin{frame}{Încă un exemplu de cod}
-Acesta este un program C:
-
-\input{code/02}
-\end{frame}
 
 \section{Overlay-uri}
 \frame{\tableofcontents[currentsection]}
