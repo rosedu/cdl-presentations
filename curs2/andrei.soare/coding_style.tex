@@ -29,8 +29,10 @@
   \frame{\tableofcontents[currentsection]}
 
   \begin{frame}{De ce avem nevoie de Coding Style ?}
-  Pentru ca:
+  Pentru ca:\\
+  \vspace{0.8cm}
   \begin{itemize}
+  \setlength{\itemsep}{0.3cm}
   \pause \item Vrem sa intelegem si peste o luna codul propriu
   \pause \item Vrem sa poata contribui si altcineva la proiectul nostru
   \pause \item Vrem sa putem modifica rapid codul:\begin{itemize} \item debug \item adaugare functionalitati \end{itemize}
@@ -40,11 +42,12 @@
 
   \begin{frame}{Ce presupune Coding Style ?}
   \begin{itemize}
-  \item Indentarea codului
-  \item Folosirea de spatii
-  \item Nume de variabile/functii bine alese
-  \item Comentarii sugestive ({\ttfamily `Ce ?'}, nu {\ttfamily `Cum ?'})
-  \item Functii de marime rezonabila
+  \setlength{\itemsep}{0.3cm}
+  \item Indentarea codului \pause
+  \item Folosirea de spatii \pause
+  \item Nume de variabile/functii bine alese \pause
+  \item Comentarii sugestive ({\ttfamily `Ce ?'}, nu {\ttfamily `Cum ?'}) \pause
+  \item Functii de marime rezonabila \pause
   \item Organizarea codului (headere, module, functii, structuri)
   \end{itemize}
   \end{frame}
@@ -57,7 +60,6 @@
   \item Programare \begin{itemize} \item Accidental Complexity \item Action at a distance \item Hard Code \end{itemize}
   \item ...
   \end{itemize}
-  \url{http://en.wikipedia.org/wiki/Anti-pattern}
   \end{frame} 
 
 
@@ -69,6 +71,7 @@
   \frametitle{K\&R Coding Style}
   Nume de functii/variabile:\vspace{0.5cm}
   \begin{itemize}
+  \setlength{\itemsep}{0.3cm}
   \item Lungimea numelui direct proportionala cu scope-ul si cu importanta
   \item locale: scurte si la obiect\\tmp, nu TemporaryVariable
   \item globale: explicative\\count\_active\_users(), nu cntusr()
@@ -77,6 +80,7 @@
   \framebreak
   Indentare si spatiere:\vspace{0.5cm}
   \begin{itemize}
+  \setlength{\itemsep}{0.3cm}
   \item TAB, nu spatii
   \item TAB de 8 spatii
   \item Latimea unei surse: maxim 80 de caractere
@@ -86,6 +90,7 @@
   \framebreak
   Comentarii:\\\vspace{0.5cm}
   \begin{itemize}
+  \setlength{\itemsep}{0.3cm}
   \item {\ttfamily /*  ...  */}, nu {\ttfamily //  ...}
   \item CE?, nu CUM?
   \item Nu se pun in interiorul functiilor, ci la inceputul lor\\\vspace{0.2cm}
@@ -110,10 +115,11 @@
   \begin{frame}[allowframebreaks]  
   \frametitle{Organizarea Proiectelor}
   \begin{itemize}
+  \setlength{\itemsep}{0.5cm}
   \item Codul prea mare $\Rightarrow$ nu incape intr-o sursa
   \item Impartirea codului in module (fisiere .c) cu functionalitate bine definita
   \item Latimea unei surse: 80
-  \item Lungimea unei functii: invers proportionala cu complexitatea ei\\De obicei, maxim un ecran
+  \item Lungimea unei functii: invers proportionala cu complexitatea\\De obicei, maxim un ecran
   \framebreak
   \item Fisierele header (.h): declaratii publice de variabile, functii si macro-uri
   \item Fisierele sursa (.c): codul executabil (implementarea functiilor din header)
@@ -124,7 +130,6 @@
   \item Fiecare header trebuie sa aiba o protectie:\\\input{highlight/header}
   \framebreak
   \item Atentie! Un proiect contine o singura functie {\ttfamily main()}\begin{itemize} \item Compilatorul produce fisiere obiect din fiecare sursa, care sunt unite de catre "linker" intr-un singur fisier output (executabil / biblioteca)\end{itemize}
-  \item \url{http://www.cs.cf.ac.uk/Dave/C/node35.html}
   \end{itemize}
   \end{frame}
 
@@ -142,20 +147,21 @@
   \end{itemize}
   \framebreak
   Ce trebuie sa cuprinda documentatia ?\\
-% \begin{itemize}
-% \item Ce face ?
-% \item Cum functioneaza?
-% \item De ce a fost scris asa ?
-% \item Ce face fiecare parte ?
-% \item Unde gasesc fiecare parte ?
-% \item Cine l-a scris ?
-% \item Cand a fost scris ?
-% \end{itemize} \\ \vspace{0.5cm}
-% Tool-uri care genereaza pagini de documentatie din comentariile surselor:\\
-% \begin{itemize}
-% \item Doxygen
-% \item Javadoc
-% \end{itemize}
+  \begin{itemize}
+  \item Ce face ?
+  \item Cum functioneaza?
+  \item De ce a fost scris asa ?
+  \item Ce face fiecare parte ?
+  \item Unde gasesc fiecare parte ?
+  \item Cine l-a scris ?
+  \item Cand a fost scris ?
+  \end{itemize}
+  \vspace{0.5cm}
+  Tool-uri care genereaza pagini de documentatie din comentariile surselor:\\
+  \begin{itemize}
+  \item Doxygen
+  \item Javadoc
+  \end{itemize}
   \end{frame}
 
   \begin{frame}[allowframebreaks]
@@ -166,7 +172,6 @@
   \end{itemize}
   \framebreak
   Exemplu comentarii:\\ \input{highlight/dox}
-  \framebreak
   \\ Cum folosim doxygen ? \\
   \begin{itemize}
   \item {\ttfamily doxygen -g <config\_file>}
@@ -181,13 +186,41 @@
   \input{highlight/dox3}
   \end{frame}
 
- section{Concluzie}
+  \begin{frame}{Practice}
+  \begin{itemize}
+  \setlength{\itemsep}{0.5cm}
+  \item Descarcati proiectul polish de pe git.rosedu.org (cdl/curs2/andrei.soare)
+  \item Rearanjati-l conform unui coding style bine definit (preferabil K\&R)
+  \item Faceti-i un Makefile
+  \item Comentati-l in format specific Doxygen si creati \_doar\_ documentatie in format html. [hint: cautati prin fisierul de configurare]
+  \item Use Vim !
+  \end{itemize}
+  \end{frame}
+
+\section{Concluzie}
   
   \frame{\tableofcontents[currentsection]}
   
   \begin{frame}{Concluzie:}
   \begin{itemize}
   \item ``e mai bine prost dar consecvent prost decat bine dar in 20 de moduri''\\ \begin{flushright}-- Razvan Deaconescu \end{flushright}
+  \end{itemize}
+  \end{frame}
+
+\section{Link-uri Utile}
+
+  \frame{\tableofcontents[currentsection]}
+
+  \begin{frame}{Link-uri utile}
+  \begin{itemize}
+  \setlength{\itemsep}{0.5cm}
+  \item \href{http://www.cs.su.oz.au/\~scilect/tpop/handouts/Style.htm}{K\&R Coding Style}
+  \item \href{http://lxr.linux.no/linux/Documentation/CodingStyle}{Linux Coding Style}
+  \item \href{http://www.gnu.org/prep/standards/standards.html}{GNU Coding Style}
+  \item \href{http://java.sun.com/docs/codeconv/}{Java Coding Style}
+  \item \href{http://www.cs.cf.ac.uk/Dave/C/node35.html}{Project Management in C}
+  \item \href{http://www.stack.nl/\~dimitri/doxygen/}{Doxygen}
+  \item \href{http://en.wikipedia.org/wiki/Anti-pattern}{Anti-pattern}
   \end{itemize}
   \end{frame}
 
