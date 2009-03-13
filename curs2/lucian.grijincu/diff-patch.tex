@@ -65,10 +65,10 @@
   \frametitle{\textbf{diff} (fără parametri) – Modul normal – Structura}
   \begin{itemize}
     \item startOrig \textit{[,stopOrig]} \textbf{codOp} startModif \textit{[,stopModif]}
-    \item ``\textless'' în fața liniilor \textit{modificate} în fișierul original
-    \item ``\textgreater'' în fața liniilor \textit{modificate} în fișierul modificat
-    \item ``-'' în fața liniilor \textit{șterse} din fișierul original
-    \item ``+'' în fața liniilor \textit{adăugate} din fișierul original
+    \item ``\texttt{\textless}'' în fața liniilor \textit{modificate} în fișierul original
+    \item ``\texttt{\textgreater}'' în fața liniilor \textit{modificate} în fișierul modificat
+    \item ``\texttt{-}'' în fața liniilor \textit{șterse} din fișierul original
+    \item ``\texttt{+}'' în fața liniilor \textit{adăugate} din fișierul original
   \end{itemize}
 \end{frame}
 
@@ -80,18 +80,18 @@
 \begin{frame}
   \frametitle{\textbf{diff -c} – Context copiat – Structura}
   \begin{itemize}
-    \item antet: cui îi corespund liniile din blocul cu ``***'' sau ``{-}{-}{-}''
+    \item antet: cui îi corespund liniile din blocul cu ``\texttt{\texttt{***}}'' sau ``\texttt{---}''
     \item o serie de blocuri:
       \begin{itemize}
         \item bloc (cu context) care arată liniile din fișierul originalv
           \begin{itemize} 
-          \item *** startOrig, stopOrig ***
-          \item {-}{-}{-} startModif, stopModif {-}{-}{-}
+          \item \texttt{***} startOrig, stopOrig \texttt{***}
+          \item \texttt{---} startModif, stopModif \texttt{---}
           \end{itemize}
-        \item `` '' în fața liniilor \textit{nemodificate} (context)
-        \item ``!'' în fața liniilor \textit{modificate}
-        \item ``-'' în fața liniilor \textit{șterse}
-        \item ``+'' în fața liniilor \textit{adăugate}
+        \item ``\texttt{ }'' în fața liniilor \textit{nemodificate} (context)
+        \item ``\texttt{!}'' în fața liniilor \textit{modificate}
+        \item ``\texttt{-}'' în fața liniilor \textit{șterse}
+        \item ``\texttt{+}'' în fața liniilor \textit{adăugate}
       \end{itemize}
   \end{itemize}
 \end{frame}
@@ -104,17 +104,17 @@
 \begin{frame}
   \frametitle{\textbf{diff -u} – Context unificat – Structura}
   \begin{itemize}
-  \item antet: cui îi corespund liniile din blocul cu ``+++'' sau ``{-}{-}{-}''
+  \item antet: cui îi corespund liniile din blocul cu ``\texttt{\texttt{+++}}'' sau ``\texttt{---}''
     \item o serie de blocuri:
       \begin{itemize}
       \item bloc (cu context) care arată liniile din fișierul originalv
         \begin{itemize} 
-        \item +++ startOrig, stopOrig +++
-        \item {-}{-}{-} startModif, stopModif {-}{-}{-}
+        \item \texttt{+++} startOrig, stopOrig \texttt{+++}
+        \item \texttt{---} startModif, stopModif \texttt{---}
         \end{itemize}
-      \item `` '' în fața liniilor nemodificate (context)
-      \item ``-'' în fața liniilor modificate din fișierul original
-      \item ``+'' în fața liniilor modificate din fișierul modificat
+      \item ``\texttt{ }'' în fața liniilor nemodificate (context)
+      \item ``\texttt{-}'' în fața liniilor modificate din fișierul original
+      \item ``\texttt{+}'' în fața liniilor modificate din fișierul modificat
       \end{itemize}
   \end{itemize}
 \end{frame}
@@ -130,7 +130,7 @@
 
     \item \textbf{context copiat}
       \begin{itemize}
-        \item greu de urmărit ce s-a modificat 
+        \item dacă blocurile
       \end{itemize}
       
     \item \textbf{context unificat}
@@ -204,12 +204,12 @@ singur slide -- numărul şi titlul se păstrează.}
 \item<3-> orice comandă poate fi urmată (fără spaţiu) de un specificator de
 overlay;
 \item<4-> specificatoarele sunt marcate cu \texttt{<} şi \texttt{>};
-\item<5-> \texttt{<4>} înseamnă ``doar pe overlay-ul 4'';
-\item<5-> \texttt{<1-3>} înseamnă ``doar pe overlay-urile de la 1 până la 3,
-inclusiv'';
-\item<6-> \texttt{<5->} înseamnă ``de la overlay-ul 5 până la sfârşit'' (de
+\item<5-> \texttt{<4>} înseamnă ``\texttt{doar pe overlay-ul 4}'';
+\item<5-> \texttt{<1-3>} înseamnă ``\texttt{doar pe overlay-urile de la 1 până la 3,
+inclusiv}'';
+\item<6-> \texttt{<5->} înseamnă ``\texttt{de la overlay-ul 5 până la sfârşit}'' (de
 fapt, până la slide-ul următor, fireşte);
-\item<6-> \texttt{<-4>} înseamnă ``de la început până la overlay-ul 4'';
+\item<6-> \texttt{<-4>} înseamnă ``\texttt{de la început până la overlay-ul 4}'';
 \item<7-> Toate exemplele de mai sus au avut comanda \texttt{item} urmată de
 un overlay. Trebuie să ţinem cont de ordine manual, dar nu cred că vom avea
 nevoie de cine-ştie-ce efecte.
