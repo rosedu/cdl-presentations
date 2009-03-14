@@ -4,11 +4,16 @@ HIGHLIGHT_OPTS = -L -f -t 8 -c highlight.sty
 
 ORIGINAL_FILE = f_original.txt
 MODIFIED_FILE = f_modificat.txt
+UPDATED_FILE  = f_actualizat.txt
 SOURCE_FILES := $(ORIGINAL_FILE) $(MODIFIED_FILE)
-TEX_FILES   := $(DIST) $(patsubst %.txt, %.tex, $(SOURCE_FILES))
+TXT_FILES    := $(SOURCE_FILES) $(UPDATED_FILE)
+TEX_FILES   := $(DIST) $(patsubst %.txt, %.tex, $(TXT_FILES))
 DIFF := diff --label=$(ORIGINAL_FILE) --label=$(MODIFIED_FILE)
 
 all: $(TEX_FILES)
+
+$(UPDATED_FILE): $(ORIGINAL_FILE) $(PATCH_FILES)
+	patch $< -i diff_u.patch -o $@
 
 %.tex: %.patch
 	highlight $(HIGHLIGHT_OPTS) -l -i $< -o $@
@@ -25,5 +30,5 @@ diff_no_params.patch: $(SOURCE_FILES)
 
 .PHONY: clean
 clean:
-	rm -f $(TEX_FILES) $(PATCH_FILES) highlight.sty
+	rm -f $(TEX_FILES) $(PATCH_FILES) highlight.sty $(UPDATED_FILE)
 	rm -f *~

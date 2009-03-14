@@ -129,6 +129,7 @@
   \begin{itemize}[<+->]
     \item \textbf{normal}
       \begin{itemize}[<+->]
+        \item varianta standard (suport pe o arie largă de mașini)
         \item nu are nici un fel de context
         \item greu de urmărit ce s-a modificat
       \end{itemize}
@@ -141,29 +142,46 @@
       
     \item \textbf{context unificat}
       \begin{itemize}
-        \item cea mai folosită variantă
+        \item cea mai folosită variantă în lumea open-source
         \item modificările sunt apropiate și înconjurate de context
       \end{itemize}
   \end{itemize}
 \end{frame}
-    
+
+\section{Patch}
+\frame{\tableofcontents[currentsection]}
+
+
 \begin{frame}
-  \frametitle{\textit{diff} – model de lucru}
+  \frametitle{\textit{diff \& patch} – model de lucru}
   \begin{itemize}[<+->]
   \item modific niște fișiere
-  \item sumarizez modificările cu ajutorul lui \textit{diff}
+    \begin{itemize}
+      \item \textit{vim, emacs, etc.}
+    \end{itemize}
+  \item sumarizez modificările
+    \begin{itemize}
+    \item \scriptsize{\texttt{diff f\_original.txt f\_modificat.txt \textgreater diferențe.patch}}
+    \end{itemize}
   \item trimit fișierul cu modificările la sursă
-  \item sursa aplică modificările asupra versiunii sale (folosind \textit{patch})
+  \item sursa aplică modificările
+    \begin{itemize}
+    \item \scriptsize{\texttt{patch f\_original.txt -i diferențe.patch -o f\_actualizat.txt}}
+    \end{itemize}
+
   \end{itemize}
 \end{frame}
 
 
-\section{Patch}
-\frame{\tableofcontents[currentsection]}
 \begin{frame}
-  \frametitle{\textit{patch} – aplicarea unui fișier de modificări}
-  \begin{itemize}
-  \item mimi
+  \frametitle{\textit{patch}}
+  \begin{itemize}[<+->]
+  \item \textit{patch} poate deduce numele fișierelor de actualizat din fișierul cu diferențe
+    \begin{itemize}
+    \item folosește informațiile din antet \\
+      \texttt{---} f\_orginal \texttt{---} \\
+      \texttt{+++} f\_modificat \texttt{+++}
+    \end{itemize}
   \end{itemize}
 \end{frame}
 
