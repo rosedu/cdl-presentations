@@ -65,169 +65,77 @@
 \end{frame}
 
 
-
-\begin{frame}
-  \frametitle{\textbf{diff} (fără parametri) – Modul normal – Structura}
-  \begin{itemize}
-    \item startOrig \textit{[,stopOrig]} \textbf{codOp} startModif \textit{[,stopModif]}
-      \begin{itemize}
-        \item \textbf{\texttt{d}} - linii șterse
-        \item \textbf{\texttt{c}} - linii modificate
-        \item \textbf{\texttt{a}} - linii adăugate
-      \end{itemize}
-    \item ``\texttt{\textless}'' în fața liniilor \textit{modificate} în fișierul original
-    \item ``\texttt{\textgreater}'' în fața liniilor \textit{modificate} în fișierul modificat
-    \item ``\texttt{-}'' în fața liniilor \textit{șterse} din fișierul original
-    \item ``\texttt{+}'' în fața liniilor \textit{adăugate} din fișierul original
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{\textbf{diff -c} – Context copiat}
-%  \footnotesize \tt \input{code/diff_c}
-\end{frame}
-
-\begin{frame}
-  \frametitle{\textbf{diff -c} – Context copiat – Structura}
-  \begin{itemize}
-    \item fișierele corespunzătoare blocurilor cu ``\texttt{\texttt{***}}'' sau ``\texttt{---}''
-    \item o serie de blocuri:
-      \begin{itemize}
-        \item bloc (cu context) care arată liniile din fișierul originalv
-          \begin{itemize} 
-          \item \texttt{***} startOrig, stopOrig \texttt{***}
-          \item \texttt{---} startModif, stopModif \texttt{---}
-          \end{itemize}
-        \item ``\texttt{ }'' în fața liniilor \textit{nemodificate} (context)
-        \item ``\texttt{!}'' în fața liniilor \textit{modificate}
-        \item ``\texttt{-}'' în fața liniilor \textit{șterse}
-        \item ``\texttt{+}'' în fața liniilor \textit{adăugate}
-      \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{\textbf{diff -u} – Context unificat}
-%  \tt{\input{code/diff_u}}
-\end{frame}
-
-\begin{frame}
-  \frametitle{\textbf{diff -u} – Context unificat – Structura}
-  \begin{itemize}
-  \item fișierele corespunzătoare liniilor cu ``\texttt{\texttt{+++}}'' sau ``\texttt{---}''
-    \item o serie de blocuri:
-      \begin{itemize}
-      \item bloc (cu context) care arată liniile din fișierul originalv
-        \begin{itemize} 
-        \item \texttt{+++} startOrig, stopOrig \texttt{+++}
-        \item \texttt{---} startModif, stopModif \texttt{---}
-        \end{itemize}
-      \item ``\texttt{ }'' în fața liniilor nemodificate (context)
-      \item ``\texttt{-}'' în fața liniilor modificate din fișierul original
-      \item ``\texttt{+}'' în fața liniilor modificate din fișierul modificat
-      \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{\textbf Formate afișare \textit{diff}}
+\begin{frame}{Creare branch/tag în SVN}
   \begin{itemize}[<+->]
-    \item \textbf{normal}
+  \item crearea unui branch pornind din trunk:\\
+    \texttt{svn \textbf{copy} trunk/ branches/experimental-feature}
+
+  \item crearea unui tag pornind din trunk:\\
+    \texttt{svn \textbf{copy} trunk/ tags/v1.0.0}
+   
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{svn branch - exercițiu}
+  \begin{itemize}[<+->]
+  \item luați o copie a repo-ului de cdl: \texttt{svn://svn.rosedu.org/cdl\_test/}
+  \item creați un branch din \textbf{trunk/} în calea \textbf{branches/\$NUME}
+  \item modificați mesajul din funcția cu numele vostru și commit-eți modificările
+  \end{itemize}
+\end{frame}
+
+
+
+
+
+\section{svn merge}
+\frame{\tableofcontents[currentsection]}
+
+
+
+\begin{frame}{svn merge – combinarea unor branch-uri}
+  \begin{itemize}[<+->]
+  \item \texttt{svn merge SRC1 SRC2 [WorkingCopyDir]}
+  \item aplică diferențele între două versiuni asupra unui WorkingCopyDir (implicit ``.'')
+  \item \textbf{exercițiu:} combinați branch-ul propriu cu \textbf{trunk/}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{svn merge – combinarea unui branch înapoi în trunk}
+  \begin{itemize}[<+->]
+    \item determinăm revizia la care s-a creat branch-ul:\\
+      \small{\texttt{svn log --stop-on-copy svn://server/branch}}
+    \item din \textbf{trunk/} executăm:\\
+      \small{\texttt{svn merge -rXXX:HEAD svn://server/branch}}
+    \item rezolvare conflicte merge
+    \item un ultim commit de rezolvare conflicte
+  \end{itemize}
+\end{frame}
+
+
+\section{svn resolve}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{svn rezolve – conflicte}
+  \begin{itemize}[<+->]
+    \item conflicte apar la \textbf{svn update} și la \textbf{svn merge}
+    \item svn ``decorază'' sursele cu \texttt{====}, \texttt{<<<}, \texttt{>>>>}
+    \item rezolvarea se efectuează cu \textbf{svn resolve}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{svn resolve – utilizare}
+  \begin{itemize}[<+->]
+    \item svn resolve --accept
       \begin{itemize}[<+->]
-        \item varianta standard (suport pe o arie largă de mașini)
-        \item nu are nici un fel de context
-        \item greu de urmărit ce s-a modificat
-      \end{itemize}
-
-    \item \textbf{context copiat}
-      \begin{itemize}
-        \item din cauza contextului copiat modificările sunt distanțate
-        \item greu de urmărit ce s-a modificat
-      \end{itemize}
-      
-    \item \textbf{context unificat}
-      \begin{itemize}
-        \item cea mai folosită variantă în lumea open-source
-        \item modificările sunt apropiate și înconjurate de context
+      \item \textbf{base} - păstrează fișierul din ultima revizie
+      \item \textbf{working} - dacă s-a rezolvat manual conflictul
+      \item \textbf{mine-full} - rezolvă păstrând fișierele locale așa cum erau înainte de \textbf{svn update}
+      \item \textbf{mine-full} - rezolvă folosind fișierele așa cum sunt pe server
       \end{itemize}
   \end{itemize}
 \end{frame}
-
-\section{Patch}
-\frame{\tableofcontents[currentsection]}
-
-
-\begin{frame}
-  \frametitle{\textit{diff \& patch} – model de lucru}
-  \begin{itemize}[<+->]
-  \item modific niște fișiere
-    \begin{itemize}
-      \item \textit{vim, emacs, etc.}
-    \end{itemize}
-  \item sumarizez modificările
-    \begin{itemize}
-    \item \scriptsize{\texttt{diff f\_original.txt f\_modificat.txt \textgreater diferențe.patch}}
-    \end{itemize}
-  \item trimit fișierul cu modificările la sursă
-  \item sursa aplică modificările
-    \begin{itemize}
-    \item \scriptsize{\texttt{patch f\_original.txt -i diferențe.patch -o f\_actualizat.txt}}
-    \end{itemize}
-
-  \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{\textit{patch}}
-  \begin{itemize}[<+->]
-
-  \item \textit{patch} poate deduce numele fișierelor de actualizat din fișierul cu diferențe
-    \begin{itemize}
-    \item folosește informațiile din antet \\
-      \texttt{---} f\_orginal.txt \texttt{---} \\
-      \texttt{+++} f\_modificat.txt \texttt{+++}
-    \end{itemize}
-
-  \item \textbf{ATENȚIE: } dacă \textit{patch} nu e invocat din același loc ca și diff, numele fișierelor nu vor fi identice
-    \begin{itemize}
-    \item Soluție: instructăm \textit{patch} să ignore o parte a căii
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}
-  \frametitle{\textit{patch -pNUM < diferențe.patch}}
-  \begin{itemize}[<+->]
-  \item avem următoarele fișiere:                        \\
-    \texttt{/home/cdl/proiect/fișier.txt} - original     \\
-    \texttt{/home/lucian/proiect/fișier.txt} - modificat \\
-  \item fișierul .patch conține calea \\
-    \texttt{/home/lucian/proiect/fișier.txt}
-  \item invocăm \textit{patch} din \\
-    \texttt{/home/cdl/}
-  \item \texttt{patch -p0} ––– \texttt{/home/lucian/proiect/fișier.txt}
-  \item \texttt{patch -p1} ––– \texttt{home/lucian/proiect/fișier.txt}
-  \item \texttt{patch -p2} ––– \texttt{lucian/proiect/fișier.txt}
-  \item \texttt{patch -p3} ––– \texttt{proiect/fișier.txt}
-  \end{itemize}
-\end{frame}
-
-
-\begin{frame}{\textit{patch} invers}
-  \begin{itemize}[<+->]
-  \item Problemă: am aplicat un patch și vrem să revenim la starea inițială
-  \item Soluție: \textit{reverse patching}
-    \begin{itemize}
-    \item se folosește același fișier de intrare
-    \item \textit{patch} inversează rolurile lui \texttt{+++}, \texttt{---} și \texttt{***}
-    \item \texttt{patch -pNUM \textbf{-R} \textless diferențe.patch}
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\section{Exercițiu}
-\frame{\tableofcontents[currentsection]}
-
 
 \end{document}
