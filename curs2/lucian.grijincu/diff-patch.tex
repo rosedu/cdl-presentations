@@ -37,7 +37,7 @@
 
 % Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
 % fie folosind \frametitle
-\begin{frame}{Diff – Ce face?}
+\begin{frame}{\textit{diff} – Ce face?}
 \begin{itemize} % Just like normal LaTeX
   \item calculează diferențele dintre două fișiere
   \item afișează diferențele într-un mod standardizat
@@ -45,7 +45,7 @@
 \end{frame}
 
 
-\begin{frame}{Diff – Fișiere de exemplificare}
+\begin{frame}{\textit{diff} – Fișiere de exemplificare}
   \begin{columns}[t]
     \column{5cm}
     {\LARGE{f\_original}}\\
@@ -65,6 +65,11 @@
   \frametitle{\textbf{diff} (fără parametri) – Modul normal – Structura}
   \begin{itemize}
     \item startOrig \textit{[,stopOrig]} \textbf{codOp} startModif \textit{[,stopModif]}
+      \begin{itemize}
+        \item \textbf{\texttt{d}} - linii șterse
+        \item \textbf{\texttt{c}} - linii modificate
+        \item \textbf{\texttt{a}} - linii adăugate
+      \end{itemize}
     \item ``\texttt{\textless}'' în fața liniilor \textit{modificate} în fișierul original
     \item ``\texttt{\textgreater}'' în fața liniilor \textit{modificate} în fișierul modificat
     \item ``\texttt{-}'' în fața liniilor \textit{șterse} din fișierul original
@@ -80,7 +85,7 @@
 \begin{frame}
   \frametitle{\textbf{diff -c} – Context copiat – Structura}
   \begin{itemize}
-    \item antet: cui îi corespund liniile din blocul cu ``\texttt{\texttt{***}}'' sau ``\texttt{---}''
+    \item fișierele corespunzătoare blocurilor cu ``\texttt{\texttt{***}}'' sau ``\texttt{---}''
     \item o serie de blocuri:
       \begin{itemize}
         \item bloc (cu context) care arată liniile din fișierul originalv
@@ -104,7 +109,7 @@
 \begin{frame}
   \frametitle{\textbf{diff -u} – Context unificat – Structura}
   \begin{itemize}
-  \item antet: cui îi corespund liniile din blocul cu ``\texttt{\texttt{+++}}'' sau ``\texttt{---}''
+  \item fișierele corespunzătoare liniilor cu ``\texttt{\texttt{+++}}'' sau ``\texttt{---}''
     \item o serie de blocuri:
       \begin{itemize}
       \item bloc (cu context) care arată liniile din fișierul originalv
@@ -130,16 +135,38 @@
 
     \item \textbf{context copiat}
       \begin{itemize}
-        \item dacă blocurile
+        \item din cauza contextului copiat modificările sunt distanțate
+        \item greu de urmărit ce s-a modificat
       \end{itemize}
       
     \item \textbf{context unificat}
       \begin{itemize}
         \item cea mai folosită variantă
+        \item modificările sunt apropiate și înconjurate de context
       \end{itemize}
   \end{itemize}
 \end{frame}
     
+\begin{frame}
+  \frametitle{\textit{diff} – model de lucru}
+  \begin{itemize}[<+->]
+  \item modific niște fișiere
+  \item sumarizez modificările cu ajutorul lui \textit{diff}
+  \item trimit fișierul cu modificările la sursă
+  \item sursa aplică modificările asupra versiunii sale (folosind \textit{patch})
+  \end{itemize}
+\end{frame}
+
+
+\section{Patch}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}
+  \frametitle{\textit{patch} – aplicarea unui fișier de modificări}
+  \begin{itemize}
+  \item mimi
+  \end{itemize}
+\end{frame}
+
 \begin{frame}{Vizualizare diferențe dintre două fișiere.}
 \begin{itemize} % Just like normal LaTeX
 \item Soluții:
