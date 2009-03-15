@@ -1,4 +1,4 @@
-BASENAME = slideshow
+BASENAME = makefile
 PDF = $(addsuffix .pdf, $(BASENAME))
 TEX = $(addsuffix .tex, $(BASENAME))
 TMP_EXTENSIONS = .pdf .aux .log .nav .out .snm .toc
