@@ -16,7 +16,7 @@ where='/var/www/cdl.rosedu.org/store/pdf'
 
 msg()
 {
-    echo "[post-receive]  $1"
+    echo "[post-receive]  $^"
 }
 
 msg Se executa $0
