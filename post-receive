@@ -33,7 +33,7 @@ for i in $(ls | grep 'curs[1-9]'); do
 	    if [ $? -eq 1 ]; then
 		# file are *not* up-to-date -> run make to update
 		make &> /dev/null
-		PDF_FILES := `ls *.pdf`
+		PDF_FILES=`ls *.pdf`
 		cp $PDF_FILES $where && msg Updated $where/$PDF_FILES
 	    fi
         fi
