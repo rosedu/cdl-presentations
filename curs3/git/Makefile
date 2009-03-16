@@ -1,4 +1,4 @@
-DIST = template
+DIST = git
 HIGHLIGHT = code
 TRASHEXT = .pdf .aux .log .nav .out .snm .toc
 TRASH = $(addprefix $(DIST), $(TRASHEXT))
