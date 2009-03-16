@@ -14,30 +14,28 @@ echo Hook working `date` >> /home/git/hook.log
 clone='/home/git/cdl-cloned'
 where='/var/www/cdl.rosedu.org/store/pdf'
 
-echo Se executa $0
+msg()
+{
+    echo "[post-receive]  $1"
+}
+
+msg Se executa $0
 cd $clone
 GIT_DIR=.git
-git pull &> /dev/null && git reset --hard > /dev/null && echo Updated cloned repository
+git pull &> /dev/null && git reset --hard > /dev/null && msg Updated cloned repository
 for i in $(ls | grep 'curs[1-9]'); do
     cd $i
     for j in *; do
         cd $j
         if (ls | grep Makefile > /dev/null); then
-            out=`make` 
-            if [ $? -eq 0 ] && ! [[ "$out" =~ " is up to date." ]] && ! [[ "$out" =~ "make: Nothing to be done for" ]]; then
-                cp `ls *.tex | sed s/tex/pdf/g` $where && echo Updated cdl.rosedu.org/store/pdf/`echo *.tex | sed s/tex/pdf/g`
-            fi
-        else
-            find . -maxdepth 1 -type d | grep / | cut -d '/' -f2 | while read f; do
-                cd $f
-                if (ls | grep Makefile > /dev/null); then
-                    out=`make` 
-                    if [ $? -eq 0 ] && ! [[ "$out" =~ " is up to date." ]] && ! [[ "$out" =~ "make: Nothing to be done for" ]]; then
-                        cp `ls *.tex | sed s/tex/pdf/g` $where && echo Updated cdl.rosedu.org/store/pdf/`ls *.tex | sed s/tex/pdf/g`
-                    fi
-                fi
-                cd ..
-            done
+	    #make -q returns 1 if the target is not up-to-date
+            `make -q`
+	    if [ $? -eq 1 ]; then
+		# file are *not* up-to-date -> run make to update
+		make &> /dev/null
+		PDF_FILES := `ls *.pdf`
+		cp $PDF_FILES $where && msg Updated $where/$PDF_FILES
+	    fi
         fi
         cd ..
     done
