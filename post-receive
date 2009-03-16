@@ -1,0 +1,47 @@
+#!/bin/bash
+#
+# This script is run after receive-pack has accepted a pack and the
+# repository has been updated.  It is passed arguments in through stdin
+# in the form
+#  <oldrev> <newrev> <refname>
+# For example:
+#  aa453216d1b3e49e7f6f98441fa56946ddcd6a20 68f7abf4e6f922807889f52bc043ecd31b79f814 refs/heads/master
+
+# AVETI GRIJA CE MODIFICATI !
+# Dupa ce se face push, acest script se executa automat pe server
+echo Hook working `date` >> /home/git/hook.log
+
+clone='/home/git/cdl-cloned'
+where='/var/www/cdl.rosedu.org/store/pdf'
+
+echo debug
+
+echo Se executa $0
+cd $clone
+GIT_DIR=.git
+git pull &> /dev/null && git reset --hard > /dev/null && echo Updated cloned repository
+for i in $(ls | grep 'curs[1-9]'); do
+    cd $i
+    for j in *; do
+        cd $j
+        if (ls | grep Makefile > /dev/null); then
+            out=`make` 
+            if [ $? -eq 0 ] && ! [[ "$out" =~ " is up to date." ]] && ! [[ "$out" =~ "make: Nothing to be done for" ]]; then
+                cp `ls *.tex | sed s/tex/pdf/g` $where && echo Updated $i/$j/`echo *.tex | sed s/tex/pdf/g`
+            fi
+        else
+            find . -maxdepth 1 -type d | grep / | cut -d '/' -f2 | while read f; do
+                cd $f
+                if (ls | grep Makefile > /dev/null); then
+                    out=`make` 
+                    if [ $? -eq 0 ] && ! [[ "$out" =~ " is up to date." ]] && ! [[ "$out" =~ "make: Nothing to be done for" ]]; then
+                        cp `ls *.tex | sed s/tex/pdf/g` $where && echo Updated $i/$j/$f/`ls *.tex | sed s/tex/pdf/g`
+                    fi
+                fi
+                cd ..
+            done
+        fi
+        cd ..
+    done
+    cd ..
+done
