@@ -14,8 +14,6 @@ echo Hook working `date` >> /home/git/hook.log
 clone='/home/git/cdl-cloned'
 where='/var/www/cdl.rosedu.org/store/pdf'
 
-echo debug
-
 echo Se executa $0
 cd $clone
 GIT_DIR=.git
