@@ -1,3 +1,4 @@
+all: programe_libere.pdf
 programe_libere.pdf: programe_libere.tex code/Makefile
 	cd code && make
 	pdflatex $<

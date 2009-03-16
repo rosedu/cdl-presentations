@@ -2,6 +2,7 @@ DIST = vim
 TRASHEXT = .pdf .aux .log .nav .out .snm .toc
 TRASH = $(addprefix $(DIST), $(TRASHEXT))
 
+all: $(DIST).pdf
 $(DIST).pdf: $(DIST).tex code/Makefile
 	cd code && make
 	pdflatex $<

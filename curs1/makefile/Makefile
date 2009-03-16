@@ -4,6 +4,7 @@ TEX = $(addsuffix .tex, $(BASENAME))
 TMP_EXTENSIONS = .pdf .aux .log .nav .out .snm .toc
 CLEAN_FILES = $(addprefix $(BASENAME), $(TMP_EXTENSIONS))
 
+all: $(PDF)
 $(PDF): $(TEX) highlight/Makefile
 	cd highlight && make
 	pdflatex $<
