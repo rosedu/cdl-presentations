@@ -13,7 +13,7 @@
 
 % Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
 % cap.
-\title[Launchpad]{Bugzilla și Launchpad}
+\title[BugzillaLaunchpad]{Bug tracking, Project hosting} % todo: change
 \subtitle{CDL - Cursul 3}
 \institute{ROSEdu}
 \author{Alex Eftimie \texttt{alex@eftimie.ro}}
@@ -30,95 +30,168 @@
 \frame{\tableofcontents}
 
 % NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
-\section{Distribuit vs. centralizat}
+\section{Bug tracking}
 
 % Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
 \frame{\tableofcontents[currentsection]}
 
 % Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
 % fie folosind \frametitle
-\begin{frame}{Preambul}
+\begin{frame}{Ce este Bugzilla?}
 \begin{itemize} % Just like normal LaTeX
-\item Prezentarea încearcă să atragă persoanele implicate în CDL spre a folosi
-\LaTeX Beamer.
-\item Am copiat cu neruşinare schiţele lui Tibi pentru prima parte.
-\item Be sure to check the code: lots of comments and TODOs.
-\item Spam the list, IRC, or Vlad (nu la telefon) for more info.
+\item Un sistem de administrare de bug-uri
+\pause \item Ce e un bug?
+\begin{itemize}
+\pause \item tehnic, o problemă a unui program
+\pause \item poate fi și o îmbunătățire sau o sarcină
+\end{itemize}
+\pause \item Bugzilla reține informațiile despre bug-uri și organizează dezvoltarea software
+\item Este și o unealtă de comunicare
+\item Sistemul folosit pentru administrarea bug-urilor de către: Kernelul Linux, Mozilla, Gnome, KDE, Apache, Open Office, Eclipse, NASA, Facebook ...
 \end{itemize}
 \end{frame}
 
 \begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
 % Atenţie: allowframebreaks nu funcţionează cu overlay-uri
-\frametitle{Câte ceva despre istoria FLOSS}
+\frametitle{De ce am folosi un astfel de sistem?}
 \begin{itemize}
-\item Punctul de plecare: noua imprimantă de la MIT
-\item Proiectul GNU, activismul lui Richard Stallman (1983)
-\item Cele patru drepturi. Programele libere nu sunt neapărat gratuite
-\item Minix, sistem de operare UNIX educațional. Micronucleu (1987)
-\item GNU: un sistem de operare liber dar incomplet. Hurd nu este gata (1990)
-\item Linux: nucleul monolitic devenit liber (1991). Primele distribuții
-GNU/Linux
-\item Afaceri. Companiile multinaționale devin și ele contribuitori la
-programele libere
-\item OSI și definiția Open Source (1998). Diferențe de perspectivă și
-aplicabilitate
-\item Patentele pe programe din SUA amenință programele libere. Procese (2004
-- prezent)
-\item Microsot, Adobe și Nokia încep să dezvolte programe Open Source, nu
-toate libere (2008)
-\item Echipa Debian se alătură efortului internațional de a termina
-revoluționarul GNU Hurd
+\item Face totul pentru noi
+\begin{itemize}
+\item memoria este slabă; email greu de utilizat/distribuit
+\end{itemize}
+\item Reține modificările în timp
+\begin{itemize}
+\item Comentariile arată discuțiile, problemele prin care au trecut dezvoltatorii până la repararea bug-ului
+\end{itemize}
+\item Organizează bug-urile pentru dezvoltatorii curenți și viitori
+\begin{itemize}
+\item cuvinte cheie, categorii, importanță, filtrări
+\end{itemize}
+\item Favorizează procesul de dezvoltare
+\begin{itemize}
+\item nu întrerupi lucrul doar pentru că a apărut o problemă; o amâni :)
+\end{itemize}
 \end{itemize}
 \end{frame}
 
-\section{Cod}
+\begin{frame}
+\frametitle{Ce intră în categoria bug?}
+\begin{itemize}
+\pause \item defecțiune a programului; cod prost
+\pause \item sarcină pentru dezvoltatori
+\pause \item cerință de la utilizatori
+\pause \item listă personală TODO
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Raportarea unui bug}
+\begin{itemize}
+\item Cum gândim?
+\begin{itemize}
+\pause \item ce fel de bug este?
+\pause \item cum a apărut problema?
+\pause \item cum se poate reproduce?
+\pause \item ce componentă afectează?
+\pause \item cui i se atribuie acest bug? % e vorba de asign to
+\end{itemize}
+\pause \item Ce reține sistemul?
+\begin{itemize}
+\item Component
+\item Assigned To
+\item Summary, Description
+\item Cc: persoane care ar putea fi interesate
+\item Priority, Severity
+\item Platform
+\item Keywords: pentru a facilita căutarea
+\item Depends on, Also affects
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Exercițiu}
+\begin{itemize}
+\item \emph{TODO}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ciclul de viață al unui bug}
+\begin{itemize}
+\item Un bug poate trece prin următoarele stări:
+\begin{itemize}
+\item NEW
+\item ASSIGNED
+\item RESOLVED
+\item REOPENED
+\item INVALID
+\item WONTFIX
+\item WORKSFORME
+\item DUPLICATE
+\item FIXED
+\end{itemize}
+\pause \item \emph{NB: în taxonomia Launchpad, avem:} New, Incomplete, Invalid, Confirmed, Triaged, In progress, Fix commited, Fix released
+\end{itemize}
+\end{frame}
+
+\section{Launchpad}
 \frame{\tableofcontents[currentsection]}
 
 \begin{frame}
-\frametitle{Exemplu de cod}
-Acesta este un script bash:\\
-\input{code/01} % includem codul
+\frametitle{Ce este Launchpad?}
+\begin{itemize}
+\pause \item sistem de dezvoltare, promovare, publicare de proiecte
+\pause \item aplicație proprietară \emph{(dar nu pentru mult timp)} dezvoltată de Canonical pentru Ubuntu
+\pause \item nu numai Ubuntu, ci peste \emph{10917} proiecte, \emph{343397} bug-uri, \emph{27013} ramuri de cod, \emph{1144838} traduceri, \emph{64469} răspunsuri, \emph{15532} specificații :-)
+\end{itemize}
+\end{frame} 
+
+% bullshit, bullshit, bullshit
+
+\begin{frame}
+\frametitle{Bunătăți Launchpad}
+\begin{itemize}
+\item OpenID
+\begin{itemize}
+\item soluție de autentificare
+\item identitate comună pe mai multe saituri
+\item \texttt{http://launchpad.net/~alexeftimie}
+\end{itemize}
+\item PPA - Personal Package Archive
+\begin{itemize}
+\item cel mai simplu mod de a crea \emph{.deb}-uri și de a le distribui
+\item compilare automată pe mai multe platforme
+\end{itemize}
+\end{itemize}
 \end{frame}
 
-\begin{frame}{Încă un exemplu de cod}
-Acesta este un program C:
-
-\input{code/02}
-\end{frame}
-
-\section{Overlay-uri}
+\section {Alternative și referințe}
 \frame{\tableofcontents[currentsection]}
 
-\begin{frame}{Comanda `pause'}
-`Pause' ne lasă să arătăm textul `gradual'.
-
-\pause Putem să folosim pause cu itemize sau orice altă facilitate.
+\begin{frame}
+\frametitle{Alternative}
 \begin{itemize}
-\pause \item De exemplu.
-\pause \item Încă un exemplu.
-\pause \item Dar nu e foarte flexibil...
+\item Sisteme de bug tracking:
+\begin{itemize}
+\item Trac
+\item Launchpad
+\end{itemize}
+\item Găzduire de proiecte:
+\begin{itemize}
+\item SourceForge \url{http://sourceforge.net}
+\item Google Code \url{http://code.google.com}
+\end{itemize}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Overlay-uri mai avansate}
-\only<1>{Cue chapter 9.3 from the Beamer manual.}
-\only<2>{Facem o mare ciorbă de overlay-uri. \textbf{Notă:} E vorba de un
-singur slide -- numărul şi titlul se păstrează.}
+\begin{frame}
+\frametitle{Referințe}
 \begin{itemize}
-\item<3-> orice comandă poate fi urmată (fără spaţiu) de un specificator de
-overlay;
-\item<4-> specificatoarele sunt marcate cu \texttt{<} şi \texttt{>};
-\item<5-> \texttt{<4>} înseamnă ``doar pe overlay-ul 4'';
-\item<5-> \texttt{<1-3>} înseamnă ``doar pe overlay-urile de la 1 până la 3,
-inclusiv'';
-\item<6-> \texttt{<5->} înseamnă ``de la overlay-ul 5 până la sfârşit'' (de
-fapt, până la slide-ul următor, fireşte);
-\item<6-> \texttt{<-4>} înseamnă ``de la început până la overlay-ul 4'';
-\item<7-> Toate exemplele de mai sus au avut comanda \texttt{item} urmată de
-un overlay. Trebuie să ţinem cont de ordine manual, dar nu cred că vom avea
-nevoie de cine-ştie-ce efecte.
+\item \url{http://bugzilla.mozilla.org}
+\item \url{http://launchpad.net}
+% todo some more
 \end{itemize}
 \end{frame}
-
 
 \end{document}
