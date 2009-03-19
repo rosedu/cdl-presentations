@@ -1,0 +1,48 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{code/highlight}	 % highlight
+\usepackage{hyperref}        % folositi \url{http://...}
+                             % sau \href{http://...}{Nume Link}
+\mode<presentation>
+{ \usetheme{Rochester} }		% TODO: settle this
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[SMT]{Simple MP3 Trimmer}
+\subtitle{CDL - Proiecte}
+\institute{ROSEdu}
+\author{Alex Eftimie \texttt{alex@eftimie.ro}}
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+%\frame{\tableofcontents}
+
+% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
+%\section{Distribuit vs. centralizat}
+
+% Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
+%\frame{\tableofcontents[currentsection]}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Simple MP3 Trimmer}
+\begin{itemize} % Just like normal LaTeX
+\item O aplicație grafică simplă cu un scop precis: decuparea fișierelor audio.
+\item Limbaj: Python
+\item Tehnologii: GTK
+\end{itemize}
+\end{frame}
+
+\end{document}
