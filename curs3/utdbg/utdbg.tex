@@ -163,64 +163,106 @@
 \section{Debugging}
 \frame{\tableofcontents[currentsection]}
 
-\begin{frame}{Preambul}
-\begin{itemize} % Just like normal LaTeX
-\item Prezentarea încearcă să atragă persoanele implicate în CDL spre a folosi
-\LaTeX Beamer.
-\item Am copiat cu neruşinare schiţele lui Tibi pentru prima parte.
-\item Be sure to check the code: lots of comments and TODOs.
-\item Spam the list, IRC, or Vlad (nu la telefon) for more info.
-\end{itemize}
-\end{frame}
-
-\section{Cod}
-\frame{\tableofcontents[currentsection]}
-
-\begin{frame}
-\frametitle{Exemplu de cod}
-Acesta este un script bash:\\
-\input{code/01} % includem codul
-\end{frame}
-
-\begin{frame}{Încă un exemplu de cod}
-Acesta este un program C:
-
-\input{code/02}
-\end{frame}
-
-\section{Overlay-uri}
-\frame{\tableofcontents[currentsection]}
-
-\begin{frame}{Comanda `pause'}
-`Pause' ne lasă să arătăm textul `gradual'.
-
-\pause Putem să folosim pause cu itemize sau orice altă facilitate.
+\begin{frame}{Introducere}
 \begin{itemize}
-\pause \item De exemplu.
-\pause \item Încă un exemplu.
-\pause \item Dar nu e foarte flexibil...
+\item Ce ne facem când avem erori?
+\item \pause Depanăm (debugging)
+\item \pause \textit{It's easy to cry `bug' when the truth is that you've got a complex system and sometimes it takes a while to get all the components to co-exist peacefully}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Overlay-uri mai avansate}
-\only<1>{Cue chapter 9.3 from the Beamer manual.}
-\only<2>{Facem o mare ciorbă de overlay-uri. \textbf{Notă:} E vorba de un
-singur slide -- numărul şi titlul se păstrează.}
+\begin{frame}{Brute force}
 \begin{itemize}
-\item<3-> orice comandă poate fi urmată (fără spaţiu) de un specificator de
-overlay;
-\item<4-> specificatoarele sunt marcate cu \texttt{<} şi \texttt{>};
-\item<5-> \texttt{<4>} înseamnă ``doar pe overlay-ul 4'';
-\item<5-> \texttt{<1-3>} înseamnă ``doar pe overlay-urile de la 1 până la 3,
-inclusiv'';
-\item<6-> \texttt{<5->} înseamnă ``de la overlay-ul 5 până la sfârşit'' (de
-fapt, până la slide-ul următor, fireşte);
-\item<6-> \texttt{<-4>} înseamnă ``de la început până la overlay-ul 4'';
-\item<7-> Toate exemplele de mai sus au avut comanda \texttt{item} urmată de
-un overlay. Trebuie să ţinem cont de ordine manual, dar nu cred că vom avea
-nevoie de cine-ştie-ce efecte.
+\item hardcore
+\item \pause printf și convenții proprii
+\item \pause Multe modificări prin cod
+\item \pause Atenție la convenții
+\item \pause Analiza textului afișat $>$ analiza codului
+\item \pause Nu funcționează mereu
+\item \pause Și nici nu e eficient \pause(dureri de cap după un timp)
+\item \pause Dar este metoda preferată de mulți.
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Metoda eficientă}
+\begin{itemize}
+\item Folosită de puțini \pause(\textit{`puțini dar cu cap'})
+\item \pause Mai multe programe ajutătoare:
+\begin{itemize}
+\item GDB (GNU Debugger) + clone
+\item Valgrind
+\item Electric Fence
+\item Data Display Debugger
+\item etc
+\item ș.a.m.d
+\item ...
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{GDB}
+\begin{itemize}
+\item Depanatorul standard
+\item Portabil: multe sisteme Unix și multe limbaje de programare (Ada, C, C++, Basic, Fortran)
+\item Stallman, 1986
+\item \pause GDB poate face 4 lucruri majore și importante:
+\begin{itemize}
+\item \pause Pornirea programului specificând orice parametru care i-ar putea afecta comportamentul
+\item \pause Forțarea opririi programului în cazul îndeplinirii anumitor condiții
+\item \pause Examinarea pașilor ce au dus la oprirea prematură (seg fault?) a programului
+\item \pause Schimbarea anumitor variabile (și instrucțiuni uneori) din program pentru a-l corecta.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{GDB - limitări}
+\begin{itemize}
+\item GDB NU poate fi rulat înapoi \pause decât pe anumite arhitecturi și sisteme.
+\item \pause În 2008, adăugarea acestei posibilități era listată ca unul dintre proiectele \textit{top priority} ale FSF
+\item \pause De asemenea, doar pe anumite arhitecturi se pot modifica instrucțiuni din program în timpul execuției lui.
+\item \pause GDB nu are interfață grafică $\rightarrow$ DDD.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{GDB - exercițiu $\frac{1}{\infty}$}
+\begin{enumerate}
+\item Descărcați exemplul de la ........
+\item Compilați sursele
+\item Rulați
+\item Testați
+\item Rezolvați eroarea
+\end{enumerate}
+Se vor adăuga frameuri înainte pentru toate bucățile necesare. Se va repeta exercițiul pâna când se vor introduce toate conceptele potrivite
+\end{frame}
+
+\begin{frame}{Valgrind}
+TO DO
+\end{frame}
+
+\begin{frame}{Valgrind - utilizare}
+TO DO a memory leaking program
+\end{frame}
+
+\begin{frame}{Electric Fence}
+\begin{itemize}
+\item Memory debugger
+\item Bibliotecă ce poate fi legată la cod pentru a suprascrie managementul clasic al memoriei
+\item Generează un crash (Segmentation fault) imediat ce apare un acces invalid la memorie.
+\item \pause Pare util, nu? \pause Dar, (trebuie să existe așa ceva)
+\item \pause Crește rapid memoria utilizată de program
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Data Display Debugger}
+\begin{itemize}
+\item GDB cu interfață grafică
+\item \pause De fapt și PDB, JDB, BashDB etc cu interfețe grafice
+\item \pause Avantaj: \pause Se studiază programul prin vizualizarea datelor, nu prin cea a instrucțiunilor.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Concluzii}
+\textit{Programming today is a race between software engineers striving to build bigger and better idiot-proof programs, and the Universe trying to produce bigger and better idiots. So far, the Universe is winning.}
+\end{frame}
 
 \end{document}
