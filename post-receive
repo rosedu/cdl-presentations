@@ -34,7 +34,9 @@ for i in $(ls | grep 'curs[1-9]'); do
 		# file are *not* up-to-date -> run make to update
 		make &> /dev/null
 		PDF_FILES=`ls *.pdf`
-		cp $PDF_FILES $where && msg Updated $where/$PDF_FILES
+		for pdf in $PDF_FILES; do
+		    cp  $pdf $where/$i_$pdf && msg Updated $where/$i_$pdf
+		done
 	    fi
         fi
         cd ..
