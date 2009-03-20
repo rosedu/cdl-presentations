@@ -9,6 +9,8 @@ all:
 			echo "Failed";						\
 		fi;								\
 	done;
+	rename 's/\.pdf$$/\.proiect\.pdf/' *.pdf
+
 clean:
 	@for i in $(DIRS); do\
 		echo -n "Building rule $@ in $$i ...   ";			\
@@ -19,4 +21,4 @@ clean:
 			echo "Failed";						\
 		fi;								\
 	done;
-	@rm -f *.pdf;
+	rm -f *.pdf;
