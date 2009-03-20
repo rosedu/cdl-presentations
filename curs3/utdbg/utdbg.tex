@@ -3,6 +3,8 @@
 
 \usepackage[utf8x]{inputenc} % diacritice
 \usepackage[romanian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{color}			 % highlight
 \usepackage{alltt}			 % highlight
 \usepackage{code/highlight}	 % highlight
@@ -103,7 +105,8 @@
 \item \pause NU vom începe prin a scrie funcția
 \item \pause Ne gândim ce axiome respectă funcția noastră:
 \begin{itemize}
-\item \pause gcd(a, a) = a, $\forall a \in Z$
+\item \pause gcd(a, b) $>$ 0 $\forall a,b \in Z$
+\item gcd(a, a) = a, $\forall a \in Z$
 \item gcd(1, a) = 1, $\forall a \in Z$
 \item gcd(0, a) = a, $\forall a \in Z$
 \item gcd(a,nb) = gcd(a, b), $\forall a,b,n \in Z$
@@ -124,10 +127,10 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Testare manualăi - exercițiu}
+\begin{frame}{Testare manuală - exercițiu}
 \begin{itemize}
-\item Descărcați de pe ......
-\item Identificați în main testul lipsă, adăugați-l, compilați și rulați executabilul creat.
+\item Descărcați gcd.c de pe ......
+\item Identificați în main testele lipsă, adăugați-le, compilați și rulați executabilul creat.
 \item \pause Completați funcția gcd până ce va trece toate testele
 \item \pause Se observă cantitatea mare de linii de cod scrise pentru o simplă testare.
 \item \pause Să vedem dacă nu putem mai bine. :D
@@ -144,10 +147,12 @@
 
 \begin{frame}{Testare automată + teaser Python}
 \begin{itemize}
-\item Descărcați ........
-\item Folosiți \linebreak ........\linebreak pentru a rula fișierul Python
-\item \pause Adăugați următorul cod la locația indicată în fișier.
-\item Testați programul.
+\item Descărcați .. de la ......
+\item Folosiți \linebreak python gcdtest.py\linebreak pentru a rula fișierul Python
+\item \pause Adăugați celelalte teste după modelul din exemplu.
+\item \pause Testați programul.
+\item \pause Completați funcția Gcd (din gcd.py).
+\item \pause Testați programul (repetați pasul anterior până merg toate testele)
 \end{itemize}
 \end{frame}
 
@@ -236,7 +241,36 @@ Se vor adăuga frameuri înainte pentru toate bucățile necesare. Se va repeta 
 \end{frame}
 
 \begin{frame}{Valgrind}
-TO DO
+\begin{itemize}
+\item Inițial construit a fi un depanator de memorie liber
+\item \pause Evoluat până la a deveni un framework generic pentru instrumente de analiză dinamică.
+\item \pause Valgrind = Mașină virtuală utilizând JIT.
+\item \pause cod \pause$\rightarrow$ Intermediate Representation \pause$\xrightarrow{Instrument\ de\ testare}$ Modificări ale IR \pause$\rightarrow$ Cod mașină rulat în gazdă.
+\item \pause Se pierde puțin din performanță \pause(4-5 ori mai lent).
+\item \pause Totuși, codul IR este o formă perfectă ce permite scrierea facilă de instrumente de testare.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Valgrind - tools}
+\begin{itemize}
+\item \textit{Memcheck}
+\begin{itemize}
+\item \pause Implicit
+\item \pause Inserează cod extra în jurul fiecărei instrucțiuni
+\item \pause Sanitizarea memoriei: \pause validitate \pause și adresabilitate
+\item \pause Înlocuiește mecanismul de alocare standard cu cel propriu
+\item \pause Problemele pe care le poate detecta:
+\begin{itemize}
+\item \pause Utilizare a memoriei neinițializate
+\item \pause Citire/scriere în zone de memorie eliberate
+\item \pause Citire/scriere la finalul blocurilor alocate
+\item \pause Scurgeri de memorie
+\end{itemize}
+\item \pause De 20 de ori mai lent \pause dar extrem de util
+\end{itemize}
+\item \pause \textit{Massif} Heap profiler
+\item \pause \textit{Helgrind} Util în codul multithreaded.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Valgrind - utilizare}
