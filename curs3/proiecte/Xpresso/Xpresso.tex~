@@ -1,0 +1,95 @@
+% vim: set tw=78 aw sts=2 noet sw=2:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\mode<presentation>
+{ \usetheme{Rochester} }		% TODO: settle this
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title{Xpresso}
+\subtitle{Propunere proiect CDL}
+\institute{ROSEdu}
+\author{Mihai Maruseac \\ \texttt{mihai.maruseac@rosedu.org}}
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\begin{frame}{Întâmplări în anul 1}
+\begin{center}\textit{If you do something twice make a script}\end{center}
+\begin{itemize}
+\item \pause PL (proiectare logică), temele 2 și 3
+\item \pause Majoritatea problemelor erau de minimizare a unor expresii logice astfel încât ele să se încadreze pe anumite tehnologii.
+\item \pause Problema nu era în minimizare, chiar dacă era repetitivă. \pause După minimizare trebuia să desenăm circuitul final.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ideea}
+\begin{itemize}
+\item Ne trebuia un program care primea la intrare orice fel de funcții logice și anumite restricții
+\item \pause Și ne oferea la ieșire funcțiile minimizate și un layout al circuitului logic final.
+\item \pause Știam de existența espresso (produs la Berkeley), doar că el funcționa în linie de comandă.
+\item \pause Nu știu să existe vreun program care desenează un circuit logic pornind de la exprimarea lor algebrică \pause(e drept, problema e NP completă dar nu vrem ceva optimizat la extrem, pentru început ne mulțumim cu o soluție oarecare)
+\item \pause Cu atât mai puțin un program care să îmbine ambele probleme.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Puțină istorie}
+\begin{itemize}
+\item Cu o săptămână înainte de sesiunea de comunicări eu și 2 colegi ne-am apucat să lucrăm la proiect în C (standard).
+\item \pause În ziua sesiunii de comunicări aveam doar parsarea expresiilor de la intrare. (Pentru că ne-am complicat prea mult acolo).
+\item \pause Proiectul a picat.
+\item \pause Până după stagiul de practică (hfall, pidgin, etc)
+\item \pause În vacanță am reînceput lucrul la el. (altă echipă)
+\item \pause Am decis să pornim cu interfața grafică întâi: wxWidgets + C++.
+\item \pause O problemă cu alocarea și cu clasele din C++, adunată la faptul că am reînceput hfall-ul, a determinat proiectul să stagneze din nou.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Situația actuală}
+\begin{itemize}
+\item Avem două capete care nu se prea leagă între ele.
+\item \pause Pentru că în ambele variante ne-am complicat extrem de mult.
+\end{itemize}\vspace{5mm}
+\pause \begin{center}{\huge \bf De ce e propus acest proiect?}\end{center}
+\begin{itemize}
+\item \pause Pentru că ar ajuta mulți studenți (PL, CN, etc)
+\item \pause Pentru că are guidelines foarte clare (după două eșecuri)
+\item \pause Pentru că are atât o parte de idee (desenarea circuitului) cât și una muncitorească (parsarea funcțiilor, scrierea interfeței, etc)
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Implementare}
+\begin{itemize}
+\item \textbf{doar sugestii}
+\item \pause Python
+\item \pause E foarte simplu și ne-am pierde prea mult capul în C
+\item \pause Anyway, C is cooler, deci merge și C dacă asta vrea majoritatea (sau orice alt limbaj, ofc)
+\item \pause GTK sau wxWidgets (clonă pe Python sau alte variante)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ce vom realiza?}
+\begin{itemize}
+\item Afaik vom face ceva ce nu mai există
+\item \pause Puțin mai greu dar realizabil
+\item \pause Va fi alt proiect al facultății promovat la cursurile facultății
+\item \pause Dar va fi numele vostru pe el.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \begin{center}
+    { \Huge \bf Întrebări? }
+  \end{center}
+\end{frame}
+\end{document}
