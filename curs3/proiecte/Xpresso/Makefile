@@ -9,4 +9,4 @@ $(DIST).pdf: $(DIST).tex
 
 .PHONY: clean
 clean:
-	rm -f $(TRASH)
+	rm -f $(TRASH) *~
