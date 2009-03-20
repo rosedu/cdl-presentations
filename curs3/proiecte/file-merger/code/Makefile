@@ -1,12 +1,15 @@
-TEXFILES = 01.tex 02.tex
+TEXFILES = 01.tex 02.tex diff_u.tex
 HIGHLIGHT_OPTS = -L -l -f -t 8 -c highlight.sty
 
 all: $(TEXFILES)
 
-01.tex: 01.sh
+%.tex: %.patch
+	highlight $(HIGHLIGHT_OPTS) -l -i $< -o $@
+
+%.tex: %.sh
 	highlight $(HIGHLIGHT_OPTS) -i $< -o $@
 
-02.tex: 02.c
+%.tex: %.c
 	highlight $(HIGHLIGHT_OPTS) -i $< -o $@
 
 .PHONY: clean

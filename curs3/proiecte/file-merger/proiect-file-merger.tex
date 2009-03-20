@@ -13,7 +13,7 @@
 
 % Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
 % cap.
-\title{Merger de fisiere pentru GNOME}
+\title[Merger si comparator de fișiere]{Merger si comparator de fisiere}
 \subtitle{CDL - Proiecte}
 \institute{ROSEdu}
 \author{Lucian Adrian Grijincu \\ \texttt{lucian.grijincu@rosedu.org}}
@@ -30,22 +30,49 @@
 \frame{\tableofcontents}
 
 % NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
-\section{Istorie}
+\section{Comparator fisiere}
 
 % Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
 \frame{\tableofcontents[currentsection]}
 
 % Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
 % fie folosind \frametitle
-\begin{frame}{Preambul}
-\begin{itemize} % Just like normal LaTeX
-\item Prezentarea încearcă să atragă persoanele implicate în CDL spre a folosi
-\LaTeX Beamer.
-\item Am copiat cu neruşinare schiţele lui Tibi pentru prima parte.
-\item Be sure to check the code: lots of comments and TODOs.
-\item Spam the list, IRC, or Vlad (nu la telefon) for more info.
-\end{itemize}
+\begin{frame}{De ce?}
+  \begin{itemize}
+  \item țineți minte cum arătau fișierele patch?
+  \end{itemize}
 \end{frame}
+
+\begin{frame}{Urât!}
+  \input{code/diff_u}
+\end{frame}
+
+\begin{frame}{De ce?}
+  \begin{itemize}[<+->]
+  \item la dimensiuni mari outputul în format diff (fișier patch) este dificil de urmărit.
+  \item nu este flexibil: 
+    \begin{itemize}
+    \item dacă vrem să modificăm vre-un parametru (de ex. numărul de linii de context) trebuie executată o nouă comandă \texttt{diff}
+    \end{itemize}
+  \item lipsa \textit{syntax-highliting} atunci când se revizuiesc patchurile
+  \item modificarea unui fișier patch este dificilă (trebuie modificate metadatele
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Un alt mod de a vizualiza diferențele?}
+  \begin{itemize}
+  \item nu ar fi mai ușor de urmărit dacă am avea fișierele de comparat unul lângă altul?
+    \pause
+    \includegraphics[height=5cm]{code/screenshot-meld.png}%
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Un alt mod de a vizualiza diferențele : MELD}
+  \begin{itemize}[<+->]
+  \item nu ar fi mai ușor de urmărit dacă am avea fișierele de comparat unul lângă altul?
+  \end{itemize}
+\end{frame}
+
 
 \begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
 % Atenţie: allowframebreaks nu funcţionează cu overlay-uri
