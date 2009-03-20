@@ -35,6 +35,9 @@ for i in $(ls | grep 'curs[1-9]'); do
 		make &> /dev/null
 		PDF_FILES=`ls *.pdf`
 		for pdf in $PDF_FILES; do
+		    msg "pdf == " $pdf
+		    msg "where == " $where
+		    msg "i == " $i
 		    cp  $pdf $where/$i_$pdf && msg Updated PDF $where/$i_$pdf
 		done
 	    fi
