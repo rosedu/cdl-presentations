@@ -13,3 +13,4 @@ $(DIST).pdf: $(DIST).tex $(HIGHLIGHT)/Makefile
 clean:
 	cd $(HIGHLIGHT) && make clean
 	rm -f $(TRASH)
+	rm -f *~
