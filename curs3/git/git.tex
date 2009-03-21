@@ -226,10 +226,33 @@ Configurație locală (per repository):
 \pause\item adăugare de conținut la commit: \texttt{git add [-i] <path-to-file>}
 \item salvarea commit-ului: \texttt{git commit -s -m mesaj}
 \item undo: \texttt{git reset} ( cu \texttt{--hard} si \texttt{--soft})
-\\
-\item pentru a pune un tag: \texttt{git tag <tag-name>}
 \end{itemize}
 \end{frame}
+
+
+
+\begin{frame}{Tags}
+\begin{itemize}
+\item SVN:
+  \begin{itemize}
+  \item directoare cu sursele proiectului cu nume special
+    (de ex. \textit{tags/v1.0.1})
+  \item nici o dată nu se modificau aceste taguri
+  \item crearea unui nou tag implică spațiu ocupat proporțional cu 
+    dimensiunea proiectului (se copie fieacare sursă)
+  \end{itemize}
+\item GIT:
+  \begin{itemize}
+  \item un tag este un \textbf{nume} ușor de reținut asociat cu un SHA ID
+  \item pentru a pune un tag \\ 
+    \texttt{git tag <tag-name>}
+  \item tag + semnare digitală (gpg) \\ 
+    \texttt{git tag -s <tag-name>}   \\
+    nimeni nu poate falsifica un tag securizat sau impersona pe altcineva (de ex. pe Linus)
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
 
 % Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
 % fie folosind \frametitle
