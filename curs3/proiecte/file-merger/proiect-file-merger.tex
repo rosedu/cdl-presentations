@@ -29,14 +29,14 @@
 
 \frame{\tableofcontents}
 
-% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
-\section{Comparator fisiere}
 
-% Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
+
+
+
+
+\section{De ce?}
 \frame{\tableofcontents[currentsection]}
 
-% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
-% fie folosind \frametitle
 \begin{frame}{De ce?}
   \begin{itemize}
   \item țineți minte cum arătau fișierele patch?
@@ -59,6 +59,21 @@
   \end{itemize}
 \end{frame}
 
+
+
+
+
+
+
+
+
+
+
+
+
+\section{MELD}
+\frame{\tableofcontents[currentsection]}
+
 \begin{frame}{Un alt mod de a vizualiza diferențele?}
   \begin{itemize}
   \item nu ar fi mai ușor de urmărit dacă am avea fișierele de comparat unul lângă altul?
@@ -69,82 +84,84 @@
 
 \begin{frame}{Un alt mod de a vizualiza diferențele : MELD}
   \begin{itemize}[<+->]
-  \item nu ar fi mai ușor de urmărit dacă am avea fișierele de comparat unul lângă altul?
+  \item captura de ecran anterioară este din MELD
+    \begin{itemize}
+      \item \texttt{sudo apt-get install meld}
+    \end{itemize}
+  \item meld are limitări:
+    \begin{itemize}
+      \item dacă algoritmul care detectează zonele similare și cele diferite nu 
+        funcționează corect acestea nu pot fi specificate de utilizator
+      \item nu permite vizualizarea diferențelor între resurse non-text
+        \begin{itemize}
+        \item imagini
+        \item metadata imagini (EXIF data)
+        \item fișiere binare
+          \includegraphics[height=2cm]{code/screenshot-meld-binary-error.png}
+        \end{itemize}
+    \end{itemize}
   \end{itemize}
 \end{frame}
 
 
-\begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
-% Atenţie: allowframebreaks nu funcţionează cu overlay-uri
-\frametitle{Câte ceva despre istoria FLOSS}
-\begin{itemize}
-\item Punctul de plecare: noua imprimantă de la MIT
-\item Proiectul GNU, activismul lui Richard Stallman (1983)
-\item Cele patru drepturi. Programele libere nu sunt neapărat gratuite
-\item Minix, sistem de operare UNIX educațional. Micronucleu (1987)
-\item GNU: un sistem de operare liber dar incomplet. Hurd nu este gata (1990)
-\item Linux: nucleul monolitic devenit liber (1991). Primele distribuții
-GNU/Linux
-\item Afaceri. Companiile multinaționale devin și ele contribuitori la
-programele libere
-\item OSI și definiția Open Source (1998). Diferențe de perspectivă și
-aplicabilitate
-\item Patentele pe programe din SUA amenință programele libere. Procese (2004
-- prezent)
-\item Microsot, Adobe și Nokia încep să dezvolte programe Open Source, nu
-toate libere (2008)
-\item Echipa Debian se alătură efortului internațional de a termina
-revoluționarul GNU Hurd
-\end{itemize}
-\end{frame}
 
-\section{Cod}
+
+
+
+
+
+
+
+
+\section{Beyond Compare}
 \frame{\tableofcontents[currentsection]}
 
-\begin{frame}
-\frametitle{Exemplu de cod}
-Acesta este un script bash:\\
-\input{code/01} % includem codul
+\begin{frame}{Un exemplu comercial : Beyond Compare}
+  \begin{itemize}
+    \item suport pentru comparare imagini (pixel cu pixel)
+      \includegraphics[height=5cm]{code/bc-imagini.png}
+  \end{itemize}
 \end{frame}
 
-\begin{frame}{Încă un exemplu de cod}
-Acesta este un program C:
-
-\input{code/02}
+\begin{frame}{Un exemplu comercial : Beyond Compare}
+  \begin{itemize}      
+      \item comparare fișiere binare
+      \includegraphics[height=5cm]{code/bc-hex.png}
+  \end{itemize}
 \end{frame}
 
-\section{Overlay-uri}
+\begin{frame}{Un exemplu comercial : Beyond Compare}
+  \begin{itemize}      
+      \item comparare fișiere CVS (comma separated values)
+      \includegraphics[height=5cm]{code/bc-cvs.png}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Un exemplu comercial : Beyond Compare}
+  \begin{itemize}      
+      \item comparare fișiere text
+        \includegraphics[height=5cm]{code/bc-text.png}
+  \end{itemize}
+\end{frame}
+
+
+
+
+
+
+
+
+
+\section{Proiect CDL}
 \frame{\tableofcontents[currentsection]}
 
-\begin{frame}{Comanda `pause'}
-`Pause' ne lasă să arătăm textul `gradual'.
-
-\pause Putem să folosim pause cu itemize sau orice altă facilitate.
-\begin{itemize}
-\pause \item De exemplu.
-\pause \item Încă un exemplu.
-\pause \item Dar nu e foarte flexibil...
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Overlay-uri mai avansate}
-\only<1>{Cue chapter 9.3 from the Beamer manual.}
-\only<2>{Facem o mare ciorbă de overlay-uri. \textbf{Notă:} E vorba de un
-singur slide -- numărul şi titlul se păstrează.}
-\begin{itemize}
-\item<3-> orice comandă poate fi urmată (fără spaţiu) de un specificator de
-overlay;
-\item<4-> specificatoarele sunt marcate cu \texttt{<} şi \texttt{>};
-\item<5-> \texttt{<4>} înseamnă ``doar pe overlay-ul 4'';
-\item<5-> \texttt{<1-3>} înseamnă ``doar pe overlay-urile de la 1 până la 3,
-inclusiv'';
-\item<6-> \texttt{<5->} înseamnă ``de la overlay-ul 5 până la sfârşit'' (de
-fapt, până la slide-ul următor, fireşte);
-\item<6-> \texttt{<-4>} înseamnă ``de la început până la overlay-ul 4'';
-\item<7-> Toate exemplele de mai sus au avut comanda \texttt{item} urmată de
-un overlay. Trebuie să ţinem cont de ordine manual, dar nu cred că vom avea
-nevoie de cine-ştie-ce efecte.
-\end{itemize}
+\begin{frame}{Ce facem?}
+  \begin{itemize}[<+->]
+  \item mai multe tipuri de fișiere suportate
+  \item eliminarea limitărilor pe care le are \texttt{meld}
+  \item ???
+  \item profit!
+  \end{itemize}
 \end{frame}
 
 
