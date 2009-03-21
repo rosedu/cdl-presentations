@@ -1,4 +1,4 @@
-TEXFILES = 01.tex 02.tex
+TEXFILES = 
 HIGHLIGHT_OPTS = -L -l -f -t 8 -c highlight.sty
 
 all: $(TEXFILES)

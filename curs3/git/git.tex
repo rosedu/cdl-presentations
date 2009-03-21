@@ -5,7 +5,7 @@
 \usepackage[romanian]{babel}
 \usepackage{color}			 % highlight
 \usepackage{alltt}			 % highlight
-\usepackage{code/highlight}	 % highlight
+% \usepackage{code/highlight}	 % highlight
 \usepackage{hyperref}        % folositi \url{http://...}
                              % sau \href{http://...}{Nume Link}
 \mode<presentation>
@@ -16,7 +16,7 @@
 \title[GIT]{GIT}
 \subtitle{CDL - Cursul 3}
 \institute{ROSEdu}
-\author{Mircea Bardac \texttt{adresa@de.mail}}
+\author{Mircea Bardac \texttt{cs@mircea.bardac.net}}
 
 \begin{document}
 
@@ -37,15 +37,236 @@
 
 % Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
 % fie folosind \frametitle
-\begin{frame}{Preambul}
+\begin{frame}{Distribuit vs. centralizat}
 \begin{itemize} % Just like normal LaTeX
-\item Prezentarea încearcă să atragă persoanele implicate în CDL spre a folosi
-\LaTeX Beamer.
-\item Am copiat cu neruşinare schiţele lui Tibi pentru prima parte.
-\item Be sure to check the code: lots of comments and TODOs.
-\item Spam the list, IRC, or Vlad (nu la telefon) for more info.
+\item centralizat: SVN, CVS
+\item distribuit: Git, Mercurial, Bazaar, darcs etc.
 \end{itemize}
 \end{frame}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Diferențe in utilizare}
+\begin{itemize} % Just like normal LaTeX
+\item mai multe repository-uri
+\item adunarea codului se face in urma operațiilor de merge
+\item locotenenti
+\item exista un set nou de operații pentru trimiterea/descărcarea commit-urilor
+\end{itemize}
+\end{frame}
+
+
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Avantaje model distribuit}
+\begin{itemize} % Just like normal LaTeX
+\item lucru deconectat (fără acces la repository-ul central)
+\item operații mult mai rapide (totul e local)
+\item libertate în dezvoltare (oricâte repository-uri)
+\item permite lucrul privat (nu trebuie publicate modificările)
+\item sistem distribuit $=>$ rezistență
+\end{itemize}
+\end{frame}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Dezavantaje model distribuit}
+\begin{itemize} % Just like normal LaTeX
+\item mai greu de inteles (that's why we are here!)
+\item greu de schimbat istoria commit-urilor
+\item management-ul accesului este mai dificil
+\end{itemize}
+\end{frame}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Git vs. SVN}
+\begin{itemize} % Just like normal LaTeX
+\item Git un singur director .git în repository
+\item în Git se manipulează conținut, nu fișiere (operațiile de modificare a repository-ului se fac pe conținut)
+\item Git păstrează toată istoria in repository (cu mici exceptii) - acces offline
+\end{itemize}
+\end{frame}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Concepte Git}
+\begin{itemize} % Just like normal LaTeX
+\item conținut (vs. fișiere) - adăugarea parțială a modificărilor
+\pause\item repository
+\begin{itemize}
+	\item local 
+	\item remote repository - se pot adauga la repo-ul local referințe către repository-ul remote
+\end{itemize}
+\pause \item branch (ramură) - lanț de commit-uri
+\begin{itemize}
+	\item local/remote
+\end{itemize}
+\pause \item commit - conținut modificat
+\begin{itemize}
+	\item base commit - primul commit
+	\item HEAD - ultimul commit dintr-un branch
+\end{itemize}
+\pause \item tag - echivalent cu o etichetă
+\\
+\pause \item \textbf{working copy} vs. \textbf{branch}
+\end{itemize}
+\end{frame}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Getting started with Git}
+Configurație globală:
+\begin{itemize} % Just like normal LaTeX
+\item \texttt{git config --global user.name "Your Namee"}
+\item \texttt{git config --global user.email your@email.addr}
+\\
+\item \texttt{git config --global color.diff auto}
+\item \texttt{git config --global color.status auto}
+\item \texttt{git config --global color.branch auto}
+\end{itemize}
+Configurație locală (per repository):
+\begin{itemize} % Just like normal LaTeX
+\item în fișierul \texttt{repo-dir/.git/config}
+\end{itemize}
+\end{frame}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Getting started with a repository}
+\begin{itemize} % Just like normal LaTeX
+\item \texttt{git init}
+\pause\item \texttt{git clone <repository-path> [<target-dir>]}
+\begin{itemize}
+	\item Git repo: \texttt{git://url}
+	\item cale SSH: \texttt{ssh://username@computer:path}
+	\item cale locală: absolută sau relativă
+\end{itemize}
+\pause\item \texttt{git svn clone <svn-repo-path> [<target-dir>]}
+\begin{itemize}
+	\item lucrul cu repository-ul extern SVN se face utilizând \texttt{git svn}
+	\item acțiuni frecvente: \texttt{git svn dcommit}, \texttt{git svn rebase}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Ce se găsește în repository (1)}
+\begin{itemize} % Just like normal LaTeX
+\item \texttt{repo overview: gitk --all}
+\\
+\pause\item ramuri (branches)
+\begin{itemize}
+	\item locale: \texttt{git branch}
+	\item remote: \texttt{git branch -r}
+	\item toate: \texttt{git branch -a}
+	\item $*$ înaintea unui nume de ramură indică faptul ca ramura respectivă este reflectată în working copy
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Ce se găsește în repository (2)}
+\begin{itemize} % Just like normal LaTeX
+\item un repository remote cu numele \texttt{\textbf{origin}}
+\item branch-uri remote cu numele \textbf{\texttt{origin/<nume-branch>}} (referințe la ramurile din repository-ul clonat) - se poate specifica în mod explicit la clonare doar o ramură
+\\
+\item informații despre repository-ul remote: \texttt{git remote show <repository-name>}
+\item în cazul nostru: \texttt{git remote show origin}
+\end{itemize}
+\end{frame}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Ce se găsește în repository (3)}
+\begin{itemize} % Just like normal LaTeX
+\item multe multe commit-uri
+\item \texttt{git log} - commit-urile din branch-ul curent
+\item \texttt{git log <file-name>} - commit-urile care afectează doar fișier-ul <file-name>
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Starea repository-ului}
+\begin{itemize} % Just like normal LaTeX
+\item Exită două tipuri de fișiere în repository:
+\begin{itemize} % Just like normal LaTeX
+	\item tracked files - conținutul este urmărit de Git
+	\item untracked files - fișierele nu sunt cunoscute
+\end{itemize}
+\pause\item Comanda \texttt{git status} afișează:
+\begin{itemize} % Just like normal LaTeX
+	\item modificările marcate pentru includere în viitorul commit
+	\item modificările detectate în fișierele urmărite dar nemarcate pentru commit
+	\item fișierele neurmărite
+\end{itemize}
+\item comenzile:
+\begin{itemize} % Just like normal LaTeX
+	\item \texttt{git diff} și
+	\item \texttt{git diff --cached}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Commit}
+\begin{itemize} % Just like normal LaTeX
+\item ID commit = SHA1
+\item referire
+\begin{itemize}
+	\item HEAD = the last commit
+	\item HEAD urmat de un sir de X caret-uri (shift+6) = al X-ulea commit anterior lui HEAD
+	\item HEAD~1 = HEAD urmat de un caret
+    \item HEAD~2 = HEAD urmat de două carent-uri
+    \item HEAD~10 = 10 commit-uri inainte de HEAD
+\end{itemize}
+\pause\item adăugare de conținut la commit: \texttt{git add [-i] <path-to-file>}
+\item salvarea commit-ului: \texttt{git commit -s -m mesaj}
+\item undo: \texttt{git reset} ( cu $--hard$ si $--soft$)
+\\
+\item pentru a pune un tag: \texttt{git tag <tag-name>}
+\end{itemize}
+\end{frame}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Branch-uri (ramuri)}
+\begin{itemize} % Just like normal LaTeX
+\item listat branch-uri: \texttt{git checkout <branch-name>}
+\item creat branch: \texttt{git branch <branch-name> [<start-point>] }
+\item schimbat branch: \texttt{git checkout <branch-name>}
+\begin{itemize}
+	\item la schimbarea branch-ului, modificările din branch-ul curent trebuie să fie commit-uite.
+	\item \texttt{git stash} poate fi utilizat pentru a realiza commit-uri temporare
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Colaborarea folosind Git}
+\begin{itemize} % Just like normal LaTeX
+\item repository-uri remote: setup, actualizare imagine locala repository, lucrul cu branch-uri din repository-uri remote
+\item schimbul de patch-uri
+\end{itemize}
+\end{frame}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Setup remote repository}
+\begin{itemize} % Just like normal LaTeX
+\item \texttt{git remote add [-t <remote-branch>] <remote-name> <repository-path>}
+\\
+\pause\item afisare repository-uri remote: \texttt{git remote}
+\item afisare informații repository remote: \texttt{git remote show <remote-name>}
+\end{itemize}
+\end{frame}
+
+
 
 \begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
 % Atenţie: allowframebreaks nu funcţionează cu overlay-uri
@@ -71,20 +292,20 @@ revoluționarul GNU Hurd
 \end{itemize}
 \end{frame}
 
-\section{Cod}
-\frame{\tableofcontents[currentsection]}
+%\section{Cod}
+%\frame{\tableofcontents[currentsection]}
+%
+%\begin{frame}
+%\frametitle{Exemplu de cod}
+%Acesta este un script bash:\\
+%\input{code/01} % includem codul
+%\end{frame}
 
-\begin{frame}
-\frametitle{Exemplu de cod}
-Acesta este un script bash:\\
-\input{code/01} % includem codul
-\end{frame}
+%\begin{frame}{Încă un exemplu de cod}
+%Acesta este un program C:
 
-\begin{frame}{Încă un exemplu de cod}
-Acesta este un program C:
-
-\input{code/02}
-\end{frame}
+%\input{code/02}
+%\end{frame}
 
 \section{Overlay-uri}
 \frame{\tableofcontents[currentsection]}
