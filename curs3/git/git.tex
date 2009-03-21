@@ -89,6 +89,9 @@
 \end{itemize}
 \end{frame}
 
+% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{Concepte și utilizare Git}
+\frame{\tableofcontents[currentsection]}
 % Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
 % fie folosind \frametitle
 \begin{frame}{Concepte Git}
@@ -230,7 +233,6 @@ Configurație locală (per repository):
 \end{frame}
 
 
-
 \begin{frame}{Tags}
 \begin{itemize}
 \item SVN:
@@ -269,6 +271,9 @@ Configurație locală (per repository):
 \end{frame}
 
 
+% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{Colaborarea folosind Git}
+\frame{\tableofcontents[currentsection]}
 % Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
 % fie folosind \frametitle
 \begin{frame}{Colaborarea folosind Git}
@@ -295,14 +300,9 @@ Configurație locală (per repository):
 \begin{itemize} % Just like normal LaTeX
 \item \texttt{git fetch <remote-name>}
 \begin{itemize} % Just like normal LaTeX
-	\item aduce toate commit-urile asociate branch-urilor remote cunoscute pentru repository-ul remote dat prin \texttt{<remote-name>}
+	\item aduce toate commit-urile asociate branch-urilor remote cunoscute din repository-ul remote \texttt{<remote-name>}
 \end{itemize}
-\pause \item \texttt{git pull [<remote-name>]}
-\begin{itemize} % Just like normal LaTeX
-	\item \texttt{pull = fetch + merge}
-	\item fără niciun parametru, se execută \texttt{git pull origin}
-\end{itemize}
-
+\item util: \texttt{gitk --all}
 \end{itemize}
 \end{frame}
 
@@ -318,6 +318,7 @@ Configurație locală (per repository):
 \begin{itemize} % Just like normal LaTeX
 	\item \texttt{pull = fetch + merge}
 	\item fără niciun parametru, se execută \texttt{git pull origin}
+	\item această comandă modifică working copy-ul
 \end{itemize}
 \pause\item 'merge' cu un branch local:
 \begin{itemize} % Just like normal LaTeX
@@ -327,5 +328,101 @@ Configurație locală (per repository):
 \pause \item \textbf{fast-forward merge}
 \end{itemize}
 \end{frame}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Cum trimitem commit-urile din repository-ul local în cel remote}
+\texttt{git push <remote-name> <local-branch-name>:<remote-branch-name>}
+\begin{itemize} % Just like normal LaTeX
+\item comanda face merge remote la toate commit-urile din branch-ul local \texttt{<local-branch-name>} în branch-ul remote \texttt{<remote-branch-name>} din repository-ul remote \texttt{<remote-name>}
+\pause \item în cazul particular în care dorim să ștergem un branch remote:
+\begin{itemize} % Just like normal LaTeX
+	\item \texttt{git push <remote-name> :<remote-branch-name>}
+	\item Atentie! Exista un spațiu înaintea caracterului ':'
+	\item comanda face push la un branch vid în branch-ul remote, rezultatul fiind ștergerea branch-ului remote
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Patch-uri în Git}
+Generat patch-uri (pentru a fi trimise pe e-mail)
+\begin{itemize} % Just like normal LaTeX
+\item \texttt{git format-patch <commit-range> }
+\item range poate fi: \texttt{origin .. <your-development-branch>}
+\item param: -M -B = tracks renames
+\item este generat cate 1 fișier (patch-file) pentru fiecare commit din intervalul dat ca parametru
+\item fișierele sunt numite automat
+\end{itemize}
+\pause Aplicarea patch-urilor:
+\begin{itemize} % Just like normal LaTeX
+\item \texttt{git am <patch-file>}
+\end{itemize}
+\end{frame}
+
+% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{Funcționalități Git}
+\frame{\tableofcontents[currentsection]}
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Blaming others - "E vina ta!"}
+\texttt{git blame <nume-fisier>}
+\begin{itemize} % Just like normal LaTeX
+\item afișează cine a introdus fiecare linie în fișierul dat ca parametru și commit-ul care a introdus respectiva linie în fișier
+\item poate fi limitat doar la un anumit interval de commit-uri
+\item poate fi forțat să caute și dacă liniile au fost copiate din alte fișiere
+\end{itemize}
+\end{frame}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Tracking bugs}
+\texttt{git bisect}
+\begin{itemize} % Just like normal LaTeX
+\item \texttt{git bisect start}  \# start
+\item \texttt{git bisect bad} \# commit-ul curent e "bad"
+\item \texttt{git bisect good v2.6.22} \# commit-ul de la tag-ul v2.6.22 e bun - git bisect face checkout la alt commit care se găsește între cele două
+\item prin utilizarea lui \texttt{good} și \texttt{bad} (eventual \texttt{skip} dacă este nevoie) se realizeaza o căutare binară în lista de commit-uri.
+\end{itemize}
+\end{frame}
+
+% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{Git best practices}
+\frame{\tableofcontents[currentsection]}
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Git best practices}
+\begin{itemize} % Just like normal LaTeX
+\item commit-uri mici și cu descrieri relevante
+\item commit-uri semnate (\texttt{git commit -s})
+\item întotdeauna ce se găsește în repository trebuie să fie utilizabil (compilabil) - condiție necesară pentru bisect
+\item fiecare bugfix/feature implementat într-un branch separat, cu 'merge' doar la final în branch-ul principal
+\end{itemize}
+\end{frame}
+
+% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{Link-uri utile}
+\frame{\tableofcontents[currentsection]}
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Link-uri utile}
+\begin{itemize} % Just like normal LaTeX
+\item \url{http://ktown.kde.org/~zrusin/git/} - Git Cheatsheet
+\item \url{http://www.kernel.org/pub/software/scm/git/docs/gittutorial.html} - Official Git tutorial
+\item \url{http://www.gitcasts.com/} - Git Screencasts
+\item \url{http://book.git-scm.com/} - The Git Community Book
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{}
+  \begin{center}
+    {\Huge \bfseries Întrebări}
+  \end{center}
+\end{frame}
+
 
 \end{document}
