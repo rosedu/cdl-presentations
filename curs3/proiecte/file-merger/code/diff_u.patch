@@ -1,0 +1,12 @@
+--- f_original.txt
++++ f_modificat.txt
+@@ -1,7 +1,6 @@
+ Prima linie comună.
+-A doua linie diferă.
+-A treia tot.
++A doua linie e diferită.
++A treia are modificări.
+ A patra nu.
+ A cincia identică.
+-A șasea lipsește.
+ Ultima e comună.
