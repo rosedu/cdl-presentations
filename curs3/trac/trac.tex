@@ -1,0 +1,171 @@
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc}		
+\usepackage[romanian]{babel}
+\usepackage{color}			
+\usepackage{alltt}			
+\mode<presentation>
+{ \usetheme{Rochester} }	
+
+
+\title[Programe libere]{Gestiunea facila a unui proiect. Trac}
+\subtitle{CDL - Cursul 3}
+\institute{ROSEdu}
+\author{Marius Latu \\ {\footnotesize marius.latu@gmail.com}}
+
+\begin{document}
+\setbeamertemplate{frametitle continuation}[from second]
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+\frame{\tableofcontents}
+
+\section{Introducere}
+
+  \frame{\tableofcontents[currentsection]}
+  
+  \begin{frame}
+  \frametitle{Mică istorie a Trac-ului}
+
+  \begin{itemize}
+  \pause \item Reimplementare a unui proiect mai vechi
+  \pause \item CVSTrac \begin{itemize} \item Python (1991 - Guido van Rossum) \item SQLite integrată \end{itemize}
+  \pause \item svntrac datorită abilității de interacționa cu Subversion
+  \pause \item acum \begin{itemize} \item Subversion \item Git \item Bazaar \item Mercurial \item Darcs \end{itemize}
+  \end{itemize}
+  \end{frame}
+
+
+  \begin{frame}
+  \frametitle{Ce este de fapt Trac?}
+
+  \begin{itemize}
+  \pause \item Instrument web-based utilizat pentru 
+	\begin{itemize}
+	\item managementul proiectelor - PMS
+	\item managementul codului sursă - SCM
+	\item folosește: wiki,svn, tichete
+	\end{itemize}
+  \pause \item Folosit în momentul de față în aproximativ 450 proiecte importante
+	\begin{itemize}
+	\item Webkit 
+	\item VirtualBox 
+	\item OSI 
+	\item Beryl 
+	\item etc..(listă detaliată la bibliogafie)
+	\end{itemize}
+  \end{itemize}
+  \end{frame}
+
+\section{Utilizare}
+
+  \frame{\tableofcontents[currentsection]}
+
+  \begin{frame}
+  \frametitle{De ce am folosi Trac?}
+
+  \begin{itemize}
+  \pause \item Licență - BSD
+  \pause \item Support - comunitate de entuziaști
+  \pause \item Adaptabilitate - Python 
+	\begin{itemize}
+	\item suport pentru integrare cu alte limbaje
+	\item librării standard extensibile
+	\item curbă de învățare
+	\end{itemize}
+  \pause \item instalare
+  \pause \item ușurință de utilizare
+  \pause \item ușurintă în administrare (sistem de tichete)
+  \pause \item securitate
+  \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+  \frametitle{Ce instrumente oferă Trac?}
+
+  \begin{itemize}
+  \pause \item multi-user acces
+  \pause \item attachments
+  \pause \item email integration
+  \pause \item import/export capabilities 
+  \pause \item custom fields
+  \pause \item authentication
+  \pause \item autorization
+  \pause \item reporting
+  \pause \item audit trails
+  \end{itemize}
+  \end{frame}
+
+\section{Exerciții}
+
+  \frame{\tableofcontents[currentsection]}
+
+  \begin{frame}
+  \frametitle{Wiki Basics}
+
+  \begin{itemize}
+  \pause \item Logațivă în mediul CdlTracTest folosind userul și parola de svn
+  \pause \item Creați pagina propie de documentare pentru exerciții
+	\begin{itemize}
+	\item http://dev.rosedu.org/trac/rosedu/wiki/CdlTracTest
+	\item Pagina va conține contine observațiile de debug
+	\item se va folosi formatare Wiki (headings, intendare, legături)
+	\item http://dev.rosedu.org/trac/rosedu/wiki/WikiFormatting
+	\end{itemize}
+  \pause \item Pagina va conține observațiile asupra celor 3 surse
+  \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+  \frametitle{Tichet Basics 1}
+
+  \begin{itemize}
+  \pause \item Verificați poșta și acceptați tichetul pe care l-ați primit
+(închideți tichetul la final).
+  \pause \item Creați un tichet nou pe numele colegului din dreapta prin care
+îi dați sarcina să verifice corectitudinea celor 3 surse create anterior
+(sursă.nume - numele persoane care crează tichetul) și să documenteze în
+pagina personală erorile constate.
+  \pause \item Asignați tichetul primit colegului din dreapta.
+  \pause \item Rezolvați ultimul tichet primit (instrucțiuni în slide-ul următor).
+  \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+  \frametitle{Tichet Basics 2}
+
+  \begin{itemize}
+  \pause \item Se va copia pe rând surseleîntr-un fișier merge.NumePrenume
+  \pause \item După fiecare copiere se vor comite modificările cu un mesaj specific
+  \pause \item Se vor rezolva în ordinea copierii bug-urile din fișierul merge și
+se vor comite cu un mesaj specific
+  \pause \item Se vor nota observațiile în pagina de wiki și se va observa istoria
+fiecărei surse din browser.
+  \pause \item PS. Pentru editarea și comiterea fișierelor se va folosi doar editorul vim,
+fără folosirea mouse-ului.
+  \item Have fun!
+  \end{itemize}
+  \end{frame}
+
+\section{Bibliografie}
+
+  \frame{\tableofcontents[currentsection]}
+
+  \begin{frame}
+  \frametitle{Referințe}
+
+  \begin{itemize}
+ 
+  \item \href{http://en.wikipedia.org/wiki/Trac}{Trac - Wikipedia}
+  \item \href{http://www.webfaction.com/demos/trac-svn}{Trac Subversion Demos}
+  \item \href{http://www.virtualbox.org/}{VirtualBox}
+  \item \href{http://webkit.org/}{Webkit}
+  \item \href{http://trac.edgewall.org/wiki/TracUsers}{Who uses Trac?}
+  \item \href{http://trac-hacks.org/}{Trac Hacks}
+  \item \href{http://trac.edgewall.org/wiki/PluginList}{Plugings List}
+
+  \end{itemize}
+  \end{frame}
+
+
+\end{document}
