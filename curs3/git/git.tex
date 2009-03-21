@@ -185,7 +185,7 @@ Configurație locală (per repository):
 \begin{itemize} % Just like normal LaTeX
 \item multe multe commit-uri
 \item \texttt{git log} - commit-urile din branch-ul curent
-\item \texttt{git log <file-name>} - commit-urile care afectează doar fișier-ul <file-name>
+\item \texttt{git log <file-name>} - commit-urile care afectează doar fișier-ul \texttt{<file-name>}
 \end{itemize}
 \end{frame}
 
@@ -266,80 +266,43 @@ Configurație locală (per repository):
 \end{itemize}
 \end{frame}
 
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Cum aducem commit-urile din repository-ul remote în cel local}
+\begin{itemize} % Just like normal LaTeX
+\item \texttt{git fetch <remote-name>}
+\begin{itemize} % Just like normal LaTeX
+	\item aduce toate commit-urile asociate branch-urilor remote cunoscute pentru repository-ul remote dat prin \texttt{<remote-name>}
+\end{itemize}
+\pause \item \texttt{git pull [<remote-name>]}
+\begin{itemize} % Just like normal LaTeX
+	\item \texttt{pull = fetch + merge}
+	\item fără niciun parametru, se execută \texttt{git pull origin}
+\end{itemize}
 
-
-\begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
-% Atenţie: allowframebreaks nu funcţionează cu overlay-uri
-\frametitle{Câte ceva despre istoria FLOSS}
-\begin{itemize}
-\item Punctul de plecare: noua imprimantă de la MIT
-\item Proiectul GNU, activismul lui Richard Stallman (1983)
-\item Cele patru drepturi. Programele libere nu sunt neapărat gratuite
-\item Minix, sistem de operare UNIX educațional. Micronucleu (1987)
-\item GNU: un sistem de operare liber dar incomplet. Hurd nu este gata (1990)
-\item Linux: nucleul monolitic devenit liber (1991). Primele distribuții
-GNU/Linux
-\item Afaceri. Companiile multinaționale devin și ele contribuitori la
-programele libere
-\item OSI și definiția Open Source (1998). Diferențe de perspectivă și
-aplicabilitate
-\item Patentele pe programe din SUA amenință programele libere. Procese (2004
-- prezent)
-\item Microsot, Adobe și Nokia încep să dezvolte programe Open Source, nu
-toate libere (2008)
-\item Echipa Debian se alătură efortului internațional de a termina
-revoluționarul GNU Hurd
 \end{itemize}
 \end{frame}
 
-%\section{Cod}
-%\frame{\tableofcontents[currentsection]}
-%
-%\begin{frame}
-%\frametitle{Exemplu de cod}
-%Acesta este un script bash:\\
-%\input{code/01} % includem codul
-%\end{frame}
-
-%\begin{frame}{Încă un exemplu de cod}
-%Acesta este un program C:
-
-%\input{code/02}
-%\end{frame}
-
-\section{Overlay-uri}
-\frame{\tableofcontents[currentsection]}
-
-\begin{frame}{Comanda `pause'}
-`Pause' ne lasă să arătăm textul `gradual'.
-
-\pause Putem să folosim pause cu itemize sau orice altă facilitate.
-\begin{itemize}
-\pause \item De exemplu.
-\pause \item Încă un exemplu.
-\pause \item Dar nu e foarte flexibil...
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Lucrul cu commit-urile din repository-ul remote}
+\begin{itemize} % Just like normal LaTeX
+\item checkout direct al branch-ului remote (nu permite editări)
+\begin{itemize} % Just like normal LaTeX
+	\item \texttt{git checkout <remote-name>/<remote-branch>}
+\end{itemize}
+\pause\item \texttt{git pull [remote-name]}
+\begin{itemize} % Just like normal LaTeX
+	\item \texttt{pull = fetch + merge}
+	\item fără niciun parametru, se execută \texttt{git pull origin}
+\end{itemize}
+\pause\item 'merge' cu un branch local:
+\begin{itemize} % Just like normal LaTeX
+	\item \texttt{git checkout <local-branch>}
+	\item \texttt{git merge <remote-name>/<remote-branch>}
+\end{itemize}
+\pause \item \textbf{fast-forward merge}
 \end{itemize}
 \end{frame}
-
-\begin{frame}{Overlay-uri mai avansate}
-\only<1>{Cue chapter 9.3 from the Beamer manual.}
-\only<2>{Facem o mare ciorbă de overlay-uri. \textbf{Notă:} E vorba de un
-singur slide -- numărul şi titlul se păstrează.}
-\begin{itemize}
-\item<3-> orice comandă poate fi urmată (fără spaţiu) de un specificator de
-overlay;
-\item<4-> specificatoarele sunt marcate cu \texttt{<} şi \texttt{>};
-\item<5-> \texttt{<4>} înseamnă ``doar pe overlay-ul 4'';
-\item<5-> \texttt{<1-3>} înseamnă ``doar pe overlay-urile de la 1 până la 3,
-inclusiv'';
-\item<6-> \texttt{<5->} înseamnă ``de la overlay-ul 5 până la sfârşit'' (de
-fapt, până la slide-ul următor, fireşte);
-\item<6-> \texttt{<-4>} înseamnă ``de la început până la overlay-ul 4'';
-\item<7-> Toate exemplele de mai sus au avut comanda \texttt{item} urmată de
-un overlay. Trebuie să ţinem cont de ordine manual, dar nu cred că vom avea
-nevoie de cine-ştie-ce efecte.
-\end{itemize}
-\end{frame}
-
 
 \end{document}
