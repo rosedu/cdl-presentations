@@ -19,4 +19,4 @@ clean:
 			echo "Failed";						\
 		fi;								\
 	done;
-	@rm -f *.pdf;
+	rm -f *.pdf;
