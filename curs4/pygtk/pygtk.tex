@@ -15,7 +15,7 @@
 
 % Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
 % cap.
-\title[Unit Testing and Debugging]{Unit Testing and Debugging}
+\title[GTK]{GTK}
 \subtitle{CDL - Cursul 4}
 \institute{ROSEdu}
 \author{Mihai Maruseac \\\texttt{mihai.maruseac@gmail.com}}
@@ -31,355 +31,153 @@
 
 \frame{\tableofcontents}
 
-\section{Unit testing}
+\section{GTK}
 \frame{\tableofcontents[currentsection]}
 
-\begin{frame}{De ce testing?}
+\begin{frame}{GTK}
 \begin{itemize}
-\item Nu ar trebui să scriem întâi cod și apoi să ne gândim la a-l testa?
-\item \pause Nici măcar o bucată de cod?
-\item \pause Scriem bucata 1 de cod pentru a obține funcționalitatea A
-\item \pause Scriem bucata 2 pentru a obține și funcționalitatea B.
-\item \pause Le legăm împreună fără a le testa în prealabil.
-\item \pause \textit{Where did this bug come from?}
-\item \pause O bucată conține cod incompatibil cu cealaltă.
-\item \pause Exemplu real: \pause Hammerfall
-\item \pause Solutia? \pause Unit testing
+\item GIMP Toolkit
+\item GTK+
+\item cross-platform
+\item Una dintre cele mai populare interfețe grafice din X Window System, împreună cu Qt.
+\item \pause Scris în C dar cu bindings pentru multe limbaje:
+	\begin{itemize}
+		\item C++
+		\item Perl
+		\item Ruby
+		\item Java (?, fără Windows)
+		\item C\#
+		\item Python
+	\end{itemize}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Unit Testing}
+\begin{frame}{PyGTK}
 \begin{itemize}
-\item Paradigmă de dezvoltare prin care programatorii dobândesc încredere în faptul că bucăți individuale din codul lor sunt potrivite pentru folosirea în orice situații.
-\item \pause Unitatea: cea mai mică bucată de cod care poate funcționa independent de restul aplicației
-\item \pause Scopul: izolarea porțiunilor de program și demonstrarea funcționalității lor corecte
-\item \pause Un unit-test complet oferă garanția că unitatea testată funcționează corect în orice situație care s-ar putea ivi.
-\item \pause Test-driven development
-\item \pause Unul din fundamentele Extreme Programming
+	\item Binding $Python + GTK = PyGTK$
+	\vspace{2cm}
+	\item\pause\#pygtk
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Extreme Programming (XP)}
+\begin{frame}{Hello World, 1}
 \begin{itemize}
-\item Metodologie de programare, stil de dezvoltare, disciplină de lucru
-\item \pause Scop principal: reducerea costului asociat unei schimbări minore în cod.
+	\item Importați pygtk și gtk
+	\item \pause Folosiți\linebreak
+		{\bfseries pygtk.require('2.0')}\linebreak
+		pentru a cere explicit folosirea funcționalităților din GTK2.0
+	\item \pause Construiți o clasă oarecare care va avea o singură metodă, {\bfseries \_\_init\_\_}
+	\item \pause Construiți o fereastră prin instanțierea clasei Window\linebreak{\bfseries self.w = gtk.Window(gtk.WINDOW\_TOPLEVEL)}
+	\item \pause Afișați fereastra ({\bfseries show})
+	\item \pause Rulați
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Ideile XP}
+\begin{frame}{Hellor World, 2}
 \begin{itemize}
-\item Codul $=$ cel mai important produs al procesului de dezvoltare al unui proiect
-\item \pause Codul poate fi (și TREBUIE) redactat clar, concis și într-o manieră care nu lasă loc la alte interpretări.
-\item \pause Codul poate fi folosit și pentru a transmite ideile în cazul în care alte alternative eșuează
-\item \pause Nimeni nu poate fi sigur de ceva până ce nu se efectuează teste
-\item \pause Nu poți fi sigur $100\%$ că ai scris ce trebuia scris
-\item \pause UNIT TESTS $\rightarrow$ testathon
-\item \pause Proiectul pornește de la o etapă de design
+	\item Unde e fereastra?
+	\item \pause Construiți o funcție main în cadrul clasei voastre, funcție care doar apelează gtk.main() (orice aplicație GTK necesită această funcție)
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Paradigme XP utile}
+\begin{frame}{Hello World, 2}
 \begin{itemize}
-\item Pair Programming
-\item \pause Unit Testing (Test Driven Development)
+	\item \textbf{Ce avem?}
+	\item \pause O fereastră
+	\item \pause care nu oprește aplicația la închiderea ei
+	\item \pause \textbf{Ce ne trebuie?}
+	\item \pause O metodă prin care oprim aplicația când trebuie
+	\item \pause Afișarea textului !!one!!
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Back to Unit Testing}
+\begin{frame}{Callbacks}
 \begin{itemize}
-\item Ok, am înțeles ce este și de ce e util
-\item \pause Dar cum îl folosim?
-\item \pause Scriem testele
-\item \pause Și testăm. \pause Cum?
-\begin{itemize}
-\item manual
-\item \pause automat
-\end{itemize}
-\item \pause Vom vedea ambele metode prin exemple.
+	\item GTK este condus prin evenimente
+	\item \pause Controlul va sta în main până la apariția unui eveniment, caz în care se va executa o funcție potrivită
+	\item \pause Semnale: când se produce un eveniment (click mouse buton), elementul care a primit evenimentul va produce un semnal, care va fi capturat de un handler ce va apela o funcție corespunzătoare.
+	\item \pause \textbf{\textit{object.connect(signal\_name, func, data)}}
+	\item \pause \textit{def func(widget, callback\_data)}
+	\item \pause \textit{def func(widget, event, callback\_data)}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Problema propusă}
+\begin{frame}{Implementarea unei închideri funcționale}
 \begin{itemize}
-\item Se cere să construim o funcție ce calculează cel mai mic divizor comun pentru două numere întregi.
-\item \pause NU vom începe prin a scrie funcția
-\item \pause Ne gândim ce axiome respectă funcția noastră:
-\begin{itemize}
-\item \pause gcd(a, b) $>$ 0 $\forall a,b \in Z$
-\item gcd(a, a) = a, $\forall a \in Z$
-\item gcd(1, a) = 1, $\forall a \in Z$
-\item gcd(0, a) = a, $\forall a \in Z$
-\item gcd(a,nb) = gcd(a, b), $\forall a,b,n \in Z$
-\item gcd(a, b) = gcd(b, a), $\forall a,b \in Z$
-\item gcd(a, b) = gcd(-a, b), $\forall a,b \in Z$
-\end{itemize}
-\item \pause Totuși, noi scriem cod nu matematică.
-\item \pause Cum trecem axiomele în cod?
-\item \pause Valori particulare sau aleatorii (sau combinații)
+	\item Avem două evenimente de tratat:
+		\begin{itemize}
+			\item delete\_event - managerul de ferestre decide închiderea ferestrei (dacă se returnează False, fereastra se va închide)
+			\item destroy - se capturează semnalul destroy
+		\end{itemize}
+	\item \pause Ieșirea se va face cu gtk.main\_quit().
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Testare manuală}
+\begin{frame}{Hello World, 3}
 \begin{itemize}
-\item Testele se scriu unul câte unul și se folosesc multe instrucțiuni if pentru a vedea dacă testul a fost trecut sau nu
-\item \pause Poate deveni (extrem de) supărător la un moment dat
-\item \pause Uneori, nu avem altă alternativă ieftină.
+	\item Adăugați cele două evenimente pentru fereastra creată
+	\item Construiți cele două funcții necesare
+	\item Rulați programul.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Testare manuală - exercițiu}
+\begin{frame}{Mesajul??}
 \begin{itemize}
-\item Descărcați gcd.c de pe http://anaconda.cs.pub.ro/$\sim$mmaruseac/CDL/UT/gcdC/
-\item Identificați în main testele lipsă, adăugați-le, compilați și rulați executabilul creat.
-\item \pause Completați funcția gcd până ce va trece toate testele
-\item \pause Se observă cantitatea mare de linii de cod scrise pentru o simplă testare.
-\item \pause Să vedem dacă nu putem mai bine. :D
+	\item Unde avem afișarea?
+	\item Vom folosi un buton care să ne permită să afișăm text la consolă.
+	\item Widget-ul button: gtk.Button(text)
+	\item Eveniment: clicked
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Testare automată}
+\begin{frame}{Hello World, 4 \& 5}
 \begin{itemize}
-\item Cineva a scris pentru noi un framework de testare
-\item \pause Noi doar vom scrie testele
-\item \pause Simplu, nu? \pause Să vedem...
+	\item Modificați programul anterior prin adăugarea unui buton astfel încât la afișarea lui să se afișeze în terminal mesajul "Salut, $<$nume$>$", unde $<$nume$>$ este numele vostru.
+	\item \pause Adăugați un alt buton, astfel încât la apăsarea lui să se afișeze în consolă mesajul "GTK is nice". Nu definiți alte funcții de callback.
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Testare automată + teaser Python}
+\begin{frame}{Aranjarea în pagină}
 \begin{itemize}
-\item Descărcați arhiva ZIP de la http://anaconda.cs.pub.ro/$\sim$mmaruseac/CDL/UT/gcdPy/ și dezarhivați-o (unzip)
-\item Folosiți \linebreak {\bfseries python gcdtest.py}\linebreak pentru a rula fișierul Python
-\item \pause Adăugați celelalte teste după modelul din exemplu.
-\item \pause Testați programul.
-\item \pause Completați funcția Gcd (din gcd.py).
-\item \pause Testați programul (repetați pasul anterior până merg toate testele)
+	\item Ce se întâmplă când punem mai multe controale?
+	\item De unde știe cum să le amplaseze convenabil?
+	\item \pause Soluția: packing
+	\item \pause Se construiesc cutii invizibile în care se plasează componentele.
+	\item \pause Două tipuri de cutii: orizontale (HBox) și verticale (VBox)
+	\item \pause pack\_start; pack\_end: \pause direcția de împachetare
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Unit testing - concluzii}
+\begin{frame}{Hello World, 6}
 \begin{itemize}
-\item ÎNAINTE de a scrie codul, ne obligă să detaliem aspecte esențiale ale proiectului, într-o manieră cu adevărat folositoare.
-\item \pause În timpul SCRIERII codului, putem evita capcana scrierii a prea mult cod. \pause Putem considera un modul ca fiind complet în momentul în care a trecut toate testele scrise pentru el.
-\item \pause În timpul MODIFICĂRII codului, suntem siguri că orice vom obține va fi cel puțin la fel de bun ca rezultatul dinainte de modificare.
-\item \pause În cazul scrierii codului în ECHIPĂ, ajută la creșterea certitudinii că liniile scrise de altcineva nu vor induce erori în liniile proprii.
+	\item Adăugați aplicației încă 4 butoane și apoi testați diverse mdouri de amplasare
+	\item Încercați atât cutii verticale cât și cutii orizontale, încercați și combinații de cutii și cutii în cutii
+	\item Testați ambele variante de pack
 \end{itemize}
 \end{frame}
 
-\section{Debugging}
-\frame{\tableofcontents[currentsection]}
-
-\begin{frame}{Introducere}
+\begin{frame}{Hello World, 7}
 \begin{itemize}
-\item Ce ne facem când avem erori?
-\item \pause Depanăm (debugging)
-\item \pause \textit{It's easy to cry `bug' when the truth is that you've got a complex system and sometimes it takes a while to get all the components to co-exist peacefully}
+\item Încercați și o aplasare utilizând un Table
+\item \pause table.attach(child, left, rigth, top, bottom)
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Brute force}
+\begin{frame}{Hello World, 8}
 \begin{itemize}
-\item hardcore
-\item \pause printf și convenții proprii
-\item \pause Multe modificări prin cod
-\item \pause Atenție la convenții
-\item \pause Analiza textului afișat $>$ analiza codului
-\item \pause Nu funcționează mereu
-\item \pause Și nici nu e eficient \pause(dureri de cap după un timp)
-\item \pause Dar este metoda preferată de mulți.
+\item Folosiți un container fix (Fixed)
+\item fixed.put(widget, x, y)
+\item \pause fixed.move(widget, x, y)
 \end{itemize}
-\end{frame}
-
-\begin{frame}{Metoda eficientă}
-\begin{itemize}
-\item Folosită de puțini \pause(\textit{`puțini dar cu cap'})
-\item \pause Mai multe programe ajutătoare:
-\begin{itemize}
-\item GDB (GNU Debugger) + clone
-\item Valgrind
-\item Electric Fence
-\item Data Display Debugger
-\item etc
-\item ș.a.m.d
-\item ...
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{GDB}
-\begin{itemize}
-\item Depanatorul standard
-\item Portabil: multe sisteme Unix și multe limbaje de programare (Ada, C, C++, Basic, Fortran)
-\item Stallman, 1986
-\item \pause GDB poate face 4 lucruri majore și importante:
-\begin{itemize}
-\item \pause Pornirea programului specificând orice parametru care i-ar putea afecta comportamentul
-\item \pause Forțarea opririi programului în cazul îndeplinirii anumitor condiții
-\item \pause Examinarea pașilor ce au dus la oprirea prematură (seg fault?) a programului
-\item \pause Schimbarea anumitor variabile (și instrucțiuni uneori) din program pentru a-l corecta.
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{GDB - limitări}
-\begin{itemize}
-\item GDB NU poate fi rulat înapoi \pause decât pe anumite arhitecturi și sisteme.
-\item \pause În 2008, adăugarea acestei posibilități era listată ca unul dintre proiectele \textit{top priority} ale FSF
-\item \pause De asemenea, doar pe anumite arhitecturi se pot modifica instrucțiuni din program în timpul execuției lui.
-\item \pause GDB nu are interfață grafică $\rightarrow$ DDD.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{GDB - basic}
-\begin{itemize}
-\item Compilarea sursei se face special:
-\begin{itemize}\item Trebuie să permit afișarea unor informații de debug 
-\item Renunțăm la orice optimizare pentru a nu fi încurcați de optimizările făcute de compilator
-\item \pause Ultima versiune poate fi neglijată uneori, mai ales dacă bug-ul apare doar în versiunile optimizate.
-\end{itemize}
-\pause {\bfseries gcc -g -Wall -O0 \textit{sursa}}
-\item \pause Eu folosesc un target special în makefile pentru chestia asta (nu e standard)
-\item \pause Pornire proces debug:\linebreak{\bfseries gdb \textit{executabil}}
-\item \pause Vedem pe un exemplu
-\end{itemize}
-\end{frame}
-
-\begin{frame}{GDB - exercițiu}
-\begin{enumerate}
-\item Descărcați exemplul p1.c de la http://anaconda.cs.pub.ro/$\sim$mmaruseac/CDL/DBG/
-\item Compilați sursa normal și rulați-o
-\item \pause \textit{Oups, seg fault}
-\item \pause Compilați sursa pentru debugging
-\item Porniți gdb având ca argument executabilul creat anterior
-\item \pause Rulați programul în gdb:\linebreak {\bfseries r}un (r)
-\item \pause Logic, seg fault
-\item \pause Să vedem contextul în care crapă:
-\begin{itemize}
-\item Liniile din cod se pot afla cu\linebreak {\bfseries l}ist (l)
-\item O vedere de ansamblu a stivei se poate vedea cu\linebreak backtrace (bt)
-\end{itemize}
-\item Desigur, putem vedea eroarea chiar și acum dacă suntem norocoși și nu e codul prea urât scris.
-\end{enumerate}
-\end{frame}
-
-\begin{frame}{GDB - exercițiu, cont. (dacă nu ne prindem?)}
-\begin{enumerate}
-\item Vom adăuga un breakpoint cu\linebreak break \textit{linenumber/function name/address} (b)
-\item \pause Pornim programul 
-\item \pause Programul se va opri la primul breakpoint întâlnit.
-\item \pause Poate continua în cel puțin 4 moduri:
-\begin{itemize}
-\item continue (c) - repornește execuția, pâna la următorul breakpoint sau până la final.
-\item next (n) - următoarea instrucțiune, NU coboară în stiva de apeluri
-\item step (s) - următoarea instrucțiune
-\item finish - execută pâna la return, printează valorea și se oprește
-\end{itemize}
-\item \pause Rulăm pas cu pas și identificăm linia unde crapă și motivul.
-\item \pause Ah, uitasem de o $*$ la pointer. $:($
-\end{enumerate}
-\end{frame}
-
-\begin{frame}{Hints:}
-\begin{itemize}
-\item O linie goală înseamnă repetarea comenzii anterioare (tastare eficientă)
-\item \pause Dorim afișarea conținutului unui variabile? print (p)
-\item \pause Dar dacă vrem mai multe? display
-\item \pause Sau dacă vrem să le afișăm doar dacă se modifică? watch
-\item \pause Ce facem dacă vrem să modificăm o variabilă (nu are ce valoare vrem noi)? \linebreak {\bfseries set var expr} 
-\item \pause Pentru a șterge un breakpoint, folosim clear
-\item \pause Breakpoint-urile pot fi și condiționale:\linebreak b if cond
-\item \pause Cea mai importantă comandă? \pause help
-\end{itemize}
-\end{frame}
-
-\begin{frame}{GDB - exercițiu, cont. (după rezolvarea unui bug)}
-\begin{enumerate}
-\item Recompilăm programul și rulăm
-\item \pause Oups, alt seg fault
-\item \pause Depanăm și repetăm până ce merge totul corect.
-\end{enumerate}
-\end{frame}
-
-\begin{frame}{Valgrind}
-\begin{itemize}
-\item Inițial construit a fi un depanator de memorie liber
-\item \pause Evoluat până la a deveni un framework generic pentru instrumente de analiză dinamică.
-\item \pause Valgrind = Mașină virtuală utilizând JIT.
-\item \pause cod \pause$\rightarrow$ Intermediate Representation \pause$\xrightarrow{Instrument\ de\ testare}$ Modificări ale IR \pause$\rightarrow$ Cod mașină rulat în gazdă.
-\item \pause Se pierde puțin din performanță \pause(4-5 ori mai lent).
-\item \pause Totuși, codul IR este o formă perfectă ce permite scrierea facilă de instrumente de testare.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Valgrind - tools}
-\begin{itemize}
-\item \textit{Memcheck}
-\begin{itemize}
-\item \pause Implicit
-\item \pause Inserează cod extra în jurul fiecărei instrucțiuni
-\item \pause Sanitizarea memoriei: \pause validitate \pause și adresabilitate
-\item \pause Înlocuiește mecanismul de alocare standard cu cel propriu
-\item \pause Problemele pe care le poate detecta:
-\begin{itemize}
-\item \pause Utilizare a memoriei neinițializate
-\item \pause Citire/scriere în zone de memorie eliberate
-\item \pause Citire/scriere la finalul blocurilor alocate
-\item \pause Scurgeri de memorie
-\end{itemize}
-\item \pause De 20 de ori mai lent \pause dar extrem de util
-\end{itemize}
-\item \pause \textit{Massif} Heap profiler
-\item \pause \textit{Helgrind} Util în codul multithreaded.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Valgrind - utilizare}
-\begin{itemize}
-\item Având programul de la gdb, rulați valgrind pe el\linebreak
-valgrind \textit{path/to/file}
-\item \pause Veti obține un detaliu al memoriei folosite.
-\item \pause Faceți free la toată memoria alocată până nu mai aveți memory leaks
-\item \pause Valgrind nu e doar pentru memomy leaks. Să vedem alte funcționalități.
-\item \pause Descărcați același fișier sursă cu buguri (de la gdb).
-\item \pause Compilați și rulați valgrind pe output.
-\item \pause Valgrind vă spune foarte clar ce erori aveți în modul de lucru cu memoria.
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Electric Fence}
-\begin{itemize}
-\item Memory debugger
-\item Bibliotecă ce poate fi legată la cod pentru a suprascrie managementul clasic al memoriei
-\item Generează un crash (Segmentation fault) imediat ce apare un acces invalid la memorie.
-\item \pause Pare util, nu? \pause Dar, (trebuie să existe așa ceva)
-\item \pause Crește rapid memoria utilizată de program
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Data Display Debugger}
-\begin{itemize}
-\item GDB cu interfață grafică
-\item \pause De fapt și PDB, JDB, BashDB etc cu interfețe grafice
-\item \pause Avantaj: \pause Se studiază programul prin vizualizarea datelor, nu prin cea a instrucțiunilor.
-\item \pause Să vedem câteva screenshoturi din DDD pentru a realiza cât de facilă este folosirea lui. Mergeți la adresa \linebreak {\bfseries http://anaconda.cs.pub.ro/$\sim$mmaruseac/CDL/DDD/}\linebreak
-pentru a vizualiza câteva screenshoturi (oficiale)
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Concluzii}
-\textit{Programming today is a race between software engineers striving to build bigger and better idiot-proof programs, and the Universe trying to produce bigger and better idiots. So far, the Universe is winning.}
 \end{frame}
 
 \section{Linkuri utile}
 \frame{\tableofcontents[currentsection]}
 \begin{frame}{Linkuri utile}
 \begin{itemize}
-\item \href{http://www.gnu.org/software/gdb/}{GDB Homepage}
-\item \href{http://sourceware.org/gdb/current/onlinedocs/gdb.html\#SEC_Top}{Debugging with GDB}
-\item \href{http://valgrind.org/}{Valgrind Homepage}
-\item \href{http://valgrind.org/docs/manual/QuickStart.html}{Valgrind Quick Start Guide}
-\item \href{http://freshmeat.net/projects/efence/}{Efence}
-\item \href{http://www.gnu.org/software/ddd/}{DDD homepage}
-\item \href{http://www.gnu.org/manual/ddd/}{DDD manual}
+\item \href{http://www.gtk.org/}{The GTK+ Project}
+\item \href{http://www.gtk.org/documentation.html}{GTK+ Documentation}
+\item \href{http://www.pygtk.org/index.html}{PyGTK}
 \end{itemize}
 \end{frame}
 
