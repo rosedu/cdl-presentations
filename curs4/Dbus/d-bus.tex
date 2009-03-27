@@ -1,0 +1,131 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+%\usepackage{code/highlight}	 % highlight
+\usepackage{hyperref}        % folositi \url{http://...}
+                             % sau \href{http://...}{Nume Link}
+\mode<presentation>
+{ \usetheme{Rochester} }		% TODO: settle this
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[D-Bus]{D-Bus}
+\subtitle{CDL - Cursul 4}
+\institute{ROSEdu}
+\author{Sergiu Iordache \\\texttt{sergiu.iordache@gmail.com}}
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+\section{D-Bus}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{D-Bus}
+\begin{itemize}
+\item Mecanism simplu de comunicare inter-procese(IPC)
+\item cross-platform
+\item Dezvoltat de comunitatea Red Hat prin freedesktop.org
+\item Influențat de DCOP(KDE) pe care l-a și înlocuit în versiunea 4 a KDE 
+\item \pause D-Bus are mai multe bindinguri disponibile:
+	\begin{itemize}
+		\item C(GLib)
+		\item C++(dbus-c++)
+		\item Python(dbus-pyhton)
+		\item Java
+		\item Qt4
+		\item PHP
+		\item etc.
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Arhitectura}
+\begin{itemize}
+\item 2 componente 
+	\begin{itemize}
+		\item o biblioteca pentru comunicare punct la punct 
+		\item un daemon care se ocupă de administrarea magistralei
+	\end{itemize}
+\item \pause Procesele folosesc functiile din bibiloteca pentru a se conecta la daemon
+\item \pause Oricâte procese se pot conecta la o magistrală în același timp
+\item \pause Pot exista mai multe magistrale în sistem în același timp
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Adrese}
+  \begin{tabular}{ | l | l | l | }
+    \hline
+    Obiect & Identificat prin & Exemplu \\ \hline
+    magistrala & adresa & unix:path=/var/run/dbus/\\
+    & & system\_bus\_socket \\ \hline
+    conexiune & nume magistrala & com.mycompany.TextEditor \\ \hline
+    obiect & cale & /com/mycompany/TextFileManager \\ \hline
+    interfață & nume interfață & org.freedesktop.Hal.Manager \\ \hline
+    \hline
+  \end{tabular}
+\end{frame}
+
+\begin{frame}{Exemplu GNOME}
+\begin{itemize}
+\item 2 tipuri de bus-uri:
+	\begin{itemize}
+		\item o magistrală de system care se ocupa cu comunicarea intre diferitele componente ale sistemului(de exemplu adăugarea unei noi componente hardware)
+		\item \pause o magistrală pentru fiecare sesiune activă a unui utilizator
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Exemplu notificări}
+\begin{itemize}
+	\item Deschideți python în consolă (interactiv)
+	\item \pause {\bfseries import dbus}
+	\item \pause {\bfseries bus = dbus.SessionBus()}
+	\item \pause {\bfseries notify\_service = bus.get\_object('org.freedesktop.Notifications',\linebreak '/org/freedesktop/Notifications')}
+	\item \pause {\bfseries notify\_interface = dbus.Interface(notify\_service, \linebreak'org.freedesktop.Notifications')}
+	\item \pause {\bfseries notify\_interface.Notify('program name', 0, '', 'CDL', \linebreak'Testăm notificări în GNOME', [], {}, -1)}
+	\item \pause \href{http://www.galago-project.org/specs/notification/0.9/x408.html}{Explicația parametriilor}
+	\item \pause Nu am reușit să setez icon-ul :(
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Concluzii}
+\begin{itemize}
+\item Plusuri
+	\begin{itemize}
+		\item interfață standardizată
+		\item multe binding-uri
+	\end{itemize}
+\item \pause Minusuri
+	\begin{itemize}
+		\item documentația destul de slabă
+		\item puține exemple pe internet(probabil mai multe în surse)
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\section{Linkuri utile}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}{Linkuri utile}
+\begin{itemize}
+\item \href{http://www.freedesktop.org/wiki/Software/dbus}{Pagina proiect D-Bus}
+\item \href{http://www.freedesktop.org/wiki/IntroductionToDBus}{Introducere în D-Bus}
+\item \href{http://dbus.freedesktop.org/doc/dbus-tutorial.html}{D-Bus tutorial}
+\end{itemize}
+\end{frame}
+
+\end{document}

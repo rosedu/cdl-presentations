@@ -1,10 +1,13 @@
-TEXFILES = 01.tex
-HIGHLIGHT_OPTS = -L -l -f -t 8 -c highlight.sty
+TEXFILES = 01.tex 02.tex
+HIGHLIGHT_OPTS = -L -f -t 8 -c highlight.sty
 
 all: $(TEXFILES)
 
-01.tex: 01.sh
-	highlight $(HIGHLIGHT_OPTS) -i $< -o $@
+01.tex: 01.py
+	highlight $(HIGHLIGHT_OPTS) -i $< -o $@ -l --font-size=small
+
+02.tex: 02.py
+	highlight $(HIGHLIGHT_OPTS) -i $< -o $@ -l --font-size=small
 
 .PHONY: clean
 clean:
