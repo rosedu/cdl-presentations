@@ -70,11 +70,55 @@
 \end{frame}
 
 
+\section{Interpretor interactiv}
+\frame{\tableofcontents[currentsection]}
+
+
+\begin{frame}{}
+  \begin{itemize}
+  \item permite evaluarea expresiilor fără compilare \\
+    \texttt{
+      >>> 1 + 1 \\ 
+      1         \\
+      >>> x = 1 \\ 
+      >>> y = 2 \\ 
+      >>> x+y   \\
+      3
+    }
+  \item referințele nu au tip\\
+    \texttt{
+      >>> x = 1        \\
+      >>> x            \\
+      1                \\
+      >>> x = 'asdf'   \\
+      >>> x            \\
+      'asdf'
+    }
+
+  \end{itemize}
+\end{frame}
+
+
+
 \section{Sintaxa}
 \frame{\tableofcontents[currentsection]}
 
 \begin{frame}{if - elif - else}
+  \begin{itemize}[<+->]
+  \item ce observați în codul următor? \\
     \input{code/if}
+  \item lipsesc \{\} și ().
+  \item blocurile sunt separate prin identare
+  \item simplu, curat, arată a pseudocod
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{funcții}
+  \begin{itemize}[<+->]
+  \item funcțiile suportă identare \\
+    \input{code/fun}
+  \item documentarea funcției prin \texttt{docstrings}
+  \end{itemize}
 \end{frame}
 
 
