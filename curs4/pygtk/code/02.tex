@@ -1,0 +1,22 @@
+\noindent
+\ttfamily
+\small
+\hlstd{}\hlline{\ \ \ \ 1\ }\hlslc{\#!/usr/bin/env\ python}\\
+\hlline{\ \ \ \ 2\ }\hlstd{}\\
+\hlline{\ \ \ \ 3\ }\hlkwa{import\ }\hlstd{pygtk\\
+\hlline{\ \ \ \ 4\ }pygtk}\hlsym{.}\hlstd{}\hlkwd{require}\hlstd{}\hlsym{(}\hlstd{}\hlstr{'2.0'}\hlstd{}\hlsym{)}\\
+\hlline{\ \ \ \ 5\ }\hlstd{}\hlkwa{import\ }\hlstd{gtk}\\
+\hlline{\ \ \ \ 6\ }\\
+\hlline{\ \ \ \ 7\ }\hlkwa{class\ }\hlstd{Hello}\hlsym{:}\\
+\hlline{\ \ \ \ 8\ }\hlstd{}\hlstd{\ \ \ \ }\hlstd{}\hlkwa{def\ }\hlstd{}\hlkwd{\textunderscore \textunderscore init\textunderscore \textunderscore }\hlstd{}\hlsym{(}\hlstd{self}\hlsym{):}\\
+\hlline{\ \ \ \ 9\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{self}\hlsym{.}\hlstd{w\ }\hlsym{=\ }\hlstd{gtk}\hlsym{.}\hlstd{}\hlkwd{Window}\hlstd{}\hlsym{(}\hlstd{gtk}\hlsym{.}\hlstd{WINDOW\textunderscore TOPLEVEL}\hlsym{)}\\
+\hlline{\ \ \ 10\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{self}\hlsym{.}\hlstd{w}\hlsym{.}\hlstd{}\hlkwd{show}\hlstd{}\hlsym{()}\\
+\hlline{\ \ \ 11\ }\hlstd{\\
+\hlline{\ \ \ 12\ }}\hlstd{\ \ \ \ }\hlstd{}\hlkwa{def\ }\hlstd{}\hlkwd{main}\hlstd{}\hlsym{(}\hlstd{self}\hlsym{):}\\
+\hlline{\ \ \ 13\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{gtk}\hlsym{.}\hlstd{}\hlkwd{main}\hlstd{}\hlsym{()}\\
+\hlline{\ \ \ 14\ }\hlstd{\\
+\hlline{\ \ \ 15\ }hello\ }\hlsym{=\ }\hlstd{}\hlkwd{Hello}\hlstd{}\hlsym{()}\\
+\hlline{\ \ \ 16\ }\hlstd{hello}\hlsym{.}\hlstd{}\hlkwd{main}\hlstd{}\hlsym{()}\hlstd{}\\
+\mbox{}
+\normalfont
+\normalsize

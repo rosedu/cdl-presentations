@@ -6,7 +6,7 @@ import gtk
 
 class Hello:
     def __init__(self):
-        self.w = gtk.window(gtk.WINDOW_TOPLEVEL)
+        self.w = gtk.Window(gtk.WINDOW_TOPLEVEL)
 	self.w.show()
 
 hello = Hello()
