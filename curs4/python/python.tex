@@ -150,8 +150,10 @@
   \item metodele unei clase primesc ca prim parametru pe \textbf{self}
   \item \textbf{var}.method(param1, param2, param3)
   \item def method(\textbf{self}, param1, param2, param3)
+  \item def class(\textbf{clasaParinte1}, \textbf{clasaParinte2}, etc.)
    \end{itemize}
 \end{frame}
+
 
 \begin{frame}{module}
   \begin{columns}[t]
@@ -162,6 +164,28 @@
       \scriptsize { \input{code/md_user} }
     \end{column}
   \end{columns}
+\end{frame}
+
+\section{Duck typing}
+\frame{\tableofcontents[currentsection]}
+
+
+\begin{frame}{mac mac}
+  \begin{itemize}
+  \item \texttt{If it walks like a duck and quacks like a duck, I would call it a duck.}
+  \item \texttt{In other words, don't check whether it \textbf{IS-a} duck: check whether it \textbf{QUACKS-like-a} duck, \textbf{WALKS-like-a} duck, etc, etc, depending on exactly what subset of duck-like behaviour you need to play your language-games with.}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{interfaces}
+  \begin{itemize}
+  \item în alte limbaje se verifică dacă un obiect e moștenitor al unei clase
+  \item în python se verifică dacă obiectul are metodele care sunt cerute
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{ducks}
+  \tiny \input{code/duck}
 \end{frame}
 
 \section{Tipuri de date}
@@ -278,7 +302,6 @@
   \item \small \input{code/param_cmdline}
   \end{itemize}
 \end{frame}
-
 
 
 \end{document}
