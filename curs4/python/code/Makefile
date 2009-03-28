@@ -1,12 +1,10 @@
-TEXFILES = 01.tex 02.tex
+TEXFILES = if.tex fun.tex class.tex
+PATCH_FILES := $(patsubst %.tex, %.py, $(TEXFILES))
 HIGHLIGHT_OPTS = -L -l -f -t 8 -c highlight.sty
 
 all: $(TEXFILES)
 
-01.tex: 01.sh
-	highlight $(HIGHLIGHT_OPTS) -i $< -o $@
-
-02.tex: 02.c
+%.tex: %.py
 	highlight $(HIGHLIGHT_OPTS) -i $< -o $@
 
 .PHONY: clean
