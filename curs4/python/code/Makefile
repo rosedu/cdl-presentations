@@ -1,4 +1,4 @@
-TEXFILES = if.tex fun.tex class_light.tex md_impl.tex md_user.tex
+TEXFILES = if.tex fun.tex class_light.tex md_impl.tex md_user.tex dict.tex lists.tex tuple.tex
 PATCH_FILES := $(patsubst %.tex, %.py, $(TEXFILES))
 HIGHLIGHT_OPTS = -L -l -f -t 8 -c highlight.sty
 
