@@ -3,9 +3,6 @@
 
 \usepackage[utf8x]{inputenc} % diacritice
 \usepackage[romanian]{babel}
-\usepackage{color}			 % highlight
-\usepackage{alltt}			 % highlight
-\usepackage{code/highlight}	 % highlight
 \usepackage{hyperref}        % folositi \url{http://...}
 % sau \href{http://...}{Nume Link}
 \mode<presentation>
@@ -39,12 +36,12 @@
 % fie folosind \frametitle
 \begin{frame}{SSH}
   \begin{itemize}
-    \item \emph{protocol} de rețea (nivel aplicație)
+    \item \textbf{protocol} de rețea (nivel aplicație)
     \item canal securizat de comunicație
-    \item folosit pentru comandă de la distanță, transfer de fișiere, tunelare
+    \item comandă de la distanță, transfer de fișiere, tunelare
     \item client (ssh), server (sshd, portul 22)
     \item servere pe Unix-uri, Mac OS X, Windows (cygwin)
-    \item \href{http://www.openssh.com/}OpenSSH este practic singura
+    \item \href{http://www.openssh.com/}{OpenSSH} este practic singura
 implementare de SSH
   \end{itemize}
 \end{frame}
@@ -58,7 +55,7 @@ implementare de SSH
       \end{itemize}
     \item algoritmi de criptare
        \begin{itemize}
-         \item alg(mesaj) -> mesaj\_criptat
+         \item alg(mesaj) $\rightarrow$ mesaj\_criptat
          \item AES, IDEA, Twofish
          \item RSA, DSA
        \end{itemize}
@@ -68,7 +65,7 @@ implementare de SSH
 \begin{frame}{Chei publice/private}
   \begin{itemize}
     \item legătură matematică
-    \item generate simultan
+    \item generate în același timp
     \item pub(priv(M)) = M (semnătură digitală)
     \item priv(pub(M)) = M (criptare)
     \item autentificare (certificate)
@@ -84,7 +81,7 @@ implementare de SSH
     \item ssh ana@cdl.rosedu.org
     \item ssh -l bogdan cdl.rosedu.org
     \item ssh -p 2222 -l corina cdl.rosedu.org
-    \item ssh -l dan cdl.rosedu.org "ls ~/projects"
+    \item ssh -l dan cdl.rosedu.org "ls \~{}/projects"
     \item ssh -i .ssh/servers.priv -l root cdl.rosedu.org
     \item man ssh
   \end{itemize}
@@ -96,7 +93,7 @@ implementare de SSH
     \item scp file.txt florin@cdl.rosedu.org:projects/elena/tmp/
     \item scp -P 2222 file.txt gabi@cdl.rosedu.org:
     \item scp horia@cdl.rosedu.org:test.txt .
-    \item scp -r horia@cdl.rosedu.org:docs/ ~/stuff/
+    \item scp -r horia@cdl.rosedu.org:docs/ \~{}/stuff/
     \item man scp
   \end{itemize}
 \end{frame}
@@ -104,10 +101,10 @@ implementare de SSH
 \begin{frame}{Generare pereche de chei}
   \begin{itemize}
     \item ssh-keygen -t rsa
-    \item ssh-keygen -t dsa -N My|P422)(
-    \item implicit [~/.ssh/id\_dsa, ~/.ssh/id\_dsa.pub]
+    \item ssh-keygen -t dsa -N My$|$P422)(
+    \item implicit \{\~{}/.ssh/id\_dsa, \~{}/.ssh/id\_dsa.pub\}
     \item ssh-keygen -t rsa -f my\_key
-    \item [my\_key, my\_key.pub]
+    \item \{my\_key, my\_key.pub\}
     \item man ssh-keygen
   \end{itemize}
 \end{frame}
@@ -116,16 +113,18 @@ implementare de SSH
   \begin{itemize}
     \pause \item copiere cheie publică la distanță (ssh cu parolă sau altfel)
       \begin{itemize}
-        \pause \item scp .ssh/id\_rsa.pub irina@cdl.rosedu.org
+        \pause \item scp \~{}/.ssh/id\_rsa.pub irina@cdl.rosedu.org
       \end{itemize}
     \pause \item configurare cont la distanță (irina@cdl.rosedu.org)
       \begin{itemize}
-        \pause \item cat id\_rsa.pub >> ~/.ssh/authorized\_keys
+        \pause \item cat id\_rsa.pub $>>$ \~{}/.ssh/authorized\_keys
       \end{itemize}
     \pause \item conectare la distanță
       \begin{itemize}
         \pause \item ssh -l irina cdl.rosedu.org
       \end{itemize}
+    \pause \item cat \~{}/.ssh/id\_rsa.pub $|$ ssh irina@cdl.rosedu.org "cat
+$>>$ \~{}/.ssh/authorized\_keys"
   \end{itemize}
 \end{frame}
 
@@ -151,15 +150,14 @@ implementare de SSH
 
 \begin{frame}{Folosire ssh-agent}
   \begin{itemize}
-    \item mai multe perechi de chei -> folosire opțiune -i la ssh/scp
-    \item chei cu passphrase -> introducerea passphrase-ului la fiecare
-conectare
+    \item mai multe perechi de chei $\rightarrow$ folosire opțiune -i la ssh/scp
+    \item chei cu passphrase $\rightarrow$ introducerea passphrase-ului la fiecare conectare
     \item booooring (lene, pierdere de timp, rutină)
     \item ssh-add    ; se adaugă cheia implicită
-    \item ssh-add ~/.ssh/my\_key    ; se adaugă cheia specificată
-    \item la autentiface nu se mai cere passphrase; nu mai e nevoie de -i
+    \item ssh-add \~{}/.ssh/my\_key    ; se adaugă cheia specificată
+    \item la autentificare nu se mai cere passphrase; nu mai e nevoie de -i
     \item pornit automat cu interfața grafică
-    \item \href{http://www.gentoo.org/proj/en/keychain/}
+    \item \url{http://www.gentoo.org/proj/en/keychain/}
   \end{itemize}
 \end{frame}
 
@@ -193,19 +191,22 @@ forward
 
 \begin{frame}{SCM}
   \begin{itemize}
-    \item aaa
+    \item git clone ssh://cdl.rosedu.org/projects/repo.git/
+    \item svn checkout svn+ssh//cdl.rosedu.org/projects/repo.svn/
   \end{itemize}
 \end{frame}
 
 \begin{frame}{rsync}
   \begin{itemize}
-    \item aaa
+    \item rsync -avz -e ssh monica@cdl.rosedu.org:/home/cdl/projects
+\~{}/rsync/
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Bibliografie}
   \begin{itemize}
     \item SSH: The Secure Shell (The Definitive Guide), O'Reilly 2005 (2nd
+Edition)
     \item \url{http://www.linuxjournal.com/article/4412}
     \item \url{http://suso.org/docs/shell/ssh.sdf}
 edition)

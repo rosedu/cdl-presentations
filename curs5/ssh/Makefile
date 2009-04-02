@@ -1,5 +1,4 @@
 BASENAME = ssh
-HIGHLIGHT = code
 PDF = $(addsuffix .pdf, $(BASENAME))
 TEX = $(addsuffix .tex, $(BASENAME))
 PDFLATEX = pdflatex
@@ -10,11 +9,9 @@ CLEAN_FILES = $(addprefix $(BASENAME), $(EXTRA_EXTENSIONS))
 
 all: $(PDF)
 
-$(PDF): $(TEX) $(HIGHLIGHT)/Makefile
-	make -C $(HIGHLIGHT)
+$(PDF): $(TEX)
 	$(PDFLATEX) $<
 	$(PDFLATEX) $<	# Twice, so TOC is also updated
 
 clean:
-	-make -C $(HIGHLIGHT) clean
 	-rm -f $(CLEAN_FILES) *~
