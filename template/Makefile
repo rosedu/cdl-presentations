@@ -1,16 +1,20 @@
-DIST = template
+BASENAME = template
 HIGHLIGHT = code
-TRASHEXT = .pdf .aux .log .nav .out .snm .toc
-TRASH = $(addprefix $(DIST), $(TRASHEXT))
+PDF = $(addsuffix .pdf, $(BASENAME))
+TEX = $(addsuffix .tex, $(BASENAME))
+PDFLATEX = pdflatex
+EXTRA_EXTENSIONS = .pdf .aux .log .nav .out .snm .toc
+CLEAN_FILES = $(addprefix $(BASENAME), $(EXTRA_EXTENSIONS))
 
-all: $(DIST).pdf
-$(DIST).pdf: $(DIST).tex $(HIGHLIGHT)/Makefile
-	cd code && make
-	pdflatex $<
-	pdflatex $< # Twice, so TOC is also updated
+.PHONY: clean all
 
-.PHONY: clean
+all: $(PDF)
+
+$(PDF): $(TEX) $(HIGHLIGHT)/Makefile
+	make -C $(HIGHLIGHT)
+	$(PDFLATEX) $<
+	$(PDFLATEX) $<	# Twice, so TOC is also updated
+
 clean:
-	cd $(HIGHLIGHT) && make clean
-	rm -f $(TRASH)
-	rm -f *~
+	-make -C $(HIGHLIGHT) clean
+	-rm -f $(CLEAN_FILES) *~

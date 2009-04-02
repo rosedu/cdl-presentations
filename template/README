@@ -11,7 +11,7 @@ Intrucţiuni:
 Pentru a crea un nou curs:
  * creaţi un director nou, conform structurii.
  * copiaţi template.tex, cu alt nume, evident
- * copiaţi Makefile şi modificaţi variabila DIST (altfel numele pdf-ului va fi template.pfd)
+ * copiaţi Makefile şi modificaţi variabila BASENAME (altfel numele pdf-ului va fi template.pdf)
  * de asemenea, copiaţi directorul code şi adăugaţi reguli în Makefile-ul
 de acolo pentru toate fişierele pe care vreţi să le includeţi. Nu modificaţi
 nimic din variabilele definite şi nici linia de cod pe care fiecare regulă cu
