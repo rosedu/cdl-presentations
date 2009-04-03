@@ -1,0 +1,265 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{hyperref}        % folositi \url{http://...}
+% sau \href{http://...}{Nume Link}
+\mode<presentation>
+{ \usetheme{Rochester} }		% TODO: settle this
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[GNU Privacy Guard]{GNU Privacy Guard}
+\subtitle{CDL - Cursul 5}
+\institute{Ceata}
+\author{Tibi Turbureanu}
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{No\c{t}iuni generale}
+
+% Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
+\frame{\tableofcontents[currentsection]}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{PGP}
+  \begin{itemize}
+    \item Pretty Good Privacy
+    \item original scris de Philip Zimmermann în 1991
+    \item \textbf{programul} îndeplinește două funcții: 
+    \begin{itemize}
+      \item semnarea digitală a fișierelor
+      \item criptarea și decriptarea fișierelor
+    \end{itemize} 
+    \item des folosit pentru semnarea și criptarea/decriptarea scrisorilor
+    electronice
+    \item semnarea se bazează pe algoritmii RSA sau DSA
+    \item criptarea este asimetrică (cheie publică, cheie privată)
+    \item criptarea se bazează pe algoritmul patentat IDEA
+    \item programul PGP este proprietar
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{OpenPGP}
+  \begin{itemize}
+    \item standard deschis pentru PGP
+    \item este în continuă dezvoltare
+    \item specificația actuală este dată de RFC 4880 (2007)
+    \item PGP compilează cu standardul OpenGP
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{GnuPG sau GPG (1)}
+  \begin{itemize}
+    \item GNU Privacy Guard
+    \item original scris de Werner Koch în 1999
+    \item \textbf{programul} îndeplinește aceleași două funcții:
+    \begin{itemize}
+      \item semnarea digitală a fișierelor
+      \item criptarea și decriptarea fișierelor
+    \end{itemize}
+    \item apărut după lansarea standardului OpenGP
+    \item compilează cu OpenGP și deci este compatibil cu PGP
+    \item este program liber (GPLv3)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{GnuPG sau GPG (2)}
+  \begin{itemize}
+    \item semnarea se bazează pe algoritmii RSA sau DSA
+    \item criptarea este hibridă
+    \begin{itemize}
+      \item criptare simetrică pentru viteză
+      \item criptare asimetrică pentru securitate sporită
+      \item criptarea se bazează pe algoritmi nepatentați (publici) ca:
+      ElGamal, CAST5, Triple DES, AES, Blowfish, Twofish
+    \end{itemize}
+    \item realizarea documentației și portarea pe Windows a fost finanțată de 
+    Guvernul German
+  \end{itemize}
+\end{frame}
+
+\section{Comenzi}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{Generarea unei perechi de chei}
+  \begin{itemize}
+    \item \texttt{\$ gpg}
+    \begin{itemize}
+      \item crearea fișierelor de configurare
+    \end{itemize}
+    \item \texttt{\$ gpg --gen-key}
+    \begin{itemize}
+      \item implicit DSA pentru semnare
+      \item implicit ElGamal pentru criptare/decriptare
+      \item implicit dimensiunea cheii DSA este de 1024 biți
+      \item implicit dimensiunea cheii ElGamal este de 2048 biți
+      \item implicit cheia nu expiră
+      \item informații: nume, adresă poștală, alint (comentariu)
+      \item ex. "Tibi Turbureanu (tct) tct@ceata.org"
+      \item parolă: de preferat o propoziție scrisă doar cu inițialele
+      cuvintelor, litere mari și mici, cifre, caractere non-alfanumerice
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Schimbul de chei publice cu alți utilizatori (1)}
+  \begin{itemize}
+    \item \texttt{\$ gpg --armor --output tct-gpg-pub-key --export
+    tct@ceata.org}
+    \begin{itemize}
+      \item exportul cheii publice pentru adresa \texttt{tct@ceata.org}
+    \end{itemize}
+    \item \texttt{\$ gpg --import mariusl-pub-key}
+    \begin{itemize}
+      \item importul cheii publice a lui Marius Latu
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Schimbul de chei publice cu alți utilizatori (2)}
+  \begin{itemize}
+    \item \texttt{\$ gpg --edit-key marius@ceata.org}
+    \item \texttt{Command> }
+    \begin{itemize}
+      \item pentru siguranță în folosirea cheii, este \textbf{necesară}
+      verificarea identității autorului (este el într-adevăr Marius Latu?)
+      \item \texttt{Command> fpr}
+      \item verifică prin telefon sau \textbf{cel mai bine} față-în-față că
+      semnătura (\texttt{fingerprint}) coincide cu cea dictată de presupusul
+      autor (Marius?)
+      \item dacă corespunde, atunci semneaz-o:
+      \item \texttt{Command> sign}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Semnarea și verificarea fișierelor}
+  \begin{itemize}
+    \item nu presupune criptarea fișierelor
+    \item este o măsură de asigurare a autenticității fișierului
+    \item \texttt{\$ gpg --clearsign tct-file}
+    \begin{itemize}
+      \item \texttt{Enter passphrase: }
+      \item se generează fișierul semnat \texttt{tct-file.asc}
+    \end{itemize}
+    \item \texttt{\$ gpg --verify tct-file.asc}
+    \begin{itemize}
+      \item utilizatorii care au semnat cheia publică a autorului (tct) vor 
+      putea să verifice autenticitatea fișierului
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Criptarea și decriptarea fișierelor (1)}
+  \begin{itemize}
+    \item este o măsură de asigurare a securității unui fișier privat
+    \item \textbf{prima metodă}: fișierul va putea fi citit de un
+    \textbf{singur} utilizator
+    \item \texttt{\$ gpg --output tct-file.gpg --encrypt --recipient
+    marius@ceata.org tct-file}
+    \item \texttt{\$ gpg --output tct-file --decrypt tct-file.gpg}
+    \begin{itemize}
+      \item \texttt{Enter passphrase: }
+      \item destinatarul (Marius) decriptează fișierul introducând parola de
+      deblocare a cheii lui private
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Criptarea și decriptarea fișierelor (2)}
+  \begin{itemize}
+    \item \textbf{a doua metodă}: fișierul va putea fi citit de un
+    \textbf{grup} de utilizatori folosind o \textbf{parolă comună} atent
+    distribuită
+    \item \texttt{\$ gpg --output tct-file.gpg --symmetric tct-file}
+    \item \texttt{\$ gpg --output tct-file --decrypt tct-file.gpg}
+    \begin{itemize}
+      \item \texttt{Enter passphrase: }
+      \item destinatarii decriptează fișierul introducând parola 
+      partajată de autorul fișierului
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\section{No\c{t}iuni avansate}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{Utilizări avansate}
+  \begin{itemize}
+    \item semnarea versiunilor oficiale de programe
+    \item Exemplu:
+    \begin{itemize}
+      \item la fiecare lansare Mailman, dezvoltatorii principali (Barry
+      Warshaw, Mark Sapiro și Tokio Kikuchi) semnează arhiva cu cheile lor
+      private
+      \item cheile dezvoltatorilor principali ai Poștașului ;-) sunt
+      public disponibile pe saitul oficial, așa încât orice utilizator să
+      poată verifica autenticitatea distribuției de Mailman pe care o deține
+    \end{itemize}
+    \item autentificarea prin OpenSSH folosind cheia GPG
+    \item pachet complet de securitate cu cardul inteligent :-D (FSFE Smart
+    Card)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{KSP}
+  \begin{itemize}
+    \item Key Signing Party
+    \item verificare de chei în „masă” :-D
+    \item „petrecere” pentru că este distractiv să iei contact cu membri
+    activi ai comunităților din jurul programelor libere, să socializezi,
+    să realizezi schimburi culturale :-)
+    \item o ocazie bună de ieșit pe urmă la bere
+    \item Exemplu: în fiecare an la FOSDEM (Joost van Baal), anul acesta la
+    eLiberatica
+    \item utilizarea \texttt{caff} pentru semnarea tuturor cheilor verificate
+    la petrecere, folosind poșta electronică
+  \end{itemize}
+\end{frame}
+
+\section{Bibliografie}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{Bibliografie}
+  \begin{itemize}
+    \item \htmladdnormallink{http://en.wikipedia.org/wiki/Pretty\_Good\_Privacy}
+    {http://en.wikipedia.org/wiki/Pretty\_Good\_Privacy}
+    \item \htmladdnormallink{http://en.wikipedia.org/wiki/OpenPGP\#OpenPGP} 
+    {http://en.wikipedia.org/wiki/OpenPGP\#OpenPGP}
+    \item \htmladdnormallink{http://en.wikipedia.org/wiki/GNU\_Privacy\_Guard}
+    {http://en.wikipedia.org/wiki/GNU\_Privacy\_Guard}
+    \item \htmladdnormallink{http://en.wikipedia.org/wiki/RSA}
+    {http://en.wikipedia.org/wiki/RSA}
+    \item
+    \htmladdnormallink{http://en.wikipedia.org/wiki/Digital\_Signature\_Algorithm}
+    {http://en.wikipedia.org/wiki/Digital\_Signature\_Algorithm}
+    \item \htmladdnormallink{http://en.wikipedia.org/wiki/Elgamal}
+    {http://en.wikipedia.org/wiki/Elgamal}
+    \item \htmladdnormallink{http://www.eecs.umich.edu/dco/faq/gpg/}
+    {http://www.eecs.umich.edu/dco/faq/gpg/}
+    \item
+    \htmladdnormallink{http://www.gnu.org/software/mailman/download.html}
+    {http://www.gnu.org/software/mailman/download.html}
+    \item
+    \htmladdnormallink{http://www.fsfe.org/en/fellows/tyrael/fsfe\_card\_complete\_gnupg\_ssh\_login\_how\_to}
+    {http://www.fsfe.org/en/fellows/tyrael/fsfe\_card\_complete\_gnupg\_ssh\_login\_how\_to}
+    \item \htmladdnormallink{http://en.wikipedia.org/wiki/Key\_signing\_party}
+    {http://en.wikipedia.org/wiki/Key\_signing\_party}
+    \item \htmladdnormallink{http://ksp.mdcc.cx/} {http://ksp.mdcc.cx/}
+  \end{itemize}
+\end{frame}
+
+\end{document}
