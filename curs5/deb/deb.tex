@@ -110,10 +110,17 @@
 \frame{\tableofcontents[currentsection]}
 
 \begin{frame}{hello}
-  \begin{beamerboxesrounded}[lower=block body,shadow=true]{1\_wget.sh - luăm sursele proiectului hello}
-    \small \input{code/1_wget}
-  \end{beamerboxesrounded}
+  \begin{itemize}
+    \begin{beamerboxesrounded}[lower=block body,shadow=true]{1\_wget.sh - luăm sursele proiectului hello}
+      \small \input{code/1_wget}
+    \end{beamerboxesrounded}
+  \item 1-2-3-4 - facem un director și salvăm sursele originale
+  \item 5 - numele e important: \textbf{packagename\_version}.\textit{orig.tar.gz}
+  \item 6 - dezarhivăm varianta originală
+  \end{itemize}
+\end{frame}
 
+\begin{frame}{hello}
   \begin{beamerboxesrounded}[lower=block body,shadow=true]{2\_ubuntu\_source.sh - surse deja împachetate pt. ubuntu}
     \small \input{code/2_ubuntu_source}
   \end{beamerboxesrounded}
