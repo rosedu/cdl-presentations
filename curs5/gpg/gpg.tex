@@ -57,7 +57,7 @@
     \item \textbf{standard} deschis pentru PGP
     \item este în continuă dezvoltare
     \item specificația actuală este dată de RFC 4880 (2007)
-    \item PGP compilează cu standardul OpenGP
+    \item PGP compilează cu standardul OpenPGP
   \end{itemize}
 \end{frame}
 
@@ -70,8 +70,8 @@
       \item semnarea digitală a fișierelor
       \item criptarea și decriptarea fișierelor
     \end{itemize}
-    \item apărut după lansarea standardului OpenGP
-    \item compilează cu OpenGP și deci este compatibil cu PGP
+    \item apărut după lansarea standardului OpenPGP
+    \item compilează cu OpenPGP și deci este compatibil cu PGP
     \item este program liber (GPLv3)
   \end{itemize}
 \end{frame}
@@ -197,9 +197,19 @@
 \section{No\c{t}iuni avansate}
 \frame{\tableofcontents[currentsection]}
 
-\begin{frame}{Utilizări avansate}
+\begin{frame}{Utilizări avansate (1)}
   \begin{itemize}
-    \item Evolution/Mutt cu suport pentru GPG
+    \item clienți de poștă electronică (Evolution, Mutt) cu suport pentru GPG
+    \item Mailman cu suport pentru GPG (\texttt{patch})
+    \item folosirea serverelor de chei publice (\texttt{keyservers})
+    \item autentificarea prin OpenSSH folosind cheia GPG
+    \item pachet complet de securitate cu cardul inteligent :-D (FSFE Smart
+    Card)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Utilizări avansate (2)}
+  \begin{itemize}
     \item semnarea versiunilor oficiale de programe
     \item Exemplu:
     \begin{itemize}
@@ -210,9 +220,6 @@
       public disponibile pe saitul oficial, așa încât orice utilizator să
       poată verifica autenticitatea distribuției de Mailman pe care o deține
     \end{itemize}
-    \item autentificarea prin OpenSSH folosind cheia GPG
-    \item pachet complet de securitate cu cardul inteligent :-D (FSFE Smart
-    Card)
   \end{itemize}
 \end{frame}
 
@@ -234,7 +241,7 @@
 \section{Bibliografie}
 \frame{\tableofcontents[currentsection]}
 
-\begin{frame}{Bibliografie}
+\begin{frame}{Bibliografie (1)}
   \begin{itemize}
     \item \htmladdnormallink{http://en.wikipedia.org/wiki/Pretty\_Good\_Privacy}
     {http://en.wikipedia.org/wiki/Pretty\_Good\_Privacy}
@@ -251,6 +258,15 @@
     {http://en.wikipedia.org/wiki/Elgamal}
     \item \htmladdnormallink{http://www.eecs.umich.edu/dco/faq/gpg/}
     {http://www.eecs.umich.edu/dco/faq/gpg/}
+    \item \htmladdnormallink{http://mdcc.cx/gnupg/gpg\_5\_min.html}
+    {http://mdcc.cx/gnupg/gpg\_5\_min.html}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Bibliografie (2)}
+  \begin{itemize}
+    \item \htmladdnormallink{http://non-gnu.uvt.nl/mailman-pgp-smime}
+    {http://non-gnu.uvt.nl/mailman-pgp-smime/}
     \item
     \htmladdnormallink{http://www.gnu.org/software/mailman/download.html}
     {http://www.gnu.org/software/mailman/download.html}
@@ -260,7 +276,13 @@
     {http://www.fsfe.org/en/fellows/tyrael/fsfe\_card\_complete\_gnupg\_ssh\_login\_how\_to}
     \item \htmladdnormallink{http://en.wikipedia.org/wiki/Key\_signing\_party}
     {http://en.wikipedia.org/wiki/Key\_signing\_party}
+    \item
+    \htmladdnormallink{http://manpages.ubuntu.com/manpages/jaunty/
+    en/man1/caff.1.html}
+    {http://manpages.ubuntu.com/manpages/jaunty/en/man1/caff.1.html}
     \item \htmladdnormallink{http://ksp.mdcc.cx/} {http://ksp.mdcc.cx/}
+    \item \htmladdnormallink{http://mdcc.cx/pgp-kspkeyserver}
+    {http://mdcc.cx/pgp-kspkeyserver/}
   \end{itemize}
 \end{frame}
 
