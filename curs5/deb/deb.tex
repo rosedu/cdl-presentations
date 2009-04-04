@@ -29,11 +29,19 @@
 
 \frame{\tableofcontents}
 
+\begin{frame}{... să nu așteptăm mai târziu}
+  \begin{beamerboxesrounded}[lower=block body,shadow=true,width=9cm]{}
+    \huge{sudo apt-get install devscripts}
+  \end{beamerboxesrounded}
+\end{frame}
+
+
 % NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
 \section{Notiuni introductive}
 
 % Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
 \frame{\tableofcontents[currentsection]}
+
 
 % Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
 % fie folosind \frametitle
@@ -83,7 +91,7 @@
 \begin{frame}{apt}
   \begin{itemize}
   \item \textbf{apt-cache dump} - listează toate pachetele din cache
-  \item \textbf{apt-cache policy} - listează repo-urile din care e un pachet
+  \item \textbf{apt-cache policy} - listează repo-urile din care e un pachet, versiunea instalată, alte versiuni disponibile
     \begin{beamerboxesrounded}[lower=block body,shadow=true,width=8cm]{}
       apt-cache policy firefox \\
       \texttt{   firefox:}\\
