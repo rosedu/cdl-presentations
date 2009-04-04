@@ -63,85 +63,31 @@
   \item \textbf{-L\/\texttt{--}listfile pachet} - listarea fișierelor instalate de \textit{pachet}
   \item \textbf{-c\/\texttt{--}contents f.deb} - listarea fișierelor dintr-un .deb
   \item \textbf{-S\/\texttt{--}search file} - caută pachetele care instalează fișierul \textit{file} \\
-    ex. \textit{dpkg -S /bin/ls} \\
-    coreutils: /bin/ls
+    ex. \textit{dpkg -S \/bin\/ls} \\
+    coreutils: \/bin\/ls
   \end{itemize}
 \end{frame}
 
 
-
-\begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
-  % Atenţie: allowframebreaks nu funcţionează cu overlay-uri
-  \frametitle{Câte ceva despre istoria FLOSS}
+\begin{frame}{apt}
   \begin{itemize}
-  \item Punctul de plecare: noua imprimantă de la MIT
-  \item Proiectul GNU, activismul lui Richard Stallman (1983)
-  \item Cele patru drepturi. Programele libere nu sunt neapărat gratuite
-  \item Minix, sistem de operare UNIX educațional. Micronucleu (1987)
-  \item GNU: un sistem de operare liber dar incomplet. Hurd nu este gata (1990)
-  \item Linux: nucleul monolitic devenit liber (1991). Primele distribuții
-    GNU/Linux
-  \item Afaceri. Companiile multinaționale devin și ele contribuitori la
-    programele libere
-  \item OSI și definiția Open Source (1998). Diferențe de perspectivă și
-    aplicabilitate
-  \item Patentele pe programe din SUA amenință programele libere. Procese (2004
-    - prezent)
-  \item Microsot, Adobe și Nokia încep să dezvolte programe Open Source, nu
-    toate libere (2008)
-  \item Echipa Debian se alătură efortului internațional de a termina
-    revoluționarul GNU Hurd
+  \item \textbf{apt-cache dump} - listează toate pachetele din cache
+  \item \textbf{apt-cache policy} - listează repo-urile din care e un pachet \\
+    apt-cache policy firefox \\
+    \texttt{   firefox:}\\
+    Instalat: 3.0.7+nobinonly-0ubuntu0.8.10.1 \\
+    Candidează: 3.0.8+nobinonly-0ubuntu0.8.10.2
+  \item \textbf{apt-cache show} - listează informații despre un pachetul binar (maintainer, dependențe, descriere, etc.)
+  \item \textbf{apt-cache showsrc} - listează informații despre un pachetul sursă (maintainer, dependențe, descriere, etc.)
+  \item \textbf{apt-cache rdepends} - listează toate pachetele care depind de acesta
   \end{itemize}
+
 \end{frame}
 
-\section{Cod}
+
+\section{Notiuni extroductive}
+
+% Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
 \frame{\tableofcontents[currentsection]}
-
-\begin{frame}
-  \frametitle{Exemplu de cod}
-  Acesta este un script bash:\\
-  \input{code/01} % includem codul
-\end{frame}
-
-\begin{frame}{Încă un exemplu de cod}
-  Acesta este un program C:
-
-  \input{code/02}
-\end{frame}
-
-\section{Overlay-uri}
-\frame{\tableofcontents[currentsection]}
-
-\begin{frame}{Comanda `pause'}
-  `Pause' ne lasă să arătăm textul `gradual'.
-
-  \pause Putem să folosim pause cu itemize sau orice altă facilitate.
-  \begin{itemize}
-    \pause \item De exemplu.
-    \pause \item Încă un exemplu.
-    \pause \item Dar nu e foarte flexibil...
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Overlay-uri mai avansate}
-  \only<1>{Cue chapter 9.3 from the Beamer manual.}
-  \only<2>{Facem o mare ciorbă de overlay-uri. \textbf{Notă:} E vorba de un
-    singur slide -- numărul şi titlul se păstrează.}
-  \begin{itemize}
-  \item<3-> orice comandă poate fi urmată (fără spaţiu) de un specificator de
-    overlay;
-  \item<4-> specificatoarele sunt marcate cu \texttt{<} şi \texttt{>};
-  \item<5-> \texttt{<4>} înseamnă ``doar pe overlay-ul 4'';
-  \item<5-> \texttt{<1-3>} înseamnă ``doar pe overlay-urile de la 1 până la 3,
-    inclusiv'';
-  \item<6-> \texttt{<5->} înseamnă ``de la overlay-ul 5 până la sfârşit'' (de
-    fapt, până la slide-ul următor, fireşte);
-  \item<6-> \texttt{<-4>} înseamnă ``de la început până la overlay-ul 4'';
-  \item<7-> Toate exemplele de mai sus au avut comanda \texttt{item} urmată de
-    un overlay. Trebuie să ţinem cont de ordine manual, dar nu cred că vom avea
-    nevoie de cine-ştie-ce efecte.
-  \end{itemize}
-\end{frame}
-
 
 \end{document}
