@@ -13,10 +13,10 @@
 
 % Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
 % cap.
-\title[Introducere \^in FLOSS]{Introducere \^in Free/Libre Open Source Software}
-\subtitle{CDL - Cursul 1}
+\title[Debian packaging]{Debian packaging}
+\subtitle{CDL - Cursul 5}
 \institute{ROSEdu}
-\author{Tibi Turbureanu \and Another Author}
+\author{Lucian Adrian Grijincu \\ \texttt{lucian.grijincu@rosedu.org}}
 
 \begin{document}
 
@@ -30,22 +30,45 @@
 \frame{\tableofcontents}
 
 % NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
-\section{Istorie}
+\section{Notiuni introductive}
 
 % Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
 \frame{\tableofcontents[currentsection]}
 
 % Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
 % fie folosind \frametitle
-\begin{frame}{Preambul}
-  \begin{itemize} % Just like normal LaTeX
-  \item Prezentarea încearcă să atragă persoanele implicate în CDL spre a folosi
-    \LaTeX Beamer.
-  \item Am copiat cu neruşinare schiţele lui Tibi pentru prima parte.
-  \item Be sure to check the code: lots of comments and TODOs.
-  \item Spam the list, IRC, or Vlad (nu la telefon) for more info.
+\begin{frame}{Utilitate uzuale}
+  \begin{itemize}
+  \item \textbf{./configure} - script generat cu autotools
+    \begin{itemize}
+    \item verifică dependențele programului
+    \item folosit pentru a trece peste diferențele între sisteme tip UNIX
+    \item generază un \textit{Makefile} dintr-un \textit{Makefile.ac} (un template)
+    \end{itemize}
+  \item \textbf{make} - construiește executabilul final din surse
+  \item \textbf{???} - generare pachet .deb
+  \item \textbf{dpgk} - manager de pachete pentru Debian
+  \item \textbf{apt-*}, \textbf{aptitude} - interfețe de nivel înalt pentru dpkg
   \end{itemize}
 \end{frame}
+
+\begin{frame}{dpkg - manager de pachete pentru Debian}
+  \begin{itemize}
+  \item pentru toate pachetele de care știe ține minte starea pachetului: 
+    instalat complet, doar fișierele de configurație rămase, instalare începută,
+    dar neterminată, etc.
+  \item \textbf{-i\/\texttt{--}install f.deb} - instalare fișier .deb
+  \item \textbf{-r\/\texttt{--}remove pachet} - dezinstalare \textit{pachet}
+  \item \textbf{-P\/\texttt{--}purge pachet} - dezinstalare \textit{pachet} și a fișierelor de configurație
+  \item \textbf{-L\/\texttt{--}listfile pachet} - listarea fișierelor instalate de \textit{pachet}
+  \item \textbf{-c\/\texttt{--}contents f.deb} - listarea fișierelor dintr-un .deb
+  \item \textbf{-S\/\texttt{--}search file} - caută pachetele care instalează fișierul \textit{file} \\
+    ex. \textit{dpkg -S /bin/ls} \\
+    coreutils: /bin/ls
+  \end{itemize}
+\end{frame}
+
+
 
 \begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
   % Atenţie: allowframebreaks nu funcţionează cu overlay-uri
