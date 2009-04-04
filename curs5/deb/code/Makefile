@@ -1,14 +1,23 @@
-TEXFILES = 01.tex 02.tex
+SH_FILES := $(shell echo *.sh)
+TXT_FILES := $(shell echo *.txt)
+STDOUT_FILES := $(shell echo *.stdout)
+TEX_FILES := $(SH_FILES:.sh=.tex) $(STDOUT_FILES:.stdout=.tex) $(TXT_FILES:.txt=.tex)
+
 HIGHLIGHT_OPTS = -L -l -f -t 8 -c highlight.sty
 
-all: $(TEXFILES)
+all: $(TEX_FILES)
 
-01.tex: 01.sh
+
+%.tex: %.txt
 	highlight $(HIGHLIGHT_OPTS) -i $< -o $@
 
-02.tex: 02.c
+%.tex: %.stdout
+	highlight $(HIGHLIGHT_OPTS) -i $< -o $@  --syntax=txt
+
+%.tex: %.sh
 	highlight $(HIGHLIGHT_OPTS) -i $< -o $@
 
 .PHONY: clean
 clean:
-	rm -f $(TEXFILES) highlight.sty
+	rm -f $(TEX_FILES) highlight.sty
+	rm -f *~

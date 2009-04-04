@@ -13,10 +13,10 @@
 
 % Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
 % cap.
-\title[Introducere \^in FLOSS]{Introducere \^in Free/Libre Open Source Software}
-\subtitle{CDL - Cursul 1}
+\title[Debian packaging]{Debian packaging}
+\subtitle{CDL - Cursul 5}
 \institute{ROSEdu}
-\author{Tibi Turbureanu \and Another Author}
+\author{Lucian Adrian Grijincu \\ \texttt{lucian.grijincu@rosedu.org}}
 
 \begin{document}
 
@@ -29,96 +29,132 @@
 
 \frame{\tableofcontents}
 
+\begin{frame}{... să nu așteptăm mai târziu}
+  \begin{beamerboxesrounded}[lower=block body,shadow=true]{}
+    \large {\texttt{\textit{sudo apt-get install} devscripts wget cdbs \\
+      build-essential fakeroot patchutils debhelper}}
+  \end{beamerboxesrounded}
+\end{frame}
+
+
 % NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
-\section{Istorie}
+\section{Notiuni introductive}
 
 % Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
 \frame{\tableofcontents[currentsection]}
 
+
 % Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
 % fie folosind \frametitle
-\begin{frame}{Preambul}
-  \begin{itemize} % Just like normal LaTeX
-  \item Prezentarea încearcă să atragă persoanele implicate în CDL spre a folosi
-    \LaTeX Beamer.
-  \item Am copiat cu neruşinare schiţele lui Tibi pentru prima parte.
-  \item Be sure to check the code: lots of comments and TODOs.
-  \item Spam the list, IRC, or Vlad (nu la telefon) for more info.
+\begin{frame}{Utilitate uzuale}
+  \begin{itemize}[<+->]
+  \item \textbf{./configure} - script generat cu autotools
+    \begin{itemize}
+    \item verifică dependențele programului
+    \item folosit pentru a trece peste diferențele între sisteme tip UNIX
+    \item generază un \textit{Makefile} dintr-un \textit{Makefile.ac} (un template)
+    \end{itemize}
+  \item \textbf{diff+patch} - \pause{amintirile mă chinuiesc ...}
+  \item \textbf{make} - construiește executabilul final din surse
+  \item \textbf{???} - generare pachet .deb
+  \item \textbf{dpgk} - manager de pachete pentru Debian
+  \item \textbf{apt-*}, \textbf{aptitude} - interfețe de nivel înalt pentru dpkg
   \end{itemize}
 \end{frame}
 
-\begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
-  % Atenţie: allowframebreaks nu funcţionează cu overlay-uri
-  \frametitle{Câte ceva despre istoria FLOSS}
+\begin{frame}{dpkg - manager de pachete pentru Debian}
   \begin{itemize}
-  \item Punctul de plecare: noua imprimantă de la MIT
-  \item Proiectul GNU, activismul lui Richard Stallman (1983)
-  \item Cele patru drepturi. Programele libere nu sunt neapărat gratuite
-  \item Minix, sistem de operare UNIX educațional. Micronucleu (1987)
-  \item GNU: un sistem de operare liber dar incomplet. Hurd nu este gata (1990)
-  \item Linux: nucleul monolitic devenit liber (1991). Primele distribuții
-    GNU/Linux
-  \item Afaceri. Companiile multinaționale devin și ele contribuitori la
-    programele libere
-  \item OSI și definiția Open Source (1998). Diferențe de perspectivă și
-    aplicabilitate
-  \item Patentele pe programe din SUA amenință programele libere. Procese (2004
-    - prezent)
-  \item Microsot, Adobe și Nokia încep să dezvolte programe Open Source, nu
-    toate libere (2008)
-  \item Echipa Debian se alătură efortului internațional de a termina
-    revoluționarul GNU Hurd
+  \item pentru toate pachetele de care știe ține minte starea pachetului: 
+    instalat complet, doar fișierele de configurație rămase, instalare începută,
+    dar neterminată, etc.
+  \item \textbf{-i/\texttt{--}install f.deb} - instalare fișier .deb
+  \item \textbf{-r/\texttt{--}remove pachet} - dezinstalare \textit{pachet}
+  \item \textbf{-P/\texttt{--}purge pachet} - dezinstalare \textit{pachet} și a fișierelor de configurație
+  \item \textbf{-L/\texttt{--}listfile pachet} - listarea fișierelor instalate de \textit{pachet}
+  \item \textbf{-c/\texttt{--}contents f.deb} - listarea fișierelor dintr-un .deb
+  \item \textbf{-S/\texttt{--}search file} - caută pachetele care instalează fișierul \textit{file}
+  \begin{columns}[t]
+    \begin{column}{4cm}
+      \begin{beamerboxesrounded}[lower=block body,shadow=true,width=3cm]{\$ dpkg -S /bin/ls}
+        coreutils: /bin/ls
+      \end{beamerboxesrounded}
+      \end{column}
+    \begin{column}{4cm}
+      \begin{beamerboxesrounded}[lower=block body,shadow=true,width=5cm]{\$ dpkg -S /usr/bin/dos2unix }
+        tofrodos: /usr/bin/dos2unix
+      \end{beamerboxesrounded}
+    \end{column}
+  \end{columns}
+  \end{itemize}    
+ \end{frame}
+
+
+\begin{frame}{apt}
+  \begin{itemize}
+  \item \textbf{apt-cache dump} - listează toate pachetele din cache
+  \item \textbf{apt-cache policy} - listează repo-urile din care e un pachet, versiunea instalată, alte versiuni disponibile
+    \begin{beamerboxesrounded}[lower=block body,shadow=true,width=8cm]{}
+      apt-cache policy firefox \\
+      \texttt{   firefox:}\\
+      Instalat: 3.0.7+nobinonly-0ubuntu0.8.10.1 \\
+      Candidează: 3.0.8+nobinonly-0ubuntu0.8.10.2
+    \end{beamerboxesrounded}
+  \item \textbf{apt-cache show} - listează informații despre un pachetul binar (maintainer, dependențe, descriere, etc.)
+  \item \textbf{apt-cache showsrc} - listează informații despre un pachetul sursă (maintainer, dependențe, descriere, etc.)
+  \item \textbf{apt-cache rdepends} - listează toate pachetele care depind de acesta
   \end{itemize}
 \end{frame}
 
-\section{Cod}
+
+\section{Împachetarea unui proiect nou}
 \frame{\tableofcontents[currentsection]}
 
-\begin{frame}
-  \frametitle{Exemplu de cod}
-  Acesta este un script bash:\\
-  \input{code/01} % includem codul
-\end{frame}
-
-\begin{frame}{Încă un exemplu de cod}
-  Acesta este un program C:
-
-  \input{code/02}
-\end{frame}
-
-\section{Overlay-uri}
-\frame{\tableofcontents[currentsection]}
-
-\begin{frame}{Comanda `pause'}
-  `Pause' ne lasă să arătăm textul `gradual'.
-
-  \pause Putem să folosim pause cu itemize sau orice altă facilitate.
+\begin{frame}{hello}
   \begin{itemize}
-    \pause \item De exemplu.
-    \pause \item Încă un exemplu.
-    \pause \item Dar nu e foarte flexibil...
+    \begin{beamerboxesrounded}[lower=block body,shadow=true]{1\_wget.sh - luăm sursele proiectului hello}
+      \small \input{code/1_wget}
+    \end{beamerboxesrounded}
+  \item 5 - numele e important: \textbf{packagename\_version}.\textit{orig.tar.gz}
+  \item 8 - dh\_make va crea un director \textit{debian/} și o serie 
+    de scripturi predefinite și ne va întreba detalii despre tipul proiectului
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Overlay-uri mai avansate}
-  \only<1>{Cue chapter 9.3 from the Beamer manual.}
-  \only<2>{Facem o mare ciorbă de overlay-uri. \textbf{Notă:} E vorba de un
-    singur slide -- numărul şi titlul se păstrează.}
+\begin{frame}{dh\_make}
+    \begin{beamerboxesrounded}[lower=block body,shadow=true]{dh\_make pune întrebări despre proiect și maintainer}
+      \small \input{code/out_1_dh_make}
+    \end{beamerboxesrounded}
+\end{frame}
+
+\begin{frame}{debian\/ scripts}
   \begin{itemize}
-  \item<3-> orice comandă poate fi urmată (fără spaţiu) de un specificator de
-    overlay;
-  \item<4-> specificatoarele sunt marcate cu \texttt{<} şi \texttt{>};
-  \item<5-> \texttt{<4>} înseamnă ``doar pe overlay-ul 4'';
-  \item<5-> \texttt{<1-3>} înseamnă ``doar pe overlay-urile de la 1 până la 3,
-    inclusiv'';
-  \item<6-> \texttt{<5->} înseamnă ``de la overlay-ul 5 până la sfârşit'' (de
-    fapt, până la slide-ul următor, fireşte);
-  \item<6-> \texttt{<-4>} înseamnă ``de la început până la overlay-ul 4'';
-  \item<7-> Toate exemplele de mai sus au avut comanda \texttt{item} urmată de
-    un overlay. Trebuie să ţinem cont de ordine manual, dar nu cred că vom avea
-    nevoie de cine-ştie-ce efecte.
+    \begin{beamerboxesrounded}[lower=block body,shadow=true]{2\_rm\_unneeded.sh - delete unneeded files from debian\/}
+      \small \input{code/2_rm_unneeded}
+    \end{beamerboxesrounded}
+  \item \textbf{README.Debiam} - README specific pachetului de debian (nu e README-ul proiectului)
+  \item \textbf{dirs} - folosit de \textit{dh\_installdirs} pentru a crea directoare
+  \item \textbf{info} - folosit de \textit{dh\_installinfo} pentru a crea un fisier \texttt{info}
+  \item \textbf{docs} - folosit de \textit{dh\_installdocs} pentru a instala documentația programului
+  \item \textbf{*.ex *.EX} - extensii folosite în cazuri speciale
   \end{itemize}
 \end{frame}
 
+
+\begin{frame}{hello}
+  \begin{beamerboxesrounded}[lower=block body,shadow=true]{2\_ubuntu\_source.sh - surse deja împachetate pt. ubuntu}
+    \small \input{code/2_ubuntu_source}
+  \end{beamerboxesrounded}
+%%%   \begin{columns}[t]
+%%%     \begin{column}{4cm}
+%%%       asf
+%%%       \end{column}
+%%%     \begin{column}{4cm}
+%%%       \begin{beamerboxesrounded}[lower=block body,shadow=true,width=5cm]{\$ dpkg -S /usr/bin/dos2unix }
+%%%         tofrodos: /usr/bin/dos2unix
+%%%       \end{beamerboxesrounded}
+%%%     \end{column}
+%%%   \end{columns}
+%%%   \end{itemize}    
+\end{frame}
 
 \end{document}
