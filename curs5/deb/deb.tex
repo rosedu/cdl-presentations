@@ -140,21 +140,44 @@
 \end{frame}
 
 
-\begin{frame}{hello}
-  \begin{beamerboxesrounded}[lower=block body,shadow=true]{2\_ubuntu\_source.sh - surse deja împachetate pt. ubuntu}
-    \small \input{code/2_ubuntu_source}
+\begin{frame}{debian/changelog}
+%  \begin{beamerboxesrounded}[lower=block body,shadow=true]{changelog\_template - șablon}
+%    \scriptsize \input{code/changelog_template}
+%  \end{beamerboxesrounded}
+  \begin{beamerboxesrounded}[lower=block body,shadow=true]{}
+    \scriptsize \input{code/changelog_hello}
   \end{beamerboxesrounded}
-%%%   \begin{columns}[t]
-%%%     \begin{column}{4cm}
-%%%       asf
-%%%       \end{column}
-%%%     \begin{column}{4cm}
-%%%       \begin{beamerboxesrounded}[lower=block body,shadow=true,width=5cm]{\$ dpkg -S /usr/bin/dos2unix }
-%%%         tofrodos: /usr/bin/dos2unix
-%%%       \end{beamerboxesrounded}
-%%%     \end{column}
-%%%   \end{columns}
-%%%   \end{itemize}    
+  \begin{itemize}
+  \item \textbf{unstable} e denumirea versiunii de Debian pentru care se crează pachetul. 
+    Poate fi înlocuit cu \textit{jaunty} dacă vrem să facem pachet petru Ubuntu Jaunty.
+  \item \textbf{urgency} - cât de important e să se facă actualizarea pachetului 
+    (low, medium, high, emergency, critical)
+  \item cu două spații și * sunt sumarizate modificările (liniile următoare, cu identare mai
+    mare descriu pe larg modificările)
+  \item numele este \textbf{2.1.1-1}. \textbf{-1} a fost adăugat pentru a marca faptul că 
+    acesta este primul pachet .deb creat pentru versiunea 2.1.1
+  \end{itemize}
+  
 \end{frame}
+
+\begin{frame}{debian/control}
+  \begin{beamerboxesrounded}[lower=block body,shadow=true]{}
+    \small \input{code/control_hello}
+  \end{beamerboxesrounded}
+\end{frame}
+
+\begin{frame}{generare .deb}
+  \begin{itemize}
+  \begin{beamerboxesrounded}[lower=block body,shadow=true]{}
+    debuild
+  \end{beamerboxesrounded}
+  \item va rezulta un fișier \texttt{hello\_2.1.1-1\_i386.deb}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Î \& R}
+  ?
+\end{frame}
+
 
 \end{document}
