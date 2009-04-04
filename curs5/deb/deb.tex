@@ -114,11 +114,31 @@
     \begin{beamerboxesrounded}[lower=block body,shadow=true]{1\_wget.sh - luăm sursele proiectului hello}
       \small \input{code/1_wget}
     \end{beamerboxesrounded}
-  \item 1-2-3-4 - facem un director și salvăm sursele originale
   \item 5 - numele e important: \textbf{packagename\_version}.\textit{orig.tar.gz}
-  \item 6 - dezarhivăm varianta originală
+  \item 8 - dh\_make va crea un director \textit{debian/} și o serie 
+    de scripturi predefinite și ne va întreba detalii despre tipul proiectului
   \end{itemize}
 \end{frame}
+
+\begin{frame}{dh\_make}
+    \begin{beamerboxesrounded}[lower=block body,shadow=true]{dh\_make pune întrebări despre proiect și maintainer}
+      \small \input{code/out_1_dh_make}
+    \end{beamerboxesrounded}
+\end{frame}
+
+\begin{frame}{debian\/ scripts}
+  \begin{itemize}
+    \begin{beamerboxesrounded}[lower=block body,shadow=true]{2\_rm\_unneeded.sh - delete unneeded files from debian\/}
+      \small \input{code/2_rm_unneeded}
+    \end{beamerboxesrounded}
+  \item \textbf{README.Debiam} - README specific pachetului de debian (nu e README-ul proiectului)
+  \item \textbf{dirs} - folosit de \textit{dh\_installdirs} pentru a crea directoare
+  \item \textbf{info} - folosit de \textit{dh\_installinfo} pentru a crea un fisier \texttt{info}
+  \item \textbf{docs} - folosit de \textit{dh\_installdocs} pentru a instala documentația programului
+  \item \textbf{*.ex *.EX} - extensii folosite în cazuri speciale
+  \end{itemize}
+\end{frame}
+
 
 \begin{frame}{hello}
   \begin{beamerboxesrounded}[lower=block body,shadow=true]{2\_ubuntu\_source.sh - surse deja împachetate pt. ubuntu}
