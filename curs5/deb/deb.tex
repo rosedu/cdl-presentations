@@ -38,13 +38,14 @@
 % Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
 % fie folosind \frametitle
 \begin{frame}{Utilitate uzuale}
-  \begin{itemize}
+  \begin{itemize}[<+->]
   \item \textbf{./configure} - script generat cu autotools
     \begin{itemize}
     \item verifică dependențele programului
     \item folosit pentru a trece peste diferențele între sisteme tip UNIX
     \item generază un \textit{Makefile} dintr-un \textit{Makefile.ac} (un template)
     \end{itemize}
+  \item \textbf{diff+patch} - \pause{amintirile mă chinuiesc ...}
   \item \textbf{make} - construiește executabilul final din surse
   \item \textbf{???} - generare pachet .deb
   \item \textbf{dpgk} - manager de pachete pentru Debian
@@ -57,14 +58,14 @@
   \item pentru toate pachetele de care știe ține minte starea pachetului: 
     instalat complet, doar fișierele de configurație rămase, instalare începută,
     dar neterminată, etc.
-  \item \textbf{-i\/\texttt{--}install f.deb} - instalare fișier .deb
-  \item \textbf{-r\/\texttt{--}remove pachet} - dezinstalare \textit{pachet}
-  \item \textbf{-P\/\texttt{--}purge pachet} - dezinstalare \textit{pachet} și a fișierelor de configurație
-  \item \textbf{-L\/\texttt{--}listfile pachet} - listarea fișierelor instalate de \textit{pachet}
-  \item \textbf{-c\/\texttt{--}contents f.deb} - listarea fișierelor dintr-un .deb
-  \item \textbf{-S\/\texttt{--}search file} - caută pachetele care instalează fișierul \textit{file} \\
-    ex. \textit{dpkg -S \/bin\/ls} \\
-    coreutils: \/bin\/ls
+  \item \textbf{-i/\texttt{--}install f.deb} - instalare fișier .deb
+  \item \textbf{-r/\texttt{--}remove pachet} - dezinstalare \textit{pachet}
+  \item \textbf{-P/\texttt{--}purge pachet} - dezinstalare \textit{pachet} și a fișierelor de configurație
+  \item \textbf{-L/\texttt{--}listfile pachet} - listarea fișierelor instalate de \textit{pachet}
+  \item \textbf{-c/\texttt{--}contents f.deb} - listarea fișierelor dintr-un .deb
+  \item \textbf{-S/\texttt{--}search file} - caută pachetele care instalează fișierul \textit{file} \\
+    ex. \textit{dpkg -S /bin/ls} \\
+    coreutils: /bin/ls
   \end{itemize}
 \end{frame}
 
@@ -81,13 +82,25 @@
   \item \textbf{apt-cache showsrc} - listează informații despre un pachetul sursă (maintainer, dependențe, descriere, etc.)
   \item \textbf{apt-cache rdepends} - listează toate pachetele care depind de acesta
   \end{itemize}
-
 \end{frame}
 
 
 \section{Notiuni extroductive}
-
-% Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
 \frame{\tableofcontents[currentsection]}
+
+\begin{frame}{apt}
+  \begin{itemize}
+  \item \textbf{apt-cache dump} - listează toate pachetele din cache
+  \item \textbf{apt-cache policy} - listează repo-urile din care e un pachet \\
+    apt-cache policy firefox \\
+    \texttt{   firefox:}\\
+    Instalat: 3.0.7+nobinonly-0ubuntu0.8.10.1 \\
+    Candidează: 3.0.8+nobinonly-0ubuntu0.8.10.2
+  \item \textbf{apt-cache show} - listează informații despre un pachetul binar (maintainer, dependențe, descriere, etc.)
+  \item \textbf{apt-cache showsrc} - listează informații despre un pachetul sursă (maintainer, dependențe, descriere, etc.)
+  \item \textbf{apt-cache rdepends} - listează toate pachetele care depind de acesta
+  \end{itemize}
+
+\end{frame}
 
 \end{document}
