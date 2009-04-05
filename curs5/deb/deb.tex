@@ -57,7 +57,7 @@
   \item \textbf{diff+patch} - \pause{amintirile mă chinuiesc ...}
   \item \textbf{make} - construiește executabilul final din surse
   \item \textbf{???} - generare pachet .deb
-  \item \textbf{dpgk} - manager de pachete pentru Debian
+  \item \textbf{dpkg} - manager de pachete pentru Debian
   \item \textbf{apt-*}, \textbf{aptitude} - interfețe de nivel înalt pentru dpkg
   \end{itemize}
 \end{frame}
@@ -109,13 +109,14 @@
 \section{Împachetarea unui proiect nou}
 \frame{\tableofcontents[currentsection]}
 
-\begin{frame}{hello}
+\begin{frame}{hello - un proiect simplu care afișează ``Hello World!''}
   \begin{itemize}
-    \begin{beamerboxesrounded}[lower=block body,shadow=true]{1\_wget.sh - luăm sursele proiectului hello}
+    \begin{beamerboxesrounded}[lower=block body,shadow=true]{1\_wget.sh - modificați numele și adresa înainte de rulare}
       \small \input{code/1_wget}
     \end{beamerboxesrounded}
-  \item 5 - numele e important: \textbf{packagename\_version}.\textit{orig.tar.gz}
-  \item 8 - dh\_make va crea un director \textit{debian/} și o serie 
+  \item 4 - luăm sursele proiectului
+  \item 7 - numele e important: \textbf{packagename\_version}.\textit{orig.tar.gz}
+  \item 11 - dh\_make va crea un director \textit{debian/} și o serie 
     de scripturi predefinite și ne va întreba detalii despre tipul proiectului
   \end{itemize}
 \end{frame}
@@ -172,11 +173,15 @@
     debuild
   \end{beamerboxesrounded}
   \item va rezulta un fișier \texttt{hello\_2.1.1-1\_i386.deb}
+  \item fișierul va fi semnat cu cheia gpg corespunzătoare numelui și 
+    adresei de email din \texttt{debian/changelog}
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Î \& R}
-  ?
+  \begin{centering}
+    \Huge ?    \par
+  \end{centering}
 \end{frame}
 
 
