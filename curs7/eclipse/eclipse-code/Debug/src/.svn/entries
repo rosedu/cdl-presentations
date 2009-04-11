@@ -1,0 +1,39 @@
+8
+
+dir
+15
+svn://cdl.rosedu.org/cdl-lab7/eclipse/eclipse-code/Debug/src
+svn://cdl.rosedu.org/cdl-lab7
+
+
+
+2009-04-10T08:42:49.691694Z
+15
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5924979e-27b4-4f9f-90ba-33e2f52b8e34
+
+subdir.mk
+file
+
+
+
+
+2009-04-11T06:12:43.000000Z
+be4cfdb8050752a108abff7f9fa165aa
+2009-04-10T07:56:41.857802Z
+12
+
