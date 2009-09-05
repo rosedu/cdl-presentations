@@ -1,3 +1,4 @@
+
 .PHONY:all clean
 all clean:
 	@for i in curs*/*; do				\
