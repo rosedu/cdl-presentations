@@ -9,14 +9,14 @@
 \usepackage{hyperref}        % folositi \url{http://...}
 % sau \href{http://...}{Nume Link}
 \mode<presentation>
-{ \usetheme{Rochester} }		% TODO: settle this
+\usetheme{CDL}
 
 % Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
 % cap.
 \title[Introducere \^in FLOSS]{Introducere \^in Free/Libre Open Source Software}
 \subtitle{CDL - Cursul 1}
-\institute{ROSEdu}
-\author{Tibi Turbureanu \and Another Author}
+\institute[ROSEdu]{ROSEdu}
+\author[Tibi]{Tibi Turbureanu \and Another Author}
 
 \begin{document}
 
@@ -27,22 +27,24 @@
 
 \frame{\titlepage}
 
-\frame{\tableofcontents}
+\begin{frame}
+\tableofcontents
+\end{frame}
 
 % NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
 \section{Istorie}
 
 % Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
-\frame{\tableofcontents[currentsection]}
+% \frame{\tableofcontents[currentsection]} - nu mai sunt utile în template-ul
+% nou
 
 % Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
 % fie folosind \frametitle
 \begin{frame}{Preambul}
   \begin{itemize} % Just like normal LaTeX
-  \item Prezentarea încearcă să atragă persoanele implicate în CDL spre a folosi
-    \LaTeX Beamer.
-  \item Am copiat cu neruşinare schiţele lui Tibi pentru prima parte.
   \item Be sure to check the code: lots of comments and TODOs.
+  \alert{Prezentarea încearcă să atragă persoanele implicate în CDL spre a folosi
+    \LaTeX Beamer.}
   \item Spam the list, IRC, or Vlad (nu la telefon) for more info.
   \end{itemize}
 \end{frame}
@@ -52,7 +54,9 @@
   \frametitle{Câte ceva despre istoria FLOSS}
   \begin{itemize}
   \item Punctul de plecare: noua imprimantă de la MIT
-  \item Proiectul GNU, activismul lui Richard Stallman (1983)
+  \begin{block}{B}
+  Proiectul GNU, activismul lui Richard Stallman (1983)
+  \end{block}
   \item Cele patru drepturi. Programele libere nu sunt neapărat gratuite
   \item Minix, sistem de operare UNIX educațional. Micronucleu (1987)
   \item GNU: un sistem de operare liber dar incomplet. Hurd nu este gata (1990)
@@ -72,7 +76,7 @@
 \end{frame}
 
 \section{Cod}
-\frame{\tableofcontents[currentsection]}
+%\frame{\tableofcontents[currentsection]}
 
 \begin{frame}
   \frametitle{Exemplu de cod}
@@ -87,7 +91,7 @@
 \end{frame}
 
 \section{Overlay-uri}
-\frame{\tableofcontents[currentsection]}
+%\frame{\tableofcontents[currentsection]}
 
 \begin{frame}{Comanda `pause'}
   `Pause' ne lasă să arătăm textul `gradual'.
@@ -99,6 +103,8 @@
     \pause \item Dar nu e foarte flexibil...
   \end{itemize}
 \end{frame}
+
+\section{Advanced}
 
 \begin{frame}{Overlay-uri mai avansate}
   \only<1>{Cue chapter 9.3 from the Beamer manual.}
@@ -118,6 +124,24 @@
     un overlay. Trebuie să ţinem cont de ordine manual, dar nu cred că vom avea
     nevoie de cine-ştie-ce efecte.
   \end{itemize}
+\end{frame}
+
+\section{Beamer-fu}
+\begin{frame}{Repetarea unor frame-uri mai vechi}
+Dacă vrem să revenim la un frame mai vechi undeva mai departe nu trebuie să
+facem copy-paste. E de-ajuns un \textbackslash againframe.
+\end{frame}
+
+\section{Frame-uri prea încărcate?}
+\begin{frame}
+Putem face un zoom pe un frame cu \textbackslash framezoom.
+\end{frame}
+
+\section{Logo-uri}
+\begin{frame}
+Template-ul suportă acum trei feluri de logo-uri: unul pentru pagina de titlu
+și două pentru a încadra titlul fiecărui slide (de preferință un logo ROSEdu
+și logo-ul proiectului).
 \end{frame}
 
 
