@@ -60,33 +60,33 @@
 % Frame title: get some logos there
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\pgfdeclareimage[width=0.05\textwidth,interpolate=true]{headlineimage}{\CDL@imagename}
-\pgfdeclareimage[width=0.05\textwidth,interpolate=true]{headlineimagebis}{\CDL@imagenamebis}
-\defbeamertemplate*{frametitle}{CDL theme}{
-  \edef\tempa{normal}
-  \ifx\CDL@frametitle\tempa
-    \begin{centering}
-  \textbf{\insertframetitle}
-  \end{centering}
-  \else
-    \edef\tempa{picture-subsection}
-  \ifx\CDL@frametitle\tempa
-    \parbox[c]{0.05\textwidth}{\pgfuseimage{headlineimage}}
-  \parbox[c]{0.80\textwidth}{
-    \textbf{\vphantom{Hp}\insertframetitle}
-  }
-  \parbox[c]{0.05\textwidth}{\pgfuseimage{headlineimagebis}}
-  \else
-    \parbox[c]{0.05\textwidth}{\pgfuseimage{headlineimage}}
-  \parbox[c]{0.85\textwidth}{
-    \textbf{\vphantom{Hp}\insertframetitle}
-  }
-  \parbox[c]{0.05\textwidth}{\pgfuseimage{headlineimagebis}}
-  \fi
-    \fi
-}
-
+%
+%\pgfdeclareimage[width=0.05\textwidth,interpolate=true]{headlineimage}{\CDL@imagename}
+%\pgfdeclareimage[width=0.05\textwidth,interpolate=true]{headlineimagebis}{\CDL@imagenamebis}
+%\defbeamertemplate*{frametitle}{CDL theme}{
+%  \edef\tempa{normal}
+%  \ifx\CDL@frametitle\tempa
+%    \begin{centering}
+%  \textbf{\insertframetitle}
+%  \end{centering}
+%  \else
+%    \edef\tempa{picture-subsection}
+%  \ifx\CDL@frametitle\tempa
+%    \parbox[c]{0.05\textwidth}{\pgfuseimage{headlineimage}}
+%  \parbox[c]{0.80\textwidth}{
+%    \textbf{\vphantom{Hp}\insertframetitle}
+%  }
+%  \parbox[c]{0.05\textwidth}{\pgfuseimage{headlineimagebis}}
+%  \else
+%    \parbox[c]{0.05\textwidth}{\pgfuseimage{headlineimage}}
+%  \parbox[c]{0.85\textwidth}{
+%    \textbf{\vphantom{Hp}\insertframetitle}
+%  }
+%  \parbox[c]{0.05\textwidth}{\pgfuseimage{headlineimagebis}}
+%  \fi
+%    \fi
+%}
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Title page...
@@ -160,6 +160,6 @@
   \vskip0pt%
 }
 \setbeamertemplate{navigation symbols}{} 
-\setbeamersize{text margin left=1em,text margin right=1em}
+\setbeamersize{text margin left=1em,text margin right=2em}
 \mode
 <all>
