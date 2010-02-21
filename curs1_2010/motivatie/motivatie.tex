@@ -1,0 +1,113 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{code/highlight}	 % highlight
+\usepackage{hyperref}        % folositi \url{http://...}
+% sau \href{http://...}{Nume Link}
+\mode<presentation>
+\usetheme{CDL}
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title{Despre CDL. Obiective. Motivație}
+\subtitle{CDL - Cursul 1}
+\institute[ROSEdu]{ROSEdu}
+\author[Victor]{Victor Cărbune \and Laura Vasilescu}
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{Despre CDL}
+
+% Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
+% \frame{\tableofcontents[currentsection]} - nu mai sunt utile în template-ul
+% nou
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Organizare}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item Cursul constă în 10 întâlniri (săptămânale, cu câteva excepții)
+  \pause
+  \item Prezentări ale unor noțiuni teoretice. Laboratoare practice
+  \pause
+  \item Dezvoltarea unui proiect în cadrul unui alt proiect open source deja susținut de o comunitate 
+  \pause
+  \item Prezentările sunt susținute de echipa ROSEdu, prieteni și invitați speciali (surpriză)
+  \end{itemize}
+\end{frame}
+
+\section{Obiective}
+
+\begin{frame}{Ce își propune cursul?}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item Să vă familiarizeze cu lumea open source, punându-vă la dispoziție toate resursele necesare
+  \pause
+  \item Să scurteze drumul implicării voastre într-o comunitate existentă 
+  \pause
+  \item Un prim imbold pentru a da startul contribuției voastre în cadrul unui proiect existent, îndrumându-vă pas cu pas
+  \pause
+  \item Să ofere suportul de care aveți nevoie în dezvoltarea și finalizarea primului vostru proiect open source, pe care să îl puteți folosi mai târziu ca referință
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cum ne propunem să realizăm aceste obiective?}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item Prezentarea uneltelor de bază folosite în dezvoltarea unui proiect în echipă
+  \pause
+  \item Implicându-vă în comunitatea aferentă proiectului la care veți lucra 
+  \pause
+  \item Asigurând suport tehnic, în cadrul laboratoarelor și în afara acestora
+  \pause
+  \item Prin intermediul experienței noastre și invitaților noștri :)
+  \end{itemize}
+\end{frame}
+
+\section{Motivație}
+
+\begin{frame}{De ce să participați activ în cadrul unei comunități Open Source?}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item Contact cu oameni cu o vastă experiență în domeniu 
+  \pause
+  \item Lucrați la proiectul care vă place 
+  \pause
+  \item O referință foarte puternică și vizibilă pe care o veți găsi utilă mai târziu
+  \pause
+  \item Dobândiți experiență și ridicați standardul cu privire la calitatea codului și organizarea generală a unui proiect
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{De ce să participați la un astfel de curs?}
+  \begin{itemize} % Just like normal LaTeX
+  \item aici ma gândesc să pun citate din ce au scris ei în formularul de înscriere (în particular pentru cei care au fost acceptați) 
+  \pause
+  \item "Experienta reală de programare si lucru in echipa la un proiect software" 
+  \pause
+  \item "Vreau sa invat despre comunitatea open source si despre ce inseamna sa fii developer, vreau sa invat despre licentierea softului, despre cum trebuie sa lucrezi eficient in cadrul comunitatii open source, utilitarele de dezvoltare, cum sa comunic, sa gasesc solutii si sa gasesc documentatia necesara in cadrul proiectelor open-source."
+  \pause
+  \item "Petrecerea timpului liber intr-un mod util, pentru a realiza un proiect finit"
+  \pause
+  \item "Participand la acest curs imi doresc sa invat cat mai multe lucruri noi din domeniul IT,si sa invat sa lucrez mult mai bine in acest domeniu.Motivatia mea principala fiind acumularea de noi cunostinte si formarea mea pe plan profesional."
+   \end{itemize}
+\end{frame}
+
+\end{document}
