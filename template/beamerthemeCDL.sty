@@ -27,9 +27,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \def\CDL@frametitle{picture-section}
-\def\CDL@imagename{images/ROSEdu}
-\def\CDL@imagenametitle{images/title}
-\def\CDL@imagenamebis{images/proj}
+%\def\CDL@imagename{images/ROSEdu}
+\def\CDL@imagenametitle{title}
+%\def\CDL@imagenamebis{images/proj}
 \def\CDL@titlepage{picture}
 \define@key{CDL}{headline}[none]{
   \def\CDL@headline{#1}
@@ -37,18 +37,18 @@
 \define@key{CDL}{frametitle}[picture]{
   \def\CDL@frametitle{#1}
 }
-\define@key{CDL}{imagename}{
-  \def\CDL@imagename{#1}
-  \pgfdeclareimage[width=0.12\textwidth,interpolate=true]{headlineimage}{\CDL@imagename}
-}
+%\define@key{CDL}{imagename}{
+%  \def\CDL@imagename{#1}
+%  \pgfdeclareimage[width=0.12\textwidth,interpolate=true]{headlineimage}{\CDL@imagename}
+%}
 \define@key{CDL}{imagenametitle}{
   \def\CDL@imagename{#1}
   \pgfdeclareimage[width=0.12\textwidth,interpolate=true]{headlineimage}{\CDL@imagenametitle}
 }
-\define@key{CDL}{imagenamebis}{
-  \def\CDL@imagename{#1}
-  \pgfdeclareimage[width=0.12\textwidth,interpolate=true]{headlineimagebis}{\CDL@imagenamebis}
-}
+%\define@key{CDL}{imagenamebis}{
+%  \def\CDL@imagename{#1}
+%  \pgfdeclareimage[width=0.12\textwidth,interpolate=true]{headlineimagebis}{\CDL@imagenamebis}
+%}
 \define@key{CDL}{titlepage}[picture]{
   \def\CDL@titlepage{#1}
 }
