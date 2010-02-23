@@ -1,11 +1,11 @@
 % vim: set tw=78 aw:
 \documentclass{beamer}
+\includeonlyframes{c}
 
 \usepackage[utf8x]{inputenc} % diacritice
 \usepackage[romanian]{babel}
 \usepackage{color}			 % highlight
 \usepackage{alltt}			 % highlight
-\usepackage{code/highlight}	 % highlight
 \usepackage{hyperref}        % folositi \url{http://...}
 % sau \href{http://...}{Nume Link}
 \mode<presentation>
@@ -13,10 +13,10 @@
 
 % Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
 % cap.
-\title[Introducere \^in FLOSS]{Introducere \^in Free/Libre Open Source Software}
-\subtitle{CDL - Cursul 1}
+\title[Pidgin]{Pidgin Sketch}
+\subtitle{proiect CDL}
 \institute[ROSEdu]{ROSEdu}
-\author[Tibi]{Tibi Turbureanu \and Another Author}
+\author[MM]{Mihai Maruseac (mihai@rosedu.org)}
 
 \begin{document}
 
@@ -32,7 +32,7 @@
 \end{frame}
 
 % NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
-\section{Istorie}
+\section{Problema}
 
 % Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
 % \frame{\tableofcontents[currentsection]} - nu mai sunt utile în template-ul
@@ -40,6 +40,28 @@
 
 % Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
 % fie folosind \frametitle
+\begin{frame}[label=c]
+  \begin{center}
+    \pgfputat{\pgfxy(5,-1)}{\pgfbox[left,base]{\pgfimage{yah}}}
+    \vskip2cm
+    \begin{itemize}
+      \item Doar pe Windows sau web-based
+      \item web-based - limited version
+    \end{itemize}
+  \end{center}
+\end{frame}
+
+\begin{frame}[label=c]
+  \begin{center}
+    \pgfputat{\pgfxy(5,-1)}{\pgfbox[left,base]{\pgfimage{pig}}}
+    \vskip2cm
+    \begin{itemize}
+      \item Doar pe Windows sau web-based
+      \item web-based - limited version
+    \end{itemize}
+  \end{center}
+\end{frame}
+
 \begin{frame}{Preambul}
   \begin{itemize} % Just like normal LaTeX
   \item Be sure to check the code: lots of comments and TODOs.
@@ -81,13 +103,11 @@
 \begin{frame}
   \frametitle{Exemplu de cod}
   Acesta este un script bash:\\
-  \input{code/01} % includem codul
 \end{frame}
 
 \begin{frame}{Încă un exemplu de cod}
   Acesta este un program C:
 
-  \input{code/02}
 \end{frame}
 
 \section{Overlay-uri}
