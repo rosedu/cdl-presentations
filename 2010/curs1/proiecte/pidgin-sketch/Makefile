@@ -1,4 +1,4 @@
-BASENAME = template
+BASENAME = pidgin
 PDF = $(addsuffix .pdf, $(BASENAME))
 TEX = $(addsuffix .tex, $(BASENAME))
 PDFLATEX = pdflatex
