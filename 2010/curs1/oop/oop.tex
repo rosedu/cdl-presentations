@@ -1,0 +1,233 @@
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{code/highlight}	 % highlight
+\usepackage{hyperref}        % folositi \url{http://...}
+% sau \href{http://...}{Nume Link}
+\mode<presentation>
+\usetheme{CDL}
+                     
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[Introducere in POO]{Introducere in Programarea Orientata Obiect si C++}
+\subtitle{CDL - Cursul 1}
+\institute[ROSEdu]{ROSEdu}
+\author[Andrada]{Andrada Georgescu}
+
+\begin{document}     
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\section{Introducere}
+
+\begin{frame}{Ce este Programarea Orientată Obiect?}
+  \begin{itemize} % Just like normal LaTeX
+  \item Programare procedurală % - o serie de proceduri (set de instrucțiuni) ce acționează asupra datelor
+  \item Probleme? 
+  \begin{itemize}  
+  	\item "reinventarea roții"
+	\item dificil de ținut o legătură între date și proceduri
+  \end{itemize}
+  \item Programarea orientată obiect % - datele și procedurile ce acționează asupra acestor date sunt tratate ca un obiect
+  \end{itemize}
+\end{frame}   
+
+\begin{frame}{Clasă. Obiect.}
+  \begin{itemize}
+  \item Clasă:
+  \begin{itemize}
+	\item definește caracteristicile abstracte ale unui obiect	
+    \item proprietăți + metode
+  \end{itemize}
+  \item Obiect: \textbf{instanțiere} a unei clase %, un membru particular ce respectă caracteristicile acelei clase
+  \end{itemize}
+\end{frame}
+
+\section{Noțiuni de bază C++}
+
+\begin{frame}{Exemplu}
+	\footnotesize{\input{code/basic1}}
+\end{frame}
+
+\begin{frame}{Declarații și definiții}
+  \begin{itemize}
+  \item pentru fiecare metodă = declarație și definiție
+  \item definiția poate fi făcută și în interiorul declarației clasei (funcție \textbf{inline})
+  \item \textbf{Best Practice:} declarațiile într-un fișier header, separate de implementare
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Exemplu}
+	\footnotesize{\input{code/basic2}}
+\end{frame}
+
+\begin{frame}{Specificatori de access: public, private}
+  \begin{itemize}
+  \item membrii privați: accesați doar din interiorul clasei
+  \item membrii publici: accesați prin intermediul oricărui obiect al clasei
+  \item implicit: private
+  \item regulă generală: variabilele membre vor fi private  \textbf{set} și \textbf{get} 
+  \item \textbf{struct} și \textbf{class}
+  \end{itemize}
+\end{frame}
+               
+\begin{frame}{Exemplu}
+	\footnotesize{\input{code/access}}
+\end{frame}
+
+\begin{frame}{Constructor. Destructor.}
+  \begin{itemize}
+  \item constructor: inițializarea membrilor unei clase, alocare memorie
+  \item destructor: eliberarea memoriei alocate pentru obiect.
+%  \item Dacă nu este declarat un constructor sau un destructor, compilatorul sintetizează unul implicit. Constructorul și destructorul impliciți nu primesc argumente și nu fac nimic.
+  \item constructor și destructor impliciți
+%  \item Constructorul are același nume cu clasa și nu returnează nimic. Poate primi oricâți parametri.
+%  \item Numele destructorului începe cu tildă, urmată de numele clasei. Nu primește parametri și nu returnează nimic.
+%  \item Destructorul se va apela când ștergem un obiect alocat dinamic cu operatorul delete sau la ieșirea din scop a obiectului dacă a fost alocat static.
+  \item new și delete
+  \end{itemize}
+\end{frame}
+             
+\begin{frame}{Exemplu}
+  \footnotesize{\input{code/cons}}
+\end{frame} 
+
+\begin{frame}{Pointerul \textbf{this}}
+\end{frame}
+
+\begin{frame}{Function overloading}
+  \begin{itemize}
+  \item în \textbf{C++} este permisă crearea mai multor funcții cu același nume 
+  \item funcțiile \textbf{trebuie să difere} prin lista de parametri: tipul lor, numărul lor sau ambele
+  \item funcțiile \textbf{nu pot să difere} doar prin tipul returnat
+  \item constructorii și metodele unei clase pot fi și ele supraîncărcate
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Exemplu}
+  \footnotesize{\input{code/overload}}
+\end{frame}
+
+\section{Concepte de bază ale POO}
+
+\begin{frame}{Concepte de bază ale POO}
+  \begin{itemize}
+  \item encapsularea
+  \item abstractizarea datelor
+  \item moștenirea
+  \item polimorfismul
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Encapsularea}    
+ \begin{itemize}
+  \item restrângerea accesului la implementare
+  \item ascunde detaliile implementării
+  \item independența de implementare
+  \item utilizare \textbf{set} și \textbf{get}
+  \end{itemize}  
+\end{frame}
+
+\begin{frame}{Abstractizarea datelor}   
+  \begin{itemize}
+  \item strâns legată de ideea de encapsulare
+  \item un model de reprezentare abstractă a unui obiect real
+  \item descompunerea în componente mai mici a unui model foarte complex
+  \item caracteristicile esențiale ale obiectului
+  \end{itemize}  
+\end{frame}
+
+\begin{frame}{Moștenirea}
+  \begin{itemize}
+  \item un nou tip de date poate definit ca o extensie la un tip deja existent
+  \item noua \textbf{subclasă} derivează din (moștenește) \textbf{clasa de bază}
+  \item specificatorul de acces \textbf{protected}: accesul permis claselor derivate
+  \item \textbf{is-a} vs \textbf{has-a}
+  \end{itemize}    
+\end{frame}
+
+\begin{frame}{Exemplu Moștenire}
+  \footnotesize{\input{code/derive1}}
+\end{frame}   
+
+\begin{frame}{Exemplu Moștenire 2}
+  \footnotesize{\input{code/derive2}}
+\end{frame}
+
+\begin{frame}{Suprascrierea metodelor}
+  \begin{itemize}
+  	\item suprascrierea unei metode în clasa derivată - ascunderea metodelor cu același nume în clasa de bază
+	\item 
+  \end{itemize} 
+\end{frame}
+
+\begin{frame}{Exemplu overriding}
+  \footnotesize{\input{code/override}}
+\end{frame}
+
+\begin{frame}{Exemplu overriding 2}
+  \footnotesize{\input{code/override2}}
+\end{frame}
+
+\begin{frame}{Funcții virtuale}
+  \begin{itemize}
+  	\item 
+	\item Destructor virtual
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Exemplu funcții virtuale}
+  \footnotesize{\input{code/virtual}}
+\end{frame}
+
+\begin{frame}{Funcții pur virtuale și interfețe}
+\end{frame}
+
+\begin{frame}{Exemplu}
+  \footnotesize{\input{code/interface}}
+\end{frame}
+
+\begin{frame}{Polimorfismul}
+  \begin{itemize}
+  \item polimorf = mai multe forme 
+  \item capacitatea unui tip, de a putea fi folosit ca un alt tip
+  \item o implementare specifică a unei interfețe sau a unei clase de bază generice
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Exemplu polimorfism}
+  \footnotesize{\input{code/poly}}
+\end{frame}
+
+\section{Alte facilități C++}
+
+\begin{frame}{Membri statici}
+  \begin{itemize}
+  \item aparțin \textbf{clasei}, și nu \textbf{obiectului}
+  \item metodele statice pot accesa doar membri statici
+  \item pot fi accesați fără a avea o instață a clasei
+%  \item Se recomandă să fie accesați prin \textbf{NumeClasă::MembruStatic}, deși se pot accesa și printr-un reprezentant al clasei.
+%  \item Sunt comuni și pentru clasele ce derivează o clasă cu membri statici.
+  \end{itemize}       
+\end{frame}
+
+\begin{frame}{Exemplu static}
+	\footnotesize{\input{code/static}}
+\end{frame}
+
+\begin{frame}{Membri constanți}
+\end{frame}
+
+\end{document}
