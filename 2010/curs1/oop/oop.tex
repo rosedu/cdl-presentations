@@ -34,24 +34,24 @@
 
 \begin{frame}{Ce este Programarea Orientată Obiect?}
   \begin{itemize} % Just like normal LaTeX
-  \item Programare procedurală % - o serie de proceduri (set de instrucțiuni) ce acționează asupra datelor
-  \item Probleme? 
+  \item programare procedurală  - o serie de proceduri ce acționează asupra datelor
+  \item probleme? 
   \begin{itemize}  
   	\item "reinventarea roții"
 	\item dificil de ținut o legătură între date și proceduri
   \end{itemize}
-  \item Programarea orientată obiect % - datele și procedurile ce acționează asupra acestor date sunt tratate ca un obiect
+  \item programarea orientată obiect  - datele și procedurile ce acționează asupra acestor date sunt tratate ca un obiect
   \end{itemize}
 \end{frame}   
 
 \begin{frame}{Clasă. Obiect.}
   \begin{itemize}
-  \item Clasă:
+  \item clasă:
   \begin{itemize}
 	\item definește caracteristicile abstracte ale unui obiect	
     \item proprietăți + metode
   \end{itemize}
-  \item Obiect: \textbf{instanțiere} a unei clase %, un membru particular ce respectă caracteristicile acelei clase
+  \item obiect: \textbf{instanțiere} a unei clase %, un membru particular ce respectă caracteristicile acelei clase
   \end{itemize}
 \end{frame}
 
@@ -65,7 +65,7 @@
   \begin{itemize}
   \item pentru fiecare metodă = declarație și definiție
   \item definiția poate fi făcută și în interiorul declarației clasei (funcție \textbf{inline})
-  \item \textbf{Best Practice:} declarațiile într-un fișier header, separate de implementare
+  \item \textbf{best practice:} declarațiile într-un fișier header, separate de implementare
   \end{itemize}
 \end{frame}
 
@@ -87,7 +87,7 @@
 	\footnotesize{\input{code/access}}
 \end{frame}
 
-\begin{frame}{Constructor. Destructor.}
+\begin{frame}{Constructor. Destructor. this}
   \begin{itemize}
   \item constructor: inițializarea membrilor unei clase, alocare memorie
   \item destructor: eliberarea memoriei alocate pentru obiect.
@@ -96,7 +96,8 @@
 %  \item Constructorul are același nume cu clasa și nu returnează nimic. Poate primi oricâți parametri.
 %  \item Numele destructorului începe cu tildă, urmată de numele clasei. Nu primește parametri și nu returnează nimic.
 %  \item Destructorul se va apela când ștergem un obiect alocat dinamic cu operatorul delete sau la ieșirea din scop a obiectului dacă a fost alocat static.
-  \item new și delete
+  \item new și delete 
+  \item \textbf{this} - pointer la obiectul curent
   \end{itemize}
 \end{frame}
              
@@ -104,20 +105,23 @@
   \footnotesize{\input{code/cons}}
 \end{frame} 
 
-\begin{frame}{Pointerul \textbf{this}}
-\end{frame}
 
-\begin{frame}{Function overloading}
+\begin{frame}{Supradefinirea funcțiilor și operatorilor}
   \begin{itemize}
   \item în \textbf{C++} este permisă crearea mai multor funcții cu același nume 
   \item funcțiile \textbf{trebuie să difere} prin lista de parametri: tipul lor, numărul lor sau ambele
   \item funcțiile \textbf{nu pot să difere} doar prin tipul returnat
-  \item constructorii și metodele unei clase pot fi și ele supraîncărcate
+  \item constructorii și metodele unei clase pot fi și ele supradefinite
+  \item în \textbf{C++} și operatorii (+, ++, =, +=, * etc) pot fi supradefiniți
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Exemplu}
   \footnotesize{\input{code/overload}}
+\end{frame}
+
+\begin{frame}{Exemplu}
+  \footnotesize{\input{code/operator}}
 \end{frame}
 
 \section{Concepte de bază ale POO}
@@ -168,8 +172,9 @@
 
 \begin{frame}{Suprascrierea metodelor}
   \begin{itemize}
-  	\item suprascrierea unei metode în clasa derivată - ascunderea metodelor cu același nume în clasa de bază
-	\item 
+    \item comportament specific pentru clasa derivată
+  	\item suprascrierea unei metode în clasa derivată
+	\item ascunderea \textbf{tutoror} metodelor cu același nume din clasa de bază  
   \end{itemize} 
 \end{frame}
 
@@ -183,8 +188,10 @@
 
 \begin{frame}{Funcții virtuale}
   \begin{itemize}
-  	\item 
-	\item Destructor virtual
+	\item funcție virtuală: se stabilește la \textbf{runtime} ce metodă este apelată - \textbf{dynamic binding}
+	\item o funcție declarată virtuală rămâne virtuală pe întreg lanțul de moșteniri
+	\item destructor virtual: în clasa de bază
+	\item mecanismul: \textbf{virtual table}
   \end{itemize}
 \end{frame}
 
@@ -193,6 +200,12 @@
 \end{frame}
 
 \begin{frame}{Funcții pur virtuale și interfețe}
+  \begin{itemize}
+    \item pur virtual = nu este precizată o implementare în clasa de bază,
+	\item clasă abstractă: cel puțin o metodă pur virtuală
+	\item o clasă abstractă nu se poate instanția 
+	\item interfață: doar funcții pur virtuale - \textbf{abstractizarea datelor}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Exemplu}
@@ -213,7 +226,9 @@
 
 \section{Alte facilități C++}
 
-\begin{frame}{Membri statici}
+\begin{frame}{Membri statici și constanți}
+ \begin{itemize}
+  \item Membri statici:
   \begin{itemize}
   \item aparțin \textbf{clasei}, și nu \textbf{obiectului}
   \item metodele statice pot accesa doar membri statici
@@ -221,13 +236,37 @@
 %  \item Se recomandă să fie accesați prin \textbf{NumeClasă::MembruStatic}, deși se pot accesa și printr-un reprezentant al clasei.
 %  \item Sunt comuni și pentru clasele ce derivează o clasă cu membri statici.
   \end{itemize}       
+  \item Membri constanți: 
+   \begin{itemize}
+    \item variabile membre: inițializate de constructor
+	\item metode \textbf{const}: nu au dreptul să modifice membrii clasei
+   \end{itemize}
+   \item Membri \textbf{static const}: pot fi inițializați direct dacă au tip întreg
+   \end{itemize}
 \end{frame}
 
 \begin{frame}{Exemplu static}
 	\footnotesize{\input{code/static}}
 \end{frame}
 
-\begin{frame}{Membri constanți}
+\begin{frame}{Alte noțiuni (TODOs)}
+  \begin{itemize}
+  \item moștenire multiplă, moștenire virtuală
+  \item copy-constructor
+  \item virtual table
+  \item template-uri
+  \item STL 
+  \item stream-uri
+  \item namespace
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Referințe recomandate}
+  \begin{itemize}
+  \item Tutorial C++ \url{http://newdata.box.sk/bx/c/index.htm}
+  \item C++ in a Nutshell - Ray Lischner
+  \item 
+  \end{itemize}
 \end{frame}
 
 \end{document}
