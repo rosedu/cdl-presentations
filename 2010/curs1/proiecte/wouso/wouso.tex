@@ -1,0 +1,83 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{hyperref}        % folositi \url{http://...}
+\mode<presentation>
+\usetheme{CDL}
+
+\title[WoUSO]{World of USO}
+\subtitle{proiecte CDL}
+\institute[ROSEdu]{ROSEdu}
+\author[alex3f]{Alex Eftimie (alex@rosedu.org)}
+
+\begin{document}
+
+\setbeamertemplate{frametitle continuation}[from second]
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\section{WoUSO Status}
+
+\pgfdeclareimage[height=1.2cm, width=4.3cm]{wouso}{wousologo}
+
+\begin{frame}{World of USO}
+\pgfputat{\pgfxy(7,.3)}{\pgfbox[left,base]{\pgfuseimage{wouso}}}
+\begin{itemize}
+	\item Versiunea 3
+	\begin{itemize}
+	\item începută în 2007, de la zero
+	\item peste 10.000 linii de cod PHP și HTML
+	\item greu de întreținut
+	\item 11 dezvoltatori
+	\end{itemize}
+	\pause
+	\item Versiunea curentă (v4?)
+	\begin{itemize}
+	\item ianuarie 2010, Django
+	\item aprox. 1.800 linii de cod Python și HTML
+	\item 90\% din funcționalitatea v3
+	\item 2 dezvoltatori
+	\item sună promițător
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\section{WoUSO Grandchallenge}
+
+\begin{frame}{WoUSO GrandChallenge}
+  \begin{itemize}
+    \item Modul separat, la fel ca The Quest
+    \item La finalul competiției, primii 32, joacă în sistem piramidal
+    \item Design, modele, implementare
+  \end{itemize}
+\end{frame}
+
+\section{Facebook Integration}
+
+\begin{frame}{Facebook Integration}
+  \begin{itemize}
+   \item De ce? 
+   \pause
+   \begin{itemize}
+   \item Mafia Wars, senior league
+   \end{itemize}
+   \pause 
+   \item Cum?
+   \pause
+   \begin{itemize}
+   \item pyfacebook, Facebook API for applications
+   \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Mai multe informații}
+	\begin{itemize}
+	\item \url{http://dev.rosedu.org/wouso/wiki/CDL2010}
+	\end{itemize}
+\end{frame}
+\end{document}
