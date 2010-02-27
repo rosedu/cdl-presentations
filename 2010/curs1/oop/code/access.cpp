@@ -8,6 +8,7 @@ public:
 
 int main()
 {
+	Cat Tom;
     Tom.color = "blue"; // eroare: Cat::color este privat
     Tom.SetColor("blue and white"); // ok
 	cout << Tom.GetColor();

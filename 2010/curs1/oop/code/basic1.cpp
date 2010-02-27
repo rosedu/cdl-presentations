@@ -1,8 +1,3 @@
-#include <iostream>
-#include <string>
-
-using namespace std;
-
 class Cat {
 	string color;
 public:

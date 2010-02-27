@@ -51,7 +51,7 @@
 	\item definește caracteristicile abstracte ale unui obiect	
     \item proprietăți + metode
   \end{itemize}
-  \item obiect: \textbf{instanțiere} a unei clase %, un membru particular ce respectă caracteristicile acelei clase
+  \item obiect: o \textbf{instanță} a unei clase %, un membru particular ce respectă caracteristicile acelei clase
   \end{itemize}
 \end{frame}
 
@@ -61,10 +61,28 @@
 	\footnotesize{\input{code/basic1}}
 \end{frame}
 
+\begin{frame}{C++}
+  \begin{itemize}
+  \item dezvoltat de Bjarne Stroustrup
+  \item numit inițial "C cu clase"
+  \item ++
+    \begin{itemize}
+	  \item clase
+	  \item transmitere prin referință
+	  \item array-uri de lungime variabilă
+	  \item etc
+	\end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Exemplu}
+  \footnotesize{\input{code/reference}}
+\end{frame}
+
 \begin{frame}{Declarații și definiții}
   \begin{itemize}
-  \item pentru fiecare metodă = declarație și definiție
-  \item definiția poate fi făcută și în interiorul declarației clasei (funcție \textbf{inline})
+  \item metodă (funcție) = declarație + definiție
+  \item definiția poate fi făcută și în interiorul declarației clasei 
   \item \textbf{best practice:} declarațiile într-un fișier header, separate de implementare
   \end{itemize}
 \end{frame}
@@ -78,7 +96,7 @@
   \item membrii privați: accesați doar din interiorul clasei
   \item membrii publici: accesați prin intermediul oricărui obiect al clasei
   \item implicit: private
-  \item regulă generală: variabilele membre vor fi private  \textbf{set} și \textbf{get} 
+  \item regulă generală: variabilele membre vor fi private și se vor defini metode pentru modificarea și accesarea lor - \textbf{set} și \textbf{get} 
   \item \textbf{struct} și \textbf{class}
   \end{itemize}
 \end{frame}
@@ -96,7 +114,7 @@
 %  \item Constructorul are același nume cu clasa și nu returnează nimic. Poate primi oricâți parametri.
 %  \item Numele destructorului începe cu tildă, urmată de numele clasei. Nu primește parametri și nu returnează nimic.
 %  \item Destructorul se va apela când ștergem un obiect alocat dinamic cu operatorul delete sau la ieșirea din scop a obiectului dacă a fost alocat static.
-  \item new și delete 
+  \item \textbf{new} și \textbf{delete}
   \item \textbf{this} - pointer la obiectul curent
   \end{itemize}
 \end{frame}
@@ -104,6 +122,10 @@
 \begin{frame}{Exemplu}
   \footnotesize{\input{code/cons}}
 \end{frame} 
+
+\begin{frame}{Exemplu}
+  \footnotesize{\input{code/array}}
+\end{frame}
 
 
 \begin{frame}{Supradefinirea funcțiilor și operatorilor}
@@ -128,14 +150,14 @@
 
 \begin{frame}{Concepte de bază ale POO}
   \begin{itemize}
-  \item encapsularea
+  \item încapsularea
   \item abstractizarea datelor
   \item moștenirea
   \item polimorfismul
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Encapsularea}    
+\begin{frame}{Încapsularea}    
  \begin{itemize}
   \item restrângerea accesului la implementare
   \item ascunde detaliile implementării
@@ -146,7 +168,7 @@
 
 \begin{frame}{Abstractizarea datelor}   
   \begin{itemize}
-  \item strâns legată de ideea de encapsulare
+  \item strâns legată de ideea de încapsulare
   \item un model de reprezentare abstractă a unui obiect real
   \item descompunerea în componente mai mici a unui model foarte complex
   \item caracteristicile esențiale ale obiectului
@@ -162,11 +184,11 @@
   \end{itemize}    
 \end{frame}
 
-\begin{frame}{Exemplu Moștenire}
+\begin{frame}{Exemplu}
   \footnotesize{\input{code/derive1}}
 \end{frame}   
 
-\begin{frame}{Exemplu Moștenire 2}
+\begin{frame}{Exemplu}
   \footnotesize{\input{code/derive2}}
 \end{frame}
 
@@ -178,11 +200,11 @@
   \end{itemize} 
 \end{frame}
 
-\begin{frame}{Exemplu overriding}
+\begin{frame}{Exemplu}
   \footnotesize{\input{code/override}}
 \end{frame}
 
-\begin{frame}{Exemplu overriding 2}
+\begin{frame}{Exemplu}
   \footnotesize{\input{code/override2}}
 \end{frame}
 
@@ -195,8 +217,12 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Exemplu funcții virtuale}
+\begin{frame}{Exemplu}
   \footnotesize{\input{code/virtual}}
+\end{frame}
+
+\begin{frame}{Exemplu}
+  \footnotesize{\input{code/destructor}}
 \end{frame}
 
 \begin{frame}{Funcții pur virtuale și interfețe}
@@ -220,7 +246,7 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Exemplu polimorfism}
+\begin{frame}{Exemplu}
   \footnotesize{\input{code/poly}}
 \end{frame}
 
@@ -245,7 +271,7 @@
    \end{itemize}
 \end{frame}
 
-\begin{frame}{Exemplu static}
+\begin{frame}{Exemplu}
 	\footnotesize{\input{code/static}}
 \end{frame}
 
@@ -261,11 +287,27 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Cuvinte cheie}
+  \begin{itemize}
+   \item programare orientată obiect
+   \item clasă, obiect
+   \item constructor, destructor
+   \item nivel de acces
+   \item encapsulare
+   \item abstractizarea datelor
+   \item moștenire
+   \item polimorfism
+   \item metodă virtuală
+   \item clasă abstractă
+  \end{itemize}
+\end{frame}
+
 \begin{frame}{Referințe recomandate}
   \begin{itemize}
-  \item Tutorial C++ \url{http://newdata.box.sk/bx/c/index.htm}
+  \item Tutorial C++: \url{http://newdata.box.sk/bx/c/index.htm}
+  \item Referințe: \url{http://www.cplusplus.com}
   \item C++ in a Nutshell - Ray Lischner
-  \item 
+  \item Effective C++ - Scott Meyers
   \end{itemize}
 \end{frame}
 

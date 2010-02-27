@@ -1,7 +1,7 @@
 class Cat {
 	string color;
 public:
-	Cat(string cl) { this->color = cl; }  //pointer la obectul curent
+	Cat(string cl) { this->color = cl; }  //pointer la obiectul curent
 	~Cat() { cout << "Destructing a Cat"; } 
 };
 

@@ -8,8 +8,8 @@ public:
 };
 
 ComplexNumber ComplexNumber::operator+(const ComplexNumber& c) {
-	ComplexNumber temp = *this; // this nu va fi modificat, copie
-	temp.re += c.re; temp.im += c.im;
+	ComplexNumber temp;
+	temp.re = this->re + c.re; temp.im = this->im + c.im;
 	return temp;
 }
 
