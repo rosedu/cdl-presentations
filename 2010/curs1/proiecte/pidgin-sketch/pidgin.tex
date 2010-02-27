@@ -30,21 +30,23 @@
   \begin{columns}[c]
     \column{1.5in}
       \pgfputat{\pgfxy(1,.5)}{\pgfbox[left,base]{\pgfuseimage{yah}}}
+      \uncover<2->{
       \begin{itemize}
         \item Windows
         \item web - limited
-        \item closed source
-        \item not extensible
-        \item only Yahoo
-      \end{itemize}
+        \uncover<3->{\item only Yahoo}
+        \uncover<4->{\item closed source}
+        \uncover<5->{\item not extensible}
+      \end{itemize}}
     \column{1.5in}
       \pgfputat{\pgfxy(1,.5)}{\pgfbox[left,base]{\pgfuseimage{pig}}}
+      \uncover<2->{
       \begin{itemize}
         \item cross-platform
-        \item open-source
-        \item plugins
-        \item multiple protocoale
-      \end{itemize}
+        \uncover<3->{\item multiple protocoale}
+        \uncover<4->{\item open-source}
+        \uncover<5->{\item plugins}
+      \end{itemize}}
   \end{columns}
 \end{frame}
 
