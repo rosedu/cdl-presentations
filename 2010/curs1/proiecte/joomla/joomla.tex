@@ -1,0 +1,101 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{hyperref}        % folositi \url{http://...}
+\mode<presentation>
+\usetheme{CDL}
+
+\title[Autosave / Collaborative Editor]{Autosave / Collaborative Editor}
+\subtitle{proiect CDL}
+\institute[Joomla!]{Joomla!}
+\author[Victor C]{Victor Cărbune (victor@rosedu.org)}
+
+\begin{document}
+
+\setbeamertemplate{frametitle continuation}[from second]
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\section{Joomla! CMS}
+
+\pgfdeclareimage[height=0.8cm, width=4.08cm]{jlogo}{jlogo}
+
+\begin{frame}{World of USO}
+\pgfputat{\pgfxy(7,.7)}{\pgfbox[left,base]{\pgfuseimage{jlogo}}}
+\begin{itemize}
+	\item Versiunea stabilă: 1.5
+		\begin{itemize}
+		\pause
+		\item Printre cel mai popular CMS existent		
+		\pause
+		\item Peste 15 milioane de download-uri
+ 		\pause
+		\item Comunitate de peste 200.000 membri
+		\end{itemize}
+ 	\pause
+	\item Versiunea curentă în dezvoltare: 1.6 Alpha 2
+		\begin{itemize}	
+		\pause	
+		\item Cu toate că este încă în dezvoltare (de ~ 1 an), versiunea 1.6 aduce extrem de multe feature-uri noi 
+		\pause	
+		\item Probabil vom lucra direct pe această variantă, sau în paralel, pentru a face extensia utilizabilă în viitorul apropiat.
+		\end{itemize}
+\end{itemize}
+\end{frame}
+
+\section{Autosave Extension}
+
+\begin{frame}{Autosave Extension}
+  \begin{itemize}
+    \pause	
+    \item O extensie separată, instalabilă.
+    \pause	
+    \item Salvează starea curentă a utilizatorului, indiferent de ce face acesta (editeaza, modifică setări, etc.)
+    \pause
+    \item Reprezintă și primul pas către un editor colaborativ
+    \pause
+    \item A fost cerută explicit la un moment dat pe listele de discuții
+    \pause
+  \end{itemize}
+\end{frame}
+
+\section{Collaborative Editor}
+
+\begin{frame}{Collaborative Editor}
+  \begin{itemize}
+   \item Joomla! are la baza un sistem de locking, iar atunci cand cineva editeaza un articol acesta nu mai poate fi editat si de altcineva 
+   \pause
+   \item Un editor colaborativ ar îmbunătăți considerabil experiența utilizatorului 
+   \pause 
+   \item Cum s-ar putea implementa?
+   \pause
+   \begin{itemize}
+   \item Diff Match Patch API
+   \pause
+   \item Google Wave
+   \pause
+   \item ...
+   \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Mai multe informații}
+	\begin{itemize}
+	\item \url{http://community.joomla.org/}
+	\item \url{http://joomlacode.org/gf/project/vscontrol/}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Mai multe informații}
+	\begin{itemize}
+	\item \url{http://community.joomla.org/}
+	\item \url{http://joomlacode.org/gf/project/vscontrol/}
+	\end{itemize}
+\end{frame}
+
+\end{document}
