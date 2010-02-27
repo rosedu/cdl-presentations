@@ -1,0 +1,77 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{hyperref}        % folositi \url{http://...}
+\mode<presentation>
+\usetheme{CDL}
+
+\title[ext3grep GUI]{ext3grep}
+\subtitle{proiect CDL}
+\institute[ROSEdu]{ROSEdu}
+\author[Q]{Andrada Georgescu (andradaq@rosedu.org)}
+
+\begin{document}
+
+\setbeamertemplate{frametitle continuation}[from second]
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\section{De ce?}
+\begin{frame}{Ce face?}
+	\begin{itemize}
+        \item \textbf{rm -rf *}, \textbf{rm -rf .}, \textbf{rm -rf ~} and friends
+        \item fișiere șterse accidental
+	\end{itemize}
+\end{frame}
+
+\section{Despre ext3grep}
+\begin{frame}{ext3grep}
+  \begin{itemize}
+    \item dezvoltat de Carlo Wood din necesitate
+	\item scris în \textbf{C++}
+	\item nu (prea) mai există programare similare
+	\item interfața în linie comandă
+	\item greoi de folosit (necesită cunoștințe despre file system)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cum face?}
+  \begin{itemize}
+    \item datele șterse nu sunt suprascrise imediat
+    \item scanare hard-disk în căutarea rămășițelor de date
+	\item algoritmi euristici
+  \end{itemize}
+\end{frame}
+
+\section{Despre ext3grepGUI}
+\begin{frame}{ext3grep GUI}
+ \begin{itemize}
+ \item o interfață prietenoasă peste \textbf{ext3grep}
+ \item bug-fixing
+ \item popularizare
+ \item posibilitate extindere și pentru \textbf{ext4}
+ \end{itemize}
+\end{frame}
+
+\begin{frame}{Ce veți învăța?}
+\begin{itemize}
+ \item ce este un sistem de fișiere și cum este el organizat 
+ \item dezvoltarea unei interfețe grafice
+ \item \textbf{C++}, cel mai probabil
+ \item ...
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Referințe}
+\begin{itemize}
+\item \url{http://www.xs4all.nl/~carlo17/howto/undelete\_ext3.html}
+\item \url{http://code.google.com/p/ext3grep}
+\end{itemize}
+\end{frame}
+
+\end{document}
