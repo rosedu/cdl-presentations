@@ -1,5 +1,4 @@
 BASENAME = echipe
-HIGHLIGHT = code
 PDF = $(addsuffix .pdf, $(BASENAME))
 TEX = $(addsuffix .tex, $(BASENAME))
 PDFLATEX = pdflatex
@@ -11,11 +10,9 @@ STY_DIR = ../../../template/
 
 all: $(PDF)
 
-$(PDF): $(TEX) $(HIGHLIGHT)/Makefile
-	make -C $(HIGHLIGHT)
+$(PDF): $(TEX)
 	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) $<
 	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) $<	# Twice, so TOC is also updated
 
 clean:
-	-make -C $(HIGHLIGHT) clean
 	-rm -f $(CLEAN_FILES) *~
