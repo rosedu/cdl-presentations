@@ -1,0 +1,213 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{code/highlight}	 % highlight
+\usepackage{hyperref}        % folositi \url{http://...}
+% sau \href{http://...}{Nume Link}
+\mode<presentation>
+\usetheme{CDL}
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title{Proiecte. Echipe. Reguli.}
+\subtitle{CDL - Cursul 2}
+\institute[ROSEdu]{ROSEdu}
+\author[Laura]{Laura Vasilescu \\ {\small laura@rosedu.org }}
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{Proiecte}
+
+% Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
+% \frame{\tableofcontents[currentsection]} - nu mai sunt utile în template-ul
+% nou
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Proiecte}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item 1.ext3grep GUI
+  \pause
+  \item 2.osmo synchronizer
+  \pause
+  \item 3.joomla 
+  \pause
+  \item 4.WoUSO Facebook
+  \pause
+  \item 5.WoUSO GrandChallenge
+  \pause
+  \item 6.pidgin sketch
+  \pause
+  \item 7.minVG Sound Mapping
+  \end{itemize}
+\end{frame}
+
+\section{Echipe}
+
+\begin{frame}{ext3grep GUI}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item responsabil proiect: \\ Andrada Georgescu (andradaq@rosedu.org)
+  \pause
+  \item pagină proiect: \\ http://cdl.rosedu.org/2010/propuneri/ext3grep-gui
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{ext3grep GUI}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item Monica Drăgan
+  \pause
+  \item Andrei Onea
+  \pause
+  \item Gabriel Voicu
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{osmo synchronizer}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item responsabil proiect: \\ Vlad Voicu (vladv@rosedu.org)
+  \pause
+  \item pagină proiect: \\ http://cdl.rosedu.org/2010/propuneri/osmo
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{osmo synchronizer}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item Vlad Bagrin
+  \pause
+  \item Gabriel Burceanu
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{joomla}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item responsabil proiect: \\ Victor Cărbune (victor@rosedu.org)
+  \pause
+  \item pagină proiect: \\ http://cdl.rosedu.org/2010/propuneri/joomla-collabeditor \\ http://cdl.rosedu.org/2010/propuneri/joomla-autosave
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{joomla}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item Silviu Bădrăgan
+  \pause
+  \item Andrei Picuş
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{WoUSO Facebook}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item responsabil proiect: \\ Alex Eftimie (alex@rosedu.org) \\ echipa WoUSO
+  \pause
+  \item pagină proiect: \\ http://cdl.rosedu.org/2010/propuneri/wouso-facebook
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{WoUSO Facebook}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item Marius Drăguş
+  \pause
+  \item Mircea Ştefan Ghideu
+  \pause
+  \item George Mitra
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{WoUSO GrandChallenge}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item responsabil proiect: \\ Alex Eftimie (alex@rosedu.org) \\ echipa WoUSO
+  \pause
+  \item pagină proiect: \\ http://cdl.rosedu.org/2010/propuneri/wouso-grandchallenge
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{WoUSO GrandChallenge}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item Ştefan Neculai
+  \pause
+  \item Mihaela Ogrezeanu
+  \pause
+  \item Alexandru Pajarcu
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{pidgin sketch}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item responsabil proiect: \\ Mihai Maruseac (mihai.maruseac@rosedu.org)
+  \pause
+  \item pagină proiect: \\ http://cdl.rosedu.org/2010/propuneri/pidgin-sketch
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{pidgin sketch}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item Alexandru Burghelea
+  \pause
+  \item Andreea Petre
+  \pause
+  \item Andrei Sfrenţ
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{minVG Sound Mapping}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item responsabil proiect: \\ Iulian-Nicu Şerbănoiu (undergraver@gmail.com) \\ Răzvan Deaconescu (razvan@rosedu.org)
+  \pause
+  \item pagină proiect: \\ http://cdl.rosedu.org/2010/propuneri/minvg-sound-map
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{minVG Sound Mapping}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item Dan George Filimon
+  \pause
+  \item Alina Vlăduţu
+  \end{itemize}
+\end{frame}
+
+\section{Reguli}
+
+\begin{frame}{Reguli}
+  \begin{itemize} % Just like normal LaTeX
+  \pause
+  \item curiozitate
+  \pause
+  \item inovaţie
+  \pause
+  \item colaborare
+  \pause
+  \item prezentare activitate
+  \end{itemize}
+\end{frame}
+
+\end{document}

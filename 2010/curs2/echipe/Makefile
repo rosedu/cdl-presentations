@@ -1,4 +1,4 @@
-BASENAME = oop
+BASENAME = echipe
 HIGHLIGHT = code
 PDF = $(addsuffix .pdf, $(BASENAME))
 TEX = $(addsuffix .tex, $(BASENAME))
@@ -14,7 +14,7 @@ all: $(PDF)
 $(PDF): $(TEX) $(HIGHLIGHT)/Makefile
 	make -C $(HIGHLIGHT)
 	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) $<
-	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) $<  # Twice, so TOC is also updated
+	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) $<	# Twice, so TOC is also updated
 
 clean:
 	-make -C $(HIGHLIGHT) clean
