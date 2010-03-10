@@ -15,7 +15,7 @@
 \title[Diff si Patch]{Diff + Patch}
 \subtitle{CDL - Cursul 3}
 \institute{ROSEdu}
-\author[Q]{Lucian Adrian Grijincu \\ \texttt{lucian.grijincu@rosedu.org}}
+\author{Lucian Adrian Grijincu \\ \texttt{lucian.grijincu@rosedu.org}}
 
 \begin{document}
 
@@ -36,21 +36,25 @@
 
 % Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
 % fie folosind \frametitle
-\begin{frame}{\textit{diff} – Ce face?}
+\begin{frame}{\textbf{diff} – Ce face?}
 \begin{itemize} % Just like normal LaTeX
   \item calculează diferențele dintre două fișiere
-  \item afișează diferențele într-un mod standardizat
+  \item afișează diferențele într-un mod standard
+    \begin{itemize}
+    \item mai precis trei moduri standard
+    \end{itemize}
+  \item compară \texttt{linie cu linie} (util pentru comparat cod sursă)
 \end{itemize}
 \end{frame}
 
 
-\begin{frame}{\textit{diff} – Fișiere de exemplificare}
+\begin{frame}{\textbf{diff} – Fișiere de exemplificare}
   \begin{columns}[t]
     \column{5cm}
-    {\LARGE{f\_original}}\\
+    {\LARGE{f-original}}\\
     {\tt{\small \input{code/f_original}}}
     \column{5cm}
-    {\LARGE{f\_modificat}}\\
+    {\LARGE{f-modificat}}\\
     {\tt \small \input{code/f_modificat}}
   \end{columns}
 \end{frame}
