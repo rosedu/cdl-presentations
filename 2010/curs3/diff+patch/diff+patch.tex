@@ -9,7 +9,7 @@
 % sau \href{http://...}{Nume Link}
 \mode<presentation>
 \usetheme{CDL}
-                     
+
 % Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
 % cap.
 \title[Diff si Patch]{Diff + Patch}
@@ -59,49 +59,62 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}
-  \frametitle{\textbf{diff} (fără parametri) – Modul normal}
-  \tt \input{code/diff_no_params}
-\end{frame}
+
+
+
 
 \begin{frame}
-  \frametitle{\textbf{diff} (fără parametri) – Modul normal – Structura}
-  \begin{itemize}
-    \item startOrig \textit{[,stopOrig]} \textbf{codOp} startModif \textit{[,stopModif]}
+  \frametitle{\textbf{diff} (fără parametri) – Modul normal}
+  \begin{columns}
+
+    \begin{column}{7cm}
+      \tt \input{code/diff_no_params}
+    \end{column}
+
+    \begin{column}{10cm}
       \begin{itemize}
+      \item start,stop\textbf{codOp}start,stop
+        \begin{itemize}
         \item \textbf{\texttt{d}} - linii șterse
         \item \textbf{\texttt{c}} - linii modificate
         \item \textbf{\texttt{a}} - linii adăugate
+        \end{itemize}
+      \item ``\texttt{\textless}''  linii din fiș. original
+      \item ``\texttt{\textgreater}'' linii din fiș. modificat
       \end{itemize}
-    \item ``\texttt{\textless}'' în fața liniilor \textit{modificate} în fișierul original
-    \item ``\texttt{\textgreater}'' în fața liniilor \textit{modificate} în fișierul modificat
-    \item ``\texttt{-}'' în fața liniilor \textit{șterse} din fișierul original
-    \item ``\texttt{+}'' în fața liniilor \textit{adăugate} din fișierul original
-  \end{itemize}
+    \end{column}
+
+  \end{columns}
 \end{frame}
+
+
+
 
 \begin{frame}
   \frametitle{\textbf{diff -c} – Context copiat}
-  \footnotesize \tt \input{code/diff_c}
-\end{frame}
+  \begin{columns}
 
-\begin{frame}
-  \frametitle{\textbf{diff -c} – Context copiat – Structura}
-  \begin{itemize}
-    \item fișierele corespunzătoare blocurilor cu ``\texttt{\texttt{***}}'' sau ``\texttt{---}''
-    \item o serie de blocuri:
+    \begin{column}{6cm}
+      \footnotesize \tt \input{code/diff_c}
+    \end{column}
+
+    \begin{column}{10cm}
       \begin{itemize}
-        \item bloc (cu context) care arată liniile din fișierul originalv
-          \begin{itemize} 
-          \item \texttt{***} startOrig, stopOrig \texttt{***}
-          \item \texttt{---} startModif, stopModif \texttt{---}
-          \end{itemize}
-        \item ``\texttt{ }'' în fața liniilor \textit{nemodificate} (context)
-        \item ``\texttt{!}'' în fața liniilor \textit{modificate}
-        \item ``\texttt{-}'' în fața liniilor \textit{șterse}
-        \item ``\texttt{+}'' în fața liniilor \textit{adăugate}
+      \item \texttt{\texttt{***}} – nume fișier original
+      \item \texttt{\texttt{---}} – nume fișier modificat
+      \item o serie de blocuri:
+        \begin{itemize}
+        \item \texttt{***} startOrig, stopOrig \texttt{***}
+        \item \texttt{---} startModif, stopModif \texttt{---}
+        \item „\texttt{ }” – linii \textit{nemodificate} (context)
+        \item „\texttt{!}” – linii \textit{modificate}
+        \item „\texttt{-}” – linii \textit{șterse}
+        \item „\texttt{+}” – linii \textit{adăugate}
+        \end{itemize}
       \end{itemize}
-  \end{itemize}
+    \end{column}
+
+  \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -116,7 +129,7 @@
     \item o serie de blocuri:
       \begin{itemize}
       \item bloc (cu context) care arată liniile din fișierul originalv
-        \begin{itemize} 
+        \begin{itemize}
         \item \texttt{+++} startOrig, stopOrig \texttt{+++}
         \item \texttt{---} startModif, stopModif \texttt{---}
         \end{itemize}
@@ -142,7 +155,7 @@
         \item din cauza contextului copiat modificările sunt distanțate
         \item greu de urmărit ce s-a modificat
       \end{itemize}
-      
+
     \item \textbf{context unificat}
       \begin{itemize}
         \item cea mai folosită variantă în lumea open-source
