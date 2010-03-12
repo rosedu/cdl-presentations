@@ -117,52 +117,60 @@
   \end{columns}
 \end{frame}
 
-\begin{frame}
-  \frametitle{\textbf{diff -u} – Context unificat}
-  \tt{\input{code/diff_u}}
-\end{frame}
 
 \begin{frame}
-  \frametitle{\textbf{diff -u} – Context unificat – Structura}
-  \begin{itemize}
-  \item fișierele corespunzătoare liniilor cu ``\texttt{\texttt{+++}}'' sau ``\texttt{---}''
-    \item o serie de blocuri:
+  \frametitle{\textbf{diff -u} – Context unificat}
+  \begin{columns}
+
+    \begin{column}{6cm}
+      %      \footnotesize \tt \input{code/diff_u}
+      \tt{\input{code/diff_u}}
+    \end{column}
+
+    \begin{column}{10cm}
       \begin{itemize}
-      \item bloc (cu context) care arată liniile din fișierul originalv
+      \item \texttt{\texttt{---}} – nume fișier original
+      \item \texttt{\texttt{+++}} – nume fișier modificat
+      \item o serie de blocuri:
         \begin{itemize}
-        \item \texttt{+++} startOrig, stopOrig \texttt{+++}
-        \item \texttt{---} startModif, stopModif \texttt{---}
+          \item \footnotesize \texttt{-}start,stopOrig \texttt{+} start,stopModif
+        \item „\texttt{ }” – linii \textit{nemodificate} (context)
+        \item „\texttt{-}” – linii dispărute din original
+        \item „\texttt{+}” – linii apărute în modificat
         \end{itemize}
-      \item ``\texttt{ }'' în fața liniilor nemodificate (context)
-      \item ``\texttt{-}'' în fața liniilor modificate din fișierul original
-      \item ``\texttt{+}'' în fața liniilor modificate din fișierul modificat
       \end{itemize}
-  \end{itemize}
+    \end{column}
+
+  \end{columns}
 \end{frame}
+
+
 
 \begin{frame}
   \frametitle{\textbf Formate afișare \textit{diff}}
-  \begin{itemize}[<+->]
-    \item \textbf{normal}
-      \begin{itemize}[<+->]
-        \item varianta standard (suport pe o arie largă de mașini)
-        \item nu are nici un fel de context
-        \item greu de urmărit ce s-a modificat
-      \end{itemize}
+  \begin{itemize}
+  \item \textbf{normal}
+    \begin{itemize}
+    \item varianta standard (suport pe o arie largă de mașini)
+    \item nu are nici un fel de context
+    \item greu de urmărit ce s-a modificat
+    \end{itemize}
 
-    \item \textbf{context copiat}
-      \begin{itemize}
-        \item din cauza contextului copiat modificările sunt distanțate
-        \item greu de urmărit ce s-a modificat
-      \end{itemize}
+  \item \textbf{context copiat}
+    \begin{itemize}
+    \item din cauza contextului copiat modificările sunt distanțate
+    \item greu de urmărit ce s-a modificat
+    \end{itemize}
 
-    \item \textbf{context unificat}
-      \begin{itemize}
-        \item cea mai folosită variantă în lumea open-source
-        \item modificările sunt apropiate și înconjurate de context
-      \end{itemize}
+  \item \textbf{context unificat}
+    \begin{itemize}
+    \item \alert{cea mai folosită variantă în lumea open-source}
+    \item modificările sunt apropiate și înconjurate de context
+    \end{itemize}
   \end{itemize}
 \end{frame}
+
+
 
 \section{Patch}
 \frame{\tableofcontents[currentsection]}
