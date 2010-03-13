@@ -1,0 +1,61 @@
+
+
+Considerăm un program open-source suficient de faimos încât să aibă și
+un utilizator. Pentru exemplificare avem un progrămel ce calculează în
+două moduri numere ale lui Fibonacci.
+
+Programul este distribuit și modificat de persoane diferite.
+
+
+Structura
+
+  - „user/” - o versiune a programului deținută de un utilizator
+  - „dev-clean/” și „dev-ugly” - două versiuni ale programului deținute de dezvoltator
+
+
+
+
+Partea I - diff
+
+  Rol: sunteți un utilizator al programului care descoperă un defect.
+  Lucrați în dosarul „user”.
+
+  a) compilați programul, rulați-l, observați comportamentul (eronat) 
+  b) faceți o copie a versiunii originale (pentru a putea genera diff-ul)
+  c) corectați problema
+  d) comparați fișierele
+     - normal (fără context):
+       	      diff f1.c f2.c
+     - context copiat:
+       	       diff -c f1.c f2.c
+     - context unificat
+       	       diff -u f1.c f2.c
+     - context unificat cu informații despre funcțiile C în care se fac modificările
+       	       diff -up f1.c f2.c
+
+
+
+
+Partea II - patch
+
+  În episodul anterior, ați rezolvat problema, ați generat un .diff și
+  l-ați trimis dezvoltatorului programului.
+
+  Rol: sunteți dezvoltatorul programului și tocmai ați primit un .diff
+  de la un utilizator care rezolvă un defect al programului.
+
+  Aplicați folosind „patch” modificările peste fișierele din
+  „dev-clean”. Patch-ul ar trebui să se aplice curat, fără probleme.
+
+
+
+
+Partea III - rezolvarea conflictelor
+
+  Presupunem că și dezvoltatorul programului a efectuat niște
+  modificări recent în program în zona în care a făcut modificări și
+  utilizatorul.
+
+  Aplicați folosind „patch” modificările peste fișierele din
+  „dev-ugly”. Patch-ul ar trebui să nu se aplice cu succes. Rezolvați
+  conflictele și recompilați programul.
