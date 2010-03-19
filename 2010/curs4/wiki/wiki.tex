@@ -1,0 +1,185 @@
+% vim: set tw=78 sts=2 sw=2 ts=8 aw et:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc}		% diacritice
+\usepackage[romanian]{babel}
+%\usepackage{color}			% highlight
+%\usepackage{alltt}			% highlight
+%\usepackage{code/highlight}		% highlight
+\usepackage{hyperref}			% folosiți \url{http://...}
+                                        % sau \href{http://...}{Nume Link}
+\usepackage{verbatim}
+\usepackage{tabularx}
+
+\mode<presentation>
+\usetheme{CDL}
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[Wiki-uri]{Wiki-uri}
+\subtitle{CDL - Cursul 4}
+\institute[ROSEdu]{ROSEdu}
+\date{20 martie 2010}
+\author{Răzvan Deaconescu \\ \texttt{razvan@rosedu.org}}
+
+\begin{document}
+
+% Slide-urile cu mai multe părți sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+
+% NB: Secțiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{No\textcommabelow{t}iuni generale}
+
+% Pentru reamintirea periodică a cuprinsului și unde ne aflăm:
+\frame{\tableofcontents[currentsection]}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+
+\begin{frame}{De ce wiki-uri?}
+  \begin{itemize}
+    \item editare colaborativa
+    \item formatare facilă, link-uri facile
+    \item easy to install, use, edit (no training)
+    \item revision control
+    \item knowledge base (tutoriale, informații utile, documentare)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Ce este un wiki?}
+  \begin{itemize}
+    \item site web, editare facilă
+    \item limbaj markup simplificat, vizualizare rapidă a informațiilor
+    \item wiki software (wiki engine) -- aplicație ce rulează wiki
+    \item suport pentru colaborare
+    \item istoric, revizie, autentificare, ACL
+    \item Ward Cunningham: ``the simples online database that could possibly
+work''
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Wiki versus \ldots}
+  \begin{itemize}
+    \item MS Office / OpenOffice
+    \item fișiere LaTeX într-un repository
+    \item CMS
+    \item Google Docs
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cazuri de utilizare}
+  \begin{itemize}
+    \item knowledge base (comunitate, companie, proiect)
+    \item colaborare, editare colaborativă
+    \item tutoriale
+    \item publicare rapidă de conținut (curbă de învățare redusă)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Exemple cunoscute}
+  \begin{itemize}
+    \item \url{http://www.wikimatrix.org/}
+    \item MediaWiki
+    \item DokuWiki
+    \item TWiki
+    \item MoinMoin
+    \item PhpWiki
+    \item PmWiki
+    \item integrate în alte aplicații/site-uri
+  \end{itemize}
+\end{frame}
+
+\section{DokuWiki}
+
+% Pentru reamintirea periodică a cuprinsului și unde ne aflăm:
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{De ce DokuWiki?}
+  \begin{itemize}
+    \item TODO
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Sintaxă Creole}
+  \begin{itemize}
+    \item TODO
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Hints}
+  \begin{itemize}
+    \item TODO
+  \end{itemize}
+\end{frame}
+
+\section{Redmine Wiki}
+
+% Pentru reamintirea periodică a cuprinsului și unde ne aflăm:
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{De ce Redmine?}
+  \begin{itemize}
+    \item TODO
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Sintaxă Redmine wiki}
+  \begin{itemize}
+    \item TODO
+  \end{itemize}
+\end{frame}
+
+
+\section{Concluzii}
+
+% Pentru reamintirea periodică a cuprinsului și unde ne aflăm:
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{Comparison chart}
+  \begin{center}
+    \begin{tabular}{|c|c|c|}
+      \hline
+      \textbf{Format} & \textbf{Creole} & \textbf{Redmine} \\
+      \hline
+      \hline
+      heading 1 & = Nume = & .h1 Nume \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Cuvinte cheie}
+  \begin{columns}
+    \begin{column}[l]{0.5\textwidth}
+      \begin{itemize}
+        \item TODO
+      \end{itemize}
+    \end{column}
+    \begin{column}[l]{0.5\textwidth}
+      \begin{itemize}
+        \item TODO
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Link-uri utile}
+  \begin{itemize}
+    \item \url{http://www.wikimatrix.org/}
+  \end{itemize}
+\end{frame}
+
+
+\section{\^{I}ntrebări}
+
+% Pentru reamintirea periodică a cuprinsului și unde ne aflăm:
+\frame{\tableofcontents[currentsection]}
+
+\end{document}
