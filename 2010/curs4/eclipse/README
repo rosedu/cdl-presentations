@@ -1,0 +1,21 @@
+Template pentru prezentările CDL
+================================
+
+Dacă folosiţi Ubuntu, rulaţi scriptul ../util/ubuntu_latex_setup.sh -- asta
+instalează latex, beamer, şi o versiune mai nouă de highlight.
+
+Intrucţiuni:
+ * run `make' in top dir; should be enough, as it also makes in code/
+ * dacă adăugaţi cod nou, update the makefile
+
+Pentru a crea un nou curs:
+ * creaţi un director nou, conform structurii.
+ * copiaţi template.tex, cu alt nume, evident
+ * copiaţi Makefile şi modificaţi variabila BASENAME (altfel numele pdf-ului va fi template.pdf)
+ * de asemenea, copiaţi directorul code şi adăugaţi reguli în Makefile-ul
+de acolo pentru toate fişierele pe care vreţi să le includeţi. Nu modificaţi
+nimic din variabilele definite şi nici linia de cod pe care fiecare regulă cu
+excepţia lui clean o execută (highlight îşi dă seama cu ce limbaj se joacă din
+extensie). Aveţi grijă să păstraţi şi ţinta clean `up-to-date'.
+
+ vim:tw=78:

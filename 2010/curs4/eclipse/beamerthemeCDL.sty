@@ -1,0 +1,165 @@
+% Copyright 2010 by Mihai Maruseac for ROSEdu CDL
+%
+% This file may be distributed and/or modified under the GNU General Public License.
+%
+
+\ProvidesPackage{beamerthemeCDL}[2010/01/28]
+
+\RequirePackage{tikz}
+\RequirePackage{bibunits}
+\RequirePackage{graphics}
+
+\mode<presentation>
+
+\useoutertheme[footline=institutetitle, subsection=false]{miniframes}
+\usecolortheme{seagull}
+\usecolortheme{rose}
+\useinnertheme{rounded}
+
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+\setbeamerfont{block title}{size={}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Local defs
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\CDL@frametitle{picture-section}
+%\def\CDL@imagename{images/ROSEdu}
+\def\CDL@imagenametitle{title}
+%\def\CDL@imagenamebis{images/proj}
+\def\CDL@titlepage{picture}
+\define@key{CDL}{headline}[none]{
+  \def\CDL@headline{#1}
+}
+\define@key{CDL}{frametitle}[picture]{
+  \def\CDL@frametitle{#1}
+}
+%\define@key{CDL}{imagename}{
+%  \def\CDL@imagename{#1}
+%  \pgfdeclareimage[width=0.12\textwidth,interpolate=true]{headlineimage}{\CDL@imagename}
+%}
+\define@key{CDL}{imagenametitle}{
+  \def\CDL@imagename{#1}
+  \pgfdeclareimage[width=0.12\textwidth,interpolate=true]{headlineimage}{\CDL@imagenametitle}
+}
+%\define@key{CDL}{imagenamebis}{
+%  \def\CDL@imagename{#1}
+%  \pgfdeclareimage[width=0.12\textwidth,interpolate=true]{headlineimagebis}{\CDL@imagenamebis}
+%}
+\define@key{CDL}{titlepage}[picture]{
+  \def\CDL@titlepage{#1}
+}
+
+\def\CDLoptions#1{\setkeys{CDL}{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Frame title: get some logos there
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\pgfdeclareimage[width=0.05\textwidth,interpolate=true]{headlineimage}{\CDL@imagename}
+%\pgfdeclareimage[width=0.05\textwidth,interpolate=true]{headlineimagebis}{\CDL@imagenamebis}
+%\defbeamertemplate*{frametitle}{CDL theme}{
+%  \edef\tempa{normal}
+%  \ifx\CDL@frametitle\tempa
+%    \begin{centering}
+%  \textbf{\insertframetitle}
+%  \end{centering}
+%  \else
+%    \edef\tempa{picture-subsection}
+%  \ifx\CDL@frametitle\tempa
+%    \parbox[c]{0.05\textwidth}{\pgfuseimage{headlineimage}}
+%  \parbox[c]{0.80\textwidth}{
+%    \textbf{\vphantom{Hp}\insertframetitle}
+%  }
+%  \parbox[c]{0.05\textwidth}{\pgfuseimage{headlineimagebis}}
+%  \else
+%    \parbox[c]{0.05\textwidth}{\pgfuseimage{headlineimage}}
+%  \parbox[c]{0.85\textwidth}{
+%    \textbf{\vphantom{Hp}\insertframetitle}
+%  }
+%  \parbox[c]{0.05\textwidth}{\pgfuseimage{headlineimagebis}}
+%  \fi
+%    \fi
+%}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Title page...
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\defbeamertemplate*{title page}{CDL theme}{
+  \edef\tempa{picture}
+  \ifx\CDL@titlepage\tempa
+    \vfill
+    \parbox{0.28\textwidth}{
+      \pgfimage[width=0.27\textwidth]{\CDL@imagenametitle}
+    }\hfill
+  \parbox{0.7\textwidth}{
+    \begin{center}
+    {\usebeamerfont{title}\usebeamercolor{title}{\color{fg}\inserttitle}}
+    \ifx\insertsubtitle\@empty\\[\baselineskip]
+      \else{\\\usebeamerfont{subtitle}\usebeamercolor{subtitle}{\color{fg}\insertsubtitle}}\\[\baselineskip]\fi
+      \hrule\vskip\baselineskip
+      \ifx\insertauthor\@empty\ \\
+      \else{\usebeamerfont{author}\usebeamercolor{author}{\color{fg}\insertauthor}}\\\fi
+      \ifx\insertdate\@empty\ \\
+      \else{\usebeamerfont{date}\usebeamercolor{date}{\color{fg}\insertdate}}\\\fi
+      \ifx\insertinstitute\@empty 
+      \else{\usebeamerfont{institute}\usebeamercolor{institute}{\color{fg}\insertinstitute}}\\\fi
+      \insertlogo
+      \end{center}
+  }\vfill
+  \else
+    \pgfdeclarehorizontalshading{separationtitlepagelineshading}{0.5pt}{color(0cm)=(bg); 
+      color(0.5\textwidth)=(structure.fg); color(\textwidth)=(bg)}
+      \begin{center}
+      \vfill
+      {\usebeamerfont{title}\usebeamercolor{title}{\color{fg}\inserttitle}}
+
+      \ifx\insertsubtitle\@empty 
+        \else{\usebeamerfont{subtitle}\usebeamercolor{subtitle}{\color{fg}\insertsubtitle}}\\[\baselineskip]\fi
+
+        \pgfuseshading{separationtitlepagelineshading}
+      \ifx\insertauthor\@empty\ \\
+        \else{\usebeamerfont{author}\usebeamercolor{author}{\color{fg}\insertauthor}}\\\fi
+        \ifx\insertdate\@empty\ \\
+        \else{\usebeamerfont{date}\usebeamercolor{date}{\color{fg}\insertdate}}\\\fi
+        \ifx\insertinstitute\@empty 
+        \else{\usebeamerfont{institute}\usebeamercolor{institute}{\color{fg}\insertinstitute}}\\\fi
+        \insertlogo
+        \pgfuseshading{separationtitlepagelineshading}
+      \vfill
+        \end{center}
+      \fi
+}
+
+\setbeamertemplate{title page}[CDL theme]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% End: întâi facem să apară autorul și prezentarea
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\defbeamertemplate*{footline}{CDL theme}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left]{author}%
+    \usebeamerfont{author}\insertshortauthor~~(\insertshortinstitute)
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{title}%
+    \usebeamerfont{title}\insertshorttitle
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\setbeamertemplate{navigation symbols}{} 
+\setbeamersize{text margin left=1em,text margin right=2em}
+\mode
+<all>
