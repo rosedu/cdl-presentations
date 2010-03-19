@@ -45,7 +45,7 @@
 
 \begin{frame}{De ce wiki-uri?}
   \begin{itemize}
-    \item editare colaborativa
+    \item editare colaborativă
     \item formatare facilă, link-uri facile
     \item easy to install, use, edit (no training)
     \item revision control
@@ -60,7 +60,7 @@
     \item wiki software (wiki engine) -- aplicație ce rulează wiki
     \item suport pentru colaborare
     \item istoric, revizie, autentificare, ACL
-    \item Ward Cunningham: ``the simples online database that could possibly
+    \item Ward Cunningham: ``the simplest online database that could possibly
 work''
   \end{itemize}
 \end{frame}
@@ -68,9 +68,26 @@ work''
 \begin{frame}{Wiki versus \ldots}
   \begin{itemize}
     \item MS Office / OpenOffice
+      \begin{itemize}
+        \item + lucru colaborativ, interfață facilă, web
+        \item - non-printer friendly, deschis tuturor, ``anarhic''
+    (non-professional)
+      \end{itemize}
     \item fișiere LaTeX într-un repository
+      \begin{itemize}
+        \item + ușor de editat, feedback imediat, WYIWYG, web
+        \item - non-printer friendly, mai puțin profesionist
+      \end{itemize}
     \item CMS
+      \begin{itemize}
+        \item + ușor de editat, lucru colaborativ facil
+        \item - aspect și prezentare
+      \end{itemize}
     \item Google Docs
+      \begin{itemize}
+        \item + open to public, web-friendly (link-uri etc.)
+        \item - gestiune mai bună a accesului, apropiat Office
+      \end{itemize}
   \end{itemize}
 \end{frame}
 
@@ -103,19 +120,44 @@ work''
 
 \begin{frame}{De ce DokuWiki?}
   \begin{itemize}
-    \item TODO
+    \item \texttt{http://www.dokuwiki.org/dokuwiki}
+    \item ``targeted at developer teams, workgroups and small companies''
+    \item comunitate, dezvoltare continuă
+    \item număr mare de plugin-uri
+    \item lightweight, file-based -- nu necesită suport de bază de date
+    \item ușor de instalat, configurat, personalizat
+    \item ``Most views'' pe WikiMatrix
+(\url{http://www.wikimatrix.org/statistic/Most+Views})
+    \item We use it! :-P
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Sintaxă Creole}
   \begin{itemize}
-    \item TODO
+    \item \url{http://www.wikicreole.org/}
+    \item ``common wiki markup language to be used across different wikis''
+    \item suport în DokuWiki, MoinMoin, PmWiki
+    \item plugin DokuWiki -- \url{http://www.dokuwiki.org/plugin:creole}
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Hints}
   \begin{itemize}
-    \item TODO
+    \item în DokuWiki încercați folosirea sintaxei Creole acolo unde este
+posibil
+    \item use the syntax documentation, Luke! --
+\url{http://www.dokuwiki.org/syntax}
+    \item folosiți \texttt{<code> \ldots <\textbackslash{}code>} pentru cod,
+fișiere
+      \begin{itemize}
+        \item plasați \texttt{<code>} în continuarea ultimului cuvânt
+dinainte de cod
+      \end{itemize}
+    \item imaginile pot fi centrate, se poate folosi ``hover caption'' --
+\url{http://www.dokuwiki.org/syntax\#image\_links}
+    \item pentru a crea o nouă pagină căutați \texttt{ns:subns:page} și apoi
+creați pagina
+    \item pentru a șterge o pagină, ștergeți conținutul și salvați pagina
   \end{itemize}
 \end{frame}
 
@@ -126,13 +168,21 @@ work''
 
 \begin{frame}{De ce Redmine?}
   \begin{itemize}
-    \item TODO
+    \item web-based software project management system
+    \item repository, wiki, issues, files, documents, forum, activity,
+calendar etc.
+    \item proiecte multiple în cadrul aceleiași instanțe
+    \item gestiunea utilizatorilor
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Sintaxă Redmine wiki}
   \begin{itemize}
-    \item TODO
+    \item \url{http://www.redmine.org/wiki/1/RedmineTextFormatting}
+    \item pentru crearea unei pagini se creează un link către o pagină și apoi
+se accesează
+    \item există o pagină de ajutor cu sintaxa wiki-ului disponibilă în
+momentul editării
   \end{itemize}
 \end{frame}
 
@@ -149,7 +199,14 @@ work''
       \textbf{Format} & \textbf{Creole} & \textbf{Redmine} \\
       \hline
       \hline
-      heading 1 & = Nume = & .h1 Nume \\
+      heading 1 & = Nume & .h1 Nume \\
+      bold & **text** & *text* \\
+      italic & //text// & \_text\_ \\
+      link la pagină & [[PageName$|$Nume link]] & [[PageName$|$Nume link]] \\
+      URL-uri externe & [[URL$|$Nume link]] & "Nume link":URL \\
+      liste neordonate & *, ** & *, ** \\
+      liste ordonate & \#, \#\# & \#, \#\# \\
+      nowiki & \{\{\{ \ldots \}\}\} & .bq \ldots \\
       \hline
     \end{tabular}
   \end{center}
@@ -159,12 +216,19 @@ work''
   \begin{columns}
     \begin{column}[l]{0.5\textwidth}
       \begin{itemize}
-        \item TODO
+        \item wiki
+        \item editare colaborativă
+        \item easy to install, use, customize
+        \item markup language
+        \item wiki engine
       \end{itemize}
     \end{column}
     \begin{column}[l]{0.5\textwidth}
       \begin{itemize}
-        \item TODO
+        \item WikiMatrix
+        \item DokuWiki
+        \item sintaxă Creole
+        \item Redmine wiki
       \end{itemize}
     \end{column}
   \end{columns}
@@ -173,6 +237,9 @@ work''
 \begin{frame}{Link-uri utile}
   \begin{itemize}
     \item \url{http://www.wikimatrix.org/}
+    \item \url{http://www.dokuwiki.org/syntax}
+    \item \url{http://www.wikicreole.org/wiki/Creole1.0}
+    \item \url{http://www.redmine.org/wiki/1/RedmineTextFormatting}
   \end{itemize}
 \end{frame}
 
