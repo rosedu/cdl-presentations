@@ -1,0 +1,219 @@
+% vim: set tw=78 aw sw=2 sts=2 noet:
+\documentclass{beamer}
+
+%\includeonlyframes{c} -- speeding up compilation speed during debug
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{hyperref}        % folositi \url{http://...}
+\mode<presentation>
+\usetheme{CDL}
+
+\title[]{Unit testing}
+\subtitle{CDL - Cursul 5}
+\institute[]{ROSEdu}
+\author[]{Mihai Maruseac \\ \texttt{mihai.maruseac@rosedu.org}}
+
+\setbeamertemplate{frametitle continuation}[from second]
+\setbeamertemplate{footline}[frame number]
+
+\pgfdeclareimage[height=5cm]{m0}{img/m0}
+\pgfdeclareimage[height=7cm]{m1}{img/m1}
+\pgfdeclareimage[height=7cm]{m2}{img/m2}
+\pgfdeclareimage[height=7cm]{m3}{img/m3}
+
+\begin{document}
+
+\maketitle
+
+%\tableofcontents
+
+\begin{frame}{Studiu de caz}
+  \transwipe[direction=90,duration=2]
+  \begin{pgfpicture}{0cm}{0cm}{10cm}{5cm}
+    \pgfsetcolor{red}
+    \pgfrect[stroke]{\pgfpoint{3cm}{1cm}}{\pgfpoint{6cm}{1.5cm}}
+  \end{pgfpicture}
+
+  1. Pornim cu un nucleu mic...
+\end{frame}
+
+\begin{frame}{Studiu de caz}
+  \begin{pgfpicture}{0cm}{0cm}{10cm}{5cm}
+    \pgfsetcolor{red}
+    \pgfline{\pgfpoint{3cm}{1cm}}{\pgfpoint{3cm}{2.5cm}}
+    \pgfline{\pgfpoint{3cm}{2.5cm}}{\pgfpoint{5cm}{2.5cm}}
+    \pgfline{\pgfpoint{5cm}{2.5cm}}{\pgfpoint{6cm}{1.5cm}}
+    \pgfline{\pgfpoint{6cm}{1.5cm}}{\pgfpoint{7cm}{2.5cm}}
+    \pgfline{\pgfpoint{7cm}{2.5cm}}{\pgfpoint{9cm}{2.5cm}}
+    \pgfline{\pgfpoint{9cm}{2.5cm}}{\pgfpoint{9cm}{1cm}}
+    \pgfline{\pgfpoint{9cm}{1cm}}{\pgfpoint{3cm}{1cm}}
+    \pgfsetcolor{blue}
+    \pgfline{\pgfpoint{5cm}{2.52cm}}{\pgfpoint{5cm}{4cm}}
+    \pgfline{\pgfpoint{5cm}{4cm}}{\pgfpoint{7cm}{4cm}}
+    \pgfline{\pgfpoint{7cm}{4cm}}{\pgfpoint{7cm}{2.52cm}}
+    \pgfline{\pgfpoint{7cm}{2.52cm}}{\pgfpoint{6cm}{1.52cm}}
+    \pgfline{\pgfpoint{6cm}{1.52cm}}{\pgfpoint{5cm}{2.52cm}}
+  \end{pgfpicture}
+
+  2. Adăugăm la el element cu element...
+\end{frame}
+
+\begin{frame}{Studiu de caz}
+  \pgfuseimage{m0}
+
+  3. Și ajungem aici.
+\end{frame}
+
+\begin{frame}{Soluții}
+  \begin{itemize}[<+->]
+    \item Ne structurăm mai bine codul de la început.
+    \item Putem ajunge la buguri ce vor fi vizibile abia la integrarea a două
+    porțiuni de cod.
+    \item Sau, putem testa fiecare unitate de cod (funcție, clasă etc.)
+  \end{itemize}
+\end{frame}
+
+\section{Unit Testing}
+
+\begin{frame}{Ce presupune unit testing?}
+  \begin{description}[<+->]
+    \item[garanție]  = code that just works
+    \item[unitate] = cea mai mică bucată independentă din cod
+    \item[scop] = izolare bucăți cod, demonstrare corectitudine
+  \end{description}
+\end{frame}
+
+\begin{frame}{Unit testing și scrierea codului}
+  \begin{description}[<+->]
+    \item[ÎNAINTE] : detaliere aspecte proiect într-o manieră folositoare
+    \item[SCRIERE] : se evită scrierea de prea mult cod
+    \item[MODIFICARE] : garantează că nu se strică ce mergea deja
+  \end{description}
+\end{frame}
+
+\begin{frame}{Cum testăm?}
+  \begin{itemize}[<+->]
+    \item manual: \textbf{assert} sau \textbf{if}
+    \item automat: folosim un framework existent
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Exercițiu 1}
+  TODO
+\end{frame}
+
+\section{Test Driven Development}
+
+\begin{frame}{Testing vs Coding}
+  \begin{itemize}[<+->]
+    \item Pe ce punem mai mult accent? Scris teste sau scris cod?
+    \item ...
+    \item ...
+    \item Depinde
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Test Driven Development (TDD)}
+  \begin{itemize}[<+->]
+    \item scriem testele întâi
+    \item de fiecare dată când modificăm codul verificăm să nu scadă numărul
+    testelor picate (și care sunt ele)
+    \item pică un test trecut anterior = am modificat ceva ce nu trebuia
+    modificat (\textbf{git revert})
+    \item toate testele trecute = proiect terminat
+    \item apare un bug nou $\rightarrow$ se scriu noi teste și repetăm
+    secvența
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{1 pic = 1000 words}
+  \pgfuseimage{m1}
+\end{frame}
+
+\begin{frame}{Exercițiu 2}
+  TODO
+\end{frame}
+
+\begin{frame}{Timeline}
+  \pgfuseimage{m2}
+\end{frame}
+
+\begin{frame}{6 motive pentru TDD}
+  \begin{enumerate}[<+->]
+    \item Focus
+    \item Știi când ai terminat
+    \item Dacă un unit merge o dată va merge mereu
+    \item Cod mult mai modular
+    \item Cod mai curat și mai ușor de înțeles
+    \item Satisfacția de a vedea că lucrurile merg
+    \item Progres vizibil
+    \item ``Documentare'' cod
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{No silver bullet}
+  \begin{itemize}[<+->]
+    \item Nu merge mereu
+    \item Prea multe teste
+    \item Linii de test de 100 de ori mai multe ca linii de cod utile
+    \item Teste nesemnificative
+    \item Teste pe cazuri nespecificate
+    \item Teste incorect specificate
+    \item Teste depinzând de implementare
+    \item Uneori testarea durează prea mult
+    \item Testarea manuală poate fi sărită
+    \item not thinking ahead
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Not thinking ahead}
+  \pgfuseimage{m3}
+\end{frame}
+
+\section{no TDD uses}
+
+\begin{frame}{Testarea codului scris deja}
+  \begin{itemize}[<+->]
+    \item goes without saying
+    \item se poate face manual, prin script sau prin cod
+    \item ignorată
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Integrarea cu SCM-uri}
+  \begin{itemize}[<+->]
+    \item \textbf{git bisect}
+    \item testăm manual?
+    \item putem face un script pentru testare
+    \item Exercițiu 3: TODO
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Concluzii}
+  \begin{itemize}[<+->]
+    \item Testing is good \pause \alert{if done properly}
+    \item \textit{``Testing can show the presence of bugs, but not the absence''}
+    \item suntem siguri că testăm tot?
+    \item \textit{``Testing is the process of executing a program with the intent of finding errors''}
+    \item Testarea codului duce și la cod lizibil, module separate etc.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Întrebări?}
+\end{frame}
+
+\begin{frame}{Bibliografie}
+  \begin{itemize}
+    \item \href{http://www.agiledata.org/essays/tdd.html}{Test Driven Development}
+    \item \href{http://www.lispcast.com/uncategorized/6-reasons-to-develop-your-tests-first/}{Motive pentru TDD}
+    \item \href{http://stackoverflow.com/questions/301693/why-didnt-unit-testing-work-out-for-your-project}{Eșecuri TDD}
+    \item \href{http://docs.python.org/library/unittest.html}{Unit testing în Python}
+    \item \href{http://check.sourceforge.net/}{Framework pentru unit testing în C}
+    \item \href{http://www.cs.chalmers.se/~rjmh/QuickCheck/}{QuickCheck - Haskell}
+    \item \href{http://www.junit.org/}{JUnit - Java}
+    \item \href{http://www.youtube.com/watch?v=XP4o0ArkP4s}{http://www.youtube.com/watch?v=XP4o0ArkP4s}
+  \end{itemize}
+\end{frame}
+
+\end{document}
