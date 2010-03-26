@@ -1,0 +1,106 @@
+% vim: set tw=78 sts=2 sw=2 ts=8 aw et:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc}		% diacritice
+\usepackage[romanian]{babel}
+%\usepackage{color}			% highlight
+%\usepackage{alltt}			% highlight
+%\usepackage{code/highlight}		% highlight
+\usepackage{hyperref}			% folosiți \url{http://...}
+                                        % sau \href{http://...}{Nume Link}
+\usepackage{verbatim}
+\usepackage{tabularx}
+
+\mode<presentation>
+\usetheme{CDL}
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[Issue tracking]{Issue tracking}
+\subtitle{CDL - Cursul 5}
+\institute[ROSEdu]{ROSEdu}
+\date{27 martie 2010}
+\author{Răzvan Deaconescu \\ \texttt{razvan@rosedu.org}}
+
+\begin{document}
+
+% Slide-urile cu mai multe părți sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+
+% NB: Secțiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{Issue tracking}
+
+% Pentru reamintirea periodică a cuprinsului și unde ne aflăm:
+\frame{\tableofcontents[currentsection]}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+
+\begin{frame}{Issues}
+  \begin{itemize}
+    \item TODO
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Issue tracking systems}
+  \begin{itemize}
+    \item TODO
+  \end{itemize}
+\end{frame}
+
+
+\section{Issue tracking în Redmine}
+
+% Pentru reamintirea periodică a cuprinsului și unde ne aflăm:
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{Redmine}
+  \begin{itemize}
+    \item TODO
+  \end{itemize}
+\end{frame}
+
+
+\section{Concluzii}
+
+% Pentru reamintirea periodică a cuprinsului și unde ne aflăm:
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{Link-uri utile}
+  \begin{itemize}
+    \item \url{http://en.wikipedia.org/wiki/Issue\_tracking\_system}
+    \item \url{http://www.redmine.org/wiki/redmine/RedmineIssues}
+    \item \url{http://www.bugzilla.org/}
+    \item
+\url{http://en.wikipedia.org/wiki/Comparison\_of\_issue\_tracking\_systems}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cuvinte cheie \& întrebări}
+  \begin{columns}
+    \begin{column}[l]{0.5\textwidth}
+      \begin{itemize}
+        \item TODO
+      \end{itemize}
+    \end{column}
+    \begin{column}[c]{0.5\textwidth}
+      \begin{figure}
+        \pause \includegraphics[scale=0.4]{img/question-mark.jpg}
+      \end{figure}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Exerciții}
+  \footnotesize \url{http://swarm.cs.pub.ro/~razvan/dokuwiki/rosedu/cdl/issues/readme}
+\end{frame}
+
+
+\end{document}
