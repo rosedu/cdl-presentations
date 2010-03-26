@@ -26,7 +26,16 @@
 
 \maketitle
 
-%\tableofcontents
+\begin{frame}{Before we begin}
+  \begin{block}{$>$ echo "Test" | grep T}
+    Test\\
+    (linux.c, 36): Cannot wait for child: No child processes
+  \end{block}
+  \begin{block}{$>$ echo "Test" | grep T}
+    Test\\
+    $>$ exit
+  \end{block}
+\end{frame}
 
 \begin{frame}{Studiu de caz}
   \transwipe[direction=90,duration=2]
@@ -100,7 +109,19 @@
 \end{frame}
 
 \begin{frame}{Exercițiu 1}
-  TODO
+  \begin{alertblock}{Task 1}
+    Scrieți o funcție mystrrev ce va realiza inversarea unui șir de caractere
+    dat argument. Funcția va returna un pointer către șirul rezultat.
+  \end{alertblock}
+  \pause
+  \begin{exampleblock}{Task 2}
+    Scrieți o funcție check\_mystrrev ce va testa funcția anterioară:\\
+    mystrrev(mystrrev(sir)) == sir
+  \end{exampleblock}
+  \pause
+  Ați tratat și cazul argumentelor nule?\\
+  \pause
+  Ați verificat memoria?
 \end{frame}
 
 \section{Test Driven Development}
@@ -132,7 +153,20 @@
 \end{frame}
 
 \begin{frame}{Exercițiu 2}
-  TODO
+  \begin{block}{Descriere}
+    Vom implementa funcția mystrcmp ce va compara dacă două șiruri de
+    caractere sunt egale. Vom începe prin a defini testul și apoi vom scrie
+    codul.
+  \end{block}
+  \begin{block}{Task 1}
+    Scrieți o funcție de test ce va verifica că mystrcmp returnează ce
+    trebuie. Nu implementați mystrcmp, scrieți doar un stub.
+  \end{block}
+  \pause
+  \begin{block}{Task 2}
+    Implementați mystrcmp, pe etape. Rulați funcția de test de fiecare dată
+    când compilați.
+  \end{block}
 \end{frame}
 
 \begin{frame}{Timeline}
@@ -186,8 +220,25 @@
     \item \textbf{git bisect}
     \item testăm manual?
     \item putem face un script pentru testare
-    \item Exercițiu 3: TODO
   \end{itemize}
+\end{frame}
+
+\begin{frame}{Integrarea cu SCM-uri - Demo}
+  \begin{block}{Descriere}
+    Descărcați sursele unui proiect aflate pe git. Repository-ul are adresa:\\
+    git://gitorious.org/pali/pali.git\\
+    Avem de afișat toate palindroamele dintr-o frază.
+  \end{block}
+  \begin{block}{Problema}
+    Compilați sursele și rulați programul. Vom încerca să găsim commit-ul ce a
+    introdus eroarea folosind git bisect.
+  \end{block} \pause
+  \begin{block}{Soluție}
+    Descărcați cele două fișiere bash de la\\
+    http://swarm.cs.pub.ro/~mihai/cdl/2010/.\\
+    Rulați ut.sh și veți obține commit-ul ce a introdus greșeala. Corectați-o
+    introducând un nou commit corect (nu faceți push).
+  \end{block}
 \end{frame}
 
 \begin{frame}{Concluzii}
