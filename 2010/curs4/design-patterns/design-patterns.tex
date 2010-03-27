@@ -1,0 +1,317 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{code/highlight}	 % highlight
+\usepackage{hyperref}        % folositi \url{http://...}
+% sau \href{http://...}{Nume Link}
+\mode<presentation>
+\usetheme{CDL}
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[Design Patterns]{Design Patterns}
+\subtitle{CDL - Cursul 4}
+\institute[ROSEdu]{ROSEdu}
+\author[VictorU]{Victor Ungureanu \\ \texttt{victor.ungureanu@cti.pub.ro} }
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+
+\section{"Tiparul modelului"}
+
+\begin{frame}{Întrebarea}
+	\begin{itemize}
+  		\item Design software
+  		\vspace{4mm}
+  		\item Mai multe probleme:
+  		\begin{itemize}
+	  		\item comune
+  			\item similare
+  			\item repetitive
+  		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Răspunsul}
+	\begin{itemize}
+		\item \textbf{Design Patterns}
+		\vspace{4mm}
+  		\item Soluţie:
+  		\begin{itemize}
+	  		\item generală
+  			\item reutilizabilă
+  			\item care rezolvă probleme comune
+  		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Un design pattern}
+	\begin{itemize}
+	  	\item \textbf{nu} este un design în formă finală
+	  	\vspace{4mm}
+	  	\item \textbf{nu} poate fi transformat direct in cod
+	  	\vspace{4mm}
+	  	\item \textbf{este} o descriere a soluţiei
+	  	\vspace{4mm}
+	  	\item \textbf{este} un template ce poate fi aplicat pentru rezolvarea problemei
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Next level}
+	\begin{itemize}
+	  	\item Design Pattern-urile $\in$ domeniului $($modulelor $\cup$ interconexiunilor$)$
+	  	\vspace{4mm}
+	  	\item La un \textbf{nivel mai înalt}: \textbf{pattern-urile arhitecturale} (Arhitectural Patterns) descriu:
+	  		\begin{itemize}
+	  			\item pattern-ul global utilizat
+	  			\item întregul sistem
+	  			\item exemplu: \textbf{Model–View–Controller} (MVC)
+	  		\end{itemize}
+	  	\vspace{4mm}
+	  	\item Nu toate \textbf{pattern-urile software} sunt \textbf{design patterns}
+	  		\begin{itemize}
+	  			\item exemplu: algoritmii care rezolvă probleme computaţionale
+	  		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Categorii de design pattern-uri}
+	\begin{itemize}
+		\item \textbf{Creational Patterns} = delegare
+			\begin{itemize}
+				\item implementează mecanisme de creare a obiectelor
+				\item exemple: \textbf{Singleton}, Factory
+			\end{itemize}
+		\vspace{4mm}
+		\item \textbf{Structural Patterns} = agregare
+			\begin{itemize}
+				\item găsesc metode de a defini relaţiile dintre entităţi
+				\item exemple: \textbf{Decorator}
+			\end{itemize}
+		\vspace{4mm}
+		\item \textbf{Behavioral Patterns} = consultare
+			\begin{itemize}
+				\item definesc modul în care obiectele comunică între ele
+				\item exemple: \textbf{Visitor}, Observer, Command
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\section{Singleton Pattern}
+
+\begin{frame}{Descriere singleton pattern}
+	\begin{itemize}
+		\item Utilizat pentru a restricţiona numărul de instanţieri a unei clase la un singur obiect
+		\vspace{4mm}
+		\item \alert{Acest pattern îngreunează testarea aplicaţiei, deoarece introduce stări globale}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Utilizări singleton pattern}
+	\begin{itemize}
+		\item Ca parte integrată în pattern-urile Abstract Factory, Builder, Prototype
+		\vspace{4mm}
+		\item Pentru \textbf{obiectele ce reprezintă stări} sunt folosite deseori Singleton-uri
+		\vspace{4mm}
+		\item \textbf{Singleton} este de preferat \textbf{variabilelor globale} deoarece:
+			\begin{itemize}
+				\item nu poluează \textbf{namespace-ul global} cu variabile nenecesare 
+				\item permite \textbf{iniţializarea întârziată} (lazy initialization) pentru a nu consuma inutil resursele sistemului
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Implementare singleton pattern}
+	\begin{itemize}
+		\item La baza pattern-ului Singleton stă o metodă ce permite crearea unei \textbf{noi instanţe a clasei} dacă aceasta nu există deja
+		\vspace{4mm}
+		\item Dacă instanţa există deja, atunci întoarce o \textbf{referinţă} către acel obiect
+		\vspace{4mm}
+		\item Pentru a asigura o singură instanţiere a clasei, \textbf{constructorul} trebuie făcut \textbf{private}
+		\vspace{4mm}
+		\item Diferenţa dintre o \textbf{clasă statică} şi un \textbf{Singleton} este aceea că Singleton-ul permite \textbf{instanţierea întârziată}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{singleton.h}
+	\footnotesize{\input{code/1singletonh}}
+\end{frame}
+
+\begin{frame}{singleton.cc}
+	\footnotesize{\input{code/1singleton}}
+\end{frame}
+
+\begin{frame}{main.cc}
+	\footnotesize{\input{code/1main}}
+\end{frame}
+
+
+\section{Visitor Pattern}
+
+\begin{frame}{Descriere visitor pattern}
+	\begin{itemize}
+		\item Oferă o modalitate de a separa un \textbf{algoritm} de \textbf{structura} pe care acesta operează
+		\vspace{4mm}
+		% avantajul constă în faptul că
+		\item Putem adăuga \textbf{noi posibilităţi de prelucrare} a structurii, fără să o modificăm
+		\vspace{4mm}
+		% extrapolând, folosing Visitor
+		\item Putem adăuga noi funcţii care realizează \textbf{prelucrări} asupra unei \textbf{familii de clase}, fără a modifica \textbf{structura claselor}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Utilizări visitor pattern}
+	\begin{itemize}
+		\item Prelucrarea unei \textbf{structuri complexe}, ce cuprinde mai multe obiecte, având \textbf{tipuri diferite}
+		\vspace{4mm}
+		\item Definirea de \textbf{operaţii distincte} pe aceeaşi structură
+		\vspace{4mm}
+		\item Previne \textbf{poluarea interfeţelor claselor} implicate cu detalii ce apaţin unor algoritmi diferiţi
+		\vspace{4mm}
+		\item \textbf{Centralizarea} aspectelor legate de \textbf{acelaşi algoritm}, în timp ce se \textbf{separă} detaliile ce ţin de \textbf{algoritmi diferiţi}
+		\vspace{4mm}
+		\item \textbf{Simplificare} claselor prelucrate şi a claselor care prelucrează
+			\begin{itemize}
+				\item orice date specifice algoritmului rezidă în clase care prelucrează
+			\end{itemize}
+		\vspace{4mm}
+		\item \textbf{Dublă flexibilitate}
+			\begin{itemize}
+				\item clase prelucrate - clase care prelucrează
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Implementare visitor pattern}
+	\begin{itemize}
+		\item O \textbf{interfaţă Visitor} - reprezintă un algoritm oarecare ce va putea vizita orice clasă
+			\begin{itemize}
+				\item definirea unei \textbf{metode visit()} pentru fiecare clasă ce va putea fi vizitată
+			\end{itemize}
+		\vspace{4mm}
+		\item O \textbf{interfaţă Visitable} - a cărei \textbf{metodă accept(Visitor)} permite rularea unui algoritm pe structura curenta
+		\vspace{4mm}
+		\item Implementări ale metodei accept(Visitor), în clasele care solicită vizitarea \textbf{instanţei curente} de către \textbf{vizitator}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{visitor.h}
+	\footnotesize{\input{code/2visitorh}}
+\end{frame}
+
+\begin{frame}{visitor.h (cont.)}
+	\footnotesize{\input{code/2visitorh2}}
+\end{frame}
+
+\begin{frame}{visitor.cc}
+	\footnotesize{\input{code/2visitor}}
+\end{frame}
+
+\begin{frame}{main.cc}
+	\footnotesize{\input{code/2main}}
+\end{frame}
+
+
+\section{Decorator Pattern}
+
+\begin{frame}{Descriere decorator pattern}
+	\begin{itemize}
+		\item Permite \textbf{extinderea} (decorarea) \textbf{funcţionalităţilor} unui obiect la rulare \textbf{independent} de alte instanţe ale aceleaşi clase
+		\vspace{4mm}
+		\item Decoratorul este o clasă care împachetează clasa originală, oferind noi funcţionalităţi
+		\vspace{4mm}
+		\item Mai mulţi \textbf{decoratori} pot fi \textbf{folosiţi unul peste altul}
+			\begin{itemize}
+				\item adaugă \textbf{funcţionalităţi noi}
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Utilizări decorator pattern}
+	\begin{itemize}
+		\item Atunci când sunt multe \textbf{moduri independente} de a extinde funcţionalitate unei clase
+		\vspace{4mm}
+		\item Atunci când este nevoie de \textbf{flexibilitate în proiectarea} funcţionalităţilor unei clase
+		\vspace{4mm}
+		\item În decorarea \textbf{ferestrelor}
+			\begin{itemize}
+				\item scrollbars (vertical, horizontal), butoane (minimize, maximize) etc.
+			\end{itemize}
+		\vspace{4mm}
+		\item În implementările librăriilor de \textbf{intrare/ieşire} (input/output - I/O)
+			\begin{itemize}
+				\item Java I/O Streams
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Implementare decorator pattern}
+	\begin{itemize}
+		\item Nivelul \textbf{clasei decorate} pe lanţul de moştenire este cel mult egal cu nivelul \textbf{decoratorului}
+		\vspace{4mm}
+		\item Clasa ce se doreşte a fi \textbf{decorată devine} un \textbf{câmp al clasei decorator}
+		\vspace{4mm}
+		\item \textbf{Constructorul decoratorului} primeşte ca \textbf{argument} un \textbf{obiect al clasei} pe care o decorează
+		\vspace{4mm}
+		\item În decorator se suprascriu toate metodele \textbf{clasei decorate} al căror comportament trebuie modificat
+		\vspace{4mm} permite \textbf{instanţierea întârziată}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{decorator.h}
+	\footnotesize{\input{code/3decoratorh}}
+\end{frame}
+
+\begin{frame}{decorator.cc}
+	\footnotesize{\input{code/3decorator}}
+\end{frame}
+
+\begin{frame}{main.cc}
+	\footnotesize{\input{code/3main}}
+\end{frame}
+
+\begin{frame}{Cuvinte cheie}
+	\begin{itemize}
+		\item design software
+		\item design pattern
+		\item reutilizabilitate
+		\item template
+		\item MVC
+		\item creational, structural, behavioral patterns
+		\item delegare, agregare, consultare
+		\item Singleton, Visitor, Decorator
+		\item Factory, Observer, Command
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Referinţe}
+	\begin{itemize}
+		\item \textbf{Design Patterns} - Gang Of Four: Gamma, Helm, Johnson, Vlissides
+		\vspace{4mm}
+		\item \textbf{Thinking in C++}, 2nd edition, volume 2 - Bruce Eckel
+		\vspace{4mm}
+		\item \textbf{The Design Patterns Java Companion} - James W. Cooper
+		\vspace{4mm}
+		\item \textbf{Code Complete}, 2nd edition - Steve McConnell
+		\vspace{4mm}
+		\item \textbf{Summary:} \url{http://en.wikipedia.org/wiki/Design_pattern_(computer_science)}
+		\vspace{4mm}
+		\item \textbf{1-page C++ and Java Examples:} \url{http://www.vincehuston.org/dp/}
+	\end{itemize}
+\end{frame}
+
+\end{document}
