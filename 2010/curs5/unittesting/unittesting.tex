@@ -27,11 +27,11 @@
 \maketitle
 
 \begin{frame}{Before we begin}
-  \begin{block}{$>$ echo "Test" | grep T}
+  \begin{block}{$>$ echo "Test" $|$ grep T}
     Test\\
     (linux.c, 36): Cannot wait for child: No child processes
   \end{block}
-  \begin{block}{$>$ echo "Test" | grep T}
+  \begin{block}{$>$ echo "Test" $|$ grep T}
     Test\\
     $>$ exit
   \end{block}
@@ -138,7 +138,7 @@
 \begin{frame}{Test Driven Development (TDD)}
   \begin{itemize}[<+->]
     \item scriem testele întâi
-    \item de fiecare dată când modificăm codul verificăm să nu scadă numărul
+    \item de fiecare dată când modificăm codul verificăm să nu crească numărul
     testelor picate (și care sunt ele)
     \item pică un test trecut anterior = am modificat ceva ce nu trebuia
     modificat (\textbf{don't commit})
