@@ -1,0 +1,260 @@
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{highlight/highlight}	 % highlight
+\usepackage{hyperref}        % folositi \url{http://...}
+                             % sau \href{http://...}{Nume Link}
+\mode<presentation>
+{\usetheme{CDL}}
+
+\title[Coding Style]{Coding Style}
+\subtitle{CDL - Cursul 2}
+\institute{ROSEdu}
+\author{Andrei Soare \\ {\footnotesize andrei.soare@rosedu.org}}
+
+\begin{document}
+\setbeamertemplate{frametitle continuation}[from second]
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+
+\section{Introducere}
+
+  \frame{\tableofcontents[currentsection]}
+
+  \begin{frame}{Definitie}
+  Set de reguli folosite cand scrieti codul sursa al unui program.
+  \end{frame}
+ 
+  \begin{frame}{De ce avem nevoie de Coding Style ?}
+  Pentru ca:\\
+  \vspace{0.8cm}
+  \begin{itemize}
+  \setlength{\itemsep}{0.3cm}
+  \pause \item Vrem sa intelegem si peste o luna codul propriu
+  \item Vrem sa poata contribui si altcineva la proiectul nostru
+  \item Vrem sa putem modifica rapid codul:\begin{itemize} \item debug \item adaugare functionalitati \end{itemize}
+  \item Aproape niciodata o sursa nu este mentinuta toata durata vietii de autorul ei
+  \item Majoritatea timpului petrecut pe un proiect consta in intretinerea codului
+  \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Practice}
+  \input{highlight/bugs}
+  \begin{itemize}
+  \item Ce ar trebui sa faca ?
+  \item Ce buguri are ?
+  \end{itemize}
+  \end{frame}
+
+  \begin{frame}{Practice - Solution}
+  \input{highlight/bugs_nice}
+  \end{frame}
+
+  \begin{frame}{Concluzii. Ce presupune Coding Style ?}
+  \begin{itemize}
+  \setlength{\itemsep}{0.3cm}
+  \item Indentarea codului
+  \item Folosirea de spatii
+  \item Latimea codului
+  \item Numele variabilelor / functiilor
+  \item Comentarii sugestive ({\ttfamily `Ce ?'}, nu {\ttfamily `Cum ?'})
+  \item Functii de marime rezonabila
+  \item Functia trebuie sa faca un singur lucru si numai unul
+  \item Organizarea codului (headere, module, functii, structuri)
+  \end{itemize}
+  \end{frame}
+
+  \begin{frame}[allowframebreaks]
+  \frametitle{Functia trebuie sa faca un singur lucru si numai unul}
+  \input{highlight/functii} \\
+  \framebreak
+  Functie care face suma numerelor prime dintr-un vector.
+  \end{frame}
+
+\section{Exemple de stiluri}
+
+  \frame{\tableofcontents[currentsection]}
+
+  \begin{frame}[allowframebreaks]
+  \frametitle{K\&R Coding Style}
+  Nume de functii/variabile:\vspace{0.5cm}
+  \begin{itemize}
+  \setlength{\itemsep}{0.3cm}
+  \item Lungimea numelui direct proportionala cu scope-ul si cu importanta
+  \item locale: scurte si la obiect\\tmp, nu TemporaryVariable
+  \item globale: explicative\\count\_active\_users(), nu cntusr()
+  \item macrouri: LITERE\_MARI
+  \end{itemize}
+  \framebreak
+  Indentare si spatiere:\vspace{0.5cm}
+  \begin{itemize}
+  \setlength{\itemsep}{0.3cm}
+  \item TAB, nu spatii
+  \item TAB de 8 spatii
+  \item Latimea unei surse: maxim 80 de caractere
+  \end{itemize}
+  \framebreak
+  Acolade:\\ \vspace{0.5cm} \input{highlight/kr1} \\ \framebreak \input{highlight/kr3} \\
+  \framebreak
+  Comentarii:\\\vspace{0.5cm}
+  \begin{itemize}
+  \setlength{\itemsep}{0.3cm}
+  \item {\ttfamily /*  ...  */}, nu {\ttfamily //  ...}
+  \item CE?, nu CUM?
+  \item Nu se pun in interiorul functiilor, ci la inceputul lor\\\vspace{0.2cm}
+  \end{itemize}
+  \input{highlight/kr2}
+  \end{frame}
+
+  \begin{frame}[allowframebreaks]
+  \frametitle{GNU Coding Style}
+  \input{highlight/gnu} \\ {\footnotesize  (sursa:wikipedia)}
+  \end{frame}
+
+  \begin{frame}{Java Coding Style}
+  \input{highlight/j1}
+  \end{frame}
+
+  \begin{frame}{Mic sfat}
+  \begin{itemize}
+  \item Asa nu:\\
+  \vspace{0.4cm}
+  \input{highlight/sfat1}
+  \item Asa da:\\
+  \vspace{0.4cm}
+  \input{highlight/sfat2}
+  \end{itemize}
+  \end{frame}
+
+
+\section{Organizarea Proiectelor in C/C++}
+  
+  \frame{\tableofcontents[currentsection]}
+
+  \begin{frame}[allowframebreaks]  
+  \frametitle{Ce mai inseamna coding style ?}
+  \begin{itemize}
+  \setlength{\itemsep}{0.5cm}
+  \item Codul prea mare $\Rightarrow$ nu incape intr-o sursa
+  \item Impartirea codului in module (fisiere .c) cu functionalitate bine definita
+  \item Lungimea unei functii: invers proportionala cu complexitatea\\De obicei, maxim un ecran
+  \framebreak
+  \item Fisierele header (.h): declaratii publice de variabile, functii si macro-uri
+  \item Fisierele sursa (.c): codul executabil (implementarea functiilor din header)
+  \vspace{1cm}
+  \item {\ttfamily static}
+  \item {\ttfamily extern}
+  \framebreak
+  \item Fiecare header trebuie sa aiba o protectie:\\\input{highlight/header}
+  \framebreak
+  \item Atentie! Un proiect contine o singura functie {\ttfamily main()}\begin{itemize} \item Compilatorul produce fisiere obiect din fiecare sursa, care sunt unite de catre "linker" intr-un singur fisier output (executabil / biblioteca)\end{itemize}
+  \end{itemize}
+  \end{frame}
+
+\section{Documentatie. Doxygen}
+
+  \frame{\tableofcontents[currentsection]}
+
+  \begin{frame}[allowframebreaks]
+  \frametitle{Documentatie}
+  \begin{itemize}
+  \item Documentatia si codul unui proiect sunt la fel de importante
+  \item De multe ori, este neglijata :( \\ $\rightarrow$ motiv comun pentru esecul proiectelor Open Source \\ \vspace{1.5cm}
+  \item Vrem sa atragem contribuitori
+  \item Vrem sa le fie usor sa se adapteze la codul proiectului
+  \end{itemize}
+  \framebreak
+  Ce trebuie sa cuprinda documentatia ?\\
+  \begin{itemize}
+  \item Ce face ?
+  \item Cum functioneaza?
+  \item De ce a fost scris asa ?
+  \item Ce face fiecare parte ?
+  \item Unde gasesc fiecare parte ?
+  \item Cine l-a scris ?
+  \item Cand a fost scris ?
+  \end{itemize}
+  \vspace{0.5cm}
+  Tool-uri care genereaza pagini de documentatie din comentariile surselor:\\
+  \begin{itemize}
+  \item Doxygen
+  \item Javadoc
+  \end{itemize}
+  \end{frame}
+
+  \begin{frame}[allowframebreaks]
+  \frametitle{Doxygen}
+  \begin{itemize}
+  \item Extrage comentariile functiilor, claselor, structurilor de date din codul sursa si in formateaza in:\\ \begin{itemize} \item HTML \item CHM \item RTF \item PDF \item LaTeX \item manpages \end{itemize}
+  \item Este necesar un anumit format al comentariilor in surse
+  \end{itemize}
+  \framebreak
+  Exemplu comentarii:\\ \input{highlight/dox}
+  \\ Cum folosim doxygen ? \\
+  \begin{itemize}
+  \item {\ttfamily doxygen -g <config\_file>}
+  \item edit config\_file
+  \item {\ttfamily doxygen <config\_file>} 
+  \end{itemize}
+  \framebreak
+  Cum documentam sursele in format doxygen ? \\ 
+  \vspace{0.5cm} 
+  \input{highlight/dox2} \\
+  \framebreak
+  \input{highlight/dox3}
+  \end{frame}
+
+  \begin{frame}{Indent}
+  Program care indenteaza automat o sursa C conform unui coding style specificat.
+  \end{frame}
+
+  \begin{frame}{Practice}
+  \begin{itemize}
+  \setlength{\itemsep}{0.5cm}
+  \item Descarcati proiectul polish
+  \item Rearanjati-l conform unui coding style bine definit ( folositi indent )
+  \item Comentati-l in format specific Doxygen si creati \_doar\_ documentatie in format html. [hint: cautati prin fisierul de configurare]
+  \item Use Vim !
+  \end{itemize}
+  \end{frame}
+
+\section{Concluzie}
+  
+  \frame{\tableofcontents[currentsection]}
+  
+  \begin{frame}{Concluzie:}
+  Ce coding style folosim ?
+  \begin{itemize}
+  \item 1. Unul popular care exista deja ( K\&R, GNU, ... )
+  \item 2. Unul popular, putin modificat dupa placul nostru
+  \item 3. Stilul propriu
+  \item 4. Niciunul $\Rightarrow$ FAIL!
+  \vspace{0.9cm}
+  \pause \item ``e mai bine prost dar consecvent prost decat bine dar in 20 de moduri''\\ \begin{flushright}-- Razvan Deaconescu \end{flushright}
+  \end{itemize}
+  \end{frame}
+
+\section{Link-uri Utile}
+
+  \frame{\tableofcontents[currentsection]}
+
+  \begin{frame}{Link-uri utile}
+  \begin{itemize}
+  \setlength{\itemsep}{0.5cm}
+  \item \href{http://www.cs.su.oz.au/\~scilect/tpop/handouts/Style.htm}{K\&R Coding Style}
+  \item \href{http://lxr.linux.no/linux/Documentation/CodingStyle}{Linux Coding Style}
+  \item \href{http://www.gnu.org/prep/standards/standards.html}{GNU Coding Style}
+  \item \href{http://java.sun.com/docs/codeconv/}{Java Coding Style}
+  \item \href{http://www.cs.cf.ac.uk/Dave/C/node35.html}{Project Management in C}
+  \item \href{http://www.stack.nl/\~dimitri/doxygen/}{Doxygen}
+  \end{itemize}
+  \end{frame}
+
+\end{document}

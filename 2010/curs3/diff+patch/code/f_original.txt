@@ -1,0 +1,7 @@
+Prima linie comună.
+A doua linie diferă.
+A treia tot.
+A patra nu.
+A cincia identică.
+A șasea lipsește.
+Ultima e comună.

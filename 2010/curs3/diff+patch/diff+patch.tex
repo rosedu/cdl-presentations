@@ -1,0 +1,261 @@
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{code/highlight}	 % highlight
+\usepackage{hyperref}        % folositi \url{http://...}
+% sau \href{http://...}{Nume Link}
+\mode<presentation>
+\usetheme{CDL}
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[Diff si Patch]{Diff + Patch}
+\subtitle{CDL - Cursul 3}
+\institute{ROSEdu}
+\author{Lucian Adrian Grijincu \\ \texttt{lucian.grijincu@rosedu.org}}
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{Diff}
+
+% Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
+\frame{\tableofcontents[currentsection]}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{\textbf{diff} – Ce face?}
+\begin{itemize} % Just like normal LaTeX
+  \item calculează diferențele dintre două fișiere
+  \item afișează diferențele într-un mod standard
+    \begin{itemize}
+    \item mai precis trei moduri standard
+    \end{itemize}
+  \item compară \texttt{linie cu linie} (util pentru comparat cod sursă)
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{\textbf{diff} – Fișiere de exemplificare}
+  \begin{columns}[t]
+    \column{5cm}
+    {\LARGE{f-original}}\\
+    {\tt{\small \input{code/f_original}}}
+    \column{5cm}
+    {\LARGE{f-modificat}}\\
+    {\tt \small \input{code/f_modificat}}
+  \end{columns}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+  \frametitle{\textbf{diff} (fără parametri) – Modul normal}
+  \begin{columns}
+
+    \begin{column}{7cm}
+      \tt \input{code/diff_no_params}
+    \end{column}
+
+    \begin{column}{10cm}
+      \begin{itemize}
+      \item start,stop\textbf{codOp}start,stop
+        \begin{itemize}
+        \item \textbf{\texttt{d}} - linii șterse
+        \item \textbf{\texttt{c}} - linii modificate
+        \item \textbf{\texttt{a}} - linii adăugate
+        \end{itemize}
+      \item ``\texttt{\textless}''  linii din fiș. original
+      \item ``\texttt{\textgreater}'' linii din fiș. modificat
+      \end{itemize}
+    \end{column}
+
+  \end{columns}
+\end{frame}
+
+
+
+
+\begin{frame}
+  \frametitle{\textbf{diff -c} – Context copiat}
+  \begin{columns}
+
+    \begin{column}{6cm}
+      \footnotesize \tt \input{code/diff_c}
+    \end{column}
+
+    \begin{column}{10cm}
+      \begin{itemize}
+      \item \texttt{\texttt{***}} – nume fișier original
+      \item \texttt{\texttt{---}} – nume fișier modificat
+      \item o serie de blocuri:
+        \begin{itemize}
+        \item \texttt{***} startOrig, stopOrig \texttt{***}
+        \item \texttt{---} startModif, stopModif \texttt{---}
+        \item „\texttt{ }” – linii \textit{nemodificate} (context)
+        \item „\texttt{!}” – linii \textit{modificate}
+        \item „\texttt{-}” – linii \textit{șterse}
+        \item „\texttt{+}” – linii \textit{adăugate}
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+
+  \end{columns}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{\textbf{diff -u} – Context unificat}
+  \begin{columns}
+
+    \begin{column}{6cm}
+      %      \footnotesize \tt \input{code/diff_u}
+      \tt{\input{code/diff_u}}
+    \end{column}
+
+    \begin{column}{10cm}
+      \begin{itemize}
+      \item \texttt{\texttt{---}} – nume fișier original
+      \item \texttt{\texttt{+++}} – nume fișier modificat
+      \item o serie de blocuri:
+        \begin{itemize}
+          \item \footnotesize \texttt{-}start,stopOrig \texttt{+} start,stopModif
+        \item „\texttt{ }” – linii \textit{nemodificate} (context)
+        \item „\texttt{-}” – linii dispărute din original
+        \item „\texttt{+}” – linii apărute în modificat
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+
+  \end{columns}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{\textbf Formate afișare \textit{diff}}
+  \begin{itemize}
+  \item \textbf{normal}
+    \begin{itemize}
+    \item varianta standard (suport pe o arie largă de mașini)
+    \item nu are nici un fel de context
+    \item greu de urmărit ce s-a modificat
+    \end{itemize}
+
+  \item \textbf{context copiat}
+    \begin{itemize}
+    \item din cauza contextului copiat modificările sunt distanțate
+    \item greu de urmărit ce s-a modificat
+    \end{itemize}
+
+  \item \textbf{context unificat}
+    \begin{itemize}
+    \item \alert{cea mai folosită variantă în lumea open-source}
+    \item modificările sunt apropiate și înconjurate de context
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+
+\section{Patch}
+\frame{\tableofcontents[currentsection]}
+
+
+\begin{frame}
+  \frametitle{\textit{diff \& patch} – model de lucru}
+  \begin{itemize}[<+->]
+  \item modific niște fișiere
+    \begin{itemize}
+      \item \textit{vim, emacs, etc.}
+    \end{itemize}
+  \item sumarizez modificările
+    \begin{itemize}
+    \item \scriptsize{\texttt{diff f\_original.txt f\_modificat.txt \textgreater diferențe.patch}}
+    \end{itemize}
+  \item trimit fișierul cu modificările la responsabilul de proiect
+    \begin{itemize}
+    \item email, http, etc.
+    \end{itemize}
+  \item responsabilul analizează .patch-ul și aplică modificările
+    \begin{itemize}
+    \item \scriptsize{\texttt{patch f\_original.txt -i diferențe.patch -o f\_actualizat.txt}}
+    \end{itemize}
+
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{\textit{patch}}
+  \begin{itemize}[<+->]
+
+  \item \textit{patch} poate deduce numele fișierelor de actualizat din fișierul cu diferențe
+    \begin{itemize}
+    \item folosește informațiile din antet \\
+      \texttt{---} f\_orginal.txt \texttt{---} \\
+      \texttt{+++} f\_modificat.txt \texttt{+++}
+    \end{itemize}
+
+  \item \textbf{ATENȚIE: } dacă \textit{patch} nu e invocat din același loc ca și diff, numele fișierelor nu vor fi identice
+    \begin{itemize}
+    \item Soluție: instructăm \textit{patch} să ignore o parte a căii
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{\textit{patch -pNUM \textless diferențe.patch}}
+  \begin{itemize}[<+->]
+  \item avem următoarele fișiere:                        \\
+    \texttt{/home/cdl/proiect/fișier.txt} - original     \\
+    \texttt{/home/lucian/proiect/fișier.txt} - modificat \\
+  \item fișierul .patch conține calea \\
+    \texttt{/home/lucian/proiect/fișier.txt}
+  \item invocăm \textit{patch} din \\
+    \texttt{/home/cdl/}
+  \item \texttt{patch -p0} ––– \texttt{/home/lucian/proiect/fișier.txt}
+  \item \texttt{patch -p1} ––– \texttt{home/lucian/proiect/fișier.txt}
+  \item \texttt{patch -p2} ––– \texttt{lucian/proiect/fișier.txt}
+  \item \texttt{patch -p3} ––– \texttt{proiect/fișier.txt}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{\textit{patch} invers}
+  \begin{itemize}[<+->]
+  \item Problemă: am aplicat un patch și vrem să revenim la starea inițială
+  \item Soluție: \textit{reverse patching}
+    \begin{itemize}
+    \item se folosește același fișier de intrare
+    \item \textit{patch} inversează rolurile lui \texttt{+++}, \texttt{---} și \texttt{***}
+    \item \texttt{patch -pNUM \textbf{-R} \textless diferențe.patch}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\section{Exercițiu}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}
+  \begin{itemize}
+  \item textul exercițiului și un schelet de cod găsiți în repo-ul \texttt{git} al \texttt{CDL}-ului
+  \item \texttt{git clone http://git.rosedu.org/cdl.git}
+  \item \texttt{cd cdl/curs3/diff+patch}
+  \end{itemize}
+\end{frame}
+
+\end{document}

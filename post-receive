@@ -1,45 +1,40 @@
 #!/bin/bash
 #
-# This script is run after receive-pack has accepted a pack and the
-# repository has been updated.  It is passed arguments in through stdin
-# in the form
-#  <oldrev> <newrev> <refname>
-# For example:
-#  aa453216d1b3e49e7f6f98441fa56946ddcd6a20 68f7abf4e6f922807889f52bc043ecd31b79f814 refs/heads/master
-
-# AVETI GRIJA CE MODIFICATI !
-# Dupa ce se face push, acest script se executa automat pe server
-echo Hook working `date` >> /home/git/hook.log
-
-clone='/home/git/cdl-cloned'
-where='/var/www/cdl.rosedu.org/store/pdf'
+# An example hook script that is called after a successful
+# commit is made.
+#
+# To enable this hook, make this file executable.
 
 msg()
 {
     echo "[post-receive]  $@"
 }
 
-msg Se executa $0
-cd $clone
-GIT_DIR=.git
+log_dir=/home/git/hooks.log
+clone_dir=/home/git/cdl-clone
+pdf_dir=/home/cdl/www/2010/store/pdf/
+repo_url=git@git.rosedu.org:cdl.git
+
+echo "Hook cdl "`date` >> $log_dir
+#rm $clone_dir -fr
+
+#git clone $repo_url $clone_dir
+cd $clone_dir
+
 git pull &> /dev/null && git reset --hard > /dev/null && msg Updated cloned repository
-for i in $(ls | grep 'curs[1-9]'); do
-    cd $i
-    for j in *; do
-        cd $j
-        if (ls | grep Makefile > /dev/null); then
-	    #make -q returns 1 if the target is not up-to-date
-            `make -q`
-	    if [ $? -eq 1 ]; then
-		# file are *not* up-to-date -> run make to update
-		make &> /dev/null
-		PDF_FILES=`ls *.pdf`
-		for pdf in $PDF_FILES; do
-		    cp $pdf "$where"/"$i"_"$pdf" && msg Updated PDF "$where"/"$i"_"$pdf"
-		done
-	    fi
-        fi
-        cd ..
-    done
-    cd ..
+
+cd $clone_dir 
+
+for i in `find 2010 -name '*.tex'`;
+do
+	cd $clone_dir/`dirname $i`
+	make &> /dev/null
 done
+
+cd $clone_dir
+for i in `find 2010 -name '*.pdf'`;
+do
+	curs=`echo $i | cut -d/ -f 2`
+	cp $i $pdf_dir/$curs"_"`basename $i`
+done
+
