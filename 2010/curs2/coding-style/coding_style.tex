@@ -4,8 +4,8 @@
 \usepackage[romanian]{babel}
 \usepackage{color}			 % highlight
 \usepackage{alltt}			 % highlight
-\usepackage{highlight/highlight}	 % highlight
 \usepackage{hyperref}        % folositi \url{http://...}
+\usepackage{code/highlight}
                              % sau \href{http://...}{Nume Link}
 \mode<presentation>
 {\usetheme{CDL}}
@@ -46,7 +46,7 @@
   \end{frame}
 
   \begin{frame}{Practice}
-  \input{highlight/bugs}
+  \input{code/bugs}
   \begin{itemize}
   \item Ce ar trebui sa faca ?
   \item Ce buguri are ?
@@ -54,7 +54,7 @@
   \end{frame}
 
   \begin{frame}{Practice - Solution}
-  \input{highlight/bugs_nice}
+  \input{code/bugs_nice}
   \end{frame}
 
   \begin{frame}{Concluzii. Ce presupune Coding Style ?}
@@ -73,7 +73,7 @@
 
   \begin{frame}[allowframebreaks]
   \frametitle{Functia trebuie sa faca un singur lucru si numai unul}
-  \input{highlight/functii} \\
+  \input{code/functii} \\
   \framebreak
   Functie care face suma numerelor prime dintr-un vector.
   \end{frame}
@@ -101,7 +101,7 @@
   \item Latimea unei surse: maxim 80 de caractere
   \end{itemize}
   \framebreak
-  Acolade:\\ \vspace{0.5cm} \input{highlight/kr1} \\ \framebreak \input{highlight/kr3} \\
+  Acolade:\\ \vspace{0.5cm} \input{code/kr1} \\ \framebreak \input{code/kr3} \\
   \framebreak
   Comentarii:\\\vspace{0.5cm}
   \begin{itemize}
@@ -110,26 +110,26 @@
   \item CE?, nu CUM?
   \item Nu se pun in interiorul functiilor, ci la inceputul lor\\\vspace{0.2cm}
   \end{itemize}
-  \input{highlight/kr2}
+  \input{code/kr2}
   \end{frame}
 
   \begin{frame}[allowframebreaks]
   \frametitle{GNU Coding Style}
-  \input{highlight/gnu} \\ {\footnotesize  (sursa:wikipedia)}
+  \input{code/gnu} \\ {\footnotesize  (sursa:wikipedia)}
   \end{frame}
 
   \begin{frame}{Java Coding Style}
-  \input{highlight/j1}
+  \input{code/j1}
   \end{frame}
 
   \begin{frame}{Mic sfat}
   \begin{itemize}
   \item Asa nu:\\
   \vspace{0.4cm}
-  \input{highlight/sfat1}
+  \input{code/sfat1}
   \item Asa da:\\
   \vspace{0.4cm}
-  \input{highlight/sfat2}
+  \input{code/sfat2}
   \end{itemize}
   \end{frame}
 
@@ -152,7 +152,7 @@
   \item {\ttfamily static}
   \item {\ttfamily extern}
   \framebreak
-  \item Fiecare header trebuie sa aiba o protectie:\\\input{highlight/header}
+  \item Fiecare header trebuie sa aiba o protectie:\\\input{code/header}
   \framebreak
   \item Atentie! Un proiect contine o singura functie {\ttfamily main()}\begin{itemize} \item Compilatorul produce fisiere obiect din fiecare sursa, care sunt unite de catre "linker" intr-un singur fisier output (executabil / biblioteca)\end{itemize}
   \end{itemize}
@@ -196,7 +196,7 @@
   \item Este necesar un anumit format al comentariilor in surse
   \end{itemize}
   \framebreak
-  Exemplu comentarii:\\ \input{highlight/dox}
+  Exemplu comentarii:\\ \input{code/dox}
   \\ Cum folosim doxygen ? \\
   \begin{itemize}
   \item {\ttfamily doxygen -g <config\_file>}
@@ -206,9 +206,9 @@
   \framebreak
   Cum documentam sursele in format doxygen ? \\ 
   \vspace{0.5cm} 
-  \input{highlight/dox2} \\
+  \input{code/dox2} \\
   \framebreak
-  \input{highlight/dox3}
+  \input{code/dox3}
   \end{frame}
 
   \begin{frame}{Indent}

@@ -2,10 +2,9 @@ BASENAME = coding_style
 PDF = $(addsuffix .pdf, $(BASENAME))
 TEX = $(addsuffix .tex, $(BASENAME))
 PDFLATEX = pdflatex
-EXTRA_EXTENSIONS = .pdf .aux .log .nav .out .snm .toc
-CLEAN_FILES = $(addprefix $(BASENAME), $(EXTRA_EXTENSIONS))
+OUT_DIR = texfiles
 STY_DIR = ../../../template/
-HIGHLIGHT_DIR = highlight
+HIGHLIGHT_DIR = code
 
 .PHONY: clean all
 
@@ -13,9 +12,13 @@ all: $(PDF)
 
 $(PDF): $(TEX) $(HIGHLIGHT_DIR)/Makefile
 	cd $(HIGHLIGHT_DIR) && make
-	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) $<
-	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) $<	# Twice, so TOC is also updated
+	test -d $(OUT_DIR) || mkdir $(OUT_DIR)
+	# Twice, so TOC is also updated
+	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) -output-directory $(OUT_DIR) $<
+	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) -output-directory $(OUT_DIR) $<
+	mv $(OUT_DIR)/$(PDF) .
 
 clean:
+	rm -rf $(OUT_DIR) *~
+	rm -f $(PDF)
 	cd $(HIGHLIGHT_DIR) && make clean
-	rm -f $(CLEAN_FILES) *~
