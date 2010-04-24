@@ -1,0 +1,215 @@
+% vim: set tw=78 aw sw=2 sts=2 noet:
+\documentclass{beamer}
+
+%\includeonlyframes{c} % speeding up compilation speed during debug
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{hyperref}        % folositi \url{http://...}
+\mode<presentation>
+\usetheme{CDL}
+
+\title[]{UML}
+\subtitle{CDL - Cursul 7}
+\institute[]{ROSEdu}
+\author[]{Mihai Maruseac \\ \texttt{mihai.maruseac@rosedu.org}}
+
+\setbeamertemplate{frametitle continuation}[from second]
+\setbeamertemplate{footline}[frame number]
+
+\pgfdeclareimage[height=6cm]{m1}{img/1}
+\pgfdeclareimage[height=7cm,width=11cm]{m2}{img/2}
+\pgfdeclareimage[height=5cm, width=8cm]{m3}{img/3}
+\pgfdeclareimage[height=5cm]{m4}{img/4}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Studiu de caz}
+  \begin{itemize}[<+->]
+    \item Cum dezvoltăm proiecte?
+    \begin{itemize}[<+->]
+      \item Cod, cod, cod, cod, gata
+      \item Cod, cod, cod, documentație, gata
+      \item cod, comentarii, cod, comentarii, documentație, gata
+    \end{itemize}
+    \item ``Voi când mai gândiți?''
+    \item Unde proiectăm aplicația?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Modelarea Proiectelor Software}
+  \begin{description}[<+->]
+    \item[Modelarea:] parte esențială în orice proiect
+    \item[Model:] reprezentare abstractă a sistemului
+  \end{description}
+  \onslide<3->De ce folosim modele?
+  \begin{description}[<+->]
+    \item[Înainte] verificăm dacă toate cerințele sunt acoperite
+    \item[Înainte] verificăm dacă toate funcțiile sunt complete
+    \item[Înainte] verificăm dacă arhitectura este robustă
+    \item[După] Verificare și validare
+  \end{description}
+\end{frame}
+
+\section{UML}
+
+\begin{frame}{UML}
+  \begin{itemize}[<+->]
+    \item Unified Modelling Language (not User Mode Linux)
+    \item Limbaj modelare, independent de procesul de dezvoltare folosit
+  \end{itemize}
+  \onslide<3->\begin{description}
+    \item[1996] Prima versiune
+    \item[1997] UML 1.0, UML 1.1
+    \item[1998] UML 1.2
+    \item[1999] UML 1.3
+    \item[2002] UML 1.4
+    \item[2004] UML 2.0
+  \end{description}
+\end{frame}
+
+\begin{frame}{UML (OpenSource) tools}
+  Situație ``nasoală''
+  \begin{description}[<+->]
+    \item[BoUML] 28.03.2010, prea buggy pentru a putea fi folosit
+    \item[Astade] 11.03.2010, Tigris, wxWidgets
+      \begin{itemize}
+	\item generator de cod penru C, C++
+	\item interfațare wxGlade, Doxygen, GIT, SVN
+	\item nu se află în repo; multe deb-uri de instalat manual
+	\item hint-uri de instalare (custom package source)
+	\item interfață neintuitivă
+      \end{itemize}
+    \item[Umbrello] KDE Based, 2006, UML2
+    \item[ArgoUML] 1998, nu suportă UML2
+  \end{description}
+  \only<12->{Scrie cineva ceva bun?}
+\end{frame}
+
+\section{Use cases}
+\begin{frame}{Use case}
+  \begin{itemize}[<+->]
+    \item<.-> interacțiune \textit{Sistem} $\leftrightarrow$ \textit{Utilizator}
+    \item<.-> interacțiune \textit{Sistem} $\leftrightarrow$ \textit{Componentă
+    externă}
+    \item \begin{exampleblock}{Actor}
+      Rol pe care-l joacă o entitate externă (utilizatori,
+      echipamente, alte sisteme, etc) în raport cu sistemul
+    \end{exampleblock}
+    \item \begin{exampleblock}{Scenariu}
+      Secvență de pași ce descrie o interacțiune între un actor și sistem.
+    \end{exampleblock}
+    \item \begin{exampleblock}{Caz de utilizare (use case)}
+      Abstractizare dialog actor $\leftrightarrow$ sistem, descrie
+      interacțiunile fără a intra în detalii.
+    \end{exampleblock}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Demo 1}
+  \begin{exampleblock}{Cerință}
+    Descrieți un sistem de gestiune electronică a cărților din mai multe
+    biblioteci
+  \end{exampleblock}
+  \begin{exampleblock}{Specificații}
+    \begin{itemize}
+      \item 2 categorii de utilizatori: bibliotecari și abonați
+      \item bibliotecarii înregistrează abonații
+      \item bibliotecarii înregistrează cărți noi
+      \item bibliotecarii elimină cărți din evidență
+      \item abonații cer informații despre cărți
+      \item abonații împrumută cărți
+      \item sistemul de gestiune va folosi o interfață Web2.0
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{Soluție 1}
+  \pgfuseimage{m1}\\
+  Ce lipsește?
+\end{frame}
+
+\begin{frame}{Descrierea cazurilor de utilizare}
+  \begin{itemize}[<+->]
+    \item Diagrama anterioară nu oferă prea multe detalii
+    \item Scenariile se vor descrie separat, într-un document
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Utilitate cazuri de utilizare}
+  \begin{itemize}[<+->]
+    \item determinarea contextului sistemului
+    \item desprinderea cerințelor
+    \item documentarea cerințelor
+    \item proiectarea interfeței cu utilizatorii
+    \item validarea arhitecturii
+    \item testare
+  \end{itemize}
+\end{frame}
+
+\section{Diagrame de interacțiune}
+
+\begin{frame}{Diagrame de interacțiune}
+  \begin{itemize}[<+->]
+    \item Componentele proiectului nu sunt statice
+    \item Evoluție în timp $\rightarrow$ diagrame de secvență
+    \item Interacțiuni $\rightarrow$ diagrame de colaborare
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Demo:Împrumutarea unei cărți}
+\pgfuseimage{m2}
+\end{frame}
+
+\begin{frame}{Folosire}
+  \begin{itemize}[<+->]
+    \item definire cerințe
+    \item proiectare
+    \item înțelegere interacțiuni
+  \end{itemize}
+\end{frame}
+
+\section{Clase și diagrame de clase}
+
+\begin{frame}{Clasa}
+  Grup de obiecte:
+  \begin{itemize}[<+->]
+    \item proprietăți similare (atribute)
+    \item comportament comun (operații)
+    \item relații comune cu alte obiecte
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[label=c]{O clasă}
+\pgfuseimage{m3}
+\end{frame}
+
+\begin{frame}[label=c]{Relații între clase}
+\pgfuseimage{m4}
+\end{frame}
+
+\begin{frame}{Exercițiu}
+  \begin{exampleblock}{Cerință}
+    Se cere să programați un ATM. Proiectați diagrama de clase, o diagramă a
+    cazurilor de utilizare și o singură diagramă de interacțiune.
+  \end{exampleblock}
+\end{frame}
+
+\section {Concluzii}
+
+\begin{frame}{Concluzii}
+  \begin{itemize}[<+->]
+    \item UML este un instrument puternic pentru documentarea proiectului și
+    designul acestuia
+    \item Este un limbaj ușor de înțeles
+    \item Ajută în discuțiile cu clientul
+    \item Din păcate nu există un utilitar bun open-source (de ce?)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Întrebări?}
+\end{frame}
+
+\end{document}
