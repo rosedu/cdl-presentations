@@ -1,7 +1,10 @@
-TEXFILES = model.tex view.tex template.tex
-HIGHLIGHT_OPTS = -L -f -t 8 -c highlight.sty
+TEXFILES = template.tex model.tex view.tex 
+HIGHLIGHT_OPTS = -L -l -f -t 4 -c highlight.sty
 
 all: $(TEXFILES)
+
+template.tex: template.html
+	highlight $(HIGHLIGHT_OPTS) -i $< -o $@ --syntax html
 
 model.tex: model.py
 	highlight $(HIGHLIGHT_OPTS) -i $< -o $@
@@ -9,10 +12,6 @@ model.tex: model.py
 view.tex: view.py
 	highlight $(HIGHLIGHT_OPTS) -i $< -o $@
 
-template.tex: template.html
-	highlight $(HIGHLIGHT_OPTS) -i $< -o $@
-
 .PHONY: clean
 clean:
 	rm -f $(TEXFILES) highlight.sty
-
