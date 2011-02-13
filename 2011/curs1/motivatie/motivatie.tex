@@ -1,0 +1,31 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{hyperref}        % folositi \url{http://...}
+% sau \href{http://...}{Nume Link}
+\mode<presentation>
+\usetheme{CDL}
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title{Despre CDL. Obiective. Motivație}
+\subtitle{CDL - Cursul 1}
+\institute[ROSEdu]{ROSEdu}
+\author[Victor]{Victor Cărbune \and Laura Vasilescu \\ {\small victor@rosedu.org \and laura@rosedu.org }}
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+\end{document}
