@@ -1,0 +1,164 @@
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[romanian]{babel}
+\usepackage{color}
+\usepackage{alltt}
+\usepackage{hyperref}
+\usepackage{code/highlight}
+\mode<presentation>
+\usetheme{CDL}
+
+\title[Object Oriented Programming]{Object Oriented Programming}
+\subtitle{CDL - cursul 2}
+\institute{ROSEdu}
+\author{Adrian Scoică\\\,\,{adrian.sc@rosedu.org}}
+
+\begin{document}
+
+\setbeamertemplate{frametitle continuation}[from second]
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+\section{Ce este OOP?}
+    \frame{\tableofcontents[currentsection]}
+    
+    \begin{frame}{Despre concept}
+    \begin{itemize}
+    \setlength{\itemsep}{0.8cm}
+    \item "O paradigmă de programare care folosește obiecte pentru a modela aplicații" \pause
+    \item O modalitate de a structura mai modular logica unei aplicații \pause
+    \item Face {\bf limbajele} mai flexibile și codul mai intuitiv \pause
+    \item Noțiuni centrale: \pause
+    	\begin{itemize}
+    	\item clasă \pause
+    	\item obiect \pause
+    	\item moștenire \pause
+    	\item încapsulare \pause
+    	\item polimorfism \pause
+    	\end{itemize}
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Despre clase}
+    \begin{itemize}
+    \setlength{\itemsep}{0.4cm}
+    \item Ce este o clasă? \pause
+    \end{itemize}
+    \includegraphics[scale=0.4]{Clasa.png}\\
+    \pause Trăsăturile comune pot fi: \pause
+	\begin{itemize} 
+    \item structurale \pause 
+    \item comportamentale 
+    \end{itemize}
+    \end{frame}
+
+\section{În practică}
+    \frame{\tableofcontents[currentsection]}
+
+    \begin{frame}{Task: evidența populației}
+    Vrem să implementăm un mecanism de a lucra cu o populație de "oameni" într-o aplicație (de exemplu, un joc). \pause Cerințe: \pause 
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \item Indivizii să aibă nume \pause
+    \item Indivizii să aibă vârste diferite și sume de bani diferite \pause
+    \item Indivizii să poată dona bani unii altora \pause
+    \item Să putem ține evidența populației 
+    \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Soluția clasică}
+    \pause \input{code/oop1}\\
+    \end{frame}
+
+    \begin{frame}{Pas 1: Constructori}
+    \pause \input{code/oop2}\\
+    \end{frame}
+    
+    \begin{frame}{Pas 2: Functii membru}
+    \pause \input{code/oop3}\\
+    \end{frame}
+    
+    \begin{frame}{Pas 3: Variabile statice}
+    \pause \input{code/oop4}\\
+    \end{frame}
+    
+    \begin{frame}{Pas 4: Operatori}
+    \pause \input{code/oop5}\\
+    \end{frame}
+    
+    \begin{frame}{Syntax sugar: Parametri Impliciti}
+    \pause \input{code/oop6}\\
+    \end{frame}
+
+    \begin{frame}{Problem fix: Destructori}
+    \pause \input{code/oop7}\\
+    \end{frame}
+    
+    \begin{frame}{Safety fix: Accesul la membri}
+    \pause \input{code/oop8}\\
+    \end{frame}
+    
+    \begin{frame}{New horizons: Moștenirea și supradefinirea}
+    \pause \input{code/oop9}\\
+    \pause Dacă am vrea ca un Thief să se amestece printre Player, atunci trebuie să declarăm metoda din clasa de bază ca fiind virtuală!
+    \end{frame}
+    
+\section{C++ cookies}
+	\frame{\tableofcontents[currentsection]}
+	\begin{frame}{STL: Introduction}
+	STL este o bibliotecă (accesibilă printr-o serie de headere) standard din C++. \pause Conține: \pause
+		\begin{itemize}
+		\item Containere de date \pause
+		\item Algoritmi \pause
+		\end{itemize}
+	Pe lângă STL, limbajul mai pune la dispoziție: \pause
+		\begin{itemize}
+		\item Metode de I/O \pause
+		\item Clase pentru lucrul cu fișiere \pause
+		\item {\bf Zeci} de alte îmbunătățiri
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Exemplu utilizare: stringuri, lucrul cu fișiere}
+	\input{code/oop10}
+	\end{frame}
+	
+	\begin{frame}{Exemplu utilizare: vectori, algoritmi}
+	\input{code/oop11}
+	\end{frame}
+
+\section{Crearea unei Clase}
+    \frame{\tableofcontents[currentsection]}
+
+    \begin{frame}{Cerințe}
+    Am vrea o clasă care să implementeze operații aritmetice cu numere complexe: \pause
+    \begin{itemize}
+    \setlength{\itemsep}{0.6cm}
+    \item Clasa se va numi Complex \pause
+    \item Constructorul va avea parametrii impliciți \pause
+    \item Membrii de date vor fi privați \pause
+    \item Avem la dispoziție funcții getter și funcție de aflat modulul \pause
+    \item Avem un operator de adunare și unul de scădere
+    \end{itemize}
+    \end{frame}
+
+\section{Link-uri Utile}
+    \frame{\tableofcontents[currentsection]}
+
+    \begin{frame}{Link-uri Utile}
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \footnotesize
+    \item \url{http://www.cplusplus.com}{ - Sursa oficială de documentație a limbajului}
+    \item \url{http://www.cs.brown.edu/\~jak/proglang/cpp/stltut/tut.html}{ - Un tutorial de bază pentru STL}
+    \item \url{http://www.codeproject.com/KB/stl/stlintroduction.aspx}{ - Introducere în STL}
+    \item \url{http://swarm.cs.pub.ro/~adrian.sc/PA/TutorialC++.pdf}{ - Tutorial C++ pentru programatorii de Java/C\#}
+    \item \url{http://cdl.rosedu.org/2010/_media/cursuri/curs01/curs1_oop.pdf}{ - O prezentare mai detaliata despre OOP în C++ de la CDL 2010}
+    \normalfont
+    \end{itemize}
+    \end{frame}
+\end{document}
