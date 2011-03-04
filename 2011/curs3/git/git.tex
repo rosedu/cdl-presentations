@@ -12,15 +12,16 @@
 \title[]{Git}
 \subtitle{CDL 2011 - Cursul 3}
 \institute[]{ROSEdu}
-\author[]{Mihai Maruseac \\ \texttt{mihai@rosedu.org}}
+\author[]{Mihai Maruseac \\ \texttt{mihai@rosedu.org} \\ (with content from Mircea Bardac)}
 
 \setbeamertemplate{frametitle continuation}[from second]
 \setbeamertemplate{footline}[frame number]
 
-%\pgfdeclareimage[height=5cm]{m0}{img/m0}
-%\pgfdeclareimage[height=7cm]{m1}{img/m1}
-%\pgfdeclareimage[height=7cm]{m2}{img/m2}
-%\pgfdeclareimage[height=7cm]{m3}{img/m3}
+\pgfdeclareimage[height=3cm]{m1}{img/01}
+\pgfdeclareimage[height=3cm]{m2}{img/02}
+\pgfdeclareimage[height=6cm]{m3}{img/03}
+\pgfdeclareimage[height=6.5cm]{m4}{img/04}
+\pgfdeclareimage[height=5cm]{m5}{img/05}
 
 \begin{document}
 
@@ -236,6 +237,7 @@
     \item index: pregătit de commit
     \item repository: commit salvat
   \end{itemize}
+  \pgfuseimage{m5}
 \end{frame}
 
 \begin{frame}{Staging}
@@ -248,7 +250,7 @@
   \pause
   \begin{alertblock}{Task 4}
     \begin{itemize}
-      \item Modificați sursa TODO din director, adăugând numele vostru pe linia
+      \item Modificați sursa \texttt{main.c} din director, adăugând numele vostru pe linia
       corespunzătoare.
       \item Mutați în index fișierul modificat
     \end{itemize}
@@ -307,7 +309,7 @@
     \item graf aciclic de commit-uri
     \pause
     \item undo: \texttt{git reset}
-    \item type: \texttt{git commit -amend}
+    \item type: \texttt{git commit --amend}
     \item revenire la un working tree anterior: \texttt{git revert \textit{id}}
     (nerecomandat)
     \item doar pt un fișier: \texttt{git checkout \textit{file}}
@@ -345,7 +347,7 @@
   \pause
   \begin{alertblock}{Task 6}
     \begin{itemize}
-      \item Modificați sursa TODO, adăugând numele și grupa pe linia
+      \item Modificați fișierul \texttt{README}, adăugând numele și grupa pe linia
       corespunzătoare.
       \item creați un fișier numit după voi în working dir
       \item vizualizați starea working dir.
@@ -465,7 +467,7 @@
 \begin{frame}{Branches (3)}
   \begin{alertblock}{Task 12}
     \begin{itemize}
-      \item Rezolvați TODO-ul din fișierul existent și faceți commit și push
+      \item Completați fișierul \texttt{info} cu ce vreți voi
       \item reveniți în branch-ul master și faceți pull (folosiți argumentul
       --all)
     \end{itemize}
@@ -505,7 +507,15 @@
   \end{alertblock}
 \end{frame}
 
-\begin{frame}{Tools(2)}
+\begin{frame}{Tools(3)}
+  \pgfuseimage{m3}
+\end{frame}
+
+\begin{frame}{Tools(4)}
+  \pgfuseimage{m4}
+\end{frame}
+
+\begin{frame}{Tools(5)}
   \begin{alertblock}{Task 13}
     \begin{itemize}
       \item Instalați gitk și vizualizați starea repo-ului
@@ -520,12 +530,8 @@
     \item merge - combină commit-urile
     \item rebase - reordonează istoria
   \end{itemize}
-  \pause
-  \begin{alertblock}{Task 14}
-    \begin{itemize}
-      \item TODO
-    \end{itemize}
-  \end{alertblock}
+  \pgfuseimage{m1}
+  \pgfuseimage{m2}
 \end{frame}
 
 \begin{frame}{Tags}
@@ -535,12 +541,6 @@
     \item șters cu \texttt{git tag -d \textit{nume}}
     \item Putem referi commit-uri cu tag-uri prin numele tagurilor
   \end{itemize}
-  \pause
-  \begin{alertblock}{Task 15}
-    \begin{itemize}
-      \item TODO
-    \end{itemize}
-  \end{alertblock}
 \end{frame}
 
 \begin{frame}[label=l]{Links}
@@ -569,9 +569,10 @@
     \item \texttt{git blame}
   \end{itemize}
   \pause
-  \begin{alertblock}{Task 16}
+  \begin{alertblock}{Task 14}
     \begin{itemize}
-      \item TODO
+      \item branch-ul \texttt{fault} conține un bug. Identificați commit-ul
+      care l-a generat.
     \end{itemize}
   \end{alertblock}
 \end{frame}
@@ -599,21 +600,8 @@
     \item se `culeg' commit-urile relevante
     \item \texttt{git cherry-pick \textit{IDcommit}}
   \end{itemize}
-  \pause
-  \begin{alertblock}{Task 17}
-    \begin{itemize}
-      \item TODO
-    \end{itemize}
-  \end{alertblock}
 \end{frame}
 
 \againframe{l}
-
-%  \transwipe[direction=90,duration=2]
-%  \begin{pgfpicture}{0cm}{0cm}{10cm}{5cm}
-%    \pgfsetcolor{red}
-%    \pgfrect[stroke]{\pgfpoint{3cm}{1cm}}{\pgfpoint{6cm}{1.5cm}}
-%  \end{pgfpicture}
-%  \pgfuseimage{m0}
 
 \end{document}
