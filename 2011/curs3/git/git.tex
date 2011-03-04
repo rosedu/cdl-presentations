@@ -293,7 +293,7 @@
     \item graf aciclic de commit-uri
     \pause
     \item undo: \texttt{git reset}
-    \item type: \texttt{git commit -ammend}
+    \item type: \texttt{git commit -amend}
     \item revenire la un working tree anterior: \texttt{git revert \textit{id}}
     (nerecomandat)
     \item doar pt un fișier: \texttt{git checkout \textit{file}}
@@ -501,7 +501,10 @@
 
 \begin{frame}{Merge vs Rebase}
   \begin{itemize}
-    \item TODO
+    \item Ce se întâmplă la pull când avem și local commit-uri noi?
+    \pause
+    \item merge - combină commit-urile
+    \item rebase - reordonează istoria
   \end{itemize}
   \pause
   \begin{alertblock}{Task 14}
@@ -513,7 +516,10 @@
 
 \begin{frame}{Tags}
   \begin{itemize}
-    \item TODO
+    \item momente importante din development (release, etc)
+    \item creat cu \texttt{git tag \textit{nume} \textit{ref}}
+    \item șters cu \texttt{git tag -d \textit{nume}}
+    \item Putem referi commit-uri cu tag-uri prin numele tagurilor
   \end{itemize}
   \pause
   \begin{alertblock}{Task 15}
@@ -523,12 +529,6 @@
   \end{alertblock}
 \end{frame}
 
-\begin{frame}{Commit (4)}
-  \begin{itemize}
-    \item Refs with tags
-  \end{itemize}
-\end{frame}
-
 \begin{frame}[label=l]{Links}
   \begin{itemize}
     \item \href{http://en.wikipedia.org/wiki/Comparison_of_revision_control_software}{Comparație între SCM-uri}
@@ -536,6 +536,9 @@
     \item \href{http://talks.rosedu.org/prezentari/prezentarea03}{Prezentare
     Tech Talks Git (Mircea Bardac)}
     \item \href{http://github.com}{GitHub}
+    \item
+    \href{http://www.eqqon.com/index.php/Collaborative_Github_Workflow}{Workflof
+    GitHub}
   \end{itemize}
 \end{frame}
 
@@ -543,7 +546,13 @@
 
 \begin{frame}{Git bisect}
   \begin{itemize}
-    \item TODO
+    \item identifică commit-ul care a introdus un bug
+    \item \texttt{git bisect start}
+    \item \texttt{git bisect bad}
+    \item \texttt{git bisect good \textit{commit\_ok}}
+    \item view, test, repeat
+    \pause
+    \item \texttt{git blame}
   \end{itemize}
   \pause
   \begin{alertblock}{Task 16}
@@ -555,7 +564,15 @@
 
 \begin{frame}{GitHub}
   \begin{itemize}
-    \item TODO
+    \item web-based repo for git
+    \item repos și gists
+    \item pages
+    \pause
+    \item 1. fork
+    \item 2. clone your own repo
+    \item 3. commit early and often
+    \item 4. fork queue / pull requests
+    \item 5. repeat / profit :D
   \end{itemize}
 \end{frame}
 
@@ -563,7 +580,10 @@
 
 \begin{frame}{Cherry pick}
   \begin{itemize}
-    \item TODO
+    \item cod dintr-un branch în altul
+    \item util când branch-urile diverg foarte tare
+    \item se `culeg' commit-urile relevante
+    \item \texttt{git cherry-pick \textit{IDcommit}}
   \end{itemize}
   \pause
   \begin{alertblock}{Task 17}
@@ -575,20 +595,11 @@
 
 \againframe{l}
 
-%\begin{frame}{Studiu de caz}
 %  \transwipe[direction=90,duration=2]
 %  \begin{pgfpicture}{0cm}{0cm}{10cm}{5cm}
 %    \pgfsetcolor{red}
 %    \pgfrect[stroke]{\pgfpoint{3cm}{1cm}}{\pgfpoint{6cm}{1.5cm}}
 %  \end{pgfpicture}
-%
-%  1. Pornim cu un nucleu mic...
-%\end{frame}
-
-%\begin{frame}{Studiu de caz}
 %  \pgfuseimage{m0}
-%
-%  3. Și ajungem aici.
-%\end{frame}
 
 \end{document}
