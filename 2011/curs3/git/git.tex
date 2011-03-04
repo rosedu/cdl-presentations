@@ -386,6 +386,34 @@
   \end{alertblock}
 \end{frame}
 
+\begin{frame}{Remote Repository(3)}
+  \begin{itemize}
+    \item cum adăugăm un alt remote?
+    \item \texttt{git remote add \textit{nume} \textit{url}}
+    \pause
+    \item cum vedem ce remote-uri există?
+    \item \texttt{git remote show}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Branches}
+  \begin{itemize}[<+->]
+    \item \texttt{git push origin master} - trimite commit-urile în branch-ul
+    master din repository-ul referit de origin
+    \item ramuri de dezvoltare
+    \item locale: \texttt{git branch}
+    \item remote: \texttt{git branch -r}
+    \item toate: \texttt{git branch -a}
+    \item *\textit{numebranch}: branch curent
+  \end{itemize}
+  \pause
+  \begin{alertblock}{Task 10}
+    \begin{itemize}
+      \item Listați \textbf{toate} branch-urile din repository.
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
 \begin{frame}{Log}
   \begin{itemize}
     \item istoria din repo
