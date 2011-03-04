@@ -105,7 +105,7 @@
     \item \textbf{SVN} (Subversion), centralizat, C
     \item \textbf{Git} descentralizat, Perl, C, shell
     \item \textbf{Mercurial} descentralizat, $<$ Git (see wiki ref), Python, C, shell
-    \item \textbf{darcs} patch (see Darcs ref), Haskell
+    \item \textbf{darcs} patch (see Darcs ref), Haskell, lazy
   \end{itemize}
   \pause
   \begin{alertblock}{Hint}
@@ -114,6 +114,70 @@
 \end{frame}
 
 \section{Git}
+
+\begin{frame}{Git history}
+  \begin{itemize}
+    \item Linus Torvalds
+    \item Linux Kernel (moved from BitKeeper)
+    \item design:
+      \begin{itemize}
+        \item \textit{CVS as example of what \textbf{not} to do}
+        \item distribuit, workflow a la BitKeeper
+        \item protecție contra distrugerilor/erorilor
+        \item perfomanță
+      \end{itemize}
+    \item development start: 3 aprilie 2005
+    \item 29 aprilie 2005: 6.7 patch-uri/s în kernel via Git
+    \item 16 iunie 2005: 2.6.12 pe Git
+    \item 31 ianuarie 2011: git 1.7.4
+    \item C, Perl, shell
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Git mits}
+  \begin{itemize}[<+->]
+    \item git is hard to learn
+    \item git is slow
+    \item git nu e matur
+    \item nimeni nu folosește git
+    \item proiectele care folosesc git au un SVN in spate
+    \item nu poti muta proiecte de pe SVN pe Git
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Git metadata}
+  \begin{itemize}[<+->]
+    \item director \texttt{.git} \textit{doar} în rădăcină
+    \item conținut:
+      \begin{itemize}
+        \item \texttt{.git/config} fișier configurare
+        \item \texttt{.git/hooks} scripturi pentru evenimente
+        \item \texttt{.git/refs} referințe (la ce?)
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Git config}
+  \begin{itemize}
+    \item local în \texttt{.git/config}
+    \item global în \texttt{\$HOME/.gitconfig}
+  \end{itemize}
+  \pause
+  \begin{alertblock}{Task 1}
+    \begin{itemize}
+      \item install git
+      \item \texttt{git config --global user.name "\textit{nume prenume}"}
+      \item \texttt{git config --global user.email "\textit{nume@dom.com}"}
+      \item \texttt{git config --global color.diff auto}
+      \item \texttt{git config --global color.status auto}
+      \item \texttt{git config --global color.branch auto}
+      \item \texttt{git config --global color.ui auto}
+      \item \texttt{git config --global color.pager true}
+      \item \texttt{git config --global core.editor \textit{editor}}
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
 \section{More git}
 
 \begin{frame}{Bibliografie}
