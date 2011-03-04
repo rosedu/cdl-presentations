@@ -9,22 +9,122 @@
 \mode<presentation>
 \usetheme{CDL}
 
-\title[]{Unit testing}
-\subtitle{CDL - Cursul 5}
+\title[]{Git}
+\subtitle{CDL 2011 - Cursul 3}
 \institute[]{ROSEdu}
-\author[]{Mihai Maruseac \\ \texttt{mihai.maruseac@rosedu.org}}
+\author[]{Mihai Maruseac \\ \texttt{mihai@rosedu.org}}
 
 \setbeamertemplate{frametitle continuation}[from second]
 \setbeamertemplate{footline}[frame number]
 
-\pgfdeclareimage[height=5cm]{m0}{img/m0}
-\pgfdeclareimage[height=7cm]{m1}{img/m1}
-\pgfdeclareimage[height=7cm]{m2}{img/m2}
-\pgfdeclareimage[height=7cm]{m3}{img/m3}
+%\pgfdeclareimage[height=5cm]{m0}{img/m0}
+%\pgfdeclareimage[height=7cm]{m1}{img/m1}
+%\pgfdeclareimage[height=7cm]{m2}{img/m2}
+%\pgfdeclareimage[height=7cm]{m3}{img/m3}
 
 \begin{document}
 
 \maketitle
+
+\section{Source Control Management}
+
+\begin{frame}{Source Control Management}
+  \begin{itemize}[<+->]
+    \item aka Revision Control
+    \item urmărire/stocare modificări
+      \begin{alertblock}{Careful!}
+        NU copy-paste în directoare separate
+      \end{alertblock}
+    \item colaborare, proiecte mari
+      \begin{alertblock}{Careful!}
+        NU mail / dropbox
+      \end{alertblock}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Concepte}
+  \begin{description}[<+->]
+    \item[repository] = ...
+    \item[checkout,clone] = make local copy
+    \item[working copy] = copie locală, \textbf{sandbox}
+    \item[change] = modificare
+    \item[commit] = submit changes
+    \item[update] = sync
+    \item[merge] = aplicare a 2+ commits
+    \item[conflict] = schimbări în același document
+    \item[version] = revision
+    \item[HEAD] = cel mai recent commit (tip)
+    \item[branch] = alternativă development
+    \item[label] = punct important din development (tag)
+  \end{description}
+\end{frame}
+
+\begin{frame}{Unde e repository-ul?}
+  \begin{itemize}
+    \item centralizat
+      \begin{itemize}
+        \item server: DB
+        \item client: working copy
+      \end{itemize}
+      \pause
+      \begin{description}
+        \item[+] totul la un loc
+        \item[--] bottleneck, \textit{single point of failure}
+      \end{description}
+    \pause
+    \item descentralizat
+      \begin{itemize}
+        \item P2P
+        \item operații/concepte noi
+        \item repo si working-tree simultan
+        \item istoric si lucru complet descentralizat
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{SCM Descentralizat}
+  \begin{itemize}
+    \item avantaje
+      \begin{itemize}
+        \item fără \textit{single point of failure}
+        \item lucru deconectat
+        \item operații rapide
+      \end{itemize}
+      \pause
+    \item operatii noi
+      \begin{description}[<+->]
+        \item[push] - sync eu $\rightarrow$ remote
+        \item[fetch,pull] - sync eu $\leftarrow$ remote
+        \item[remote] - ...
+      \end{description}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{SCMs}
+  \begin{itemize}
+    \item \textbf{SVN} (Subversion), centralizat, C
+    \item \textbf{Git} descentralizat, Perl, C, shell
+    \item \textbf{Mercurial} descentralizat, $<$ Git (see wiki ref), Python, C, shell
+    \item \textbf{darcs} patch (see Darcs ref), Haskell
+  \end{itemize}
+  \pause
+  \begin{alertblock}{Hint}
+    Toate sunt folosite. Încercați-le și voi :)
+  \end{alertblock}
+\end{frame}
+
+\section{Git}
+\section{More git}
+
+\begin{frame}{Bibliografie}
+  \begin{itemize}
+    \item \href{http://en.wikipedia.org/wiki/Comparison_of_revision_control_software}{Comparație între SCM-uri}
+    \item \href{http://en.wikibooks.org/wiki/Understanding_Darcs/Patch_theory}{Darcs Patch Theory}
+  \end{itemize}
+\end{frame}
+
+\section{Extra git}
+\section{Even more extra git}
 
 %\begin{frame}{Before we begin}
 %  \begin{block}{$>$ echo "Test" $|$ grep T}
