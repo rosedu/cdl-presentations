@@ -234,9 +234,104 @@
   \pause
   \begin{alertblock}{Task 4}
     \begin{itemize}
-      \item Modificați sursa din director, adăugând numele vostru pe linia
+      \item Modificați sursa TODO din director, adăugând numele vostru pe linia
       corespunzătoare.
       \item Mutați în index fișierul modificat
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Commiting}
+  \begin{itemize}
+    \item index $\rightarrow$ repository \textbf{local}
+    \item \texttt{git commit \textbf{-m "\textit{mesaj}"}}
+  \end{itemize}
+  \begin{alertblock}{Careful!}
+    Nu folosiți mesaje goale!
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Shortcuts}
+  \begin{itemize}
+    \item \texttt{git commit -am "..."}
+    \item \texttt{git add .}
+    \pause
+    \begin{alertblock}{Tip}
+      Nu rulați \texttt{git commit -am..}.
+    \end{alertblock}
+    \begin{alertblock}{Careful!}
+      Nu rulați \texttt{git add .} dacă nu aveți totul setat ok.
+    \end{alertblock}
+    \pause
+    \item probleme:
+      \begin{itemize}
+        \item fișiere executabile (\texttt{a.out}), obiect (\texttt{a.o})
+        \item fișiere swap (\texttt{.git.tex.swp})
+        \item fișiere locale, personale
+        \item etc.
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Ignore}
+  \begin{itemize}
+    \item \texttt{.gitignore} - \textbf{global!!}
+    \item \texttt{.git/info/exclude} - local
+  \end{itemize}
+  \pause
+  \begin{alertblock}{Task 5}
+    \begin{itemize}
+      \item Ignorați \textbf{local} fișierele obiect și executabilul generat.
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Commit (2)}
+  \begin{itemize}
+    \item fiecare commit are un ID: SHA1
+    \item fiecare commit are cel puțin un părinte (cu excepția primului)
+    \item graf aciclic de commit-uri
+    \pause
+    \item undo: \texttt{git reset}
+    \pause
+    \item cum referim un commit?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Commit (3)}
+  \begin{description}
+    \item[\texttt{HEAD}] = ultimul commit
+    \item[\texttt{HEAD\textasciicircum}] = penultimul
+    \item[\texttt{HEAD\textasciicircum\textasciicircum}] = antepenultimul
+    \item[...] = etc
+    \pause
+    \item[\texttt{HEAD\textasciitilde5}] = \texttt{HEAD\textasciicircum\textasciicircum\textasciicircum\textasciicircum\textasciicircum}
+    \pause
+    \item[a946e644d5b4c26aaa4e73338805e207bbfd78b0] = full hash
+    \pause
+    \item[a946e6] = short hash
+  \end{description}
+\end{frame}
+
+\begin{frame}{Status}
+  \begin{itemize}
+    \item \texttt{git status}
+    \item prezintă:
+      \begin{itemize}
+        \item conținut din index {staged}
+        \item conținut care nu e în index {non-staged}
+        \item conținut neurmărit (non-tracked)
+        \item other info
+      \end{itemize}
+  \end{itemize}
+  \pause
+  \begin{alertblock}{Task 6}
+    \begin{itemize}
+      \item Modificați sursa TODO, adăugând numele și grupa pe linia
+      corespunzătoare.
+      \item creați un fișier numit după voi în working dir
+      \item vizualizați starea working dir.
+      \item faceți astfel încât
     \end{itemize}
   \end{alertblock}
 \end{frame}
