@@ -1,4 +1,4 @@
-BASENAME = unittesting
+BASENAME = git
 PDF = $(addsuffix .pdf, $(BASENAME))
 TEX = $(addsuffix .tex, $(BASENAME))
 PDFLATEX = pdflatex
@@ -19,3 +19,4 @@ $(PDF): $(TEX)
 clean:
 	rm -rf $(OUT_DIR)
 	rm -f $(PDF)
+
