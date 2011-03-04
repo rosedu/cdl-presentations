@@ -14,7 +14,7 @@ $(PDF): $(TEX)
 	# Twice, so TOC is also updated
 	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) -output-directory $(OUT_DIR) $<
 	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) -output-directory $(OUT_DIR) $<
-	mv $(OUT_DIR)/$(PDF) .
+	#mv $(OUT_DIR)/$(PDF) .
 
 clean:
 	rm -rf $(OUT_DIR)
