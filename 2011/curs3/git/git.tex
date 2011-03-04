@@ -213,11 +213,10 @@
   \end{alertblock}
 \end{frame}
 
-\begin{frame}{Conținut}
+\begin{frame}[label=Content]{Conținut}
   \begin{alertblock}{Careful!}
     Git urmărește conținut, nu fișiere!!
   \end{alertblock}
-  \pause
   \begin{itemize}
     \item work tree (working dir): local
     \item index: pregătit de commit
@@ -295,6 +294,9 @@
     \pause
     \item undo: \texttt{git reset}
     \item type: \texttt{git commit -ammend}
+    \item revenire la un working tree anterior: \texttt{git revert \textit{id}}
+    (nerecomandat)
+    \item doar pt un fișier: \texttt{git checkout \textit{file}}
     \pause
     \item cum referim un commit?
   \end{itemize}
@@ -414,6 +416,58 @@
   \end{alertblock}
 \end{frame}
 
+\begin{frame}{Branches (2)}
+  \begin{itemize}
+    \item creare:
+      \begin{itemize}
+        \item \texttt{git branch \textit{nume} \textit{startref}}
+        \item \texttt{git branch \textit{nume}}
+        \item \texttt{git checkout -b \textit{nume}}
+      \end{itemize}
+    \pause
+    \item ștergere:
+      \begin{itemize}
+        \item \texttt{git branch -d \textit{bname}}
+        \item \texttt{git branch -D \textit{bname}}
+      \end{itemize}
+    \pause
+    \item schimbare branch:
+      \begin{itemize}
+        \item \texttt{git checkout \textit{bname}}
+      \end{itemize}
+  \end{itemize}
+  \pause
+  \begin{alertblock}{Task 11}
+    \begin{itemize}
+      \item Schimbați în branch-ul corespunzător numelui vostru.
+      \item Listați conținutul directorului
+      \item Ce s-a întâmplat cu sursele vechi?
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\againframe{Content}
+
+\begin{frame}{Branches (3)}
+  \begin{alertblock}{Task 12}
+    \begin{itemize}
+      \item Rezolvați TODO-ul din fișierul existent și faceți commit și push
+      \item reveniți în branch-ul master și faceți pull (folosiți argumentul
+      --all)
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Best Practices}
+  \begin{itemize}
+    \item repository: mereu compilabil
+    \item mesaje de commit relevante
+    \item commit-uri mici: un singur bugfix/feature/patch
+  \end{itemize}
+\end{frame}
+
+\section{More git}
+
 \begin{frame}{Log}
   \begin{itemize}
     \item istoria din repo
@@ -423,18 +477,103 @@
   \end{itemize}
 \end{frame}
 
-\section{More git}
+\begin{frame}{Tools}
+  \begin{itemize}
+    \item repo-git human read-able
+    \begin{itemize}
+      \item gitk - Tcl/Tk, cel mai cunoscut
+      \item giggle - Gnome, GTK+
+      \item tig - command line
+    \end{itemize}
+  \end{itemize}
+  \begin{alertblock}{Hint}
+    Toate sunt folosite. Încercați-le și voi :)
+  \end{alertblock}
+\end{frame}
 
-\begin{frame}{Bibliografie}
+\begin{frame}{Tools(2)}
+  \begin{alertblock}{Task 13}
+    \begin{itemize}
+      \item Instalați gitk și vizualizați starea repo-ului
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Merge vs Rebase}
+  \begin{itemize}
+    \item TODO
+  \end{itemize}
+  \pause
+  \begin{alertblock}{Task 14}
+    \begin{itemize}
+      \item TODO
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Tags}
+  \begin{itemize}
+    \item TODO
+  \end{itemize}
+  \pause
+  \begin{alertblock}{Task 15}
+    \begin{itemize}
+      \item TODO
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Commit (4)}
+  \begin{itemize}
+    \item Refs with tags
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[label=l]{Links}
   \begin{itemize}
     \item \href{http://en.wikipedia.org/wiki/Comparison_of_revision_control_software}{Comparație între SCM-uri}
     \item \href{http://en.wikibooks.org/wiki/Understanding_Darcs/Patch_theory}{Darcs Patch Theory}
+    \item \href{http://talks.rosedu.org/prezentari/prezentarea03}{Prezentare
+    Tech Talks Git (Mircea Bardac)}
+    \item \href{http://github.com}{GitHub}
   \end{itemize}
 \end{frame}
 
 \section{Extra git}
+
+\begin{frame}{Git bisect}
+  \begin{itemize}
+    \item TODO
+  \end{itemize}
+  \pause
+  \begin{alertblock}{Task 16}
+    \begin{itemize}
+      \item TODO
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{GitHub}
+  \begin{itemize}
+    \item TODO
+  \end{itemize}
+\end{frame}
+
 \section{Even more extra git}
 
+\begin{frame}{Cherry pick}
+  \begin{itemize}
+    \item TODO
+  \end{itemize}
+  \pause
+  \begin{alertblock}{Task 17}
+    \begin{itemize}
+      \item TODO
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\againframe{l}
 
 %\begin{frame}{Studiu de caz}
 %  \transwipe[direction=90,duration=2]
@@ -444,27 +583,6 @@
 %  \end{pgfpicture}
 %
 %  1. Pornim cu un nucleu mic...
-%\end{frame}
-
-%\begin{frame}{Studiu de caz}
-%  \begin{pgfpicture}{0cm}{0cm}{10cm}{5cm}
-%    \pgfsetcolor{red}
-%    \pgfline{\pgfpoint{3cm}{1cm}}{\pgfpoint{3cm}{2.5cm}}
-%    \pgfline{\pgfpoint{3cm}{2.5cm}}{\pgfpoint{5cm}{2.5cm}}
-%    \pgfline{\pgfpoint{5cm}{2.5cm}}{\pgfpoint{6cm}{1.5cm}}
-%    \pgfline{\pgfpoint{6cm}{1.5cm}}{\pgfpoint{7cm}{2.5cm}}
-%    \pgfline{\pgfpoint{7cm}{2.5cm}}{\pgfpoint{9cm}{2.5cm}}
-%    \pgfline{\pgfpoint{9cm}{2.5cm}}{\pgfpoint{9cm}{1cm}}
-%    \pgfline{\pgfpoint{9cm}{1cm}}{\pgfpoint{3cm}{1cm}}
-%    \pgfsetcolor{blue}
-%    \pgfline{\pgfpoint{5cm}{2.52cm}}{\pgfpoint{5cm}{4cm}}
-%    \pgfline{\pgfpoint{5cm}{4cm}}{\pgfpoint{7cm}{4cm}}
-%    \pgfline{\pgfpoint{7cm}{4cm}}{\pgfpoint{7cm}{2.52cm}}
-%    \pgfline{\pgfpoint{7cm}{2.52cm}}{\pgfpoint{6cm}{1.52cm}}
-%    \pgfline{\pgfpoint{6cm}{1.52cm}}{\pgfpoint{5cm}{2.52cm}}
-%  \end{pgfpicture}
-%
-%  2. Adăugăm la el element cu element...
 %\end{frame}
 
 %\begin{frame}{Studiu de caz}
