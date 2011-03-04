@@ -90,7 +90,14 @@
         \item lucru deconectat
         \item operații rapide
       \end{itemize}
-      \pause
+    \pause
+    \item dezavantaje
+      \begin{itemize}
+        \item mai greu de înteles
+        \item cine are acces?
+        \item istoria e permanentă (almost)
+      \end{itemize}
+    \pause
     \item operatii noi
       \begin{description}[<+->]
         \item[push] - sync eu $\rightarrow$ remote
@@ -183,9 +190,53 @@
     \item \texttt{git \textit{cmd} help}
     \item \texttt{man git-\texttt{cmd}}
   \end{itemize}
+  \pause
   \begin{alertblock}{Task 2}
     \begin{itemize}
       \item Ce reprezenta opțiunea \texttt{color.pager} de la \texttt{git config}?
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Primul repo}
+  \begin{itemize}
+    \item \texttt{git init} într-un director cu surse
+    \item \texttt{git clone \textit{url}}
+  \end{itemize}
+  \pause
+  \begin{alertblock}{Task 3}
+    \begin{itemize}
+      \item Obțineți repository-ul de la adresa TODO
+      \item listați conținutul directorului creat
+    \end{itemize}
+  \end{alertblock}
+\end{frame}
+
+\begin{frame}{Conținut}
+  \begin{alertblock}{Careful!}
+    Git urmărește conținut, nu fișiere!!
+  \end{alertblock}
+  \pause
+  \begin{itemize}
+    \item work tree (working dir): local
+    \item index: pregătit de commit
+    \item repository: commit salvat
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Staging}
+  \begin{itemize}
+    \item work tree $\rightarrow$ index
+    \item \texttt{git add \textit{filename}}
+    \item \texttt{git rm \textit{filename}}
+    \item \texttt{git mv \textit{filename}}
+  \end{itemize}
+  \pause
+  \begin{alertblock}{Task 4}
+    \begin{itemize}
+      \item Modificați sursa din director, adăugând numele vostru pe linia
+      corespunzătoare.
+      \item Mutați în index fișierul modificat
     \end{itemize}
   \end{alertblock}
 \end{frame}
