@@ -1,0 +1,42 @@
+#!/bin/bash
+#
+# This script is run as a post-receive hook (i.e. after git push)
+# It publishes lecture slides.
+#
+# 2010, Razvan Deaconescu, razvan.deaconescu@cs.pub.ro
+# 2011, update for CDL
+
+basename="cdl"
+publish_folder=/home/cdl/public_html/2011/store/slides/
+
+function slides_build_publish()
+{
+	working_dir=$1
+	publish_dir=$2
+	log_file=/tmp/${basename}-make-slides.log
+
+	> $log_file
+	pushd "$working_dir"
+	for subdir in $(find -mindepth 1 -maxdepth 1 -type d -name 'curs*'); do
+		pushd "$subdir"
+		for subdirnew in $(find -mindepth 1 -maxdepth 1 -type d); do
+			pushd "$subdirnew"
+			make
+			popd
+		done
+		popd
+	done
+	find -maxdepth 4 -name '*.pdf' -exec cp {} "$publish_dir" \;
+	popd
+}
+
+tmp_folder=$(mktemp -d)
+
+echo -n " * Creating local copy of slides folders ... "
+git archive --format=tar --prefix=cursuri/ HEAD:2011/ | (cd $tmp_folder && tar xf -)
+git archive --format=tar --prefix=template/ HEAD:template/ | (cd $tmp_folder && tar xf -)
+echo "done"
+
+echo -n " * Running slides build and publish script ... "
+slides_build_publish $tmp_folder/cursuri/ $publish_folder > $tmp_folder/lab_slides_build_publish.err 2>&1
+echo "done"
