@@ -39,15 +39,20 @@
 	\pause
 	\begin{itemize}
 		\item Text 
+		\pause
 		\item Tutoriale
+		\pause
 		\item Metainformații 
+		\pause
 	\end{itemize} 
 	... care însoțesc un produs software. \pause \\
 	Pe cine vizează?
 	\pause
 	\begin{itemize}
 		\item Proiectanți (Requirements, API)
+		\pause
 		\item Dezvoltatori (API, SDK)
+		\pause
 		\item Utilizatori (Manuale, Tutoriale)
 	\end{itemize}
 	
@@ -123,9 +128,121 @@
   ... și în cele din urmă, proiectul moare.
 \end{frame}
 
-\section{Comentariile}
+\section{Cum se scrie documentația}
+
+\begin{frame}{Step 1: naming conventions}
+	\begin{itemize}
+		\item Primul pas către un cod lizibil.
+		\pause
+		\item Nume scurte și sugestive.
+		\pause
+			\begin{itemize}
+			\item make\_sanwdich\_in\_c();
+			\pause
+			\item makeSandwichInCamelCase();
+			\pause
+			\item SandwichClass;
+			\pause
+			\end{itemize}
+		\item {\bf Uniformitatea} este cuvântul cheie.
+		\pause
+	\end{itemize}
+	Alte convenții (doar câteva):
+	\begin{itemize}
+		\item CONSTANTELE\_IN\_UPPER\_CASE // (SI MACRO-URILE)
+		\pause
+		\item \_membrii \_privati \_cu \_underscore \_în \_față
+		\pause
+		\item {\bf pTable} este un {\bf p}Pointer la un Table
+		\pause
+		\item {\bf hTable} este un {\bf h}Handler pentru un Tabel
+		\pause
+		\item "{\bf line}" este mai bine decât "{\bf l}"
+		\pause
+		\item "{\bf index\_to\_line}" este mai rău decât "{\bf l}"
+		\pause
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Step 2: comentariile}
+	\begin{itemize}
+		\item {\bf Cel mai important} pas către un cod vizibil.
+		\pause
+		\item Urmăresc structura logică a codului ({\bf paragrafe})
+		\pause
+		\item Aduc completări necesare (nu redundante): complexitate, sfaturi, cazuri de eroare
+		\pause
+		\item Nu trebuie să conțină povești, ASCII art, proverbe,...
+		\pause
+		\item ... sau înjurături ...
+		\pause
+	\end{itemize}
+	În proiectele mari, este bine să includeți la începutul fișierului un antet cu:
+	\begin{itemize}
+		\item Versiunea de fișier (cu data curentă)
+		\pause
+		\item Autorul codului
+		\pause
+		\item O metodă de contact
+		\pause
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Step 2: comentariile - câte greșeli vedeți?}
+	\input{code/bad}
+\end{frame}
+
+\begin{frame}{Step 2: comentariile - un exemplu pozitiv}
+	\input{code/good}
+\end{frame}
 
 \section{Doxygen}
+
+<<<<<<< HEAD
+\begin{frame}{Step 3: Doxygen}
+	\begin{itemize}	
+		\item Este dificil să scriem documentația de la 0, separat de cod.
+		\pause
+		\item Am vrea ca documentația să fie generabilă din surse.
+		\pause
+		\item Am vrea un limbaj simplu prin care să legăm explicațiile de elemente din cod.
+		\pause
+		\item Am vrea ca documentația să nu interacționeze cu codul compilabil (=$>$ comentarii).
+		\pause
+		\item Am vrea o solutie uniformă pentru mai multe limbaje: C, C++, Java, PHP, C\#, Perl
+		\pause
+		\item Am vrea documentație generabilă în mai multe limbaje: HTML, LaTeX, RTF
+	\end{itemize}
+	Doxygen este un utilitar open source flexibil și foarte puternic, dar ușor de folosit. \pause \\
+	Parsează codul sursă și interpretează comentariile din el.
+\end{frame}
+
+\begin{frame}{Step 3: Sintaxa Doxygen}
+	Doxygen analizează acele comentarii care preced declarații sau definiții și au următoarea sintaxă: \\
+	\input{code/sintaxa}
+\end{frame}
+
+\begin{frame}{Step 3: Sintaxa Doxygen - specficații}
+	\input{code/doxygen}
+\end{frame}
+
+\begin{frame}{Step 4: Generarea documentatiei cu Doxygen}
+	Avem mai intai nevoie de un fisier de configurare pentru doxygen.
+	\pause
+	\begin{itemize}
+		\item Un fisier de configurare se poate obtine cu comanda {\bf doxygen -g fisier\_cofig}
+	\end{itemize}
+	\pause
+	Al doilea pas este editarea fisierului conform cu cerintele noastre.
+	\pause
+	\begin{itemize}
+		\item In final, vom folosi fisierul pentru a genera documentația {\bf doxygen fisier\_config}
+	\end{itemize}
+	\pause
+	\begin{itemize}
+		\item {\bf TASK} Descărcați de la adresa http://swarm.cs.pub.ro/\~adrian.sc/doxygen\_task fisierele sursă de C++ și generați documentația aferentă lor.
+	\end{itemize}
+\end{frame}
 
 \section{pydoc}
 
@@ -195,29 +312,15 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Lab}
-  \begin{itemize}
-  \item Instalați Eclipse
-  \pause
-  \item Instalați CDT
-		\begin{itemize} 
-		\pause
-	  \item Help ... Install New Software
-  	\pause
-	  \item Available Software ... Add Site
-  	\item http://download.eclipse.org/tools/cdt/releases/galileo
-  	\end{itemize}
-  \item Creați un proiect C++ nou (HelloWorld)
-  \end{itemize}
-\end{frame}
-
 \section{Resurse}
 
 \begin{frame}{Resurse}
   \begin{itemize}
-  \item http://www.eclipse.org
+  \item http://www-glast.slac.stanford.edu/software/CodeHowTo\_20021202/doxygen/using\_doxygen.htm
   \pause
-  \item http://www.eclipseplugincentral.org  
+  \item http://www.devtopics.com/13-tips-to-comment-your-code/
+  \pause
+  \item http://www.codinghorror.com/blog/2004/11/when-good-comments-go-bad.html  
   \pause
   \vspace{10mm}
   \item Întrebări?

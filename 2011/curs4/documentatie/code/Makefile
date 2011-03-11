@@ -1,12 +1,18 @@
-TEXFILES = 01.tex 02.tex
+TEXFILES = bad.tex good.tex sintaxa.tex doxygen.tex
 HIGHLIGHT_OPTS = --out-format=latex -l -f -t 8 -c highlight.sty
 
 all: $(TEXFILES)
 
-01.tex: 01.sh
+bad.tex: bad.cpp
 	highlight $(HIGHLIGHT_OPTS) -i $< -o $@
 
-02.tex: 02.c
+sintaxa.tex: sintaxa.cpp
+	highlight $(HIGHLIGHT_OPTS) -i $< -o $@
+
+good.tex: good.cpp
+	highlight $(HIGHLIGHT_OPTS) -i $< -o $@
+
+doxygen.tex: doxygen.cpp
 	highlight $(HIGHLIGHT_OPTS) -i $< -o $@
 
 .PHONY: clean
