@@ -1,0 +1,26 @@
+\noindent
+\ttfamily
+\footnotesize
+\hlstd{}\hlline{\ \ \ \ 1\ }\hlkwb{struct\ }\hlstd{Player}\hlsym{\{}\\
+\hlline{\ \ \ \ 2\ }\hlstd{}\hlkwc{private}\hlstd{}\hlsym{:}\\
+\hlline{\ \ \ \ 3\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwb{char\ }\hlstd{}\hlsym{{*}\ }\hlstd{name}\hlsym{;}\\
+\hlline{\ \ \ \ 4\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwb{int\ }\hlstd{age}\hlsym{,\ }\hlstd{gold}\hlsym{;}\\
+\hlline{\ \ \ \ 5\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwb{static\ int\ }\hlstd{count}\hlsym{;}\\
+\hlline{\ \ \ \ 6\ }\hlstd{}\hlkwc{public}\hlstd{}\hlsym{:}\\
+\hlline{\ \ \ \ 7\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwd{Player}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{char\ }\hlstd{}\hlsym{{*}\ }\hlstd{name}\hlsym{,\ }\hlstd{}\hlkwb{int\ }\hlstd{age\ }\hlsym{=\ }\hlstd{}\hlnum{20}\hlstd{}\hlsym{,\ }\hlstd{}\hlkwb{int\ }\hlstd{gold\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{)\ :\ }\\
+\hlline{\ \ \ \ 8\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwd{name}\hlstd{}\hlsym{(}\hlstd{}\hlkwd{strdup}\hlstd{}\hlsym{(}\hlstd{name}\hlsym{)),\ }\hlstd{}\hlkwd{age}\hlstd{}\hlsym{(}\hlstd{age}\hlsym{),\ }\hlstd{}\hlkwd{gold}\hlstd{}\hlsym{(}\hlstd{gold}\hlsym{)\ \{\ }\hlstd{count}\hlsym{++;\ \}}\\
+\hlline{\ \ \ \ 9\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwc{virtual\ }\hlstd{}\hlsym{$\sim$}\hlstd{}\hlkwd{Player}\hlstd{}\hlsym{()\ \{\ }\hlstd{count}\hlsym{{-}{-};\ }\hlstd{}\hlkwd{free}\hlstd{}\hlsym{(}\hlstd{name}\hlsym{);\ \}}\hlstd{\ \ \ \ \ \ }\hlsym{}\\
+\hlline{\ \ \ 10\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwb{void\ }\hlstd{}\hlkwd{donate}\hlstd{}\hlsym{(}\hlstd{Player\ }\hlsym{{*}\ }\hlstd{dest}\hlsym{,\ }\hlstd{amount}\hlsym{)\ \{}\\
+\hlline{\ \ \ 11\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\hlstd{dest}\hlsym{{-}$>$}\hlstd{gold\ }\hlsym{+=\ }\hlstd{amount}\hlsym{;}\\
+\hlline{\ \ \ 12\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\hlstd{gold\ }\hlsym{{-}=\ }\hlstd{amount}\hlsym{;}\\
+\hlline{\ \ \ 13\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlsym{\}}\\
+\hlline{\ \ \ 14\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwb{const\ char\ }\hlstd{}\hlsym{{*}\ }\hlstd{}\hlkwd{get\textunderscore name}\hlstd{}\hlsym{()\ \{\ }\hlstd{}\hlkwa{return\ }\hlstd{name}\hlsym{;\ \}}\\
+\hlline{\ \ \ 15\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwb{int\ }\hlstd{}\hlkwd{get\textunderscore age}\hlstd{}\hlsym{()\ \{\ }\hlstd{}\hlkwa{return\ }\hlstd{age}\hlsym{;\ \}}\\
+\hlline{\ \ \ 16\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwb{int\ }\hlstd{}\hlkwd{get\textunderscore gold}\hlstd{}\hlsym{()\ \{\ }\hlstd{}\hlkwa{return\ }\hlstd{gold}\hlsym{;\ \}}\\
+\hlline{\ \ \ 17\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwb{static\ int\ }\hlstd{}\hlkwd{get\textunderscore count}\hlstd{}\hlsym{()\ \{\ }\hlstd{}\hlkwa{return\ }\hlstd{count}\hlsym{;\ \}}\\
+\hlline{\ \ \ 18\ }\hlstd{}\hlsym{\};}\\
+\hlline{\ \ \ 19\ }\hlstd{}\\
+\hlline{\ \ \ 20\ }\hlkwb{int\ }\hlstd{Player}\hlsym{::}\hlstd{count\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{;}\hlstd{}\\
+\mbox{}
+\normalfont
+\normalsize

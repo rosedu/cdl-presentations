@@ -1,0 +1,26 @@
+\noindent
+\ttfamily
+\footnotesize
+\hlstd{}\hlline{\ \ \ \ 1\ }\hlkwb{struct\ }\hlstd{Player}\hlsym{\{}\\
+\hlline{\ \ \ \ 2\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwb{char\ }\hlstd{}\hlsym{{*}\ }\hlstd{name}\hlsym{;}\\
+\hlline{\ \ \ \ 3\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwb{int\ }\hlstd{age}\hlsym{,\ }\hlstd{gold}\hlsym{;}\\
+\hlline{\ \ \ \ 4\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwb{static\ int\ }\hlstd{count}\hlsym{;}\\
+\hlline{\ \ \ \ 5\ }\hlstd{\\
+\hlline{\ \ \ \ 6\ }}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwd{Player}\hlstd{}\hlsym{(}\hlstd{}\hlkwb{char\ }\hlstd{}\hlsym{{*}\ }\hlstd{name}\hlsym{,\ }\hlstd{}\hlkwb{int\ }\hlstd{age\ }\hlsym{=\ }\hlstd{}\hlnum{20}\hlstd{}\hlsym{,\ }\hlstd{}\hlkwb{int\ }\hlstd{gold\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{)\ :\ }\\
+\hlline{\ \ \ \ 7\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwd{name}\hlstd{}\hlsym{(}\hlstd{}\hlkwd{strdup}\hlstd{}\hlsym{(}\hlstd{name}\hlsym{)),\ }\hlstd{}\hlkwd{age}\hlstd{}\hlsym{(}\hlstd{age}\hlsym{),\ }\hlstd{}\hlkwd{gold}\hlstd{}\hlsym{(}\hlstd{gold}\hlsym{)\ \{\ }\hlstd{count}\hlsym{++;\ \}}\\
+\hlline{\ \ \ \ 8\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\hlstd{\\
+\hlline{\ \ \ \ 9\ }}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwb{void\ }\hlstd{}\hlkwd{donate}\hlstd{}\hlsym{(}\hlstd{Player\ }\hlsym{{*}\ }\hlstd{dest}\hlsym{,\ }\hlstd{amount}\hlsym{)\ \{}\\
+\hlline{\ \ \ 10\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\hlstd{dest}\hlsym{{-}$>$}\hlstd{gold\ }\hlsym{+=\ }\hlstd{amount}\hlsym{;}\\
+\hlline{\ \ \ 11\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\hlstd{gold\ }\hlsym{{-}=\ }\hlstd{amount}\hlsym{;}\\
+\hlline{\ \ \ 12\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlsym{\}}\\
+\hlline{\ \ \ 13\ }\hlstd{}\hlsym{\};}\\
+\hlline{\ \ \ 14\ }\hlstd{}\\
+\hlline{\ \ \ 15\ }\hlkwb{int\ }\hlstd{Player}\hlsym{::}\hlstd{count\ }\hlsym{=\ }\hlstd{}\hlnum{0}\hlstd{}\hlsym{;}\\
+\hlline{\ \ \ 16\ }\hlstd{\\
+\hlline{\ \ \ 17\ }ostream}\hlsym{\&\ }\hlstd{}\hlkwc{operator}\hlstd{}\hlsym{$<$$<$\ (}\hlstd{ostream}\hlsym{\&\ }\hlstd{out}\hlsym{,\ }\hlstd{Player}\hlsym{\&\ }\hlstd{player}\hlsym{)\{}\\
+\hlline{\ \ \ 18\ }\hlstd{}\hlstd{\ \ \ \ \ \ \ \ }\hlstd{}\hlkwa{return\ }\hlstd{out\ }\hlsym{$<$$<$\ }\hlstd{}\hlstr{"Name:\ "}\hlstd{\ }\hlsym{$<$$<$\ }\hlstd{name\ }\hlsym{$<$$<$\ }\hlstd{}\hlstr{"}\hlesc{$\backslash$n}\hlstr{Age:\ "}\hlstd{\ }\hlsym{$<$$<$\ }\hlstd{age\ \\
+\hlline{\ \ \ 19\ }}\hlstd{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\hlstd{}\hlsym{$<$$<$\ }\hlstd{}\hlstr{"}\hlesc{$\backslash$n}\hlstr{Gold:\ "}\hlstd{\ }\hlsym{$<$$<$\ }\hlstd{gold\ }\hlsym{$<$$<$\ }\hlstd{}\hlstr{"}\hlesc{$\backslash$n}\hlstr{"}\hlstd{}\hlsym{;}\\
+\hlline{\ \ \ 20\ }\hlstd{}\hlsym{\}}\hlstd{}\\
+\mbox{}
+\normalfont
+\normalsize
