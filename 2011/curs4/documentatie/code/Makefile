@@ -1,5 +1,5 @@
 TEXFILES = 01.tex 02.tex
-HIGHLIGHT_OPTS = -L -l -f -t 8 -c highlight.sty
+HIGHLIGHT_OPTS = --out-format=latex -l -f -t 8 -c highlight.sty
 
 all: $(TEXFILES)
 
