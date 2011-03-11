@@ -137,9 +137,9 @@
   (echivalent man pentru Unix)
   \pause
     \begin{itemize}
-    \item pydoc sys
-    \pause
-    \item pydoc sys -w
+      \item pydoc sys
+      \pause
+      \item pydoc sys -w
     \end{itemize}
   \pause
   \item Server pentru documentație
@@ -156,11 +156,42 @@
 
 \begin{frame}{Cum scriem cod pentru a putea folosi pydoc?}
   \begin{itemize}
-  \item Scrieți un modul test.py, care conține o clasă oarecare
-  \item Rulați pydoc ./test.py
-  \item Adăugați descriere la nivel de modul, clasa, metode
-  \item Declarați global mai multe variabile / funcții
-  \item Observați ce secțiuni s-au adăugat / modificat
+    \item docstring
+    \pause
+    \item Comentariu la începutul modulului, funcției, clasei, metodei
+    \pause
+    \item """ simple """, r""" raw """, u""" unicode """
+    \pause
+    \item Asociat variabilei \textunderscore\textunderscore
+    doc\textunderscore\textunderscore  (accesibil la runtime)
+    \pause
+    \item One-liner (doar pentru comenzi evidente)
+    \pause
+      \begin{itemize}
+        \item Frază care descrie efectele comenzii (imperativ - do, return)
+        \pause
+        \item Se preferă mențiunea tipului returnat, dar nu scrierea
+        semnăturii unei funcții
+        \pause
+        \item Se utilizează """, pentru a le putea extinde ușor mai târziu
+      \end{itemize}
+    \item Multi-line Docstring
+      \pause
+      \begin{itemize}
+        \item Sumarul pe prima linie (ca one-liner), urmat de o linie goală
+        \pause
+      \item Ar trebui să descrie parametri primiți ca argumente
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cum scriem cod pentru a putea folosi pydoc?}
+  \begin{itemize}
+    \item Scrieți un modul test.py, care conține o clasă oarecare
+    \item Rulați pydoc ./test.py
+    \item Adăugați descriere la nivel de modul, clasa, metode
+    \item Declarați global mai multe variabile / funcții
+    \item Observați ce secțiuni s-au adăugat / modificat
   \end{itemize}
 \end{frame}
 
