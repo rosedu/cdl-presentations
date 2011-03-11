@@ -198,6 +198,7 @@
 
 \section{Doxygen}
 
+<<<<<<< HEAD
 \begin{frame}{Step 3: Doxygen}
 	\begin{itemize}	
 		\item Este dificil să scriem documentația de la 0, separat de cod.
@@ -241,6 +242,43 @@
 	\begin{itemize}
 		\item {\bf TASK} Descărcați de la adresa http://swarm.cs.pub.ro/\~adrian.sc/doxygen\_task fisierele sursă de C++ și generați documentația aferentă lor.
 	\end{itemize}
+\end{frame}
+
+\section{pydoc}
+
+\begin{frame}{Ce este pydoc?}
+  \begin{itemize}
+  \item Modul disponibil în limbajul Python
+  \pause
+  \item Generator de documentație în format Text / HTML pentru un modul Python
+  (echivalent man pentru Unix)
+  \pause
+    \begin{itemize}
+    \item pydoc sys
+    \pause
+    \item pydoc sys -w
+    \end{itemize}
+  \pause
+  \item Server pentru documentație
+    \begin{itemize}
+      \item pydoc -p 80
+    \end{itemize}
+  \pause
+  \item Căutari de cuvinte cheie
+    \begin{itemize}
+      \item pydoc -k "word"
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cum scriem cod pentru a putea folosi pydoc?}
+  \begin{itemize}
+  \item Scrieți un modul test.py, care conține o clasă oarecare
+  \item Rulați pydoc ./test.py
+  \item Adăugați descriere la nivel de modul, clasa, metode
+  \item Declarați global mai multe variabile / funcții
+  \item Observați ce secțiuni s-au adăugat / modificat
+  \end{itemize}
 \end{frame}
 
 \section{Resurse}
