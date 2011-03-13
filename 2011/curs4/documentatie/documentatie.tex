@@ -1,0 +1,332 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{code/highlight}	 % highlight
+\usepackage{hyperref}        % folositi \url{http://...}
+% sau \href{http://...}{Nume Link}
+\mode<presentation>
+\usetheme{CDL}
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[Documentatia]{Documentatia}
+\subtitle{CDL - Cursul 4}
+\institute[ROSEdu]{ROSEdu}
+\author[Adrian|Victor]{Victor Cărbune - Adrian Scoică\\(\small victor@rosedu.org - adrian.sc@rosedu.org)}
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\begin{frame}
+\tableofcontents
+\end{frame}
+
+% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{Introducere}
+
+\begin{frame}{Documentația software}
+	Ce este?
+	\pause
+	\begin{itemize}
+		\item Text 
+		\pause
+		\item Tutoriale
+		\pause
+		\item Metainformații 
+		\pause
+	\end{itemize} 
+	... care însoțesc un produs software. \pause \\
+	Pe cine vizează?
+	\pause
+	\begin{itemize}
+		\item Proiectanți (Requirements, API)
+		\pause
+		\item Dezvoltatori (API, SDK)
+		\pause
+		\item Utilizatori (Manuale, Tutoriale)
+	\end{itemize}
+	
+\end{frame}
+
+\begin{frame}{The ugly truth}
+\begin{center}
+\includegraphics[height=5.5cm, width=11cm]{Step1.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{The ugly truth}
+\begin{center}
+\includegraphics[height=5.5cm, width=11cm]{Step2.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{The ugly truth}
+\begin{center}
+\includegraphics[height=5.5cm, width=11cm]{Step3.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{The ugly truth}
+\begin{center}
+\includegraphics[height=5.5cm, width=11cm]{Step4.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{The ugly truth}
+\begin{center}
+\includegraphics[height=5.5cm, width=11cm]{Step5.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{The ugly truth}
+\begin{center}
+\includegraphics[height=5.5cm, width=11cm]{Step6.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{The ugly truth}
+\begin{center}
+\includegraphics[height=5.5cm, width=11cm]{Step7.png}
+\end{center}
+\end{frame}
+
+\begin{frame}{The ugly truth}
+	Programatorii detestă să scrie documentație.
+	\pause
+	\begin{itemize}
+		\item "Pentru că {\bf pare} timp mort"
+		\pause
+		\item "Pentru că {\bf PCTTOR\_BK\_TAG\_OP\_CLCL} este un nume de constanta sugestiv"
+		\pause
+		\item "Pentru că oricum este evident ce face {\bf int prior\_load(const std::priority\_queue$<$SCRTok::Lexem, std::vector$<$SCRTok::Lexem$>$, std::greater$<$SCRTok::Lexem$>$ $>$\& lex);}
+		\pause
+		\item "Pentru că oricum o să fac modificări mai târziu"
+		\pause
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Consecințele}
+  \begin{itemize}
+  \pause
+  \item Codul este greu de refolosit, înțeles și modularizat
+  \pause
+  \item Devine un coșmar să încerci să adaugi funcționalități sau să repari bug-uri
+  \pause
+  \item Ceilalți programatori evită codul
+  \end{itemize}
+  \pause
+  ... și în cele din urmă, proiectul moare.
+\end{frame}
+
+\section{Cum se scrie documentația}
+
+\begin{frame}{Step 1: naming conventions}
+	\begin{itemize}
+		\item Primul pas către un cod lizibil.
+		\pause
+		\item Nume scurte și sugestive.
+		\pause
+			\begin{itemize}
+			\item make\_sanwdich\_in\_c();
+			\pause
+			\item makeSandwichInCamelCase();
+			\pause
+			\item SandwichClass;
+			\pause
+			\end{itemize}
+		\item {\bf Uniformitatea} este cuvântul cheie.
+		\pause
+	\end{itemize}
+	Alte convenții (doar câteva):
+	\begin{itemize}
+		\item CONSTANTELE\_IN\_UPPER\_CASE // (SI MACRO-URILE)
+		\pause
+		\item \_membrii \_privati \_cu \_underscore \_în \_față
+		\pause
+		\item {\bf pTable} este un {\bf p}Pointer la un Table
+		\pause
+		\item {\bf hTable} este un {\bf h}Handler pentru un Tabel
+		\pause
+		\item "{\bf line}" este mai bine decât "{\bf l}"
+		\pause
+		\item "{\bf index\_to\_line}" este mai rău decât "{\bf l}"
+		\pause
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Step 2: comentariile}
+	\begin{itemize}
+		\item {\bf Cel mai important} pas către un cod vizibil.
+		\pause
+		\item Urmăresc structura logică a codului ({\bf paragrafe})
+		\pause
+		\item Aduc completări necesare (nu redundante): complexitate, sfaturi, cazuri de eroare
+		\pause
+		\item Nu trebuie să conțină povești, ASCII art, proverbe,...
+		\pause
+		\item ... sau înjurături ...
+		\pause
+	\end{itemize}
+	În proiectele mari, este bine să includeți la începutul fișierului un antet cu:
+	\begin{itemize}
+		\item Versiunea de fișier (cu data curentă)
+		\pause
+		\item Autorul codului
+		\pause
+		\item O metodă de contact
+		\pause
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Step 2: comentariile - câte greșeli vedeți?}
+	\input{code/bad}
+\end{frame}
+
+\begin{frame}{Step 2: comentariile - un exemplu pozitiv}
+	\input{code/good}
+\end{frame}
+
+\section{Doxygen}
+
+\begin{frame}{Step 3: Doxygen}
+	\begin{itemize}	
+		\item Este dificil să scriem documentația de la 0, separat de cod.
+		\pause
+		\item Am vrea ca documentația să fie generabilă din surse.
+		\pause
+		\item Am vrea un limbaj simplu prin care să legăm explicațiile de elemente din cod.
+		\pause
+		\item Am vrea ca documentația să nu interacționeze cu codul compilabil (=$>$ comentarii).
+		\pause
+		\item Am vrea o solutie uniformă pentru mai multe limbaje: C, C++, Java, PHP, C\#, Perl
+		\pause
+		\item Am vrea documentație generabilă în mai multe limbaje: HTML, LaTeX, RTF
+	\end{itemize}
+	Doxygen este un utilitar open source flexibil și foarte puternic, dar ușor de folosit. \pause \\
+	Parsează codul sursă și interpretează comentariile din el.
+\end{frame}
+
+\begin{frame}{Step 3: Sintaxa Doxygen}
+	Doxygen analizează acele comentarii care preced declarații sau definiții și au următoarea sintaxă: \\
+	\input{code/sintaxa}
+\end{frame}
+
+\begin{frame}{Step 3: Sintaxa Doxygen - specficații}
+	\input{code/doxygen}
+\end{frame}
+
+\begin{frame}{Step 4: Generarea documentatiei cu Doxygen}
+	Avem mai intai nevoie de un fisier de configurare pentru doxygen.
+	\pause
+	\begin{itemize}
+		\item Un fisier de configurare se poate obtine cu comanda {\bf doxygen -g fisier\_cofig}
+	\end{itemize}
+	\pause
+	Al doilea pas este editarea fisierului conform cu cerintele noastre.
+	\pause
+	\begin{itemize}
+		\item In final, vom folosi fisierul pentru a genera documentația {\bf doxygen fisier\_config}
+	\end{itemize}
+	\pause
+	\begin{itemize}
+		\item {\bf TASK} Descărcați de la adresa http://swarm.cs.pub.ro/\~adrian.sc/doxygen\_task fisierele sursă de C++ și generați documentația aferentă lor.
+	\end{itemize}
+\end{frame}
+
+\section{pydoc}
+
+\begin{frame}{Ce este pydoc?}
+  \begin{itemize}
+  \item Modul disponibil în limbajul Python
+  \pause
+  \item Generator de documentație în format Text / HTML pentru un modul Python
+  (echivalent man pentru Unix)
+  \pause
+    \begin{itemize}
+      \item pydoc sys
+      \pause
+      \item pydoc sys -w
+    \end{itemize}
+  \pause
+  \item Server pentru documentație
+    \begin{itemize}
+      \item pydoc -p 80
+    \end{itemize}
+  \pause
+  \item Căutari de cuvinte cheie
+    \begin{itemize}
+      \item pydoc -k "word"
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cum scriem cod pentru a putea folosi pydoc?}
+  \begin{itemize}
+    \item docstring
+    \pause
+    \item Comentariu la începutul modulului, funcției, clasei, metodei
+    \pause
+    \item """ simple """, r""" raw """, u""" unicode """
+    \pause
+    \item Asociat variabilei \textunderscore\textunderscore
+    doc\textunderscore\textunderscore  (accesibil la runtime)
+    \pause
+    \item One-liner (doar pentru comenzi evidente)
+    \pause
+      \begin{itemize}
+        \item Frază care descrie efectele comenzii (imperativ - do, return)
+        \pause
+        \item Se preferă mențiunea tipului returnat, dar nu scrierea
+        semnăturii unei funcții
+        \pause
+        \item Se utilizează """, pentru a le putea extinde ușor mai târziu
+      \end{itemize}
+    \item Multi-line Docstring
+      \pause
+      \begin{itemize}
+        \item Sumarul pe prima linie (ca one-liner), urmat de o linie goală
+        \pause
+      \item Ar trebui să descrie parametri primiți ca argumente
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cum scriem cod pentru a putea folosi pydoc?}
+  \begin{itemize}
+    \item Scrieți un modul test.py, care conține o clasă oarecare
+    \item Rulați pydoc ./test.py
+    \item Adăugați descriere la nivel de modul, clasa, metode
+    \item Declarați global mai multe variabile / funcții
+    \item Observați ce secțiuni s-au adăugat / modificat
+  \end{itemize}
+\end{frame}
+
+\section{Resurse}
+
+\begin{frame}{Resurse}
+  \begin{itemize}
+  \item http://www-glast.slac.stanford.edu/software/CodeHowTo\_20021202/doxygen/using\_doxygen.htm
+  \pause
+  \item http://www.devtopics.com/13-tips-to-comment-your-code/
+  \pause
+  \item http://www.codinghorror.com/blog/2004/11/when-good-comments-go-bad.html  
+  \pause
+  \vspace{10mm}
+  \item Întrebări?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+\end{frame}
+
+\end{document}
