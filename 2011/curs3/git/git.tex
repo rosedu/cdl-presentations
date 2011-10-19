@@ -59,66 +59,25 @@
 
 \begin{frame}{Config}
   \begin{itemize}
-    \item username, email
-    \item ui options
-    \item .gitconfig file
+    \item \texttt{git config --global user.name "\textit{nume prenume}"}
+    \item \texttt{git config --global user.email "\textit{nume@dom.com}"}
+    \item \texttt{git config --global color.ui auto}
+    \item \texttt{git config --global color.pager true}
+    \item \texttt{git config --global core.editor \textit{editor}}
+    \item \texttt{cat $\sim$/.gitconfig}
   \end{itemize}
 \end{frame}
-%\begin{frame}{Git config}
-%  \begin{itemize}
-%    \item local în \texttt{.git/config}
-%    \item global în \texttt{\$HOME/.gitconfig}
-%  \end{itemize}
-%  \pause
-%  \begin{alertblock}{Task 1}
-%    \begin{itemize}
-%      \item install git
-%      \item \texttt{git config --global user.name "\textit{nume prenume}"}
-%      \item \texttt{git config --global user.email "\textit{nume@dom.com}"}
-%      \item \texttt{git config --global color.ui auto}
-%      \item \texttt{git config --global color.pager true}
-%      \item \texttt{git config --global core.editor \textit{editor}}
-%    \end{itemize}
-%  \end{alertblock}
-%\end{frame}
 
 \begin{frame}{First repo}
   \begin{itemize}
-    \item init
-    \item add simple file
+    \item \texttt{git init}
+    \item \texttt{git add}
     \item ignore
-    \item commit
+    \item \texttt{git commit}
+    \item \texttt{git status}
   \end{itemize}
+  % TODO: poza cu cele 3 zone: work tree, index, repo, eventual si urmatoarea
 \end{frame}
-%\begin{frame}[label=Content]{Conținut}
-%  \begin{alertblock}{Careful!}
-%    Git urmărește conținut, nu fișiere!!
-%  \end{alertblock}
-%  \begin{itemize}
-%    \item work tree (working dir): local
-%    \item index: pregătit de commit
-%    \item repository: commit salvat
-%  \end{itemize}
-%  \pgfuseimage{m5}
-%\end{frame}
-%
-%\begin{frame}{Staging}
-%  \begin{itemize}
-%    \item work tree $\rightarrow$ index
-%    \item \texttt{git add \textit{filename}}
-%    \item \texttt{git rm \textit{filename}}
-%    \item \texttt{git mv \textit{filename}}
-%  \end{itemize}
-%  \pause
-%  \begin{alertblock}{Task 4}
-%    \begin{itemize}
-%      \item Modificați sursa \texttt{main.c} din director, adăugând numele vostru pe linia
-%      corespunzătoare.
-%      \item Mutați în index fișierul modificat
-%    \end{itemize}
-%  \end{alertblock}
-%\end{frame}
-%
 %\begin{frame}{Commiting}
 %  \begin{itemize}
 %    \item index $\rightarrow$ repository \textbf{local}
@@ -139,16 +98,6 @@
 %        \item other info
 %      \end{itemize}
 %  \end{itemize}
-%  \pause
-%  \begin{alertblock}{Task 6}
-%    \begin{itemize}
-%      \item Modificați fișierul \texttt{README}, adăugând numele și grupa pe linia
-%      corespunzătoare.
-%      \item creați un fișier numit după voi în working dir
-%      \item vizualizați starea working dir.
-%      \item faceți working dir clean
-%    \end{itemize}
-%  \end{alertblock}
 %\end{frame}
 \begin{frame}{Repo status}
 pic
@@ -156,23 +105,27 @@ pic
 
 \begin{frame}{Going public}
   \begin{itemize}
-    \item remote
-    \item push
+    \item \texttt{git remote}
+    \item \texttt{ git push}
   \end{itemize}
+  % TODO poza cu cele 2 repo-uri de acum
 \end{frame}
 
 \begin{frame}{Contributing}
   \begin{itemize}
-    \item clone
+    \item \texttt{git clone}
     \item small change
-    \item commit
-    \item push
-    \item pull
+    \item \texttt{git diff}
+    \item \texttt{git commit}
+    \item \texttt{git push}
+    \item \texttt{git pull}
   \end{itemize}
+  % TODO poza cu cele 3 repo-uri
 \end{frame}
 
 \begin{frame}{Repo status}
-pic - 2 commituri, vederi din fiecare remote
+pic - detaliat unul din repo-uri în stilul
+\url{http://learn.github.com/p/intro.html\#snapshots\_not\_changesets}
 \end{frame}
 
 \begin{frame}{More about commits}
@@ -184,8 +137,10 @@ pic - 2 commituri, vederi din fiecare remote
     \item commit msg
     \item practices
   \end{itemize}
+  % TODO: poate ar trebui la inceput cand vorbim de primul commit
 \end{frame}
 
+% TODO: decis cat din info de mai jos e util si cat nu
 %\begin{frame}{Git metadata}
 %  \begin{itemize}[<+->]
 %    \item director \texttt{.git} \textit{doar} în rădăcină
@@ -234,7 +189,9 @@ pic - 2 commituri, vederi din fiecare remote
     \item fiecare pe branch propriu câte un feature
     \item la final le merguim și apoi push
   \end{itemize}
+  % TODO: gasit ceva care sa admita ambele feature-uri simultan
 \end{frame}
+% TODO: de avut in vedere si diferenta intre merge si rebase
 %\begin{frame}{Merge vs Rebase}
 %  \begin{itemize}
 %    \item Ce se întâmplă la pull când avem și local commit-uri noi?
@@ -246,15 +203,11 @@ pic - 2 commituri, vederi din fiecare remote
 %  \pgfuseimage{m2}
 %\end{frame}
 
-\begin{frame}{Repo status}
-pic - 2 commituri, vederi din fiecare remote
-\end{frame}
-
 \begin{frame}{viewing}
   \begin{itemize}
     \item git log
     \item git show
-    \item git diff
+    \item git diff %TODO: ramane aici, il mut mai sus
     \item gitk, gitg, tig
     \item tags
   \end{itemize}
@@ -267,12 +220,6 @@ pic - 2 commituri, vederi din fiecare remote
 %    \item \texttt{git diff \textit{idcommit1} \textit{idcommit2}} - commit și
 %    commit
 %  \end{itemize}
-%  \pause
-%  \begin{alertblock}{Task 7}
-%    \begin{itemize}
-%      \item obtineți un diff între HEAD și starea inițială a repo-ului
-%    \end{itemize}
-%  \end{alertblock}
 %\end{frame}
 %\begin{frame}{Tags}
 %  \begin{itemize}
@@ -282,8 +229,6 @@ pic - 2 commituri, vederi din fiecare remote
 %    \item Putem referi commit-uri cu tag-uri prin numele tagurilor
 %  \end{itemize}
 %\end{frame}
-%
-
 \begin{frame}{fix wrong commit}
   \begin{itemize}
     \item rebase
@@ -308,9 +253,10 @@ pic - 2 commituri, vederi din fiecare remote
 \begin{frame}[label=l]{Links}
   \begin{itemize}
     \item \href{http://en.wikipedia.org/wiki/Comparison_of_revision_control_software}{Comparație între SCM-uri}
-    \item \href{http://en.wikibooks.org/wiki/Understanding_Darcs/Patch_theory}{Darcs Patch Theory}
     \item \href{http://talks.rosedu.org/prezentari/prezentarea03}{Prezentare
     Tech Talks Git (Mircea Bardac)}
+    \item \href{http://nvie.com/posts/a-successful-git-branching-model/}{A
+    branching model}
     \item \href{http://github.com}{GitHub}
     \item
     \href{http://www.eqqon.com/index.php/Collaborative_Github_Workflow}{Workflof
