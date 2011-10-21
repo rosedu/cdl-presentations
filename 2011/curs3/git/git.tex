@@ -68,39 +68,45 @@
   \end{itemize}
 \end{frame}
 
+% Vom scrie un program care va primi un număr ca argument și-l va afișa
 \begin{frame}{First repo}
   \begin{itemize}
     \item \texttt{git init}
-    \item \texttt{git add}
-    \item ignore
-    \item \texttt{git commit}
     \item \texttt{git status}
+    \item ignore % binar + executabil
+    \item \texttt{git add}
+    \item \texttt{git commit}
   \end{itemize}
-  % TODO: poza cu cele 3 zone: work tree, index, repo, eventual si urmatoarea
+  % TODO: poza cu cele 3 zone: work tree, index, repo
 \end{frame}
-%\begin{frame}{Commiting}
-%  \begin{itemize}
-%    \item index $\rightarrow$ repository \textbf{local}
-%    \item \texttt{git commit \textbf{-m "\textit{mesaj}"}}
-%  \end{itemize}
-%  \begin{alertblock}{Careful!}
-%    Nu folosiți mesaje goale!
-%  \end{alertblock}
-%\end{frame}
-%\begin{frame}{Status}
-%  \begin{itemize}
-%    \item \texttt{git status}
-%    \item prezintă:
-%      \begin{itemize}
-%        \item conținut din index {staged}
-%        \item conținut care nu e în index {non-staged}
-%        \item conținut neurmărit (non-tracked)
-%        \item other info
-%      \end{itemize}
-%  \end{itemize}
-%\end{frame}
-\begin{frame}{Repo status}
-pic
+
+\begin{frame}{More about Commits}
+  \begin{itemize}
+    \item date
+    \item metadate
+    \pause
+    \begin{itemize}
+      \item ID (SHA1)
+      \item parent(s)
+      \item tree
+      \item commit msg
+    \end{itemize}
+  \end{itemize}
+  % TODO: poza cu un singur commit
+\end{frame}
+
+\begin{frame}{Commit Reference}
+  \begin{description}
+    \item[\texttt{HEAD}] = ultimul commit
+    \item[\texttt{HEAD\textasciicircum}] = penultimul
+    \item[\texttt{HEAD\textasciicircum\textasciicircum}] = antepenultimul
+    \item[...] = etc
+    \pause
+    \item[\texttt{HEAD\textasciitilde5}] = \texttt{HEAD\textasciicircum\textasciicircum\textasciicircum\textasciicircum\textasciicircum}
+    \pause
+    \item[a946e644d5b4c26aaa4e73338805e207bbfd78b0] = full hash
+    \item[a946e6] = short hash
+  \end{description}
 \end{frame}
 
 \begin{frame}{Going public}
@@ -124,129 +130,45 @@ pic
 \end{frame}
 
 \begin{frame}{Repo status}
-pic - detaliat unul din repo-uri în stilul
+TODO pic - detaliat unul din repo-uri în stilul
 \url{http://learn.github.com/p/intro.html\#snapshots\_not\_changesets}
 \end{frame}
 
-\begin{frame}{More about commits}
+\begin{frame}{Working in Parallel}
   \begin{itemize}
-    \item date
-    \item metadate
-    \item parent(s)
-    \item tree
-    \item commit msg
-    \item practices
+    \item \texttt{git branch}
+    \item \texttt{git pull}
+    \item \texttt{git pull --rebase}
   \end{itemize}
-  % TODO: poate ar trebui la inceput cand vorbim de primul commit
 \end{frame}
 
-% TODO: decis cat din info de mai jos e util si cat nu
-%\begin{frame}{Git metadata}
-%  \begin{itemize}[<+->]
-%    \item director \texttt{.git} \textit{doar} în rădăcină
-%    \item conținut:
-%      \begin{itemize}
-%        \item \texttt{.git/config} fișier configurare
-%        \item \texttt{.git/hooks} scripturi pentru evenimente
-%        \item \texttt{.git/refs} referințe (la ce?)
-%      \end{itemize}
-%  \end{itemize}
-%\end{frame}
-%
-%\begin{frame}{Commit (2)}
-%  \begin{itemize}
-%    \item fiecare commit are un ID: SHA1
-%    \item fiecare commit are cel puțin un părinte (cu excepția primului)
-%    \item graf aciclic de commit-uri
-%    \pause
-%    \item undo: \texttt{git reset}
-%    \item type: \texttt{git commit --amend}
-%    \item revenire la un working tree anterior: \texttt{git revert \textit{id}}
-%    (nerecomandat)
-%    \item doar pt un fișier: \texttt{git checkout \textit{file}}
-%    \pause
-%    \item cum referim un commit?
-%  \end{itemize}
-%\end{frame}
-%
-%\begin{frame}{Commit (3)}
-%  \begin{description}
-%    \item[\texttt{HEAD}] = ultimul commit
-%    \item[\texttt{HEAD\textasciicircum}] = penultimul
-%    \item[\texttt{HEAD\textasciicircum\textasciicircum}] = antepenultimul
-%    \item[...] = etc
-%    \pause
-%    \item[\texttt{HEAD\textasciitilde5}] = \texttt{HEAD\textasciicircum\textasciicircum\textasciicircum\textasciicircum\textasciicircum}
-%    \pause
-%    \item[a946e644d5b4c26aaa4e73338805e207bbfd78b0] = full hash
-%    \pause
-%    \item[a946e6] = short hash
-%  \end{description}
-%\end{frame}
-
-\begin{frame}{working in parallel}
+\begin{frame}{Repository Viewing}
   \begin{itemize}
-    \item fiecare pe branch propriu câte un feature
-    \item la final le merguim și apoi push
-  \end{itemize}
-  % TODO: gasit ceva care sa admita ambele feature-uri simultan
-\end{frame}
-% TODO: de avut in vedere si diferenta intre merge si rebase
-%\begin{frame}{Merge vs Rebase}
-%  \begin{itemize}
-%    \item Ce se întâmplă la pull când avem și local commit-uri noi?
-%    \pause
-%    \item merge - combină commit-urile
-%    \item rebase - reordonează istoria
-%  \end{itemize}
-%  \pgfuseimage{m1}
-%  \pgfuseimage{m2}
-%\end{frame}
-
-\begin{frame}{viewing}
-  \begin{itemize}
-    \item git log
-    \item git show
-    \item git diff %TODO: ramane aici, il mut mai sus
+    \item \texttt{git log}
+    \item \texttt{git show}
     \item gitk, gitg, tig
     \item tags
   \end{itemize}
 \end{frame}
-%\begin{frame}{Diff}
-%  \begin{itemize}
-%    \item \texttt{git diff} - diferențe index - working tree
-%    \item \texttt{git diff --cached} - conținut index
-%    \item \texttt{git diff \textit{idcommit1}} - commit și working dir
-%    \item \texttt{git diff \textit{idcommit1} \textit{idcommit2}} - commit și
-%    commit
-%  \end{itemize}
-%\end{frame}
-%\begin{frame}{Tags}
-%  \begin{itemize}
-%    \item momente importante din development (release, etc)
-%    \item creat cu \texttt{git tag \textit{nume} \textit{ref}}
-%    \item șters cu \texttt{git tag -d \textit{nume}}
-%    \item Putem referi commit-uri cu tag-uri prin numele tagurilor
-%  \end{itemize}
-%\end{frame}
-\begin{frame}{fix wrong commit}
+
+\begin{frame}{Fix Wrong Commit}
   \begin{itemize}
-    \item rebase
-    \item ammend
+    \item \texttt{git rebase}
+    \item \texttt{git ammend}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{bug fixing}
+\begin{frame}{Bug Fixing}
   \begin{itemize}
-    \item ceva pt stash
-    \item ceva pt bisect
+    \item \texttt{git stash}
+    \item \texttt{git bisect}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Extra - mailing patches}
+\begin{frame}{Extra - Mailing Patches}
   \begin{itemize}
-    \item format-patch
-    \item send-email
+    \item \texttt{git format-patch}
+    \item \texttt{git send-email}
   \end{itemize}
 \end{frame}
 
