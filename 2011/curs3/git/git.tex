@@ -24,7 +24,10 @@
 %\pgfdeclareimage[height=3cm]{m2}{img/02}
 %\pgfdeclareimage[height=6cm]{m3}{img/03}
 %\pgfdeclareimage[height=6.5cm]{m4}{img/04}
-%\pgfdeclareimage[height=5cm]{m5}{img/05}
+\pgfdeclareimage[height=5cm]{m5}{img/05}
+\pgfdeclareimage[height=5cm]{m6}{img/snapshots}
+\pgfdeclareimage[height=5cm]{m7}{img/decentr}
+\pgfdeclareimage[height=8cm]{m8}{img/08}
 
 \begin{document}
 
@@ -77,14 +80,13 @@
     \item \texttt{git add}
     \item \texttt{git commit}
   \end{itemize}
-  % TODO: poza cu cele 3 zone: work tree, index, repo
+  \pgfuseimage{m5}
 \end{frame}
 
 \begin{frame}{More about Commits}
   \begin{itemize}
     \item date
     \item metadate
-    \pause
     \begin{itemize}
       \item ID (SHA1)
       \item parent(s)
@@ -92,7 +94,7 @@
       \item commit msg
     \end{itemize}
   \end{itemize}
-  % TODO: poza cu un singur commit
+  \pgfuseimage{m6}
 \end{frame}
 
 \begin{frame}{Commit Reference}
@@ -114,9 +116,9 @@
     \item \texttt{git remote}
     \item \texttt{git push}
   \end{itemize}
-  % TODO poza cu cele 2 repo-uri de acum
 \end{frame}
 
+% Vom scrie functie care testeaza daca un numar e prim
 \begin{frame}{Contributing}
   \begin{itemize}
     \item \texttt{git clone}
@@ -126,20 +128,20 @@
     \item \texttt{git push}
     \item \texttt{git pull}
   \end{itemize}
-  % TODO poza cu cele 3 repo-uri
+  \pgfuseimage{m7}
 \end{frame}
 
-\begin{frame}{Repo status}
-TODO pic - detaliat unul din repo-uri în stilul
-\url{http://learn.github.com/p/intro.html\#snapshots\_not\_changesets}
-\end{frame}
-
+% Pe un branch vom descompune numerele in factori primi
+% Pe celalt vom calcula cmddc
+% Undeva trebuie sa introducem o mica greseala, invizibila initial
 \begin{frame}{Working in Parallel}
   \begin{itemize}
     \item \texttt{git branch}
     \item \texttt{git pull}
     \item \texttt{git pull --rebase}
   \end{itemize}
+  \vspace{-3cm}\hspace{5cm}
+  \pgfuseimage{m8}
 \end{frame}
 
 \begin{frame}{Repository Viewing}
@@ -151,6 +153,7 @@ TODO pic - detaliat unul din repo-uri în stilul
   \end{itemize}
 \end{frame}
 
+% Facem un commit prost cu ceva si-l fixam dupa
 \begin{frame}{Fix Wrong Commit}
   \begin{itemize}
     \item \texttt{git rebase}
@@ -158,6 +161,7 @@ TODO pic - detaliat unul din repo-uri în stilul
   \end{itemize}
 \end{frame}
 
+% Corectam greseala de acum cateva slide-uri
 \begin{frame}{Bug Fixing}
   \begin{itemize}
     \item \texttt{git stash}
@@ -165,6 +169,7 @@ TODO pic - detaliat unul din repo-uri în stilul
   \end{itemize}
 \end{frame}
 
+% Cel care a găsit greșeala o trimite cu format-patch celuilat :)
 \begin{frame}{Extra - Mailing Patches}
   \begin{itemize}
     \item \texttt{git format-patch}
