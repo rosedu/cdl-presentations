@@ -10,135 +10,36 @@
 \usetheme{CDL}
 
 \title[]{Git}
-\subtitle{CDL 2011 - Cursul 3}
+\subtitle{CDL 2011 - Cursul 2}
 \institute[]{ROSEdu}
-\author[]{Mihai Maruseac \\ \texttt{mihai@rosedu.org} \\ (with content from Mircea Bardac)}
+\author[]{
+  Mihai Maruseac \texttt{mihai@rosedu.org} \\
+  Răzvan Deaconescu \texttt{razvan@rosedu.org}
+}
 
 \setbeamertemplate{frametitle continuation}[from second]
 \setbeamertemplate{footline}[frame number]
 
-\pgfdeclareimage[height=3cm]{m1}{img/01}
-\pgfdeclareimage[height=3cm]{m2}{img/02}
-\pgfdeclareimage[height=6cm]{m3}{img/03}
-\pgfdeclareimage[height=6.5cm]{m4}{img/04}
+%\pgfdeclareimage[height=3cm]{m1}{img/01}
+%\pgfdeclareimage[height=3cm]{m2}{img/02}
+%\pgfdeclareimage[height=6cm]{m3}{img/03}
+%\pgfdeclareimage[height=6.5cm]{m4}{img/04}
 \pgfdeclareimage[height=5cm]{m5}{img/05}
+\pgfdeclareimage[height=5cm]{m6}{img/snapshots}
+\pgfdeclareimage[height=5cm]{m7}{img/decentr}
+\pgfdeclareimage[height=8cm]{m8}{img/08}
 
 \begin{document}
 
 \maketitle
 
-\section{Source Control Management}
-
-\begin{frame}{Intro}
-  \begin{alertblock}{Quote}
-    \texttt{\textit{Perilous to us all are the devices of an art deeper than
-    we posses ourselves.}}
-    \flushright{(Tolkien)}
-  \end{alertblock}
-  \pause
-  \begin{alertblock}{Quote}
-    \texttt{\textit{Keep your code safe. Tattoo that sentence backward across
-    your forehead and stare in the mirror for 10 minutes every morning.}}
-    \flushright{(adapted from Pete Goodliffe)}
+\begin{frame}{But First \ldots}
+  \begin{alertblock}{Homework}
+    Parcurgeți \url{http://gitimmersion.com/} înaintea cursului.
   \end{alertblock}
 \end{frame}
 
-\begin{frame}{Source Control Management}
-  \begin{itemize}[<+->]
-    \item aka Revision Control
-    \item urmărire/stocare modificări
-      \begin{alertblock}{Careful!}
-        NU copy-paste în directoare separate
-      \end{alertblock}
-    \item colaborare, proiecte mari
-      \begin{alertblock}{Careful!}
-        NU mail / dropbox
-      \end{alertblock}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Concepte}
-  \begin{description}[<+->]
-    \item[repository] = ...
-    \item[checkout,clone] = make local copy
-    \item[working copy] = copie locală, \textbf{sandbox}
-    \item[change] = modificare
-    \item[commit] = submit changes
-    \item[update] = sync
-    \item[merge] = aplicare a 2+ commits
-    \item[conflict] = schimbări în același document
-    \item[version] = revision
-    \item[HEAD] = cel mai recent commit (tip)
-    \item[branch] = alternativă development
-    \item[label] = punct important din development (tag)
-  \end{description}
-\end{frame}
-
-\begin{frame}{Unde e repository-ul?}
-  \begin{itemize}
-    \item centralizat
-      \begin{itemize}
-        \item server: DB
-        \item client: working copy
-      \end{itemize}
-      \pause
-      \begin{description}
-        \item[+] totul la un loc
-        \item[--] bottleneck, \textit{single point of failure}
-      \end{description}
-    \pause
-    \item descentralizat
-      \begin{itemize}
-        \item P2P
-        \item operații/concepte noi
-        \item repo si working-tree simultan
-        \item istoric si lucru complet descentralizat
-      \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{SCM Descentralizat}
-  \begin{itemize}
-    \item avantaje
-      \begin{itemize}
-        \item fără \textit{single point of failure}
-        \item lucru deconectat
-        \item operații rapide
-        \item modele noi de development
-      \end{itemize}
-    \pause
-    \item dezavantaje
-      \begin{itemize}
-        \item mai greu de înteles
-        \item cine are acces?
-        \item istoria e permanentă (almost)
-      \end{itemize}
-    \pause
-    \item operatii noi
-      \begin{description}[<+->]
-        \item[push] - sync eu $\rightarrow$ remote
-        \item[fetch,pull] - sync eu $\leftarrow$ remote
-        \item[remote] - ...
-      \end{description}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{SCMs}
-  \begin{itemize}
-    \item \textbf{SVN} (Subversion), centralizat, C
-    \item \textbf{Git} descentralizat, Perl, C, shell
-    \item \textbf{Mercurial} descentralizat, $<$ Git (see wiki ref), Python, C, shell
-    \item \textbf{darcs} patch (see Darcs ref), Haskell, lazy
-  \end{itemize}
-  \pause
-  \begin{alertblock}{Hint}
-    Toate sunt folosite. Încercați-le și voi :)
-  \end{alertblock}
-\end{frame}
-
-\section{Git}
-
-\begin{frame}{Git history}
+\begin{frame}{Git History}
   \begin{itemize}
     \item Linus Torvalds
     \item Linux Kernel (moved from BitKeeper)
@@ -151,174 +52,72 @@
       \end{itemize}
     \item development start: 3 aprilie 2005
     \item 29 aprilie 2005: 6.7 patch-uri/s în kernel via Git
-    \item 16 iunie 2005: 2.6.12 pe Git
+    \item 16 iunie 2005: 2.6.12 pe Git (acum și pe GitHub)
     \item 31 ianuarie 2011: git 1.7.4
     \item C, Perl, shell
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Git mits}
-  \begin{itemize}[<+->]
-    \item git is hard to learn
-    \item git is slow
-    \item git nu e matur
-    \item nimeni nu folosește git
-    \item proiectele care folosesc git au un SVN in spate
-    \item nu poti muta proiecte de pe SVN pe Git
-  \end{itemize}
-\end{frame}
+\section{Live Demo}
 
-\begin{frame}{Git metadata}
-  \begin{itemize}[<+->]
-    \item director \texttt{.git} \textit{doar} în rădăcină
-    \item conținut:
-      \begin{itemize}
-        \item \texttt{.git/config} fișier configurare
-        \item \texttt{.git/hooks} scripturi pentru evenimente
-        \item \texttt{.git/refs} referințe (la ce?)
-      \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Git config}
+\begin{frame}{Keywords}
   \begin{itemize}
-    \item local în \texttt{.git/config}
-    \item global în \texttt{\$HOME/.gitconfig}
+    \item repository
+    \item clone
+    \item commit
+    \item HEAD
+    \item index/staging
+    \item tracked/untracked
+    \item snapshot
+    \item remote
+    \item push/pull
+    \item branch
+    \item merge
   \end{itemize}
-  \pause
-  \begin{alertblock}{Task 1}
-    \begin{itemize}
-      \item install git
-      \item \texttt{git config --global user.name "\textit{nume prenume}"}
-      \item \texttt{git config --global user.email "\textit{nume@dom.com}"}
-      \item \texttt{git config --global color.ui auto}
-      \item \texttt{git config --global color.pager true}
-      \item \texttt{git config --global core.editor \textit{editor}}
-    \end{itemize}
-  \end{alertblock}
 \end{frame}
 
-\begin{frame}{Git commands}
+\begin{frame}{Config}
   \begin{itemize}
-    \item \texttt{git \textit{cmd args}}
-    \item \texttt{git help}
-    \item \texttt{git help \textit{cmd}}
-    \item \texttt{git \textit{cmd} help}
-    \item \texttt{man git-\texttt{cmd}}
+    \item \texttt{git config --global user.name "\textit{nume prenume}"}
+    \item \texttt{git config --global user.email "\textit{nume@dom.com}"}
+    \item \texttt{git config --global color.ui auto}
+    \item \texttt{git config --global color.pager true}
+    \item \texttt{git config --global core.editor \textit{editor}}
+    \item \texttt{cat $\sim$/.gitconfig}
   \end{itemize}
-  % TODO: poza cu cele 3 zone: work tree, index, repo, eventual si urmatoarea
 \end{frame}
 
 \begin{frame}{Snapshots not Changesets}
   \pgfuseimage{m6}
 \end{frame}
 
-\begin{frame}{Primul repo}
+% Vom scrie un program care va primi un număr ca argument și-l va afișa
+\begin{frame}{First Repo}
   \begin{itemize}
-    \item \texttt{git init} într-un director cu surse
-    \item \texttt{git clone \textit{url}}
-  \end{itemize}
-  \pause
-  \begin{alertblock}{Task 3}
-    \begin{itemize}
-      \item Obțineți repository-ul de la adresa
-      git@github.com:mihaimaruseac/cdl.git
-      \item listați conținutul directorului creat
-    \end{itemize}
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}[label=Content]{Conținut}
-  \begin{alertblock}{Careful!}
-    Git urmărește conținut, nu fișiere!!
-  \end{alertblock}
-  \begin{itemize}
-    \item work tree (working dir): local
-    \item index: pregătit de commit
-    \item repository: commit salvat
+    \item \texttt{git init}
+    \item \texttt{git status}
+    \item ignore % binar + executabil
+    \item \texttt{git add}
+    \item \texttt{git commit}
   \end{itemize}
   \pgfuseimage{m5}
 \end{frame}
 
-\begin{frame}{Staging}
+\begin{frame}{More about Commits}
   \begin{itemize}
-    \item work tree $\rightarrow$ index
-    \item \texttt{git add \textit{filename}}
-    \item \texttt{git rm \textit{filename}}
-    \item \texttt{git mv \textit{filename}}
-  \end{itemize}
-  \pause
-  \begin{alertblock}{Task 4}
+    \item date
+    \item metadate
     \begin{itemize}
-      \item Modificați sursa \texttt{main.c} din director, adăugând numele vostru pe linia
-      corespunzătoare.
-      \item Mutați în index fișierul modificat
+      \item ID (SHA1)
+      \item parent(s)
+      \item tree
+      \item commit msg
+      \item tags (if any)
     \end{itemize}
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{Commiting}
-  \begin{itemize}
-    \item index $\rightarrow$ repository \textbf{local}
-    \item \texttt{git commit \textbf{-m "\textit{mesaj}"}}
-  \end{itemize}
-  \begin{alertblock}{Careful!}
-    Nu folosiți mesaje goale!
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{Shortcuts}
-  \begin{itemize}
-    \item \texttt{git commit -am "..."}
-    \item \texttt{git add .}
-    \pause
-    \begin{alertblock}{Tip}
-      Nu rulați \texttt{git commit -am..}.
-    \end{alertblock}
-    \begin{alertblock}{Careful!}
-      Nu rulați \texttt{git add .} dacă nu aveți totul setat ok.
-    \end{alertblock}
-    \pause
-    \item probleme:
-      \begin{itemize}
-        \item fișiere executabile (\texttt{a.out}), obiect (\texttt{a.o})
-        \item fișiere swap (\texttt{.git.tex.swp})
-        \item fișiere locale, personale
-        \item etc.
-      \end{itemize}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Ignore}
-  \begin{itemize}
-    \item \texttt{.gitignore} - \textbf{global!!}
-    \item \texttt{.git/info/exclude} - local
-  \end{itemize}
-  \pause
-  \begin{alertblock}{Task 5}
-    \begin{itemize}
-      \item Ignorați \textbf{local} fișierele obiect și executabilul generat.
-    \end{itemize}
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{Commit (2)}
-  \begin{itemize}
-    \item fiecare commit are un ID: SHA1
-    \item fiecare commit are cel puțin un părinte (cu excepția primului)
-    \item graf aciclic de commit-uri
-    \pause
-    \item undo: \texttt{git reset}
-    \item type: \texttt{git commit --amend}
-    \item revenire la un working tree anterior: \texttt{git revert \textit{id}}
-    (nerecomandat)
-    \item doar pt un fișier: \texttt{git checkout \textit{file}}
-    \pause
-    \item cum referim un commit?
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Commit (3)}
+\begin{frame}{Commit Reference}
   \begin{description}
     \item[\texttt{HEAD}] = ultimul commit
     \item[\texttt{HEAD\textasciicircum}] = penultimul
@@ -329,278 +128,123 @@
     \pause
     \item[a946e644d5b4c26aaa4e73338805e207bbfd78b0] = full hash
     \item[a946e6] = short hash
+    \pause
+    \item by tag (\texttt{v1.0})
   \end{description}
 \end{frame}
 
-\begin{frame}{Status}
+\begin{frame}{Going Public}
   \begin{itemize}
-    \item \texttt{git status}
-    \item prezintă:
-      \begin{itemize}
-        \item conținut din index {staged}
-        \item conținut care nu e în index {non-staged}
-        \item conținut neurmărit (non-tracked)
-        \item other info
-      \end{itemize}
-  \end{itemize}
-  \pause
-  \begin{alertblock}{Task 6}
-    \begin{itemize}
-      \item Modificați fișierul \texttt{README}, adăugând numele și grupa pe linia
-      corespunzătoare.
-      \item creați un fișier numit după voi în working dir
-      \item vizualizați starea working dir.
-      \item faceți working dir clean
-    \end{itemize}
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{Diff}
-  \begin{itemize}
-    \item \texttt{git diff} - diferențe index - working tree
-    \item \texttt{git diff --cached} - conținut index
-    \item \texttt{git diff \textit{idcommit1}} - commit și working dir
-    \item \texttt{git diff \textit{idcommit1} \textit{idcommit2}} - commit și
-    commit
-  \end{itemize}
-  \pause
-  \begin{alertblock}{Task 7}
-    \begin{itemize}
-      \item obtineți un diff între HEAD și starea inițială a repo-ului
-    \end{itemize}
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{Remote Repository}
-  \begin{itemize}
-    \item clone = copie repo remote
-    \item commit /= update goes to repo
-    \item \texttt{git push origin master} - trimite commit-urile în branch-ul
-    master din repository-ul referit de origin
-    \item dacă nu pot exista confuzii, merge și \texttt{git push}
-  \end{itemize}
-  \pause
-  \begin{alertblock}{Task 8}
-    \begin{itemize}
-      \item Transmiteți commit-urile voastre repository-ului central (de unde
-      ați clonat).
-    \end{itemize}
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{Remote Repository(2)}
-  \begin{itemize}
+    \item \texttt{git remote}
+    \item \texttt{git push}
+    \item \texttt{git fetch}
     \item \texttt{git pull}
-    \item \texttt{git fetch ...}
-    \item obțin commit de la un remote
-    \item actualizează repository-ul local
   \end{itemize}
-  \pause
-  \begin{alertblock}{Task 9}
-    \begin{itemize}
-      \item Actualizați repository-ul local cu cel remote.
-    \end{itemize}
-  \end{alertblock}
 \end{frame}
 
-\begin{frame}{Remote Repository(3)}
+% RD: cleaning up
+\begin{frame}{Cleaning up}
   \begin{itemize}
-    \item cum adăugăm un alt remote?
-    \item \texttt{git remote add \textit{nume} \textit{url}}
+    \item \texttt{git reset}
+    \item \texttt{git checkout}
+    \item \texttt{git clean}
+    \item \texttt{git rm}
+  \end{itemize}
+\end{frame}
+
+% RD: ignoring files
+\begin{frame}{Ignoring Files}
+  \begin{itemize}
+    \item \texttt{.gitignore}
+    \item \texttt{.git/info/exclude}
+    \item \texttt{git update-index --assume-unchanged file.txt}
+  \end{itemize}
+\end{frame}
+
+% RD: small and descriptive commits
+\begin{frame}{Small and Descriptive Commits}
+  \begin{itemize}
+    \item commit message
+    \item \texttt{git add -i}
+  \end{itemize}
+\end{frame}
+
+% Pe un branch vom descompune numerele in factori primi
+% Pe celalt vom calcula cmddc
+% Undeva trebuie sa introducem o mica greseala, invizibila initial
+\begin{frame}{Working in Parallel}
+  \vspace{-2cm}\hspace{5cm}
+  \pgfuseimage{m8}
+  \hspace{-5cm}\vspace{-6cm}
+  \begin{itemize}
+    \item \texttt{git branch}
+    \item \texttt{git merge}
+    \item \texttt{git rebase}
     \pause
-    \item cum vedem ce remote-uri există?
-    \item \texttt{git remote show}
+    \item \texttt{git pull}
+    \item \texttt{git pull --rebase}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Branches}
-  \begin{itemize}[<+->]
-    \item \texttt{git push origin master} - trimite commit-urile în branch-ul
-    master din repository-ul referit de origin
-    \item ramuri de dezvoltare
-    \item locale: \texttt{git branch}
-    \item remote: \texttt{git branch -r}
-    \item toate: \texttt{git branch -a}
-    \item *\textit{numebranch}: branch curent
-  \end{itemize}
-  \pause
-  \begin{alertblock}{Task 10}
-    \begin{itemize}
-      \item Listați \textbf{toate} branch-urile din repository.
-    \end{itemize}
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{Branches (2)}
+\begin{frame}{Repository Viewing}
   \begin{itemize}
-    \item creare:
-      \begin{itemize}
-        \item \texttt{git branch \textit{nume} \textit{startref}}
-        \item \texttt{git branch \textit{nume}}
-        \item \texttt{git checkout -b \textit{nume}}
-      \end{itemize}
-    \pause
-    \item ștergere:
-      \begin{itemize}
-        \item \texttt{git branch -d \textit{bname}}
-        \item \texttt{git branch -D \textit{bname}}
-      \end{itemize}
-    \pause
-    \item schimbare branch:
-      \begin{itemize}
-        \item \texttt{git checkout \textit{bname}}
-      \end{itemize}
-  \end{itemize}
-  \pause
-  \begin{alertblock}{Task 11}
-    \begin{itemize}
-      \item Schimbați în branch-ul corespunzător numelui vostru.
-      \item Listați conținutul directorului
-      \item Ce s-a întâmplat cu sursele vechi?
-    \end{itemize}
-  \end{alertblock}
-\end{frame}
-
-\againframe{Content}
-
-\begin{frame}{Branches (3)}
-  \begin{alertblock}{Task 12}
-    \begin{itemize}
-      \item Completați fișierul \texttt{info} cu ce vreți voi
-      \item reveniți în branch-ul master și faceți pull (folosiți argumentul
-      --all)
-    \end{itemize}
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{Best Practices}
-  \begin{itemize}
-    \item repository: mereu compilabil
-    \item mesaje de commit relevante
-    \item commit-uri mici: un singur bugfix/feature/patch
+    \item \texttt{git log}
+    \item \texttt{git show}
+    \item gitk, gitg, tig
+    \item tags
   \end{itemize}
 \end{frame}
 
-\section{More git}
-
-\begin{frame}{Log}
+% Facem un commit prost cu ceva si-l fixam dupa
+\begin{frame}{Fix Wrong Commit}
   \begin{itemize}
-    \item istoria din repo
-    \item \texttt{git log}: toată istoria
-    \item \texttt{git log \textit{ref1}..\textit{ref2}}: între refs
-    \item \texttt{git log \textit{file}}: doar file
+    \item \texttt{git rebase}
+    \item \texttt{git amend}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Tools}
+% Corectam greseala de acum cateva slide-uri
+\begin{frame}{Bug Fixing}
   \begin{itemize}
-    \item repo-git human read-able
-    \begin{itemize}
-      \item gitk - Tcl/Tk, cel mai cunoscut
-      \item giggle - Gnome, GTK+
-      \item tig - command line
-    \end{itemize}
+    \item \texttt{git stash}
+    \item \texttt{git bisect}
   \end{itemize}
-  \begin{alertblock}{Hint}
-    Toate sunt folosite. Încercați-le și voi :)
-  \end{alertblock}
 \end{frame}
 
-\begin{frame}{Tools(3)}
-  \pgfuseimage{m3}
-\end{frame}
-
-\begin{frame}{Tools(4)}
-  \pgfuseimage{m4}
-\end{frame}
-
-\begin{frame}{Tools(5)}
-  \begin{alertblock}{Task 13}
-    \begin{itemize}
-      \item Instalați gitk și vizualizați starea repo-ului
-    \end{itemize}
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{Merge vs Rebase}
+% Cel care a găsit greșeala o trimite cu format-patch celuilat :)
+\begin{frame}{Extra -- Mailing Patches}
   \begin{itemize}
-    \item Ce se întâmplă la pull când avem și local commit-uri noi?
-    \pause
-    \item merge - combină commit-urile
-    \item rebase - reordonează istoria
+    \item \texttt{git format-patch}
+    \item \texttt{git send-email}
   \end{itemize}
-  \pgfuseimage{m1}
-  \pgfuseimage{m2}
 \end{frame}
 
-\begin{frame}{Tags}
+\begin{frame}{Extra -- Git Hooks}
   \begin{itemize}
-    \item momente importante din development (release, etc)
-    \item creat cu \texttt{git tag \textit{nume} \textit{ref}}
-    \item șters cu \texttt{git tag -d \textit{nume}}
-    \item Putem referi commit-uri cu tag-uri prin numele tagurilor
+    \item \texttt{.git/hooks} in repo
+    \item \texttt{post-receive}
+    \item publish results
+    \item create archives
+    \item send e-mails
   \end{itemize}
 \end{frame}
 
 \begin{frame}[label=l]{Links}
   \begin{itemize}
     \item \href{http://en.wikipedia.org/wiki/Comparison_of_revision_control_software}{Comparație între SCM-uri}
-    \item \href{http://en.wikibooks.org/wiki/Understanding_Darcs/Patch_theory}{Darcs Patch Theory}
     \item \href{http://talks.rosedu.org/prezentari/prezentarea03}{Prezentare
     Tech Talks Git (Mircea Bardac)}
+    \item \href{http://nvie.com/posts/a-successful-git-branching-model/}{A
+    branching model}
     \item \href{http://github.com}{GitHub}
     \item
-    \href{http://www.eqqon.com/index.php/Collaborative_Github_Workflow}{Workflof
+    \href{http://www.eqqon.com/index.php/Collaborative_Github_Workflow}{Workflow
     GitHub}
+    \item
+    \href{http://techblog.rosedu.org/git-good-practices.html}{Git Tips and
+    Good Practices}
+    \href{http://gitready.com/}{git ready}
   \end{itemize}
 \end{frame}
-
-\section{Extra git}
-
-\begin{frame}{Git bisect}
-  \begin{itemize}
-    \item identifică commit-ul care a introdus un bug
-    \item \texttt{git bisect start}
-    \item \texttt{git bisect bad}
-    \item \texttt{git bisect good \textit{commit\_ok}}
-    \item view, test, repeat
-    \pause
-    \item \texttt{git blame}
-  \end{itemize}
-  \pause
-  \begin{alertblock}{Task 14}
-    \begin{itemize}
-      \item branch-ul \texttt{fault} conține un bug. Identificați commit-ul
-      care l-a generat.
-    \end{itemize}
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{GitHub}
-  \begin{itemize}
-    \item web-based repo for git
-    \item repos și gists
-    \item pages
-    \pause
-    \item 1. fork
-    \item 2. clone your own repo
-    \item 3. commit early and often
-    \item 4. fork queue / pull requests
-    \item 5. repeat / profit :D
-  \end{itemize}
-\end{frame}
-
-\section{Even more extra git}
-
-\begin{frame}{Cherry pick}
-  \begin{itemize}
-    \item cod dintr-un branch în altul
-    \item util când branch-urile diverg foarte tare
-    \item se `culeg' commit-urile relevante
-    \item \texttt{git cherry-pick \textit{IDcommit}}
-  \end{itemize}
-\end{frame}
-
-\againframe{l}
 
 \end{document}
