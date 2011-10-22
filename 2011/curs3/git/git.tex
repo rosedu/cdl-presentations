@@ -87,7 +87,10 @@
   \end{itemize}
 \end{frame}
 
-% TODO (RD): slide cu "snapshot"
+\begin{frame}{Snapshots not Changesets}
+  \pgfuseimage{m6}
+\end{frame}
+
 % Vom scrie un program care va primi un număr ca argument și-l va afișa
 \begin{frame}{First Repo}
   \begin{itemize}
@@ -109,9 +112,9 @@
       \item parent(s)
       \item tree
       \item commit msg
+      \item tags (if any)
     \end{itemize}
   \end{itemize}
-  \pgfuseimage{m6}
 \end{frame}
 
 \begin{frame}{Commit Reference}
@@ -125,7 +128,8 @@
     \pause
     \item[a946e644d5b4c26aaa4e73338805e207bbfd78b0] = full hash
     \item[a946e6] = short hash
-    % TODO (RD): add tags
+    \pause
+    \item by tag (\texttt{v1.0})
   \end{description}
 \end{frame}
 
@@ -136,20 +140,6 @@
     \item \texttt{git fetch}
     \item \texttt{git pull}
   \end{itemize}
-\end{frame}
-
-% TODO (RD): should be removed
-% Vom scrie functie care testeaza daca un numar e prim
-\begin{frame}{Contributing}
-  \begin{itemize}
-    \item \texttt{git clone}
-    \item small change
-    \item \texttt{git diff}
-    \item \texttt{git commit}
-    \item \texttt{git push}
-    \item \texttt{git pull}
-  \end{itemize}
-  \pgfuseimage{m7}
 \end{frame}
 
 % RD: cleaning up
@@ -183,14 +173,17 @@
 % Pe celalt vom calcula cmddc
 % Undeva trebuie sa introducem o mica greseala, invizibila initial
 \begin{frame}{Working in Parallel}
+  \vspace{-2cm}\hspace{5cm}
+  \pgfuseimage{m8}
+  \hspace{-5cm}\vspace{-6cm}
   \begin{itemize}
     \item \texttt{git branch}
-    % TODO (RD): git merge, git rebase
+    \item \texttt{git merge}
+    \item \texttt{git rebase}
+    \pause
     \item \texttt{git pull}
     \item \texttt{git pull --rebase}
   \end{itemize}
-  \vspace{-3cm}\hspace{5cm}
-  \pgfuseimage{m8}
 \end{frame}
 
 \begin{frame}{Repository Viewing}
@@ -206,7 +199,7 @@
 \begin{frame}{Fix Wrong Commit}
   \begin{itemize}
     \item \texttt{git rebase}
-    \item \texttt{git ammend}
+    \item \texttt{git amend}
   \end{itemize}
 \end{frame}
 
@@ -245,9 +238,11 @@
     branching model}
     \item \href{http://github.com}{GitHub}
     \item
-    \href{http://www.eqqon.com/index.php/Collaborative_Github_Workflow}{Workflof
+    \href{http://www.eqqon.com/index.php/Collaborative_Github_Workflow}{Workflow
     GitHub}
-    % TODO (RD): reference techblog
+    \item
+    \href{http://techblog.rosedu.org/git-good-practices.html}{Git Tips and
+    Good Practices}
   \end{itemize}
 \end{frame}
 
