@@ -33,13 +33,13 @@
 
 \maketitle
 
-\begin{frame}{Before start}
+\begin{frame}{But First \ldots}
   \begin{alertblock}{Homework}
     Parcurgeți \url{http://gitimmersion.com/} înaintea cursului.
   \end{alertblock}
 \end{frame}
 
-\begin{frame}{Git history}
+\begin{frame}{Git History}
   \begin{itemize}
     \item Linus Torvalds
     \item Linux Kernel (moved from BitKeeper)
@@ -58,7 +58,23 @@
   \end{itemize}
 \end{frame}
 
-\section{Live demo}
+\section{Live Demo}
+
+\begin{frame}{Keywords}
+  \begin{itemize}
+    \item repository
+    \item clone
+    \item commit
+    \item HEAD
+    \item index/staging
+    \item tracked/untracked
+    \item snapshot
+    \item remote
+    \item push/pull
+    \item branch
+    \item merge
+  \end{itemize}
+\end{frame}
 
 \begin{frame}{Config}
   \begin{itemize}
@@ -71,8 +87,9 @@
   \end{itemize}
 \end{frame}
 
+% TODO (RD): slide cu "snapshot"
 % Vom scrie un program care va primi un număr ca argument și-l va afișa
-\begin{frame}{First repo}
+\begin{frame}{First Repo}
   \begin{itemize}
     \item \texttt{git init}
     \item \texttt{git status}
@@ -108,16 +125,20 @@
     \pause
     \item[a946e644d5b4c26aaa4e73338805e207bbfd78b0] = full hash
     \item[a946e6] = short hash
+    % TODO (RD): add tags
   \end{description}
 \end{frame}
 
-\begin{frame}{Going public}
+\begin{frame}{Going Public}
   \begin{itemize}
     \item \texttt{git remote}
     \item \texttt{git push}
+    \item \texttt{git fetch}
+    \item \texttt{git pull}
   \end{itemize}
 \end{frame}
 
+% TODO (RD): should be removed
 % Vom scrie functie care testeaza daca un numar e prim
 \begin{frame}{Contributing}
   \begin{itemize}
@@ -131,12 +152,40 @@
   \pgfuseimage{m7}
 \end{frame}
 
+% RD: cleaning up
+\begin{frame}{Cleaning up}
+  \begin{itemize}
+    \item \texttt{git reset}
+    \item \texttt{git checkout}
+    \item \texttt{git clean}
+    \item \texttt{git rm}
+  \end{itemize}
+\end{frame}
+
+% RD: ignoring files
+\begin{frame}{Ignoring Files}
+  \begin{itemize}
+    \item \texttt{.gitignore}
+    \item \texttt{.git/info/exclude}
+    \item \texttt{git update-index --assume-unchanged file.txt}
+  \end{itemize}
+\end{frame}
+
+% RD: small and descriptive commits
+\begin{frame}{Small and Descriptive Commits}
+  \begin{itemize}
+    \item commit message
+    \item \texttt{git add -i}
+  \end{itemize}
+\end{frame}
+
 % Pe un branch vom descompune numerele in factori primi
 % Pe celalt vom calcula cmddc
 % Undeva trebuie sa introducem o mica greseala, invizibila initial
 \begin{frame}{Working in Parallel}
   \begin{itemize}
     \item \texttt{git branch}
+    % TODO (RD): git merge, git rebase
     \item \texttt{git pull}
     \item \texttt{git pull --rebase}
   \end{itemize}
@@ -170,10 +219,20 @@
 \end{frame}
 
 % Cel care a găsit greșeala o trimite cu format-patch celuilat :)
-\begin{frame}{Extra - Mailing Patches}
+\begin{frame}{Extra -- Mailing Patches}
   \begin{itemize}
     \item \texttt{git format-patch}
     \item \texttt{git send-email}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Extra -- Git Hooks}
+  \begin{itemize}
+    \item \texttt{.git/hooks} in repo
+    \item \texttt{post-receive}
+    \item publish results
+    \item create archives
+    \item send e-mails
   \end{itemize}
 \end{frame}
 
@@ -188,6 +247,7 @@
     \item
     \href{http://www.eqqon.com/index.php/Collaborative_Github_Workflow}{Workflof
     GitHub}
+    % TODO (RD): reference techblog
   \end{itemize}
 \end{frame}
 
