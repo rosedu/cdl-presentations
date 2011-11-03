@@ -1,0 +1,135 @@
+% vim: set tw=78 aw sw=2 sts=2 noet:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{hyperref}        % folositi \url{http://...}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+% sau \href{http://...}{Nume Link}
+\mode<presentation>
+\usetheme{CDL}
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[]{Coding Style}
+\subtitle{CDL - Cursul 4}
+\institute[CDL 2011]{ROSEdu}
+\author[]{Vlad Dogaru \\ \texttt{ddvlad@rosedu.org} \\ Laura Vasilescu \\
+\texttt{laura@rosedu.org}}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Why coding style?}
+  \pause
+  \begin{itemize}
+    \item readability
+    \pause
+    \item uniformity
+    \pause
+    \item ddvlad will murder you if you don't
+    \pause
+  \end{itemize}
+  \begin{center}
+    \includegraphics[scale=0.3]{wolf}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Whitespace matters, godfuckit!}
+  \pause
+  \begin{itemize}
+    \item trailing whitespace screws up diffs
+    \pause
+    \item indenting matters
+    \pause
+    \item some whitespace is more white than other whitespace
+    \pause
+    \begin{itemize}
+      \item ``Is it because I'm TAB?''
+    \end{itemize}
+  \end{itemize}
+  \pause
+  \begin{center}
+    \includegraphics[scale=0.5]{yuno}
+  \end{center}
+\end{frame}
+
+\begin{frame}{More formatting}
+  \begin{itemize}
+    \pause
+    \item brace placement matters \pause (GNU sucks)
+    \pause
+    \item comments are a girl's best friend
+    \pause
+    \begin{itemize}
+      \item when they are not trivial
+    \end{itemize}
+    \pause
+  \end{itemize}
+  \begin{center}
+    \includegraphics[scale=0.4]{asian}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Semantics, dammit}
+  \begin{itemize}
+    \pause
+    \item name variables thoughtfully
+    \pause
+    \begin{itemize}
+      \item \texttt{int thoughtfully\_1, thoughtfully\_2}
+      \pause
+      \item \texttt{num\_items} vs. \texttt{numItems}
+      \pause
+      \item \texttt{num\_items} vs. \texttt{item\_num}
+    \end{itemize}
+    \pause
+  \end{itemize}
+  \begin{center}
+    \includegraphics[scale=0.3]{fry}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Greater challenges}
+  \begin{itemize}
+    \pause
+    \item loose coupling
+    \pause
+    \item do one thing, do one thing well
+    \pause
+    \item don't add useless features
+    \pause
+    \item meaningful commit messages
+  \end{itemize}
+  \pause
+  \begin{center}
+    \includegraphics[scale=0.3]{fuuu}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Making the leap}
+  \begin{itemize}
+    \pause
+    \item unit tests
+    \pause
+    \item mandate coding style project-wide
+    \pause
+    \item use tools instead of eyes to check style: \emph{lint}
+    \pause
+  \end{itemize}
+  \begin{center}
+    \includegraphics[scale=0.6]{megusta}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Thank You!}
+  \pause
+  \Huge Questions?
+  \begin{center}
+    \includegraphics[scale=0.6]{conflicting}
+  \end{center}
+\end{frame}
+
+\end{document}
