@@ -1,0 +1,104 @@
+% vim: set tw=78 aw sw=2 sts=2 noet:
+\documentclass{beamer}
+
+%\includeonlyframes{c} -- speeding up compilation speed during debug
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{hyperref}        % folositi \url{http://...}
+\mode<presentation>
+\usetheme{CDL}
+
+\title[]{Pidgin}
+\subtitle{Proiect CDL 2012}
+\institute[]{ROSEdu}
+\author[]{
+  Mihai Maruseac \texttt{mihai@rosedu.org} \\
+  Valentina Manea \texttt{valentina@rosedu.org}
+}
+
+\setbeamertemplate{frametitle continuation}[from second]
+\setbeamertemplate{footline}[frame number]
+
+\pgfdeclareimage[height=1cm, width=1cm]{yah}{img/yah}
+\pgfdeclareimage[height=1cm, width=1cm]{pig}{img/pig}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Popular IM Clients}
+  \begin{columns}[c]
+    \column{1.5in}
+      \pgfputat{\pgfxy(1,.5)}{\pgfbox[left,base]{\pgfuseimage{yah}}}
+      \uncover<2->{
+      \begin{itemize}
+        \item Windows
+        \item web - limited
+        \uncover<3->{\item only Yahoo}
+        \uncover<4->{\item closed source}
+        \uncover<5->{\item not extensible}
+      \end{itemize}}
+    \column{1.5in}
+      \pgfputat{\pgfxy(1,.5)}{\pgfbox[left,base]{\pgfuseimage{pig}}}
+      \uncover<2->{
+      \begin{itemize}
+        \item cross-platform
+        \uncover<3->{\item multiple protocoale}
+        \uncover<4->{\item open-source}
+        \uncover<5->{\item plugins}
+      \end{itemize}}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Pidgin Sketch}
+  \begin{itemize}
+    \item Ce nu are Pidgin și are Yahoo?
+    \item <2-> Photo share
+    \item <0> 
+    \item <0>
+    \item <3->Plugin pidgin - image sharing
+    \item <4->vectorial images - SVG
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Detalii proiect}
+  \begin{itemize}
+    \item C
+    \item template standard
+    \item comentarii, documentare puțină
+    \item cod ușor de înțeles
+    \item <2-> Yahoo, GTalk, ...
+    \item <3-> protocol separat sau integrat în protocoale existente
+    \item <4-> grafică vectorială - SVG sau derivate
+    \item <5-> grafice funcții, desene simple
+    \item <6-> extindere posibilă pentru orice imagine (orice format)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cerințe și așteptări}
+  \begin{itemize}
+    \item C
+    \item implementare protocoale comunicații
+    \item unit testing
+    \item team work
+    \item coding style
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Timeline aproximativ}
+  \begin{itemize}[<+->]
+    \item curs 3 - documentare trimitere mesaje prin plugins (gRIM, Psychic
+    Mode)
+    \item curs 4 - plugin de test - trimitere mesaje simple; design format
+    imagine
+    \item curs 5 - transmitere imagini simple; schiță UI
+    \item curs 6 - complicare imagini; terminare UI
+    \item curs 7 - adăugare expresii și funcții
+    \item curs 8 - testare pe diverse protocoale, diverse platforme
+    \item curs 9 - plugin complet funcțional; trimitere spre comunitate
+    \item curs 10 - rezolvare buguri semnalate de comunitate
+  \end{itemize}
+\end{frame}
+
+\end{document}
