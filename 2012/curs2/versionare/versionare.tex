@@ -9,7 +9,7 @@
 \mode<presentation>
 \usetheme{CDL}
 
-\title[]{Versionare}
+\title[]{Versionarea codului}
 \subtitle{CDL 2012 - Cursul 2}
 \institute[]{ROSEdu}
 \author[]{
@@ -33,50 +33,99 @@
 
 \maketitle
 
-\begin{frame}{But First \ldots}
-  \begin{alertblock}{Homework}
-    Parcurgeți \url{http://gitimmersion.com/} înaintea cursului.
-  \end{alertblock}
-\end{frame}
-
-\begin{frame}{Git History}
+\begin{frame}{Ce înseamnă versionarea codului?}
   \begin{itemize}
-    \item Linus Torvalds
-    \item Linux Kernel (moved from BitKeeper)
-    \item design:
-      \begin{itemize}
-        \item \textit{CVS as example of what \textbf{not} to do}
-        \item distribuit, workflow a la BitKeeper
-        \item protecție contra distrugerilor/erorilor
-        \item perfomanță
-      \end{itemize}
-    \item development start: 3 aprilie 2005
-    \item 29 aprilie 2005: 6.7 patch-uri/s în kernel via Git
-    \item 16 iunie 2005: 2.6.12 pe Git (acum și pe GitHub)
-    \item 31 ianuarie 2011: git 1.7.4
-    \item C, Perl, shell
+    \item menținerea informațiilor despre schimbări/modificări în cod
+    \item crearea unei liste de modificări cu posibilitatea de revenire sau
+      interogare
+    \item un fel de istoric, cu format posibil arborescent (branch-uri,
+      ramuri de dezvoltare)
   \end{itemize}
 \end{frame}
 
-\section{Live Demo}
+\begin{frame}{De ce versionarea codului?}
+  \begin{itemize}
+    \item posibilitatea de revenire la o versiune anterioară
+    \item dacă modifici ceva din greșeală poți restaura
+    \item lucru colaborativ: distribuție (read-only) și unificare (read-write)
+    \item nu e limitat doar la cod (fișiere de configurare sau alte fișiere text)
+  \end{itemize}
+\end{frame}
 
-\begin{frame}{Keywords}
+\begin{frame}{De ce Git?}
+  \begin{itemize}
+    \item e cool
+    \item everyone's doing it
+    \item distribuit (poți face commit-uri locale, poți edita commit-uri
+      locale)
+    \item merge și pentru dezvoltare/versionare locală și pentru lucru
+      colaborativ
+    \item facilități utile: stash, index
+    \item lucru facil cu branch-uri
+    \item documentație
+    \item GitHub, Gitorious
+    \item portabil
+    \item dezvoltare continuă
+    \item integrare cu tool-uri/aplicații third-party
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Operații cu soluții de versionare}
+  \begin{itemize}
+    \item creare repository
+    \item clonare repository
+    \item creare de commit-uri
+    \item actualizare/editare commit-uri (teh Git shit)
+    \item sincronizare repository-uri (push/pull)
+    \item tagging
+    \item branching
+    \item revenire la o versiune anterioară
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cuvinte cheie}
   \begin{itemize}
     \item repository
     \item clone
     \item commit
+    \item tree
+    \item tag
     \item HEAD
-    \item index/staging
-    \item tracked/untracked
-    \item snapshot
     \item remote
     \item push/pull
     \item branch
     \item merge
+    \item patch
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Config}
+\begin{frame}{Flux uzual de lucru}
+  \begin{itemize}
+    \item local
+      \begin{enumerate}
+	\item creezi repository: \texttt{git init .}
+	\item creezi fișiere/directoare: editoare, \texttt{mkdir}, \texttt{cp}
+	\item adaugi \textbf{conținut} pentru a crea un commit: \texttt{git
+	  add}
+	\item creezi commit: \texttt{git commit -m "Mesaj"}
+	\item mergi la pasul 2
+      \end{enumerate}
+    \item contribuitor
+      \begin{enumerate}
+	\item clonezi repository: \texttt{git clone URL}
+	\item creezi fișiere/directoare: editoare, \texttt{mkdir}, \texttt{cp}
+	\item adaugi \textbf{conținut} pentru a crea un commit: \texttt{git
+	  add}
+	\item creezi commit: \texttt{git commit -m "Mesaj"}
+	\item dacă vrei să lucrezi în continuare local mergi la pasul 2
+	\item actualizezi repository: \texttt{git pull --rebase}
+	\item faci push la modificări: \texttt{git push origin master}
+	\item mergi la pasul 2
+      \end{enumerate}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Configurare inițială}
   \begin{itemize}
     \item \texttt{git config --global user.name "\textit{nume prenume}"}
     \item \texttt{git config --global user.email "\textit{nume@dom.com}"}
@@ -87,145 +136,90 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Snapshots not Changesets}
-  \pgfuseimage{m6}
-\end{frame}
-
-% Vom scrie un program care va primi un număr ca argument și-l va afișa
-\begin{frame}{First Repo}
-  \begin{itemize}
-    \item \texttt{git init}
-    \item \texttt{git status}
-    \item ignore % binar + executabil
-    \item \texttt{git add}
-    \item \texttt{git commit}
-  \end{itemize}
-  \pgfuseimage{m5}
-\end{frame}
-
-\begin{frame}{More about Commits}
-  \begin{itemize}
-    \item date
-    \item metadate
-    \begin{itemize}
-      \item ID (SHA1)
-      \item parent(s)
-      \item tree
-      \item commit msg
-      \item tags (if any)
-    \end{itemize}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Commit Reference}
-  \begin{description}
-    \item[\texttt{HEAD}] = ultimul commit
-    \item[\texttt{HEAD\textasciicircum}] = penultimul
-    \item[\texttt{HEAD\textasciicircum\textasciicircum}] = antepenultimul
-    \item[...] = etc
-    \pause
-    \item[\texttt{HEAD\textasciitilde5}] = \texttt{HEAD\textasciicircum\textasciicircum\textasciicircum\textasciicircum\textasciicircum}
-    \pause
-    \item[a946e644d5b4c26aaa4e73338805e207bbfd78b0] = full hash
-    \item[a946e6] = short hash
-    \pause
-    \item by tag (\texttt{v1.0})
-  \end{description}
-\end{frame}
-
-\begin{frame}{Going Public}
-  \begin{itemize}
-    \item \texttt{git remote}
-    \item \texttt{git push}
-    \item \texttt{git fetch}
-    \item \texttt{git pull}
-  \end{itemize}
-\end{frame}
-
-% RD: cleaning up
-\begin{frame}{Cleaning up}
-  \begin{itemize}
-    \item \texttt{git reset}
-    \item \texttt{git checkout}
-    \item \texttt{git clean}
-    \item \texttt{git rm}
-  \end{itemize}
-\end{frame}
-
-% RD: ignoring files
-\begin{frame}{Ignoring Files}
+\begin{frame}{Ignorarea fișierelor}
   \begin{itemize}
     \item \texttt{.gitignore}
+      \begin{itemize}
+	\item \texttt{file.pdf}
+	\item \texttt{/file.pdf}
+	\item \texttt{/test/file.pdf}
+	\item \texttt{*.pdf}
+	\item \texttt{/*.pdf}
+	\item \texttt{*.swp}, \texttt{*~}, \texttt{tags}, \texttt{TAGS},
+	  \texttt{cscope.out}
+      \end{itemize}
     \item \texttt{.git/info/exclude}
     \item \texttt{git update-index --assume-unchanged file.txt}
   \end{itemize}
 \end{frame}
 
-% RD: small and descriptive commits
-\begin{frame}{Small and Descriptive Commits}
+\begin{frame}{De ce (nu) fișiere binare?}
   \begin{itemize}
-    \item commit message
-    \item \texttt{git add -i}
+    \item TODO
   \end{itemize}
 \end{frame}
 
-% Pe un branch vom descompune numerele in factori primi
-% Pe celalt vom calcula cmddc
-% Undeva trebuie sa introducem o mica greseala, invizibila initial
-\begin{frame}{Working in Parallel}
-  \vspace{-2cm}\hspace{5cm}
-  \pgfuseimage{m8}
-  \hspace{-5cm}\vspace{-6cm}
+\begin{frame}{Crearea unui commit}
   \begin{itemize}
-    \item \texttt{git branch}
-    \item \texttt{git merge}
-    \item \texttt{git rebase}
-    \pause
-    \item \texttt{git pull}
-    \item \texttt{git pull --rebase}
+    \item mici și dese
+    \item \textit{Do one thing, do one thing well!}
+    \item folosire \texttt{git add -i} sau \texttt{git commit --amend}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Repository Viewing}
+\begin{frame}{Mesajele de commit}
+  \begin{itemize}
+    \item descriptive
+    \item propoziție, începe cu majusculă
+    \item recomandare de limitare la 50 de caractere
+    \item dacă e nevoie de mai mult mesaj nou
+    \item
+      \url{http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html}
+    \item \url{http://whatthecommit.com}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{De ce branch-uri?}
+  \begin{itemize}
+    \item TODO
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Curăță}
+  \begin{itemize}
+    \item TODO
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Vizualizarea repository-ului}
   \begin{itemize}
     \item \texttt{git log}
     \item \texttt{git show}
-    \item gitk, gitg, tig
-    \item tags
+    \item gitk, gitg, giggle, tig
   \end{itemize}
 \end{frame}
 
-% Facem un commit prost cu ceva si-l fixam dupa
-\begin{frame}{Fix Wrong Commit}
-  \begin{itemize}
-    \item \texttt{git rebase}
-    \item \texttt{git amend}
-  \end{itemize}
-\end{frame}
-
-% Corectam greseala de acum cateva slide-uri
-\begin{frame}{Bug Fixing}
+\begin{frame}{Extra -- Rezolvarea bug-urilor}
   \begin{itemize}
     \item \texttt{git stash}
     \item \texttt{git bisect}
   \end{itemize}
 \end{frame}
 
-% Cel care a găsit greșeala o trimite cu format-patch celuilat :)
-\begin{frame}{Extra -- Mailing Patches}
+\begin{frame}{Extra -- Crearea și trimiterea patch-urilor}
   \begin{itemize}
     \item \texttt{git format-patch}
     \item \texttt{git send-email}
   \end{itemize}
 \end{frame}
 
-\begin{frame}{Extra -- Git Hooks}
+\begin{frame}{Extra -- Hook-uri}
   \begin{itemize}
-    \item \texttt{.git/hooks} in repo
+    \item \texttt{.git/hooks} în repo
     \item \texttt{post-receive}
-    \item publish results
-    \item create archives
-    \item send e-mails
+    \item publicarea de rezultate
+    \item crearea de arhive
+    \item trimitere de e-mail-uri
   \end{itemize}
 \end{frame}
 
