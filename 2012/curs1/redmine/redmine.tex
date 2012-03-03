@@ -1,0 +1,328 @@
+% vim: set tw=78 sts=2 sw=2 ts=8 aw et:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc}		% diacritice
+\usepackage[romanian]{babel}
+%\usepackage{color}			% highlight
+%\usepackage{alltt}			% highlight
+%\usepackage{code/highlight}		% highlight
+\usepackage{hyperref}			% folosiți \url{http://...}
+                                        % sau \href{http://...}{Nume Link}
+\usepackage{verbatim}
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+\mode<presentation>
+\usetheme{CDL}
+
+% Show contents at every section beginning. Ripped off from manual.
+\AtBeginSection[] % Do nothing for \section*
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+  \tableofcontents[currentsection]
+    \end{frame}
+}
+
+\renewcommand{\arraystretch}{1.3}
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[Redmine]{Redmine -- Web-based Software Project Management}
+\subtitle{Wiki, Issues, Repository Access}
+\institute[ROSEdu]{ROSEdu}
+\date{25 februarie 2012}
+\author{Răzvan Deaconescu \\ \texttt{razvan@rosedu.org}}
+
+\begin{document}
+
+% Slide-urile cu mai multe părți sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+\section{Redmine}
+
+\begin{frame}{Web-base Software Project Management}
+  \begin{itemize}
+    \item gestiunea proiectelor sofware
+    \item de obicei wiki, issue/ticket tracker, roadmap, acces la repository
+    \item colaborare, organizare, history
+    \item client-server: Trac, Redmine
+    \item hosted: SourceForge, BerliOS, Savannah, Google Code
+    \item GitHub, Gitorious
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{De ce Redmine?}
+  \begin{itemize}
+    \item web-based software project management system
+    \item repository, wiki, issues, files, documents, forum, activity,
+calendar etc.
+    \item proiecte multiple în cadrul aceleiași instanțe
+    \item gestiunea utilizatorilor
+    \item plugin-uri
+  \end{itemize}
+\end{frame}
+
+\section{Wiki-uri}
+
+\begin{frame}{De ce wiki-uri?}
+  \begin{itemize}
+    \item editare colaborativă
+    \item formatare facilă, link-uri facile
+    \item easy to install, use, edit (no training)
+    \item revision control
+    \item knowledge base (tutoriale, informații utile, documentare)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Ce este un wiki?}
+  \begin{itemize}
+    \item site web, editare facilă
+    \item limbaj markup simplificat, vizualizare rapidă a informațiilor
+    \item wiki software (wiki engine) -- aplicație ce rulează wiki
+    \item suport pentru colaborare
+    \item istoric, revizie, autentificare, ACL
+    \item Ward Cunningham: ``the simplest online database that could possibly
+work''
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Wiki versus \ldots}
+  \begin{itemize}
+    \item MS Office / OpenOffice
+      \begin{itemize}
+        \item (wiki) lucru colaborativ, interfață facilă, web
+        \item (office) printer friendly, complex, acces controlat
+    (non-professional)
+      \end{itemize}
+    \item fișiere LaTeX într-un repository
+      \begin{itemize}
+        \item (wiki) ușor de editat, feedback imediat, WYIWYG, web
+        \item (office) printer friendly, profesionist
+      \end{itemize}
+    \item CMS
+      \begin{itemize}
+        \item (wiki) ușor de editat, lucru colaborativ facil
+        \item (CMS) aspect și prezentare
+      \end{itemize}
+    \item Google Docs
+      \begin{itemize}
+        \item (wiki) open to public, web-friendly (link-uri etc.)
+        \item (gdocs) gestiune mai bună a accesului, apropiat Office
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cazuri de utilizare}
+  \begin{itemize}
+    \item knowledge base (comunitate, companie, proiect)
+    \item colaborare, editare colaborativă
+    \item tutoriale
+    \item publicare rapidă de conținut (curbă de învățare redusă)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Exemple cunoscute}
+  \begin{itemize}
+    \item \url{http://www.wikimatrix.org/}
+    \item MediaWiki
+    \item DokuWiki
+    \item TWiki
+    \item MoinMoin
+    \item PhpWiki
+    \item PmWiki
+    \item integrate în alte aplicații/site-uri
+  \end{itemize}
+\end{frame}
+
+\section{Redmine Wiki}
+
+\begin{frame}{Sintaxă Redmine wiki}
+  \begin{itemize}
+    \item \url{http://www.redmine.org/wiki/1/RedmineTextFormatting}
+    \item Textile
+    \item pentru crearea unei pagini se creează un link către o pagină și apoi
+se accesează
+    \item există o pagină de ajutor cu sintaxa wiki-ului disponibilă în
+momentul editării
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Comparison chart}
+  \begin{center}
+    \begin{tabular}{@{}lcc@{}}
+      \toprule
+      \textbf{Format} & \textbf{Creole} & \textbf{Redmine nativ (Textile)} \\
+      \midrule
+      heading 1 & = Nume & .h1 Nume \\
+      bold & **text** & *text* \\
+      italic & //text// & \_text\_ \\
+      link la pagină & [[PageName$|$Nume link]] & [[PageName$|$Nume link]] \\
+      URL-uri externe & [[URL$|$Nume link]] & "Nume link":URL \\
+      liste neordonate & *, ** & *, ** \\
+      liste ordonate & \#, \#\# & \#, \#\# \\
+      nowiki & \{\{\{ \ldots \}\}\} & .bq \ldots \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{frame}
+
+\section{Issues}
+
+\begin{frame}{Issues}
+  \begin{itemize}
+    \item probleme, solicitări de rezolvare a unor probleme
+    \item tip problemă, autor, asignat, stare, deadline, prioritate,
+descriere
+    \item tichete -- help desk, call center
+    \item issue tracking system -- gestiunea issue-urilor unei
+organizații, unui proiect
+      \begin{itemize}
+        \item aplicație software
+        \item interfață web, bază de date
+        \item asemănător cu un bug tracking system (bugtracker)
+        \item autentificare -- în proiectele open-source submiterea de
+bug-uri e deschisă
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Issue tracking systems}
+  \begin{itemize}
+    \item Bugzilla, MantisBT -- single purpose
+    \item Trac, Redmine -- multi purpose
+    \item SourceForge, Launchpad, Google Code, GitHub -- hosted
+  \end{itemize}
+\end{frame}
+
+\section{Redmine Issues}
+
+\begin{frame}{New issues}
+  \begin{itemize}
+    \item tracker -- tipul issue-ului (configurabil)
+    \item subject
+    \item description
+    \item category (de configurat)
+    \item due date
+    \item priority
+    \item assigned to
+    \item attached files
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{View/edit issues}
+  \begin{itemize}
+    \item list
+    \item summary
+    \item Gantt chart
+    \item calendar
+    \item filters
+    \item update
+    \item delete, move, copy (admin rights)
+    \item personalizare mod de afișare
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Issue workflow}
+  \begin{enumerate}
+    \item autor/inițiator
+      \begin{itemize}
+        \item creare -- marcat issue ca \textbf{New}
+        \item descriere
+        \item (eventual) asignare -- marcat issue ca \textbf{Assigned}
+      \end{itemize}
+    \item assignee
+      \begin{itemize}
+        \item (eventual) preluare -- marcat issue ca \textbf{Assigned}
+        \item lucru
+        \item rezolvare -- marcat issue ca \textbf{Resolved} sau,
+        \texttt{Feedback}
+      \end{itemize}
+    \item inițiator sau coordonator
+      \begin{itemize}
+        \item închidere -- marcat issue \textbf{Closed})
+      \end{itemize}
+    \item viewer
+      \begin{itemize}
+        \item listare
+        \item referire (în wiki, secțiuni de descriere) -- caracterul \# (diez) urmat de numărul issue-ului
+      \end{itemize}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Alte facilități Redmine}
+  \begin{itemize}
+    \item repository browser
+    \item news
+    \item \textbf{RSS Feeds}
+    \item Gantt charts, calendar
+    \item plugin-uri (code review, Doodle)
+    \item forumuri
+  \end{itemize}
+\end{frame}
+
+\section{Concluzii}
+
+\begin{frame}{Cuvinte cheie}
+  \begin{columns}
+    \begin{column}[l]{0.5\textwidth}
+      \begin{itemize}
+        \item wiki
+        \item editare colaborativă
+        \item easy to install, use, customize
+        \item markup language
+        \item wiki engine
+        \item WikiMatrix
+        \item DokuWiki
+        \item sintaxă Creole
+        \item Redmine wiki
+      \end{itemize}
+    \end{column}
+    \begin{column}[l]{0.5\textwidth}
+      \begin{itemize}
+        \item issues
+        \item issue tracking
+        \item bug tracking
+        \item Redmine
+        \item create, view, update
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Link-uri utile}
+  \begin{itemize}
+    {\footnotesize
+    \item \url{http://www.wikimatrix.org/}
+    \item \url{http://www.dokuwiki.org/syntax}
+    \item \url{http://www.wikicreole.org/wiki/Creole1.0}
+    \item \url{http://www.redmine.org/wiki/1/RedmineTextFormatting}
+    \item \url{http://en.wikipedia.org/wiki/Issue\_tracking\_system}
+    \item \url{http://www.redmine.org/wiki/redmine/RedmineIssues}
+    \item \url{http://www.bugzilla.org/}
+    \item
+\url{http://en.wikipedia.org/wiki/Comparison\_of\_issue\_tracking\_systems}
+    \item \url{http://www.chiark.greenend.org.uk/~sgtatham/bugs.html}
+    }
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Exerciții}
+  \begin{itemize}
+    {\small
+    \item \url{https://projects.rosedu.org/projects/cdl2012spring/wiki}
+    \item
+      \url{http://swarm.cs.pub.ro/~razvan/wiki/rosedu/cdl/gabriel-burceanu}
+    }
+  \end{itemize}
+\end{frame}
+
+\section{Intrebări}
+
+\end{document}
