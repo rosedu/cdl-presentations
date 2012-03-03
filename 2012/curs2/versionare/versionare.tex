@@ -63,7 +63,7 @@
     \item facilități utile: stash, index
     \item lucru facil cu branch-uri
     \item documentație
-    \item GitHub, Gitorious, BitBucket, ...
+    \item GitHub, Gitorious, BitBucket, \ldots
     \item portabil
     \item dezvoltare continuă
     \item integrare cu tool-uri/aplicații third-party
@@ -156,8 +156,14 @@
 \begin{frame}{De ce (nu) fișiere binare?}
   \begin{itemize}
     \item diff între binare, rewrite
-    \item generate din alte surse
     \item ocupă mult spațiu
+    \item generate din alte surse
+      \begin{itemize}
+        \item regulă de bază: nu includeți fișiere care sunt generate
+	\item fișiere obiect, fișiere executabile, biblioteci, fișiere PDF din
+	  surse \LaTeX, fișiere imagine generate din Dia sau Inkscape
+	\item dacă nu sunt generate (fișiere imagine), atunci trebuie incluse
+      \end{itemize}
   \end{itemize}
 \end{frame}
 
@@ -175,8 +181,10 @@
     \item propoziție, începe cu majusculă
     \item recomandare de limitare la 50 de caractere
     \item dacă e nevoie de mai mult mesaj nou
+    \scriptsize
     \item
       \url{http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html}
+    \normalsize
     \item \url{http://whatthecommit.com}
   \end{itemize}
 \end{frame}
@@ -184,6 +192,7 @@
 \begin{frame}{De ce branch-uri?}
   \begin{itemize}
     \item editare colaborativă
+    \item lucru foarte rapid în Git
     \item multiple ramuri de dezvoltare
       \begin{itemize}
         \item release
@@ -191,7 +200,7 @@
         \item experimental feature
         \item bug fixing
         \item hot fixes
-        \item ....
+        \item \ldots
       \end{itemize}
   \end{itemize}
 \end{frame}
