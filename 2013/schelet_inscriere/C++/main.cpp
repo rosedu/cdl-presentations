@@ -1,6 +1,6 @@
 #include <fstream>
 
-#include "inverted_index.h"
+#include "InvertedIndex.h"
 
 int main() {
 	Solution prob;
