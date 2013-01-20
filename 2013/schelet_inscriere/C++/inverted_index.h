@@ -93,9 +93,9 @@ private:
 };
 
 class Solution {
+public:
     /* Functia ce va contine rezolvarea problemei. */
     void solve();
 };
 
 #endif
-
