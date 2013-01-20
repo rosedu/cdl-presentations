@@ -19,8 +19,8 @@ typedef struct Entry {
 
 /* Nod pentru o listă simplu înlănțuită */
 typedef struct Node {
-    Node    *next;
-    Entry   data;
+    struct Node    *next;
+    Entry          data;
 } Node;
 
 /* Reține o mapare Cheie - Valoare (în cazul nostru char* - Array)
@@ -83,4 +83,4 @@ Array reunion(const Array files1, const Array files2);
 /* Functia ce va contine rezolvarea problemei. */
 void solve();
 
-#ifndef
+#endif
