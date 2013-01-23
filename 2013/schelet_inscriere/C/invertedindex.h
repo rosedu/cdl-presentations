@@ -67,20 +67,14 @@ void put_doc(Map_t *map, char *key, int docID);
 /* Returneaza un Array_t cu ID-urile documentelor în care apare cheia key */
 Array_t* get_docs(Map_t *map, char *key);
 
-/* Construieste un dictionar pe baza regulilor stabilite. Primul parametru
- * reprezinta cheile ce trebuie adaugate in dictionar iar al doilea reprezinta
- * numele fisierelor al caror id va fi adaugat la valorile unei sau mai multor
- * chei. 
- */
-Map_t* create_map(char **keys, char **filenames);
-
 /* Realizeaza intersectia a doua multimi de indici de fisiere. */
 Array_t intersection(const Array_t files1, const Array_t files2);
 
 /* Realizeaza reuniunea a doua multimi de indici de fisiere. */
 Array_t reunion(const Array_t files1, const Array_t files2);
 
-/* Functia ce va contine rezolvarea problemei. */
+/* Functia ce va contine rezolvarea problemei. Tot aici va fi construit si
+ * dictionarul pe baza regulilor stabilite. */
 void solve();
 
 #endif
