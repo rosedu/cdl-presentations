@@ -65,7 +65,7 @@ unsigned long hash(unsigned char *str)
 void put_doc(Map_t *map, char *key, int docID);
 
 /* Returneaza un Array_t cu ID-urile documentelor în care apare cheia key */
-Array_t* get_docs(Map_t *map, char *key);
+Array_t get_docs(Map_t *map, char *key);
 
 /* Realizeaza intersectia a doua multimi de indici de fisiere. */
 Array_t intersection(const Array_t files1, const Array_t files2);
