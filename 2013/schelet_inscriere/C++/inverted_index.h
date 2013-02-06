@@ -10,14 +10,51 @@ class Array {
 public:
     /* Crează un array cu capacitatea cap */
     Array(int cap);
+    /* Crează un array cu o capacitate default */
+    Array();
+
+    /* Pentru a copia toate elementele la atribuire,
+     * nu doar pointerul la vector trebuie definiti
+     * copy constructor și operatorul de atribuire.
+     *
+     * Vom face noi asta :)
+     *
+     * Puteti ignora următoarele două definitii.
+     */
+    Array(const Array &other)
+    {
+        cap = other.cap;
+        n = 0;
+        v = new int[other.cap];
+        for (int i = 0; i < other.n; i++)
+            push_back(other.get(i));
+    }
+
+    Array& operator=(const Array &other)
+    {
+        // Sterge valorile vechi
+        if (v != 0) {
+            delete[] v;
+        }
+        cap = other.cap;
+        n = 0;
+        v = new int[cap];
+
+        for (int i = 0; i < other.n; i++)
+            push_back(other.get(i));
+
+        return *this;
+    }
     ~Array();
 
     /* Întoarce valoarea aflată la index */
-    int  get(int index);
+    int get(int index) const;
     /* Setează valoarea aflată la index */
     void set(int index, int value);
     /* Adauga la finalul vectorului valoarea value */
     void push_back(int value);
+    /* Numarul de elemente din vector */
+    int size();
 
     /* Întersecția cu other */
     Array intersection(const Array &other) const;
@@ -31,7 +68,7 @@ private:
 
 /* O intrare în Map */
 struct Entry {
-    char    *word;
+    char  *word;
     Array   documents;
 };
 
@@ -65,10 +102,10 @@ public:
      * Altfel, se adaugă în listă un nou Entry având cheia key și un array ce
      * conține doar docID.
      * */
-    void put_doc(char *key, int doc_id);
+    void put_doc(const char *key, int doc_id);
 
     /* Returneaza un Array cu ID-urile documentelor în care apare cheia key */
-    Array get_docs(char *key) const;
+    Array get_docs(const char *key) const;
 
 private:
     /* Întoarce o valoare reprezentând întregul asociat unui șir de caractere
@@ -77,12 +114,12 @@ private:
      * caractere.
      * e.g. "ana" va ajunge în buckets[hash("ana") % size]
      */
-    unsigned long hash(unsigned char *str)
+    unsigned long hash(const char *str) const
     {
         unsigned long hash = 5381;
         int c;
 
-        while (c = *str++)
+        while ((c = *str++))
             hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
 
         return hash;
