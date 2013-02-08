@@ -19,7 +19,7 @@ typedef struct Entry {
 
 /* Nod pentru o listă simplu înlănțuită */
 typedef struct Node {
-    struct Node_t    *next;
+    struct Node      *next;
     Entry_t          data;
 } Node_t;
 
