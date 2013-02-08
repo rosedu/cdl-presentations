@@ -9,39 +9,33 @@
 typedef struct Array {
     int     *v;
     int     n, cap;
-} Array;
+} Array_t;
 
-/* O intrare în Map */
+/* O intrare în Map_t */
 typedef struct Entry {
     char    *word;
-    Array   documents;
-} Entry;
+    Array_t   documents;
+} Entry_t;
 
 /* Nod pentru o listă simplu înlănțuită */
 typedef struct Node {
-<<<<<<< HEAD
     struct Node      *next;
     Entry_t          data;
 } Node_t;
-=======
-    Node    *next;
-    Entry   data;
-} Node;
->>>>>>> Add base headers and interfaces for 2013 application task
 
-/* Reține o mapare Cheie - Valoare (în cazul nostru char* - Array)
+/* Reține o mapare Cheie - Valoare (în cazul nostru char* - Array_t)
  *
  * buckets - vector de liste simplu înlănțuite.
  * size    - mărimea lui buckets.
  */
 typedef struct Map {
-    Node    **buckets;
+    Node_t    **buckets;
     int     size;
-} Map;
+} Map_t;
 
 /* Întoarce o valoare reprezentând întregul asociat unui șir de caractere
  *
- * Se folosește pentru a decide în ce bucket din Map va ajunge șirul de
+ * Se folosește pentru a decide în ce bucket din Map_t va ajunge șirul de
  * caractere.
  * e.g. "ana" va ajunge în buckets[hash("ana") % size]
  */
