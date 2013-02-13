@@ -54,7 +54,7 @@ public:
     /* Adauga la finalul vectorului valoarea value */
     void push_back(int value);
     /* Numarul de elemente din vector */
-    int size();
+    int size() const;
 
     /* Întersecția cu other */
     Array intersection(const Array &other) const;
