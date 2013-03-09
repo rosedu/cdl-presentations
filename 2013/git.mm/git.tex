@@ -1,0 +1,547 @@
+% vim: set tw=78 aw sw=2 sts=2 noet:
+\documentclass{beamer}
+
+%\includeonlyframes{c} -- speeding up compilation speed during debug
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{hyperref}        % folositi \url{http://...}
+\mode<presentation>
+\usetheme{CDL}
+
+\title[]{Versionarea codului}
+\subtitle{CDL - Cursul 2}
+\institute[]{ROSEdu}
+\author[]{
+  Andrei Petre \texttt{anpetre@rosedu.org}\\
+  Mihai Maruseac \texttt{mihai@rosedu.org}
+}
+
+\setbeamertemplate{frametitle continuation}[from second]
+\setbeamertemplate{footline}[frame number]
+
+\pgfdeclareimage[width=3cm]{vd01}{img/versionare-dummy-01}
+\pgfdeclareimage[height=5cm]{vd02}{img/versionare-dummy-02}
+\pgfdeclareimage[height=6cm]{ae}{img/all-equal}
+\pgfdeclareimage[height=6cm]{dict}{img/dictator}
+\pgfdeclareimage[height=6cm]{objs}{img/objs}
+\pgfdeclareimage[height=4cm]{snapshots}{img/snapshots}
+\pgfdeclareimage[height=3cm]{parent}{img/parent}
+\pgfdeclareimage[height=6cm]{tags}{img/tags}
+\pgfdeclareimage[height=6cm]{zones}{img/zones}
+\pgfdeclareimage[height=1cm]{wtc}{img/wtc}
+\pgfdeclareimage[height=8cm]{bm}{img/bm}
+\pgfdeclareimage[width=5cm]{decentr}{img/decentr}
+\pgfdeclareimage[height=8cm]{scms}{img/scms}
+\pgfdeclareimage[width=8cm]{merge}{img/merge}
+\pgfdeclareimage[height=6cm]{gh}{img/gh}
+\pgfdeclareimage[height=6cm]{gpr}{img/gpr}
+\pgfdeclareimage[height=8cm]{git}{img/git}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Ce înseamnă versionare?}
+  \begin{itemize}
+    \item informații despre modificările din cod
+  \end{itemize}
+  \begin{center}
+    \pgfuseimage{vd01}
+  \end{center}
+\end{frame}
+
+\begin{frame}{După ceva timp}
+  \begin{center}
+    \pgfuseimage{vd02}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Ce vrem de la o soluție de versionare?}
+  \begin{itemize}
+    \item istoricul modificărilor
+    \pause
+    \item posibilitatea de revenire
+      \pause
+    \item posibilitatea de interogare
+      \pause
+    \item posibilități de dezvoltare în ramuri, istoric arborescent
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Soluții versionare}
+  \begin{center}
+    \pgfuseimage{scms}
+  \end{center}
+\end{frame}
+
+\begin{frame}{De ce Git?}
+  \begin{itemize}
+    \item cool
+    \item toată lumea îl folosește
+    \item distribuit
+    \item merge și fără conexiune la internet
+    \item documentație
+    \item GitHub, Gitorious, BitBucket, \ldots
+    \item Linux, Mac, Windows, \ldots
+    \item dezvoltare continuă
+    \item facilități super cool (powerusers)
+    \item integrare cu tool-uri third-party (more power)
+  \end{itemize}
+  \vspace{-6cm}
+  \begin{center}
+    \hspace{6cm}
+    \pgfuseimage{decentr}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Design Git}
+  \begin{itemize}
+    \item performanță
+    \item dezvoltare neliniară
+    \item integritate
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Operații cu soluții de versionare}
+  \begin{itemize}
+    \item creare repository
+    \item clonare repository
+    \item creare de commit-uri
+    \item actualizare/editare commit-uri (teh Git shit)
+    \item sincronizare repository-uri (push/pull)
+    \item tagging
+    \item branching
+    \item revenire la o versiune anterioară
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{All repositories are created equal...}
+  \begin{center}
+    \pgfuseimage{ae}
+  \end{center}
+\end{frame}
+
+\begin{frame}{... but some are more equal than others}
+  \begin{center}
+    \pgfuseimage{dict}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Object types}
+  \begin{center}
+    \pgfuseimage{objs}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Commit = snapshot, nu delta}
+  \begin{center}
+    \pgfuseimage{snapshots}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Each commit knows his parent}
+  \begin{center}
+    \pgfuseimage{parent}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Tags \& Branches}
+  \begin{center}
+    \pgfuseimage{tags}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Merge}
+  \begin{center}
+    \pgfuseimage{merge}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Comenzi uzuale}
+  \begin{center}
+    \pgfuseimage{zones}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Workflow local}
+  \begin{enumerate}
+    \item creezi repository: \texttt{git init .}
+    \item creezi fișiere/directoare: editoare, \texttt{mkdir}, \texttt{cp}
+    \item adaugi \textbf{conținut} pentru a crea un commit: \texttt{git
+      add}
+    \item creezi commit: \texttt{git commit -m "Mesaj"}
+    \item mergi la pasul 2
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Workflow contribuitor}
+  \begin{enumerate}
+    \item clonezi repository: \texttt{git clone URL}
+    \item creezi fișiere/directoare: editoare, \texttt{mkdir}, \texttt{cp}
+    \item adaugi \textbf{conținut} pentru a crea un commit: \texttt{git
+      add}
+    \item creezi commit: \texttt{git commit -m "Mesaj"}
+    \item dacă vrei să lucrezi în continuare local mergi la pasul 2
+    \item actualizezi repository: \texttt{git pull --rebase}
+    \item faci push la modificări: \texttt{git push origin master}
+    \item mergi la pasul 2
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}{Recap :: Cuvinte cheie}
+  \begin{itemize}
+    \item repository
+    \item clone
+    \item commit
+    \item tree
+    \item tag
+    \item HEAD
+    \item remote
+    \item push/pull
+    \item branch
+    \item merge
+    \item patch
+    \item staging area
+    \item fetch/checkout
+  \end{itemize}
+\end{frame}
+
+%\begin{frame}{Configurare inițială :: Instalare}
+%  \begin{block}{Task1}
+%    \begin{itemize}
+%      \item instalați Git: \href{http://git-scm.com/downloads}{http://git-scm.com/downloads}
+%      \item folosiți Git Bash în Windows, orice terminal în Linux/Mac
+%    \end{itemize}
+%  \end{block}
+%\end{frame}
+
+\begin{frame}{Configurare inițială :: Configurații globale}
+  \begin{itemize}
+    \item \texttt{git config --global user.name "\textit{nume prenume}"}
+    \item \texttt{git config --global user.email "\textit{nume@dom.com}"}
+    \item \texttt{git config --global color.ui auto}
+    \item \texttt{git config --global color.pager true}
+    \item \texttt{git config --global core.editor \textit{editor}}
+  \end{itemize}
+%  \begin{block}{Task2}
+%    Configurați global repository-ul
+%  \end{block}
+%  \pause
+  \begin{itemize}
+    \item Verificare: \texttt{cat $\sim$/.gitconfig}
+  \end{itemize}
+\end{frame}
+
+%\begin{frame}{Configurare inițială :: Configurare cheie SSH}
+%  \begin{itemize}
+%    \item \texttt{ssh-keygen}
+%    \item În \texttt{$\sim$/.ssh}:
+%      \begin{itemize}
+%	\item \texttt{id\_rsa}
+%	\item \texttt{id\_rsa.pub}
+%      \end{itemize}
+%  \end{itemize}
+%  \begin{block}{Task3}
+%    Construiți-vă o pereche de chei SSH (dacă nu aveti deja una pe sistemul cu
+%    care lucrați)
+%  \end{block}
+%\end{frame}
+%
+%\begin{frame}{Configurare inițială :: Cont GitHub}
+%  \begin{center}
+%    \pgfuseimage{gh}
+%  \end{center}
+%\end{frame}
+%
+%\begin{frame}{Configurare inițială :: GitHub tasks}
+%  \begin{block}{Task4}
+%    Creați-vă un cont pe GitHub. Spuneți-mi numele contului.
+%  \end{block}
+%  \begin{block}{Task5}
+%    Adăugați-vă cheia la cont, dacă nu exista deja.
+%  \end{block}
+%\end{frame}
+
+\begin{frame}{Fișiere binare}
+  \begin{itemize}
+    \item diff între binare, rewrite
+    \item ocupă mult spațiu
+    \item generate din alte surse
+      \begin{itemize}
+        \item regulă de bază: nu includeți fișiere care sunt generate
+	\item fișiere obiect, fișiere executabile, biblioteci, fișiere PDF din
+	  surse \LaTeX, fișiere imagine generate din Dia sau Inkscape
+	\item dacă nu sunt generate (fișiere imagine), atunci trebuie incluse
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Ignore}
+  \begin{itemize}
+    \item local \texttt{.git/info/exclude}
+    \item repository \texttt{.gitignore}
+    \item system wide \texttt{excludesfile}
+  \end{itemize}
+  \pause
+  \begin{itemize}
+    \item \texttt{file.pdf}
+    \item \texttt{/file.pdf}
+    \item \texttt{!file.pdf}
+    \item \texttt{/test/file.pdf}
+    \item \texttt{*.pdf}
+    \item \texttt{/*.pdf}
+    \item \texttt{*.swp}, \texttt{*$\sim$}, \texttt{tags}, \texttt{TAGS},
+      \texttt{cscope.out}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Commits}
+  \begin{itemize}
+    \item mici și dese
+    \item \textit{Do one thing, do one thing well!}
+  \end{itemize}
+  \begin{center}
+    \pgfuseimage{zones}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Mai multe despre commit}
+  \begin{itemize}
+    \item Remember: mici și dese
+    \item \texttt{git add --patch} sau \texttt{git add -i}
+    \item \texttt{git commit --amend} pentru a modifica un commit
+    \item Modificați doar commituri locale!!!
+  \end{itemize}
+\end{frame}
+
+%\begin{frame}{Primul commit}
+%  \begin{block}{Task6}
+%    \begin{itemize}
+%      \item clonați \url{https://github.com/mihaimaruseac/dandroid}
+%      \item intrați în directorul asociat numelui vostru
+%      \item construiți un fișier \texttt{me.txt} cu un conținut la liberă alegere
+%      \item faceți un commit cu acest fișier
+%    \end{itemize}
+%  \end{block}
+%\end{frame}
+
+\begin{frame}{Vizualizarea istoriei.}
+  \begin{itemize}
+    \item \texttt{git log}
+    \item \texttt{gitk}, \texttt{gitg}, \texttt{tig}, \ldots
+  \end{itemize}
+%  \begin{block}{Task7}
+%    Vizualizati istoria repo-ului clonat anterior.
+%  \end{block}
+\end{frame}
+
+\begin{frame}{Adresare commit}
+  \begin{itemize}
+    \item \texttt{HEAD}
+    \item tag
+    \item \texttt{HEAD\textasciicircum}
+      \texttt{HEAD\textasciicircum\textasciicircum}, \ldots
+    \item \texttt{HEAD$\sim$10}
+    \item hash
+    \item partial hash
+  \end{itemize}
+%\end{frame}
+%
+%\begin{frame}{Afișare commit}
+  \begin{itemize}
+    \item \texttt{git show \textit{id}}
+  \end{itemize}
+%  \begin{block}{Task8}
+%    Afișați al 24-lea commit din spatele commitului actual și apoi părintele acestuia
+%  \end{block}
+\end{frame}
+
+\begin{frame}{Mesajele de commit}
+  \begin{itemize}
+    \item descriptive
+    \item propoziție, începe cu majusculă
+    \item recomandare de limitare la 50 de caractere
+    \item dacă e nevoie de mai mult mesaj nou
+    \scriptsize
+    \item
+      \url{http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html}
+    \normalsize
+    \item \url{http://whatthecommit.com}
+  \end{itemize}
+  \begin{center}
+    \pgfuseimage{wtc}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Modificarea istoriei}
+  \begin{itemize}
+    \item Nu modificați istoria remote !!!
+    \item \texttt{git rebase -i \textit{id}}
+      \begin{itemize}
+	\item reword
+	\item edit
+	\item squash
+	\item fixup
+	\item remove
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+%\begin{frame}{Merge automat}
+%  \begin{block}{Task9}
+%    \begin{itemize}
+%      \item Modificați în fișierul \texttt{numbers} linia corespunzătoare
+%	valorii $10 * n$ unde $n$ este numărul vostru din tabelul de înscrieri.
+%      \item Faceti un commit urmat de push
+%    \end{itemize}
+%  \end{block}
+%\end{frame}
+%
+%\begin{frame}{Merge cu conflicte}
+%  \begin{block}{Task10}
+%    Treceți-vă numele în fișierul \texttt{signatures} și faceți-i push.
+%  \end{block}
+%\end{frame}
+
+\begin{frame}{Branching}
+  \begin{itemize}
+    \item editare colaborativă
+    \item lucru foarte rapid în Git
+    \item multiple ramuri de dezvoltare
+      \begin{itemize}
+        \item release
+        \item new feature
+        \item experimental feature
+        \item bug fixing
+        \item hot fixes
+        \item \ldots
+      \end{itemize}
+  \end{itemize}
+  \begin{itemize}
+    \item \texttt{git branch}
+    \item \texttt{git checkout}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Branching model}
+  \begin{center}
+    \pgfuseimage{bm}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Branch-uri}
+  \begin{itemize}
+    \item fiecare clonă a unui repo este un fel de branch pentru acesta
+    \item \texttt{git pull} creează commit de merge: rezolvă conflicte
+      \begin{itemize}
+	\item modificări simultane asupra repository-ului
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{\texttt{git pull --rebase}}
+  \begin{center}
+    \pgfuseimage{gpr}
+  \end{center}
+\end{frame}
+
+%\begin{frame}{Branching tasks}
+%  \begin{block}{Task11}
+%    Creați un branch cu numele vostru în care ștergeți toate fișierele și
+%    directoarele, mai puțin directorul vostru.
+%  \end{block}
+%  \begin{alertblock}{Atentie!!}
+%    Asigurați-vă că sunteți pe branch-ul corespunzător!!.
+%  \end{alertblock}
+%\end{frame}
+
+%\begin{frame}{Git debugging}
+%  \begin{itemize}
+%    \item \texttt{git blame}
+%    \item \texttt{git bisect}
+%  \end{itemize}
+%%  \begin{block}{Task12}
+%%    Identificați cine a modificat linia 10 din fișierul \texttt{signatures}.
+%%  \end{block}
+%%  \begin{block}{Task13}
+%%    \begin{itemize}
+%%      \item Scriptul \texttt{text\_math.py} conține un bug.
+%%      \item Identificati bug-ul, considerând drept commit "good" commitul cu
+%%	tag-ul \texttt{bad} (commit "bad" este commitul curent)
+%%    \end{itemize}
+%%  \end{block}
+%%  \begin{alertblock}{Atentie!!}
+%%    Asigurați-vă că sunteți pe \texttt{master}!!
+%%  \end{alertblock}
+%\end{frame}
+
+%\begin{frame}{Selecție commit}
+%  \begin{itemize}
+%    \item pe un branch există un commit de care am avea nevoie
+%    \item nu vrem să facem merge între branch-uri
+%      \pause
+%    \item \texttt{git cherry-pick}
+%  \end{itemize}
+%  \begin{block}{Task14}
+%    Branch-ul \texttt{extra} conține un commit care trebuie să ajungă în
+%    \texttt{master}. Aduceți-l acolo.
+%  \end{block}
+%\end{frame}
+%
+%\begin{frame}{Temporary swap space}
+%  \begin{itemize}
+%    \item lucrezi la un feature
+%    \item și afli că ai un bug undeva
+%    \item nu vrei să faci commit
+%      \pause
+%    \item \texttt{git stash}, \texttt{git stash apply}
+%  \end{itemize}
+%\end{frame}
+%
+%\begin{frame}{\texttt{send-email} and \texttt{format-patch}}
+%  \begin{itemize}
+%    \item kernelul Linux și alte proiecte
+%    \item nu \texttt{git push}
+%    \item mailing list, review, copiat commit
+%    \item linie \texttt{Signed-Off-By:}
+%  \end{itemize}
+%\end{frame}
+
+%\begin{frame}{Hook-uri}
+%  \begin{itemize}
+%    \item \texttt{.git/hooks} în repo
+%    \item \texttt{post-receive}
+%    \item publicarea de rezultate
+%    \item crearea de arhive
+%    \item trimitere de e-mail-uri
+%    \item GitHub hooks
+%  \end{itemize}
+%\end{frame}
+
+\begin{frame}{Git is...}
+  \begin{center}
+    \pgfuseimage{git}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Links}
+  \begin{itemize}
+    \item \href{http://gitimmersion.com/}{Git Immersion}
+    \item \href{http://gitready.com/}{git ready}
+    \item \href{http://www-cs-students.stanford.edu/~blynn/gitmagic/index.html}{Git Magic}
+    \item \href{http://aht.github.com/whatisgit/\#/cover}{What is git?}
+    \item \href{http://www.slideshare.net/err/git-machine}{Git: The Lean, Mean, Distributed Machine}
+    \item \href{http://en.wikipedia.org/wiki/Comparison\_of\_revision\_control\_software}{Comparație între SCM-uri}
+    \item \href{http://talks.rosedu.org/prezentari/prezentarea03}{Prezentare Tech Talks Git (Mircea Bardac)}
+    \item \href{http://nvie.com/posts/a-successful-git-branching-model/}{A branching model}
+    \item \href{http://github.com}{GitHub}
+    \item \href{http://www.eqqon.com/index.php/Collaborative\_Github\_Workflow}{Workflow GitHub}
+    \item \href{http://techblog.rosedu.org/git-good-practices.html}{Git Tips and Good Practices}
+    \item \href{http://techblog.rosedu.org/contributing-upstream.html}{Contributing Upstream}
+    \item \href{http://techblog.rosedu.org/git-good-practices.html}{Git Good Practices}
+    \item \href{http://techblog.rosedu.org/git-useful-aliases.html}{Git Useful Aliases}
+  \end{itemize}
+\end{frame}
+
+\end{document}
