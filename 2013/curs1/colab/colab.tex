@@ -1,0 +1,351 @@
+% vim: set tw=78 sts=2 sw=2 ts=8 aw et:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc}
+\PrerenderUnicode{aâîțșĂÎÂȚȘ}
+\usepackage[romanian]{babel}
+\usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+\mode<presentation>
+\usetheme{CDL}
+
+% Show contents at every section beginning. Ripped off from manual.
+\AtBeginSection[] % Do nothing for \section*
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+  \tableofcontents[currentsection]
+    \end{frame}
+}
+
+\renewcommand{\arraystretch}{1.3}
+
+\title[Colaborare]{Aplicații colaborative}
+\subtitle{Comunicare, Wiki, Issues}
+\date{9 martie 2013}
+\author[Răzvan]{Răzvan Deaconescu \\ \texttt{razvan@rosedu.org}}
+
+\begin{document}
+
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\section{Colaborare în Open Source}
+
+\begin{frame}{De ce colaborare?}
+  \begin{itemize}
+    \pause
+    \item sincronizare
+    \item schimb de idei
+    \item revizii
+    \item the more, the merrier
+    \item in union lies strength
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{De ce colaborare cu tool-uri electronice?}
+  \begin{itemize}
+    \pause
+    \item ubiquitous
+    \item acces de oriunde, oricând
+    \item sincronizare independentă de poziție geografică, fus orar
+    \item searchable, linkable, likeable
+    \item istoric
+    \item personalizare
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cum colaborăm/comunicăm?}
+  \begin{itemize}
+    \item real time: față în față, messager, IRC
+    \item asincron: e-mail, liste de discuții, forumuri, StackOverflow
+    \item colaborare: wiki, issues, bug reports
+    \item repository, code reviews
+    \item gist, pastebin
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Liste de discuții}
+  \begin{itemize}
+    \item lurk before you leap
+    \item folosește regulile listei
+    \item vorbește la obiect
+    \item less is more
+    \item subiecte relevante
+    \item
+      \url{http://elf.cs.pub.ro/so/wiki/resurse/lista-discutii\#mailing-list-guidelines}
+  \end{itemize}
+\end{frame}
+
+\section{GitHub}
+
+\begin{frame}{Web-base Software Project Management}
+  \begin{itemize}
+    \item gestiunea proiectelor sofware
+    \item de obicei wiki, issue/ticket tracker, roadmap, acces la repository
+    \item colaborare, organizare, history
+    \item client-server: Trac, Redmine
+    \item hosted: SourceForge, BerliOS, Savannah, Google Code
+    \item GitHub, Gitorious
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{De ce GitHub?}
+  \begin{itemize}
+    \item social coding
+    \item it works!
+    \item făcut de dezvoltatori pentru dezvoltatori
+    \item ușor de contribuit, raportat issue-uri, creat fork-uri
+    \item wiki
+    \item Git
+    \item issues
+    \item forks, pull requests
+    \item Gist
+  \end{itemize}
+\end{frame}
+
+\section{Wiki-uri}
+
+\begin{frame}{De ce wiki-uri?}
+  \begin{itemize}
+    \item editare colaborativă
+    \item formatare facilă, link-uri facile
+    \item easy to install, use, edit (no training)
+    \item revision control
+    \item knowledge base (tutoriale, informații utile, documentare)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Ce este un wiki?}
+  \begin{itemize}
+    \item site web, editare facilă
+    \item limbaj markup simplificat, vizualizare rapidă a informațiilor
+    \item wiki software (wiki engine) -- aplicație ce rulează wiki
+    \item suport pentru colaborare
+    \item istoric, revizie, autentificare, ACL
+    \item Ward Cunningham: ``the simplest online database that could possibly
+work''
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Wiki versus \ldots}
+  \begin{itemize}
+    \item MS Office / OpenOffice
+      \begin{itemize}
+        \item (wiki) lucru colaborativ, interfață facilă, web
+        \item (office) printer friendly, complex, acces controlat
+    (non-professional)
+      \end{itemize}
+    \item fișiere LaTeX într-un repository
+      \begin{itemize}
+        \item (wiki) ușor de editat, feedback imediat, WYIWYG, web
+        \item (office) printer friendly, profesionist
+      \end{itemize}
+    \item CMS
+      \begin{itemize}
+        \item (wiki) ușor de editat, lucru colaborativ facil
+        \item (CMS) aspect și prezentare
+      \end{itemize}
+    \item Google Docs
+      \begin{itemize}
+        \item (wiki) open to public, web-friendly (link-uri etc.)
+        \item (gdocs) gestiune mai bună a accesului, apropiat Office
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cazuri de utilizare}
+  \begin{itemize}
+    \item knowledge base (comunitate, companie, proiect)
+    \item colaborare, editare colaborativă
+    \item tutoriale
+    \item publicare rapidă de conținut (curbă de învățare redusă)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Exemple cunoscute}
+  \begin{itemize}
+    \item \url{http://www.wikimatrix.org/}
+    \item MediaWiki
+    \item DokuWiki
+    \item TWiki
+    \item MoinMoin
+    \item PhpWiki
+    \item PmWiki
+    \item integrate în alte aplicații/site-uri (GitHub)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Sintaxă GitHub wiki}
+  \begin{itemize}
+    \item wiki-ul GitHub poate folosi mai multe forme de sintaxă
+    \item cea implicită, folosită și pe issue-urile Git este GitHub Flavored
+      Markdown
+      \begin{itemize}
+        \item \url{https://help.github.com/articles/github-flavored-markdown}
+      \end{itemize}
+    \item lightweight -- gets sh*t done
+    \item menținută, în spate, în Git
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Sintaxă Creole}
+  \begin{itemize}
+    \item \url{http://wikicreole.org/}
+    \item se dorește un standard de wiki
+    \item multe wiki-uri au un plugin de suport
+    \item multe elemente de sintaxă împrumutate de la MediaWiki
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Comparison chart}
+  \begin{center}
+    \begin{tabular}{@{}lcc@{}}
+      \toprule
+      \textbf{Format} & \textbf{Creole} & \textbf{GitHub Flavored Markdown} \\
+      \midrule
+      heading 1 & = Nume & \# Nume \\
+      bold & **text** & **text** \\
+      italic & //text// & \_text\_ \\
+      link la pagină & [[PageName$|$Nume link]] & [Nume link](URL pagină) \\
+      URL-uri externe & [[URL$|$Nume link]] &  [Nume link](PageName) \\
+      liste neordonate & *, ** & *, $<$blank$>$ \ldots * \\
+      liste ordonate & \#, \#\# & 1., $<$blank$>$ \ldots 1. \\
+      nowiki & \{\{\{ \ldots \}\}\} & $```$ \ldots $```$ \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{frame}
+
+\section{Issues}
+
+\begin{frame}{Issues}
+  \begin{itemize}
+    \item probleme, solicitări de rezolvare a unor probleme
+    \item tip problemă, autor, asignat, stare, deadline, prioritate,
+descriere
+    \item tichete -- help desk, call center
+    \item issue tracking system -- gestiunea issue-urilor unei
+organizații, unui proiect
+      \begin{itemize}
+        \item aplicație software
+        \item interfață web, bază de date
+        \item asemănător cu un bug tracking system (bugtracker)
+        \item autentificare -- în proiectele open-source submiterea de
+bug-uri e deschisă
+        \item în GitHub poți submite issue-uri dacă ești autetificat
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Issue tracking systems}
+  \begin{itemize}
+    \item Bugzilla, MantisBT -- single purpose
+    \item Trac, Redmine -- multi purpose
+    \item SourceForge, Launchpad, Google Code, GitHub -- hosted
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{GitHub -- New issues}
+  \begin{itemize}
+    \item title
+    \item assigned to
+    \item labels
+    \item message
+    \item milestones
+    \item GitHub Flavored Markdown
+    \item preview
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{GitHub -- View/edit issues}
+  \begin{itemize}
+    \item by assignee
+    \item by label
+    \item open/closed issues
+    \item update label/assignee/milestone
+    \item close/open
+    \item write update -- GitHub Flavored Markdown
+  \end{itemize}
+\end{frame}
+
+\section{Concluzii}
+
+\begin{frame}{Cuvinte cheie}
+  \begin{columns}
+    \begin{column}[l]{0.5\textwidth}
+      \begin{itemize}
+        \item colaborare
+        \item comunicare
+        \item comunitate
+        \item GitHub
+        \item wiki
+        \item editare colaborativă
+        \item easy to install, use, customize
+        \item markup language
+        \item wiki engine
+      \end{itemize}
+    \end{column}
+    \begin{column}[l]{0.5\textwidth}
+      \begin{itemize}
+        \item WikiMatrix
+        \item GitHub wiki
+        \item DokuWiki
+        \item sintaxă Creole
+        \item issues
+        \item issue tracking
+        \item bug tracking
+        \item create, view, update
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{Link-uri utile}
+  \begin{itemize}
+    {\footnotesize
+    \item \url{https://github.com/}
+    \item \url{https://gist.github.com/}
+    \item \url{https://help.github.com/articles/github-flavored-markdown}
+    \item \url{http://daringfireball.net/projects/markdown/syntax}
+    \item \url{http://www.wikimatrix.org/}
+    \item \url{http://www.dokuwiki.org/syntax}
+    \item \url{http://www.wikicreole.org/wiki/Creole1.0}
+    \item \url{http://en.wikipedia.org/wiki/Issue\_tracking\_system}
+    \item \url{http://www.bugzilla.org/}
+    \item
+\url{http://en.wikipedia.org/wiki/Comparison\_of\_issue\_tracking\_systems}
+    \item \url{http://www.chiark.greenend.org.uk/$\sim$sgtatham/bugs.html}
+    \item
+      \url{http://elf.cs.pub.ro/so/wiki/resurse/lista-discutii\#mailing-list-guidelines}
+    }
+  \end{itemize}
+\end{frame}
+
+\section{Întrebări}
+
+\begin{frame}{Lucrativ}
+  \begin{itemize}
+    \pause \item creează-ți, dacă nu ai, cont pe GitHub
+    \pause \item formați echipe de 3 persoane
+    \pause \item un membru creează un proiect și îi invită pe ceilalți
+      \begin{itemize}
+        \item proiectul este o idee de proiect software a echipei
+      \end{itemize}
+    \pause \item descrieți pe wiki proiectul
+      \begin{itemize}
+        \item folosiți cât mai multe forme de sintaxă wiki
+        \item creați cel puțin 2 pagini de wiki
+      \end{itemize}
+    \pause \item creați și link-ați pe wiki cel puțin un snippet Gist
+    \pause \item parcurgeți descrierea echipei din dreapta voastră și creați-le
+      issue-uri cu observații
+    \pause \item rezolvați issue-urile cu observații
+  \end{itemize}
+\end{frame}
+
+\end{document}
