@@ -1,0 +1,175 @@
+% vim: set tw=78 aw sw=2 sts=2 noet:
+\documentclass{beamer}
+
+%\includeonlyframes{c} -- speeding up compilation speed during debug
+
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{code/highlight}	 % highlight
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{hyperref}        % folositi \url{http://...}
+\mode<presentation>
+\usetheme{CDL}
+
+\title[GUI]{Graphical User Interfaces}
+\subtitle{CDL - Cursul 4 (3?)}
+\institute[ROSEdu]{ROSEdu}
+\author[MM]{Mihai Maruseac \texttt{mihai@rosedu.org}}
+
+\setbeamertemplate{frametitle continuation}[from second]
+\setbeamertemplate{footline}[frame number]
+
+\pgfdeclareimage[height=8cm]{mvc}{img/MVC}
+\pgfdeclareimage[height=4cm]{about}{img/about}
+\pgfdeclareimage[height=4cm]{abt2}{img/abt2}
+\pgfdeclareimage[height=8cm]{mainw}{img/mainw}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{De ce?}
+  \begin{itemize}[<+->]
+    \item CLI e antic
+    \item TUI e vechi
+    \item O aplicație respectabilă are GUI
+    \item Eventual look \& feel nativ
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Model View Controller}
+  \begin{center}
+    \pgfuseimage{mvc}
+  \end{center}
+\end{frame}
+
+\begin{frame}{Popular GUI Toolkits}
+  \begin{itemize}
+    \item Java Swing, Java AWT
+    \item C\# (WinForms)
+    \item Tcl/Tk
+    \item \textbf{Gtk}
+    \item Qt
+    \item wxWidgets
+    \item HTML5, CSS, Javascript
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{GTK / GTK+}
+  \begin{itemize}[<+->]
+    \item GIMP Toolkit
+    \item GTK+
+    \item GNOME 3 $\rightarrow$ GTK3
+    \item cross-platform
+    \item interfață grafică populară din X Window System (+ Qt)
+    \item C, multiple bindings:
+      \begin{itemize}
+        \item C++
+        \item Perl
+        \item Ruby
+        \item C\#
+        \item Haskell
+        \item Python
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Threads}
+  \begin{itemize}[<+->]
+    \item cod blocant
+    \item interfață responsivă
+    \item threads $\sim$ mai multe procese dar cu date partajate
+    \item definiție inexactă
+    \item \textbf{GUI = asincron}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Cum funcționează?}
+  \begin{itemize}[<+->]
+    \item buclă de prelucrare a evenimentelor
+    \item dispatch la codul care le tratează
+    \item $\sim$ excepții
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Main Loop}
+  \input{code/mainloop}
+\end{frame}
+
+\begin{frame}{Main Window}
+  \input{code/mainwindow}
+\end{frame}
+
+\begin{frame}{Signals and Callbacks}
+  \begin{itemize}
+    \item evenimente
+      \pause
+    \item semnale trimise threadului GTK
+    \item callbacks to be (well...) called back
+      \pause
+    \item Aceeași implementare pe toate sistemele \textit{imperative} pentru GUI
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Closing the window}
+  \input{code/closewindow}
+\end{frame}
+
+\begin{frame}{GUI components}
+  \begin{itemize}[<+->]
+    \item widgets
+      \begin{itemize}
+        \item Windows: GtkWindow, GtkDialog, GtkAboutDialog, ...
+        \item Display Elements: GtkLabel, GtkImage, GtkButton, GtkEntry, ...
+        \item Display Containers: GtkPanel, GtkFrame, ...
+      \end{itemize}
+    \item layouts: always use one
+    \item containers: GtkHBox, GtkVBox, GtkTable, GtkGrid, GtkFixed,
+      GtkAspectFrame, ...
+    \item Stock items: GTK\_STOCK\_CANCEL, GTK\_STOCK\_NEW, ...
+    \item Sharring settings: GtkSettings
+    \item ...
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Fonts, texts, custom drawings}
+  \begin{itemize}
+    \item Pango
+    \item Cairo
+  \end{itemize}
+  \pause
+  \begin{itemize}
+    \item i18n
+    \item HTML text
+    \item custom text paths
+    \item special effects
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Glade. DevHelp}
+  \begin{itemize}
+    \item Glade - ajutor design interfețe grafice
+    \item scoate XML-uri cu interfața
+    \item XML-ul poate fi încărcat de aplicație
+    \item nu scalează, nu poate fi customizat
+  \pause
+    \item ca side effect (pe Ubuntu) se instalează și DevHelp
+    \item DevHelp - documentație pentru diverse biblioteci (GTK, Pango, Cairo, ...)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Links}
+  \begin{itemize}
+    \item \url{http://www.gtk.org/}
+    \item \url{http://developer.gnome.org/gtk-tutorial/2.90/}
+    \item \url{http://zetcode.com/tutorials/gtktutorial/}
+    \item \url{http://www.pygtk.org/pygtk2tutorial/}
+    \item \url{http://developer.gnome.org/gtk3/stable/}
+    \item \url{http://developer.gnome.org/gdk3/stable/}
+    \item \url{http://developer.gnome.org/Gnome3PortingGuide/}
+  \end{itemize}
+\end{frame}
+
+\end{document}
