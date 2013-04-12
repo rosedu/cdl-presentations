@@ -19,15 +19,9 @@ typedef struct Entry {
 
 /* Nod pentru o listă simplu înlănțuită */
 typedef struct Node {
-<<<<<<< HEAD
-    struct Node      *next;
-    Entry_t          data;
-} Node_t;
-=======
     Node    *next;
     Entry   data;
 } Node;
->>>>>>> Add base headers and interfaces for 2013 application task
 
 /* Reține o mapare Cheie - Valoare (în cazul nostru char* - Array)
  *
