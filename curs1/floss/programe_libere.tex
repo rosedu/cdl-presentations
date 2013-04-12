@@ -1,0 +1,243 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc}		% diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			% highlight
+\usepackage{alltt}			% highlight
+\mode<presentation>
+{ \usetheme{Rochester} }		% TODO: settle this
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[Programe libere]{Programe libere. Istorie \c{s}i filosofie}
+\subtitle{CDL - Cursul 1}
+\institute{ROSEdu}
+\author{Tibi Turbureanu \\ {\small tct@ceata.org}}
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{Istorie}
+
+% Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
+\frame{\tableofcontents[currentsection]}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
+% Atenţie: allowframebreaks nu funcţionează cu overlay-uri
+\frametitle{La început, programele erau libere}
+\begin{itemize}
+\item În evul întunecat al tehnologiei existau lămpile aranjate în porți logice
+și tare anevoios mai era să implementezi un algoritm...
+\item Între timp a apărut tranzistorul (1947)
+\item Atunci omul a zis: „să fie programe!” și s-a aprins lumina pentru nopți
+de lucru ;-)
+\item La sfârșitul anilor '40 au început să fie scrise primele programe
+pentru mașini 
+\item Codul era format din instrucțiuni specifice mașinii
+\item Neexistând un set standard de instrucțiuni pentru mașini, codul
+nu era portabil
+\item Scrierea programelor nu era deloc ușoară: trebuia ținut cont de
+mașină (arhitectură, set de instrucțiuni), care de obicei era una singură
+pentru un laborator de dezvoltare
+\item Nu exista termenul de gestionare a activităților („job scheduling”),
+doar cartele perforate, imprimante și... exercițiu fizic :-D
+\item Apăreau des mașini noi necompatibile cu cele anterioare. Codul trebuia
+rescris
+\item În anii '50 apar primele limbaje de programare de nivel înalt: FORTRAN,
+COBOL, ALGOL
+\item Programele (cu codul sursă) sunt distribuite la pachet cu mașinile
+\item Utilizatorii (clienții) le puteau modifica pentru a le adapta nevoilor
+\item La început, programele erau libere :-)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
+\frametitle{Cultura hackerilor MIT}
+\begin{itemize}
+
+\item Hacker (prezent) = „cocalar” care fură exploatând găurile de securitate din
+sistemele informatice; deseori găurile sunt de natură socială :-(
+\item Hacker (sens MIT) = persoană care găsește atractivă explorarea codului
+unui program și extinderea capacităților lui prin modificare (hack), spre
+deosebire de restul utilizatorilor care preferă utilizarea lui minimală
+\item În anii '60 ia naștere cultura hackerilor la MIT, pe un sol fertil:
+programele sunt libere
+\item În anii '70, Richard Matthew Stallman (rms) lucrează împreună cu alți
+hackeri în cadrul Laboratorului MIT de Inteligență Artificială la proiecte ca
+Emacs și sistemul de operare pentru mașina Lisp
+\item Hack-uiește imprimanta ca să poată anunța utilizatorii întregului laborator
+când este liberă pentru o altă activitate
+\item Nu poate face același lucru cu noua imprimantă laser Xerox 9700, pentru
+că driverul este proprietar
+\item Această experiență îi schimbă viața. Realizează că libertatea
+utilizatorului începe să fie pusă în pericol
+\item La sfârșitul anilor '70 și începutul anilor '80 tot mai multe companii
+decid să se protejeze contra concurenței prin impunerea unor licențe
+restrictive pentru utilizatorii (clienții) lor
+\item Dreptul de autor începe să se manifeste agresiv. Cultura hackerilor
+intră în declin, mulți pleacă de la Laboratorul MIT și încep să scrie și să
+distribuie la rândul lor, programe proprietare
+\end{itemize}
+\end{frame}
+
+
+\section{Filosofie}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
+\frametitle{Proiectul GNU}
+\begin{itemize}
+
+\item RMS crede că este dreptul utilizatorilor de programe să aibă libertatea
+să-și poată ajuta prietenii, să studieze și să modifice codul sursă 
+după necesități
+\item Programele propietare sunt astfel „anti-sociale” și „neetice”
+\item În septembrie 1983, RMS anunță demararea proiectului GNU - pentru crearea
+unui sistem de operare complet liber
+\item În 1984 RMS renunță la slujba de la MIT și se dedică în totalitate
+proiectului GNU
+\item Arhitectura sistemului a fost aleasă să fie asemănătoare UNIX, acesta
+fiind sistemul cel mai popular în mediile universitare
+\item GNU = GNU's Not Unix pentru a face diferență dintre GNU și UNIX-ul
+proprietar. GNU nu conține cod UNIX
+\item În cadrul proiectului sunt dezvoltate componentele de bază ale
+sistemului: gcc, binutils, bash, glibc, coreutils și sunt testate pe sisteme
+UNIX
+\end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
+\frametitle{Drepturile utilizatorilor}
+\begin{itemize}
+
+\item Dreptul 0: Să \textbf{rulezi} oricum programul
+\item Dreptul 1: Să \textbf{studiezi} și să \textbf{modifici} programul
+\item Dreptul 2: Să \textbf{copiezi} programul ca să-ți ajuți prietenul
+\item Dreptul 3: Să \textbf{îmbunătățești} programul și să-l
+\textbf{distribui} îmbunătățit
+\end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
+\frametitle{Precizări}
+\begin{itemize}
+
+\item „Free software as in freedom, not as in free beer”
+\item „Free software is a matter of freedom, not price”
+\item Programele libere sunt mai ieftine sau gratuite pentru că piața mondială
+încă nu este liberă; monopolul și restricțiile fac în continuare regula
+\item Încălcările drepturilor utilizatorilor garantate prin licențe libere
+sunt tratate de FSF (Free Software Foundation, RMS) și SFLC (Software Freedom Law
+Center, Elben Moglen)
+\item În cazul programelor libere, termenii clasici „dezvoltator”,
+„utilizator” și „distribuitor” devin foarte apropiați
+\item Contrar programelor proprietare, cele libere se pretează bine
+necesităților utilizatorilor într-o eră a schimbului de informație (Internet)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
+\frametitle{Decizii}
+\begin{itemize}
+
+\item Pentru longevitatea proiectului, orice decizie (alegerea micronucleului,
+includerea unui nou program, alegerea condițiilor unei noi licențe, lansarea ei, 
+manifestările publice) trebuie să țină cont de filosofia proiectului
+\item Datorită constrângerilor externe proiectului, unele decizii pot fi luate greșit
+(exemplu: GNU Mach ca micronucleu pentru GNU HURD - 1987)
+\item Nucleul GNU HURD nu este gata până la lansarea nucleului monolitic Linux
+(1991, Linus Torvalds). Adoptarea licenței libere GPL face posibilă includerea Linux
+în sistemul GNU
+\end{itemize}
+\end{frame}
+
+\section{Prezent}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
+\frametitle{Contribuții}
+\begin{itemize}
+\item Afaceri. Companiile multinaționale devin și ele contribuitori la
+programele libere (Sun, IBM, Intel, Novell, Red Hat, HP, AMD)
+\item Apar distribuțiile GNU/Linux: Debian, Ubuntu, Gentoo, Red Hat, Fedora, 
+OpenSuse, Slackware (nu în ordine)
+\item Apar și sistemele libere FreeBSD, Debian GNU/FreeBSD,
+OpenSolaris, MINIX 3 ;-)
+\end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
+\frametitle{FLOSS}
+\begin{itemize}
+\item Open Source Initiative și definiția Open Source (1998) - Bruce Perens,
+Debian. Accentul cade pe disponibilitatea codului sursă, indiferent de condițiile 
+suplimentar impuse
+\item Open Source reprezintă perspectiva pragmatică asupra programelor libere
+și este preferată de companii. Deschiderea surselor este considerată o
+metodă eficientă de îmbunătățire a programelor, prin contribuții 
+\item Open Source este un model de afaceri de succes larg adoptat
+\item FLOSS = termen general și imparțial ce se referă atât la programele libere, 
+cât și la cele open source
+\end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
+\frametitle{Vești bune și vești proaste}
+\begin{itemize}
+\item Patente = licențe pe idei de programe
+\item Patentele pe programe din SUA amenință programele libere. Procese (2004
+- prezent)
+\item Dreptul de autor este folosit abuziv pentru a restricționa și mai mult
+utilizatorii - Digital Rights Management (DRM)
+\item Echipa Debian se alătură efortului internațional de a termina
+revoluționarul, încă în lucru, GNU Hurd
+\item Microsot, Adobe și Nokia încep să dezvolte programe Open Source, nu
+toate libere
+\end{itemize}
+\end{frame}
+
+\section{Bibliografie}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}[allowframebreaks] % Spargem paginile mai mari automat
+\frametitle{Referințe}
+\begin{itemize}
+\item \htmladdnormallink{History of software engineering}
+{http://en.wikipedia.org/wiki/History\_of\_software\_engineering}
+\item \htmladdnormallink{Logic gates}
+{http://en.wikipedia.org/wiki/Logic\_gate}
+\item \htmladdnormallink{MIT Artificial Intelligence Laboratory}
+{http://en.wikipedia.org/wiki/MIT\_Artificial\_Intelligence\_Laboratory}
+\item \htmladdnormallink{Haker culture}
+{http://en.wikipedia.org/wiki/Hacker\_(programmer\_subculture)}
+\item \htmladdnormallink{Richard Stallman} {http://en.wikipedia.org/wiki/Richard\_Stallman}
+\item \htmladdnormallink{Linus Torvalds}
+{http://en.wikipedia.org/wiki/Linus\_Torvalds}
+\item \htmladdnormallink{Bruce Perens}
+{http://en.wikipedia.org/wiki/Bruce\_Perens}
+\item \htmladdnormallink{FSF}
+{http://en.wikipedia.org/wiki/Free\_Software\_Foundation}
+\item \htmladdnormallink{SFLC}
+{http://en.wikipedia.org/wiki/Software\_Freedom\_Law\_Center}
+\item \htmladdnormallink{OSI}
+{http://en.wikipedia.org/wiki/Open\_Source\_Initiative}
+\item \htmladdnormallink{GNU} {http://en.wikipedia.org/wiki/GNU}
+\item \htmladdnormallink{GNU Binutils} {http://en.wikipedia.org/wiki/Binutils}
+\item \htmladdnormallink{GNU Coreutils}
+{http://en.wikipedia.org/wiki/Coreutils}
+\item \htmladdnormallink{Linux} {http://en.wikipedia.org/wiki/Linux}
+\item \htmladdnormallink{UNIX} {http://en.wikipedia.org/wiki/UNIX}
+\item \htmladdnormallink{Freebsd} {http://en.wikipedia.org/wiki/Freebsd}
+\end{itemize}
+\end{frame}
+\end{document}

@@ -1,0 +1,66 @@
+8
+
+dir
+15
+svn://cdl.rosedu.org/cdl-lab7/eclipse
+svn://cdl.rosedu.org/cdl-lab7
+
+
+
+2009-04-10T08:42:49.691694Z
+15
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5924979e-27b4-4f9f-90ba-33e2f52b8e34
+
+eclipse.tex
+file
+
+
+
+
+2009-04-11T06:12:43.000000Z
+5efe49c66ccff1f7695b0791f7972500
+2009-04-10T08:42:49.691694Z
+15
+
+eclipse-code
+dir
+
+eclipse.pdf
+file
+
+
+
+
+2009-04-11T06:12:43.000000Z
+82e22efae5e7d060eb3b50d185792c07
+2009-04-10T08:42:49.691694Z
+15
+
+has-props
+
+Makefile
+file
+
+
+
+
+2009-04-11T06:12:43.000000Z
+cfd961667b6043dbb8f83cc07867f301
+2009-04-10T08:42:49.691694Z
+15
+

@@ -1,0 +1,141 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{code/highlight}	 % highlight
+\usepackage{hyperref}        % folositi \url{http://...}
+                             % sau \href{http://...}{Nume Link}
+\mode<presentation>
+{ \usetheme{Rochester} }		% TODO: settle this
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[SVN 2]{SVN - notiuni avansate}
+\subtitle{CDL - Cursul 2}
+\institute{ROSEdu}
+\author{Lucian Adrian Grijincu \\ \texttt{lucian.grijincu@rosedu.org}}
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{Organizarea unui proiect}
+
+% Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{Noțiuni organizare proiect}
+  \begin{itemize}[<+->]
+  \item \textbf{trunk/} - ramura principală de dezvoltare
+  \item \textbf{branches/} - ramuri adiționale de dezvoltare
+  \item \textbf{tags/} - versiuni statice cu semnificație specială
+    \begin{itemize}
+      \item \textbf{1.0.2} - sursele în momentul în care s-a lansat versiunea 1.0.2
+      \item \textbf{2.2.0-rc1} - ``release-candidate'' pentru versiunea 2.2.0 
+      \item tag-urile sunt read-only - odată creat un tag nu mai poate fi modificat
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Care e echivalentul în SVN?}
+  \begin{itemize}[<+->]
+  \item în SVN \textbf{trunk/}, \textbf{branches/} și \textbf{tags/} sunt doar niște directoare
+  \item nu au o semnificație specială
+  \item nu e obligatorie structura asta. Următoarea e validă: \\
+    \texttt{master/      \\
+      branches-linux/    \\
+      branches-win32/    \\
+      branches-bsd/      \\
+      releases/          \\
+      release-candidates/\\
+      other-tags/}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Creare branch/tag în SVN}
+  \begin{itemize}[<+->]
+  \item crearea unui branch pornind din trunk:\\
+    \texttt{svn \textbf{copy} trunk/ branches/experimental-feature}
+
+  \item crearea unui tag pornind din trunk:\\
+    \texttt{svn \textbf{copy} trunk/ tags/v1.0.0}
+   
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{svn branch - exercițiu}
+  \begin{itemize}[<+->]
+  \item luați o copie a repo-ului de cdl: \texttt{svn://svn.rosedu.org/cdl\_test/}
+  \item creați un branch din \textbf{trunk/} în calea \textbf{branches/\$NUME}
+  \item modificați mesajul din funcția cu numele vostru și commit-eți modificările
+  \end{itemize}
+\end{frame}
+
+
+
+
+
+\section{svn merge}
+\frame{\tableofcontents[currentsection]}
+
+
+
+\begin{frame}{svn merge – combinarea unor branch-uri}
+  \begin{itemize}[<+->]
+  \item \texttt{svn merge SRC1 SRC2 [WorkingCopyDir]}
+  \item aplică diferențele între două versiuni asupra unui WorkingCopyDir (implicit ``.'')
+  \item \textbf{exercițiu:} combinați branch-ul propriu cu \textbf{trunk/}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{svn merge – combinarea unui branch înapoi în trunk}
+  \begin{itemize}[<+->]
+    \item determinăm revizia la care s-a creat branch-ul:\\
+      \small{\texttt{svn log --stop-on-copy svn://server/branch}}
+    \item din \textbf{trunk/} executăm:\\
+      \small{\texttt{svn merge -rXXX:HEAD svn://server/branch}}
+    \item rezolvare conflicte merge
+    \item un ultim commit de rezolvare conflicte
+  \end{itemize}
+\end{frame}
+
+
+\section{svn resolve}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{svn rezolve – conflicte}
+  \begin{itemize}[<+->]
+    \item conflicte apar la \textbf{svn update} și la \textbf{svn merge}
+    \item svn ``decorază'' sursele cu \texttt{====}, \texttt{<<<}, \texttt{>>>>}
+    \item rezolvarea se efectuează cu \textbf{svn resolve}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{svn resolve – utilizare}
+  \begin{itemize}[<+->]
+    \item \texttt{svn resolve --accept}
+      \begin{itemize}[<+->]
+      \item \textbf{base} - păstrează fișierul din ultima revizie
+      \item \textbf{working} - dacă s-a rezolvat manual conflictul
+      \item \textbf{mine-full} - rezolvă păstrând fișierele locale așa cum erau înainte de \textbf{svn update}
+      \item \textbf{theirs-full} - rezolvă folosind fișierele așa cum sunt pe server
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\end{document}

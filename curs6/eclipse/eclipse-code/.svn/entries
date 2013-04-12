@@ -1,0 +1,67 @@
+8
+
+dir
+15
+svn://cdl.rosedu.org/cdl-lab7/eclipse/eclipse-code
+svn://cdl.rosedu.org/cdl-lab7
+
+
+
+2009-04-10T08:42:49.691694Z
+15
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+5924979e-27b4-4f9f-90ba-33e2f52b8e34
+
+.project
+file
+
+
+
+
+2009-04-11T06:12:43.000000Z
+53d2ddf15b2b783a4feb5f3562f44fbd
+2009-04-10T07:56:41.857802Z
+12
+
+Debug
+dir
+
+src
+dir
+
+.cproject
+file
+
+
+
+
+2009-04-11T06:12:43.000000Z
+e9453b5a8c347a737e48573de14dd34b
+2009-04-10T07:56:41.857802Z
+12
+
+README
+file
+
+
+
+
+2009-04-11T06:12:43.000000Z
+0dbab265672cf694d2459fe9ede6da19
+2009-04-10T07:56:41.857802Z
+12
+

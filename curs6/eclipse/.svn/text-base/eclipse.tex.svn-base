@@ -1,0 +1,155 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{hyperref}        % folositi \url{http://...}
+% sau \href{http://...}{Nume Link}
+\mode<presentation>
+{ \usetheme{Rochester} }		% TODO: settle this
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[Eclipse IDE]{Eclipse IDE}
+\subtitle{CDL - Cursul 7}
+\institute{Ceata}
+\author{Dascalu Laurentiu - dascalu.laurentziu@gmail.com}
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{Introducere}
+
+% Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
+\frame{\tableofcontents[currentsection]}
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Introducere}
+  \begin{itemize}
+   \item Site oficial : eclipse.org
+   \item IDE - Integrated development enviroment; plug-in system
+   \item Eclipse Public License; free and open source software; dezvoltat de industrie : Adobe, Freescale, IBM, Atmel etc
+   \item Competitori : Visual Studio, Netbeans
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Caracteristici generale I}
+  \begin{itemize}
+    \item Principalele aspecte \textbf{pozitive}:
+    \begin{itemize}
+      \item acelasi GUI, indiferent de limbajul de programare; comportamentul este definit de plug-in-uri, prin wrapping peste utilitare: compilator, debugger, profiler etc
+      \item foarte bine scris; proiect open-source reusit
+      \item independent de platforma (SO); dependent de platforma $<=>$ Java este platforma
+      \item se poate integra cu orice tip de serviciu : de la e-mail pana la modelare UML
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Caracteristici generale II}
+  \begin{itemize}
+    \item Principalele aspecte \textbf{negative}:
+    \begin{itemize}
+      \item interfata grafica complicata
+      \item scris in java si necesita JRE pentru a porni
+      \item necesita mult RAM; plug-in developmentul necesita hardware de ultima generatie
+      \item project based; nu se preteaza pentru programe mici ( ${'wc -l'}$ $<$ 300)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Ce vom face in Eclipse?}
+  \begin{itemize}
+  \item Instalam plugin-uri : git/svn, CDT
+  \item Print-o aplicatie, exploram feature-urile IDE-ului :
+    \begin{itemize}
+      \item Menutar, toolbar
+      \item Editor : autocomplete(variabile, nume de functii, membri ai structurilor), macro-expansion, refactoring, on the fly spell check
+      \item Help $->$ Software Updates $->$ online plugin install; instalarea offline a plugin-urilor este putin mai complicata si nu se va trata in acest curs
+      \item Perspectiva grafica; strans legata de limbajul de programare in care lucram
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\section{Plugin install}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{Plugin install}
+\begin{itemize}
+  \item Instalam plugin-ul de SVN
+  \item Help $->$ Software Updates $->$ Available Software $->$ Add site $->$ $http://subclipse.tigris.org/update\_1.4.x$
+  \item Expandam noua inregistrare pentru a vedea ce contine; selectam toate cele 3 module si apoi apasam Install
+  \item Next, Next, Accept la licenta si restart la Eclipse
+  \item Am terminat deinstalat plugin-ul; instalarea online a altor plugin-uri este foarte asemanatoare
+\end{itemize}
+\end{frame}
+
+\section{Aplicatie}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{Aplicatie Part I}
+\begin{itemize}
+  \item New $->$ Other $->$ Checkout Projects from SVN
+  \item Create new repository location $->$ svn://cdl.rosedu.org/cdl-lab7 $->$ Next, Next
+  \item Expandati eclipse $->$ Selectati eclipse-code $->$ Next, Next pana s-a creat inregistrarea in Project explorer
+  \item Analizati continutul fisierelor sursa si header. Rezolvati micile probleme folosind cat mai multe feature-uri prezentate.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Aplicatie Part II}
+\begin{itemize}
+  \item Incercati sa folositi cat mai multe din urmatoarele :
+    \begin{itemize}
+      \item CTRL+B pentru build (compileaza sursele modificate de la ultimul build)
+      \item CTRL+SPACE pentru autocompletarea numelor - scrierea malloc-ului, accesarea unui membru dintr-o structura
+      \item click stanga pe nume $->$ click dreapta $->$ open declaration - vedeti continutul structurii FILE
+      \item plimbati mouse-ul pe :
+        \begin{itemize}
+	  \item numele functiei $->$ descriere
+	  \item apelul macro-ului $->$ expandare
+	  \item numele variabilei $->$ tip
+	\end{itemize}
+      \item CTRL + SHIFT + F pentru indentarea codului
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Aplicatie Part III}
+\begin{itemize}
+  \item Schimbati numele .c si .h pentru a nu aparea coliziuni de nume
+  \item Click dreapta pe numele proiectului $->$ Team $->$ Commit....
+  \item Completati cerintele editorului pentru a comite modificarile pe SVN
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Aplicatie Part IV}
+\begin{itemize}
+  \item Creati un proiect nou, hello world! Project $->$ New Project $->$ C project
+  \item Comiteti proiectul pe svn :
+  \begin{itemize}
+    \item Click dreapta pe numele proiectului
+    \item Team $->$ Share project... $->$ SVN $->$ Use existing repository $->$ Next, next
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\section{Link-uri utile}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}{Link-uri utile}
+\begin{itemize}
+  \item $eclipse.org$
+  \item $www.eclipseplugincentral.com$
+\end{itemize}
+\end{frame}
+
+\end{document}
+

@@ -1,0 +1,195 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{code/highlight}	 % highlight
+\usepackage{hyperref}        % folositi \url{http://...}
+                             % sau \href{http://...}{Nume Link}
+\mode<presentation>
+{ \usetheme{Rochester} }		% TODO: settle this
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[GTK]{GTK}
+\subtitle{CDL - Cursul 4}
+\institute{ROSEdu}
+\author{Mihai Maruseac \\\texttt{mihai.maruseac@gmail.com}}
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+\section{GTK}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{GTK}
+\begin{itemize}
+\item GIMP Toolkit
+\item GTK+
+\item cross-platform
+\item Una dintre cele mai populare interfețe grafice din X Window System, împreună cu Qt.
+\item \pause Scris în C dar cu bindings pentru multe limbaje:
+	\begin{itemize}
+		\item C++
+		\item Perl
+		\item Ruby
+		\item Java (?, fără Windows)
+		\item C\#
+		\item Python
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{PyGTK}
+\begin{itemize}
+	\item Binding $Python + GTK = PyGTK$
+	\vspace{2cm}
+	\item\pause\#pygtk
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Hello World, 1}
+\begin{itemize}
+	\item Importați pygtk și gtk
+	\item \pause Folosiți\linebreak
+		{\bfseries pygtk.require('2.0')}\linebreak
+		pentru a cere explicit folosirea funcționalităților din GTK2.0
+	\item \pause Construiți o clasă oarecare care va avea o singură metodă, {\bfseries \_\_init\_\_}
+	\item \pause Construiți o fereastră prin instanțierea clasei Window\linebreak{\bfseries self.w = gtk.Window(gtk.WINDOW\_TOPLEVEL)}
+	\item \pause Afișați fereastra ({\bfseries show})
+	\item \pause Rulați
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Hello World, 1 - cod complet}
+	\input{code/01}
+\end{frame}
+
+\begin{frame}{Hello World, 2}
+\begin{itemize}
+	\item Unde e fereastra?
+	\item \pause Construiți o funcție main în cadrul clasei voastre, funcție care doar apelează gtk.main() (orice aplicație GTK necesită această funcție)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Hello World, 2 - cod complet}
+	\input{code/02}
+\end{frame}
+
+\begin{frame}{Hello World, 2}
+\begin{itemize}
+	\item \textbf{Ce avem?}
+	\item \pause O fereastră
+	\item \pause care nu oprește aplicația la închiderea ei
+	\item \pause \textbf{Ce ne trebuie?}
+	\item \pause O metodă prin care oprim aplicația când trebuie
+	\item \pause Afișarea textului !!one!!
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Callbacks}
+\begin{itemize}
+	\item GTK este condus prin evenimente
+	\item \pause Controlul va sta în main până la apariția unui eveniment, caz în care se va executa o funcție potrivită
+	\item \pause Semnale: când se produce un eveniment (click mouse buton), elementul care a primit evenimentul va produce un semnal, care va fi capturat de un handler ce va apela o funcție corespunzătoare.
+	\item \pause \textbf{\textit{object.connect(signal\_name, func, data)}}
+	\item \pause \textit{def func(widget, callback\_data)}
+	\item \pause \textit{def func(widget, event, callback\_data)}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Implementarea unei închideri funcționale}
+\begin{itemize}
+	\item Avem două evenimente de tratat:
+		\begin{itemize}
+			\item delete\_event - managerul de ferestre decide închiderea ferestrei (dacă se returnează False, fereastra se va închide)
+			\item destroy - se capturează semnalul destroy
+		\end{itemize}
+	\item \pause Ieșirea se va face cu gtk.main\_quit().
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Hello World, 3}
+\begin{itemize}
+	\item Adăugați cele două evenimente pentru fereastra creată
+	\item Construiți cele două funcții necesare
+	\item Rulați programul.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Hello World, 3 - cod complet}
+	\input{code/03}
+\end{frame}
+\begin{frame}{Mesajul??}
+\begin{itemize}
+	\item Unde avem afișarea?
+	\item Vom folosi un buton care să ne permită să afișăm text la consolă.
+	\item Widget-ul button: gtk.Button(text)
+	\item Eveniment: clicked
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Hello World, 4 \& 5}
+\begin{itemize}
+	\item Modificați programul anterior prin adăugarea unui buton astfel încât la afișarea lui să se afișeze în terminal mesajul "Salut, $<$nume$>$", unde $<$nume$>$ este numele vostru.
+	\item \pause Adăugați un alt buton, astfel încât la apăsarea lui să se afișeze în consolă mesajul "GTK is nice". Nu definiți alte funcții de callback.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Aranjarea în pagină}
+\begin{itemize}
+	\item Ce se întâmplă când punem mai multe controale?
+	\item De unde știe cum să le amplaseze convenabil?
+	\item \pause Soluția: packing
+	\item \pause Se construiesc cutii invizibile în care se plasează componentele.
+	\item \pause Două tipuri de cutii: orizontale (HBox) și verticale (VBox)
+	\item \pause pack\_start; pack\_end: \pause direcția de împachetare
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Hello World, 6}
+\begin{itemize}
+	\item Adăugați aplicației încă 4 butoane și apoi testați diverse mdouri de amplasare
+	\item Încercați atât cutii verticale cât și cutii orizontale, încercați și combinații de cutii și cutii în cutii
+	\item Testați ambele variante de pack
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Hello World, 7}
+\begin{itemize}
+\item Încercați și o aplasare utilizând un Table
+\item \pause table.attach(child, left, rigth, top, bottom)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Hello World, 8}
+\begin{itemize}
+\item Folosiți un container fix (Fixed)
+\item fixed.put(widget, x, y)
+\item \pause fixed.move(widget, x, y)
+\end{itemize}
+\end{frame}
+
+\section{Linkuri utile}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}{Linkuri utile}
+\begin{itemize}
+\item \href{http://www.gtk.org/}{The GTK+ Project}
+\item \href{http://www.gtk.org/documentation.html}{GTK+ Documentation}
+\item \href{http://www.pygtk.org/index.html}{PyGTK}
+\end{itemize}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,82 @@
+\documentclass{beamer}
+
+\usepackage[romanian]{babel}
+\mode<presentation>
+{ \usetheme{Rochester}} 
+
+\title{Mail Notifier}
+\subtitle{Propunere proiect CDL}
+\institute{ROSEdu}
+\author{Andrei Soare \\ \texttt{andrei.soare@rosedu.org}}
+
+\begin{document}
+
+\setbeamertemplate{frametitle continuation}[from second]
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\begin{frame}{Overview}
+\begin{itemize}
+\item Program lightweight care verifica regulat daca primim mailuri
+\item Configurabil pentru orice tip de mail\vspace{1cm}\pause
+\item Cam comun, stiu ... but wait and see
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Componente}
+\begin{itemize}
+\item daemon care ruleaza in background si face check pe servere
+\item interfata grafica: widget in gnome-panel
+\item fisiere criptate de configurare
+\end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+\frametitle{Functionalitate}
+\begin{itemize}
+\item initial: linie de comanda
+\item suport POP3 si IMAP
+\item suport provideri cunoscuti de mail (google, yahoo, aol, etc) - de obicei
+ofera deja un API care se integreaza usor in aplicatie
+\item configurare noi conturi real-time:\\fiecare cont va avea un thread separat
+\item downloadat preview mail si afisata notificare pe desktop folosind noul sistem
+de notificari din Ubuntu 9.04\framebreak
+\item [(bonus)] sincronizat prin bluetooth cu un maimutoi de pe masa de langa calculator
+care face urat cand primim mailuri noi :P
+\item [(optional)]internationalizat
+\item [(optional)] eventual conceput sub forma de biblioteca
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Limbaje propuse}
+\begin{itemize}
+\item C\\\begin{itemize}\item fast \item powerful \item hardcore\end{itemize}
+\item gtk\\\begin{itemize}\item interfata grafica\end{itemize}
+\pause \vspace{1cm}
+\item nu e alegerea mea ;)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Version Control}
+\begin{itemize}
+\item git \vspace{1cm}
+\item ...din nou, nu e alegerea mea ;)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Ce se invata in urma proiectului?}
+\begin{itemize}
+\item dbus
+\item socket programming
+\item protocoale de comunicatie (pop3, imap)
+\item multithreading
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Reinventing the wheel ?}
+\pause
+... so what ?! asa se invata ...
+\end{frame}
+
+\end{document}

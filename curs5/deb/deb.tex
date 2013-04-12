@@ -1,0 +1,188 @@
+% vim: set tw=78 aw:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{code/highlight}	 % highlight
+\usepackage{hyperref}        % folositi \url{http://...}
+% sau \href{http://...}{Nume Link}
+\mode<presentation>
+{ \usetheme{Rochester} }		% TODO: settle this
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[Debian packaging]{Debian packaging}
+\subtitle{CDL - Cursul 5}
+\institute{ROSEdu}
+\author{Lucian Adrian Grijincu \\ \texttt{lucian.grijincu@rosedu.org}}
+
+\begin{document}
+
+% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\setbeamertemplate{frametitle continuation}[from second]
+% Arătăm numărul frame-ului
+\setbeamertemplate{footline}[frame number]
+
+\frame{\titlepage}
+
+\frame{\tableofcontents}
+
+\begin{frame}{... să nu așteptăm mai târziu}
+  \begin{beamerboxesrounded}[lower=block body,shadow=true]{}
+    \large {\texttt{\textit{sudo apt-get install} devscripts wget cdbs \\
+      build-essential fakeroot patchutils debhelper}}
+  \end{beamerboxesrounded}
+\end{frame}
+
+
+% NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
+\section{Notiuni introductive}
+
+% Pentru reamintirea periodică a cuprinsului şi unde ne aflăm:
+\frame{\tableofcontents[currentsection]}
+
+
+% Titlul unui frame se specifică fie în acolade, imediat după \begin{frame},
+% fie folosind \frametitle
+\begin{frame}{Utilitate uzuale}
+  \begin{itemize}[<+->]
+  \item \textbf{./configure} - script generat cu autotools
+    \begin{itemize}
+    \item verifică dependențele programului
+    \item folosit pentru a trece peste diferențele între sisteme tip UNIX
+    \item generază un \textit{Makefile} dintr-un \textit{Makefile.ac} (un template)
+    \end{itemize}
+  \item \textbf{diff+patch} - \pause{amintirile mă chinuiesc ...}
+  \item \textbf{make} - construiește executabilul final din surse
+  \item \textbf{???} - generare pachet .deb
+  \item \textbf{dpkg} - manager de pachete pentru Debian
+  \item \textbf{apt-*}, \textbf{aptitude} - interfețe de nivel înalt pentru dpkg
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{dpkg - manager de pachete pentru Debian}
+  \begin{itemize}
+  \item pentru toate pachetele de care știe ține minte starea pachetului: 
+    instalat complet, doar fișierele de configurație rămase, instalare începută,
+    dar neterminată, etc.
+  \item \textbf{-i/\texttt{--}install f.deb} - instalare fișier .deb
+  \item \textbf{-r/\texttt{--}remove pachet} - dezinstalare \textit{pachet}
+  \item \textbf{-P/\texttt{--}purge pachet} - dezinstalare \textit{pachet} și a fișierelor de configurație
+  \item \textbf{-L/\texttt{--}listfile pachet} - listarea fișierelor instalate de \textit{pachet}
+  \item \textbf{-c/\texttt{--}contents f.deb} - listarea fișierelor dintr-un .deb
+  \item \textbf{-S/\texttt{--}search file} - caută pachetele care instalează fișierul \textit{file}
+  \begin{columns}[t]
+    \begin{column}{4cm}
+      \begin{beamerboxesrounded}[lower=block body,shadow=true,width=3cm]{\$ dpkg -S /bin/ls}
+        coreutils: /bin/ls
+      \end{beamerboxesrounded}
+      \end{column}
+    \begin{column}{4cm}
+      \begin{beamerboxesrounded}[lower=block body,shadow=true,width=5cm]{\$ dpkg -S /usr/bin/dos2unix }
+        tofrodos: /usr/bin/dos2unix
+      \end{beamerboxesrounded}
+    \end{column}
+  \end{columns}
+  \end{itemize}    
+ \end{frame}
+
+
+\begin{frame}{apt}
+  \begin{itemize}
+  \item \textbf{apt-cache dump} - listează toate pachetele din cache
+  \item \textbf{apt-cache policy} - listează repo-urile din care e un pachet, versiunea instalată, alte versiuni disponibile
+    \begin{beamerboxesrounded}[lower=block body,shadow=true,width=8cm]{}
+      apt-cache policy firefox \\
+      \texttt{   firefox:}\\
+      Instalat: 3.0.7+nobinonly-0ubuntu0.8.10.1 \\
+      Candidează: 3.0.8+nobinonly-0ubuntu0.8.10.2
+    \end{beamerboxesrounded}
+  \item \textbf{apt-cache show} - listează informații despre un pachetul binar (maintainer, dependențe, descriere, etc.)
+  \item \textbf{apt-cache showsrc} - listează informații despre un pachetul sursă (maintainer, dependențe, descriere, etc.)
+  \item \textbf{apt-cache rdepends} - listează toate pachetele care depind de acesta
+  \end{itemize}
+\end{frame}
+
+
+\section{Împachetarea unui proiect nou}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}{hello - un proiect simplu care afișează ``Hello World!''}
+  \begin{itemize}
+    \begin{beamerboxesrounded}[lower=block body,shadow=true]{1\_wget.sh - modificați numele și adresa înainte de rulare}
+      \small \input{code/1_wget}
+    \end{beamerboxesrounded}
+  \item 4 - luăm sursele proiectului
+  \item 7 - numele e important: \textbf{packagename\_version}.\textit{orig.tar.gz}
+  \item 11 - dh\_make va crea un director \textit{debian/} și o serie 
+    de scripturi predefinite și ne va întreba detalii despre tipul proiectului
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{dh\_make}
+    \begin{beamerboxesrounded}[lower=block body,shadow=true]{dh\_make pune întrebări despre proiect și maintainer}
+      \small \input{code/out_1_dh_make}
+    \end{beamerboxesrounded}
+\end{frame}
+
+\begin{frame}{debian\/ scripts}
+  \begin{itemize}
+    \begin{beamerboxesrounded}[lower=block body,shadow=true]{2\_rm\_unneeded.sh - delete unneeded files from debian\/}
+      \small \input{code/2_rm_unneeded}
+    \end{beamerboxesrounded}
+  \item \textbf{README.Debiam} - README specific pachetului de debian (nu e README-ul proiectului)
+  \item \textbf{dirs} - folosit de \textit{dh\_installdirs} pentru a crea directoare
+  \item \textbf{info} - folosit de \textit{dh\_installinfo} pentru a crea un fisier \texttt{info}
+  \item \textbf{docs} - folosit de \textit{dh\_installdocs} pentru a instala documentația programului
+  \item \textbf{*.ex *.EX} - extensii folosite în cazuri speciale
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{debian/changelog}
+%  \begin{beamerboxesrounded}[lower=block body,shadow=true]{changelog\_template - șablon}
+%    \scriptsize \input{code/changelog_template}
+%  \end{beamerboxesrounded}
+  \begin{beamerboxesrounded}[lower=block body,shadow=true]{}
+    \scriptsize \input{code/changelog_hello}
+  \end{beamerboxesrounded}
+  \begin{itemize}
+  \item \textbf{unstable} e denumirea versiunii de Debian pentru care se crează pachetul. 
+    Poate fi înlocuit cu \textit{jaunty} dacă vrem să facem pachet petru Ubuntu Jaunty.
+  \item \textbf{urgency} - cât de important e să se facă actualizarea pachetului 
+    (low, medium, high, emergency, critical)
+  \item cu două spații și * sunt sumarizate modificările (liniile următoare, cu identare mai
+    mare descriu pe larg modificările)
+  \item numele este \textbf{2.1.1-1}. \textbf{-1} a fost adăugat pentru a marca faptul că 
+    acesta este primul pachet .deb creat pentru versiunea 2.1.1
+  \end{itemize}
+  
+\end{frame}
+
+\begin{frame}{debian/control}
+  \begin{beamerboxesrounded}[lower=block body,shadow=true]{}
+    \small \input{code/control_hello}
+  \end{beamerboxesrounded}
+\end{frame}
+
+\begin{frame}{generare .deb}
+  \begin{itemize}
+  \begin{beamerboxesrounded}[lower=block body,shadow=true]{}
+    debuild
+  \end{beamerboxesrounded}
+  \item va rezulta un fișier \texttt{hello\_2.1.1-1\_i386.deb}
+  \item fișierul va fi semnat cu cheia gpg corespunzătoare numelui și 
+    adresei de email din \texttt{debian/changelog}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Î \& R}
+  \begin{centering}
+    \Huge ?    \par
+  \end{centering}
+\end{frame}
+
+
+\end{document}
