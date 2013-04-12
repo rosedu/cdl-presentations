@@ -1,5 +1,0 @@
-hello (2.1.1-1) unstable; urgency=low
-
-  * Initial release (Closes: #nnnn)
-
- -- Lucian Grijincu <lucian.grijincu@rosedu.org>  Sat, 04 Apr 2009 06:27:31 +0300
