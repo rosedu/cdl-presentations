@@ -1,6 +1,0 @@
-Prima linie comună.
-A doua linie e diferită.
-A treia are modificări.
-A patra nu.
-A cincia identică.
-Ultima e comună.

@@ -1,4 +1,0 @@
-CC = gcc
-CFLAGS = -Wall -g
-
-ex1: ex1.o ex2.o

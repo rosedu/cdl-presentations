@@ -1,8 +1,0 @@
-ex1: ex1.o ex2.o
-	    gcc -o ex1 ex1.o ex2.o
-
-ex1.o: ex1.c
-	    gcc -Wall -g -c -o ex1.o ex1.c
-
-ex2.o: ex2.c
-	    gcc -Wall -g -c -o ex2.o ex2.c
