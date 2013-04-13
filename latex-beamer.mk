@@ -10,7 +10,7 @@ CODEINPUTSTEX = $(addprefix $(CODEDIR)/, $(addsuffix .tex, $(CODEINPUTS)))
 HIGHLIGHTSTY = highlight.sty
 
 ifndef $(TABSIZE)
-	TABSIZE = 8
+	TABSIZE = 4
 endif
 
 HIGHLIGHT_OPTS = --out-format=latex -l -f -t $(TABSIZE) -c $(HIGHLIGHTSTY)
