@@ -34,3 +34,6 @@ clean:
 # highlight rules
 %.cpp.tex: %.cpp
 	@highlight $(HIGHLIGHT_OPTS) -i $< -o $@
+
+%.h.tex: %.h
+	@highlight $(HIGHLIGHT_OPTS) -i $< -o $@
