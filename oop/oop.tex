@@ -1,314 +1,164 @@
 \documentclass{beamer}
 
-\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[utf8x]{inputenc}
 \usepackage[romanian]{babel}
-\usepackage{color}			 % highlight
-\usepackage{alltt}			 % highlight
-\usepackage{code/highlight}	 % highlight
-\usepackage{hyperref}        % folositi \url{http://...}
-% sau \href{http://...}{Nume Link}
+\usepackage{color}
+\usepackage{alltt}
+\usepackage{hyperref}
+\usepackage{code/highlight}
 \mode<presentation>
 \usetheme{CDL}
-                     
-% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
-% cap.
-\title[Introducere in POO]{Introducere in Programarea Orientata Obiect si C++}
-\subtitle{CDL - Cursul 1}
-\institute[ROSEdu]{ROSEdu}
-\author[Q]{Andrada Georgescu (andradaq@rosedu.org)}
 
-\begin{document}     
+\title[Object Oriented Programming]{Object Oriented Programming}
+\subtitle{CDL - cursul 2}
+\institute{ROSEdu}
+\author{Adrian Scoică\\\,\,{adrian.sc@rosedu.org}}
 
-% Slide-urile cu mai multe părţi sunt marcate cu textul (cont.)
+\begin{document}
+
 \setbeamertemplate{frametitle continuation}[from second]
-% Arătăm numărul frame-ului
 \setbeamertemplate{footline}[frame number]
 
 \frame{\titlepage}
 
-\begin{frame}
-\tableofcontents
-\end{frame}
+\frame{\tableofcontents}
 
-\section{Introducere}
-
-\begin{frame}{Ce este Programarea Orientată Obiect?}
-  \begin{itemize} % Just like normal LaTeX
-  \item programare procedurală  - o serie de proceduri ce acționează asupra datelor
-  \item probleme? 
-  \begin{itemize}  
-  	\item "reinventarea roții"
-	\item dificil de ținut o legătură între date și proceduri
-  \end{itemize}
-  \item programarea orientată obiect  - datele și procedurile ce acționează asupra acestor date sunt tratate ca un obiect
-  \end{itemize}
-\end{frame}   
-
-\begin{frame}{Clasă. Obiect.}
-  \begin{itemize}
-  \item clasă:
-  \begin{itemize}
-	\item definește caracteristicile abstracte ale unui obiect	
-    \item proprietăți + metode
-  \end{itemize}
-  \item obiect: o \textbf{instanță} a unei clase %, un membru particular ce respectă caracteristicile acelei clase
-  \end{itemize}
-\end{frame}
-
-\section{Noțiuni de bază C++}
-
-\begin{frame}{Exemplu}
-	\footnotesize{\input{code/basic1}}
-\end{frame}
-
-\begin{frame}{C++}
-  \begin{itemize}
-  \item dezvoltat de Bjarne Stroustrup
-  \item numit inițial "C cu clase"
-  \item ++
+\section{Ce este OOP?}
+    \frame{\tableofcontents[currentsection]}
+    
+    \begin{frame}{Despre concept}
     \begin{itemize}
-	  \item clase
-	  \item transmitere prin referință
-	  \item array-uri de lungime variabilă
-	  \item etc
-	\end{itemize}
-  \end{itemize}
-\end{frame}
+    \setlength{\itemsep}{0.8cm}
+    \item "O paradigmă de programare care folosește obiecte pentru a modela aplicații" \pause
+    \item O modalitate de a structura mai modular logica unei aplicații \pause
+    \item Face {\bf limbajele} mai flexibile și codul mai intuitiv \pause
+    \item Noțiuni centrale: \pause
+    	\begin{itemize}
+    	\item clasă \pause
+    	\item obiect \pause
+    	\item moștenire \pause
+    	\item încapsulare \pause
+    	\item polimorfism \pause
+    	\end{itemize}
+    \end{itemize}
+    \end{frame}
 
-\begin{frame}{Exemplu}
-  \footnotesize{\input{code/reference}}
-\end{frame}
+    \begin{frame}{Despre clase}
+    \begin{itemize}
+    \setlength{\itemsep}{0.4cm}
+    \item Ce este o clasă? \pause
+    \end{itemize}
+    \includegraphics[scale=0.4]{Clasa.png}\\
+    \pause Trăsăturile comune pot fi: \pause
+	\begin{itemize} 
+    \item structurale \pause 
+    \item comportamentale 
+    \end{itemize}
+    \end{frame}
 
-\begin{frame}{Declarații și definiții}
-  \begin{itemize}
-  \item metodă (funcție) = declarație + definiție
-  \item definiția poate fi făcută și în interiorul declarației clasei 
-  \item \textbf{best practice:} declarațiile într-un fișier header, separate de implementare
-  \end{itemize}
-\end{frame}
+\section{În practică}
+    \frame{\tableofcontents[currentsection]}
 
-\begin{frame}{Exemplu}
-	\footnotesize{\input{code/basic2}}
-\end{frame}
+    \begin{frame}{Task: evidența populației}
+    Vrem să implementăm un mecanism de a lucra cu o populație de "oameni" într-o aplicație (de exemplu, un joc). \pause Cerințe: \pause 
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \item Indivizii să aibă nume \pause
+    \item Indivizii să aibă vârste diferite și sume de bani diferite \pause
+    \item Indivizii să poată dona bani unii altora \pause
+    \item Să putem ține evidența populației 
+    \end{itemize}
+    \end{frame}
 
-\begin{frame}{Specificatori de access: public, private}
-  \begin{itemize}
-  \item membrii privați: accesați doar din interiorul clasei
-  \item membrii publici: accesați prin intermediul oricărui obiect al clasei
-  \item implicit: private
-  \item regulă generală: variabilele membre vor fi private și se vor defini metode pentru modificarea și accesarea lor - \textbf{set} și \textbf{get} 
-  \item \textbf{struct} și \textbf{class}
-  \end{itemize}
-\end{frame}
-               
-\begin{frame}{Exemplu}
-	\footnotesize{\input{code/access}}
-\end{frame}
+    \begin{frame}{Soluția clasică}
+    \pause \input{code/oop1}\\
+    \end{frame}
 
-\begin{frame}{Constructor. Destructor. this}
-  \begin{itemize}
-  \item constructor: inițializarea membrilor unei clase, alocare memorie
-  \item destructor: eliberarea memoriei alocate pentru obiect.
-%  \item Dacă nu este declarat un constructor sau un destructor, compilatorul sintetizează unul implicit. Constructorul și destructorul impliciți nu primesc argumente și nu fac nimic.
-  \item constructor și destructor impliciți
-%  \item Constructorul are același nume cu clasa și nu returnează nimic. Poate primi oricâți parametri.
-%  \item Numele destructorului începe cu tildă, urmată de numele clasei. Nu primește parametri și nu returnează nimic.
-%  \item Destructorul se va apela când ștergem un obiect alocat dinamic cu operatorul delete sau la ieșirea din scop a obiectului dacă a fost alocat static.
-  \item \textbf{new} și \textbf{delete}
-  \item \textbf{this} - pointer la obiectul curent
-  \end{itemize}
-\end{frame}
-             
-\begin{frame}{Exemplu}
-  \footnotesize{\input{code/cons}}
-\end{frame} 
+    \begin{frame}{Pas 1: Constructori}
+    \pause \input{code/oop2}\\
+    \end{frame}
+    
+    \begin{frame}{Pas 2: Functii membru}
+    \pause \input{code/oop3}\\
+    \end{frame}
+    
+    \begin{frame}{Pas 3: Variabile statice}
+    \pause \input{code/oop4}\\
+    \end{frame}
+    
+    \begin{frame}{Pas 4: Operatori}
+    \pause \input{code/oop5}\\
+    \end{frame}
+    
+    \begin{frame}{Syntax sugar: Parametri Impliciti}
+    \pause \input{code/oop6}\\
+    \end{frame}
 
-\begin{frame}{Exemplu}
-  \footnotesize{\input{code/array}}
-\end{frame}
+    \begin{frame}{Problem fix: Destructori}
+    \pause \input{code/oop7}\\
+    \end{frame}
+    
+    \begin{frame}{Safety fix: Accesul la membri}
+    \pause \input{code/oop8}\\
+    \end{frame}
+    
+    \begin{frame}{New horizons: Moștenirea și supradefinirea}
+    \pause \input{code/oop9}\\
+    \pause Dacă am vrea ca un Thief să se amestece printre Player, atunci trebuie să declarăm metoda din clasa de bază ca fiind virtuală!
+    \end{frame}
+    
+\section{C++ cookies}
+	\frame{\tableofcontents[currentsection]}
+	\begin{frame}{STL: Introduction}
+	STL este o bibliotecă (accesibilă printr-o serie de headere) standard din C++. \pause Conține: \pause
+		\begin{itemize}
+		\item Containere de date \pause
+		\item Algoritmi \pause
+		\end{itemize}
+	Pe lângă STL, limbajul mai pune la dispoziție: \pause
+		\begin{itemize}
+		\item Metode de I/O \pause
+		\item Clase pentru lucrul cu fișiere \pause
+		\item {\bf Zeci} de alte îmbunătățiri
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}{Exemplu utilizare: stringuri, lucrul cu fișiere}
+	\input{code/oop10}
+	\end{frame}
+	
+	\begin{frame}{Exemplu utilizare: vectori, algoritmi}
+	\input{code/oop11}
+	\end{frame}
 
+\section{Crearea unei Clase}
+    \frame{\tableofcontents[currentsection]}
 
-\begin{frame}{Supradefinirea funcțiilor și operatorilor}
-  \begin{itemize}
-  \item în \textbf{C++} este permisă crearea mai multor funcții cu același nume 
-  \item funcțiile \textbf{trebuie să difere} prin lista de parametri: tipul lor, numărul lor sau ambele
-  \item funcțiile \textbf{nu pot să difere} doar prin tipul returnat
-  \item constructorii și metodele unei clase pot fi și ele supradefinite
-  \item în \textbf{C++} și operatorii (+, ++, =, +=, * etc) pot fi supradefiniți
-  \end{itemize}
-\end{frame}
+    \begin{frame}{Cerințe}
+    Am vrea o clasă care să implementeze operații aritmetice cu numere complexe: \pause
+    \begin{itemize}
+    \setlength{\itemsep}{0.6cm}
+    \item Clasa se va numi Complex \pause
+    \item Constructorul va avea parametrii impliciți \pause
+    \item Membrii de date vor fi privați \pause
+    \item Avem la dispoziție funcții getter și funcție de aflat modulul \pause
+    \item Avem un operator de adunare și unul de scădere
+    \end{itemize}
+    \end{frame}
 
-\begin{frame}{Exemplu}
-  \footnotesize{\input{code/overload}}
-\end{frame}
+\section{Link-uri Utile}
+    \frame{\tableofcontents[currentsection]}
 
-\begin{frame}{Exemplu}
-  \footnotesize{\input{code/operator}}
-\end{frame}
-
-\section{Concepte de bază ale POO}
-
-\begin{frame}{Concepte de bază ale POO}
-  \begin{itemize}
-  \item încapsularea
-  \item abstractizarea datelor
-  \item moștenirea
-  \item polimorfismul
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Încapsularea}    
- \begin{itemize}
-  \item restrângerea accesului la implementare
-  \item ascunde detaliile implementării
-  \item independența de implementare
-  \item utilizare \textbf{set} și \textbf{get}
-  \end{itemize}  
-\end{frame}
-
-\begin{frame}{Abstractizarea datelor}   
-  \begin{itemize}
-  \item strâns legată de ideea de încapsulare
-  \item un model de reprezentare abstractă a unui obiect real
-  \item descompunerea în componente mai mici a unui model foarte complex
-  \item caracteristicile esențiale ale obiectului
-  \end{itemize}  
-\end{frame}
-
-\begin{frame}{Moștenirea}
-  \begin{itemize}
-  \item un nou tip de date poate definit ca o extensie la un tip deja existent
-  \item noua \textbf{subclasă} derivează din (moștenește) \textbf{clasa de bază}
-  \item specificatorul de acces \textbf{protected}: accesul permis claselor derivate
-  \item \textbf{is-a} vs \textbf{has-a}
-  \end{itemize}    
-\end{frame}
-
-\begin{frame}{Exemplu}
-  \footnotesize{\input{code/derive1}}
-\end{frame}   
-
-\begin{frame}{Exemplu}
-  \footnotesize{\input{code/derive2}}
-\end{frame}
-
-\begin{frame}{Suprascrierea metodelor}
-  \begin{itemize}
-    \item comportament specific pentru clasa derivată
-  	\item suprascrierea unei metode în clasa derivată
-	\item ascunderea \textbf{tutoror} metodelor cu același nume din clasa de bază  
-  \end{itemize} 
-\end{frame}
-
-\begin{frame}{Exemplu}
-  \footnotesize{\input{code/override}}
-\end{frame}
-
-\begin{frame}{Exemplu}
-  \footnotesize{\input{code/override2}}
-\end{frame}
-
-\begin{frame}{Funcții virtuale}
-  \begin{itemize}
-	\item funcție virtuală: se stabilește la \textbf{runtime} ce metodă este apelată - \textbf{dynamic binding}
-	\item o funcție declarată virtuală rămâne virtuală pe întreg lanțul de moșteniri
-	\item destructor virtual: în clasa de bază
-	\item mecanismul: \textbf{virtual table}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Exemplu}
-  \footnotesize{\input{code/virtual}}
-\end{frame}
-
-\begin{frame}{Exemplu}
-  \footnotesize{\input{code/destructor}}
-\end{frame}
-
-\begin{frame}{Funcții pur virtuale și interfețe}
-  \begin{itemize}
-    \item pur virtual = nu este precizată o implementare în clasa de bază,
-	\item clasă abstractă: cel puțin o metodă pur virtuală
-	\item o clasă abstractă nu se poate instanția 
-	\item interfață: doar funcții pur virtuale - \textbf{abstractizarea datelor}
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Exemplu}
-  \footnotesize{\input{code/interface}}
-\end{frame}
-
-\begin{frame}{Polimorfismul}
-  \begin{itemize}
-  \item polimorf = mai multe forme 
-  \item capacitatea unui tip, de a putea fi folosit ca un alt tip
-  \item o implementare specifică a unei interfețe sau a unei clase de bază generice
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Exemplu}
-  \footnotesize{\input{code/poly}}
-\end{frame}
-
-\section{Alte facilități C++}
-
-\begin{frame}{Membri statici și constanți}
- \begin{itemize}
-  \item Membri statici:
-  \begin{itemize}
-  \item aparțin \textbf{clasei}, și nu \textbf{obiectului}
-  \item metodele statice pot accesa doar membri statici
-  \item pot fi accesați fără a avea o instață a clasei
-%  \item Se recomandă să fie accesați prin \textbf{NumeClasă::MembruStatic}, deși se pot accesa și printr-un reprezentant al clasei.
-%  \item Sunt comuni și pentru clasele ce derivează o clasă cu membri statici.
-  \end{itemize}       
-  \item Membri constanți: 
-   \begin{itemize}
-    \item variabile membre: inițializate de constructor
-	\item metode \textbf{const}: nu au dreptul să modifice membrii clasei
-   \end{itemize}
-   \item Membri \textbf{static const}: pot fi inițializați direct dacă au tip întreg
-   \end{itemize}
-\end{frame}
-
-\begin{frame}{Exemplu}
-	\footnotesize{\input{code/static}}
-\end{frame}
-
-\begin{frame}{Alte noțiuni (TODOs)}
-  \begin{itemize}
-  \item moștenire multiplă, moștenire virtuală
-  \item copy-constructor
-  \item virtual table
-  \item template-uri
-  \item STL 
-  \item stream-uri
-  \item namespace
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Cuvinte cheie}
-  \begin{itemize}
-   \item programare orientată obiect
-   \item clasă, obiect
-   \item constructor, destructor
-   \item nivel de acces
-   \item encapsulare
-   \item abstractizarea datelor
-   \item moștenire
-   \item polimorfism
-   \item metodă virtuală
-   \item clasă abstractă
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{Referințe recomandate}
-  \begin{itemize}
-  \item Tutorial C++: \url{http://newdata.box.sk/bx/c/index.htm}
-  \item Referințe: \url{http://www.cplusplus.com}
-  \item C++ in a Nutshell - Ray Lischner
-  \item Effective C++ - Scott Meyers
-  \end{itemize}
-\end{frame}
-
+    \begin{frame}{Link-uri Utile}
+    \begin{itemize}
+    \setlength{\itemsep}{0.5cm}
+    \footnotesize
+    \item \url{http://www.cplusplus.com}{ - Sursa oficială de documentație a limbajului}
+    \item \url{http://www.cs.brown.edu/\~jak/proglang/cpp/stltut/tut.html}{ - Un tutorial de bază pentru STL}
+    \item \url{http://www.codeproject.com/KB/stl/stlintroduction.aspx}{ - Introducere în STL}
+    \item \url{http://swarm.cs.pub.ro/~adrian.sc/PA/TutorialC++.pdf}{ - Tutorial C++ pentru programatorii de Java/C\#}
+    \item \url{http://cdl.rosedu.org/2010/_media/cursuri/curs01/curs1_oop.pdf}{ - O prezentare mai detaliata despre OOP în C++ de la CDL 2010}
+    \normalfont
+    \end{itemize}
+    \end{frame}
 \end{document}
