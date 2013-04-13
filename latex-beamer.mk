@@ -49,3 +49,9 @@ clean:
 %.txt.tex: %.txt
 	@# --force needed because we don't know type of original file
 	@highlight -S text $(HIGHLIGHT_OPTS) -i $< -o $@
+
+%.py.tex: %.py
+	@highlight -S python $(HIGHLIGHT_OPTS) -i $< -o $@
+
+%.html.tex: %.html
+	@highlight -S html $(HIGHLIGHT_OPTS) -i $< -o $@
