@@ -48,4 +48,4 @@ clean:
 
 %.txt.tex: %.txt
 	@# --force needed because we don't know type of original file
-	@highlight --force $(HIGHLIGHT_OPTS) -i $< -o $@
+	@highlight -S text $(HIGHLIGHT_OPTS) -i $< -o $@
