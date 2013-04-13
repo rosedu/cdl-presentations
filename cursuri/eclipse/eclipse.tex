@@ -5,7 +5,6 @@
 \usepackage[romanian]{babel}
 \usepackage{color}       % highlight
 \usepackage{alltt}       % highlight
-\usepackage{code/highlight}   % highlight
 \usepackage{hyperref}        % folositi \url{http://...}
 % sau \href{http://...}{Nume Link}
 \mode<presentation>
@@ -34,10 +33,10 @@
 % NB: Secţiunile nu sunt marcate vizual, ci doar apar în cuprins.
 \section{Introducere}
 
-\pgfdeclareimage[height=4cm, width=4cm]{eclipselogo}{eclipselogo}
+\pgfdeclareimage[height=4cm, width=4cm]{eclipselogo}{img/eclipselogo}
 
 \begin{frame}{Istorie}
-\pgfputat{\pgfxy(7,1)}{\pgfbox[left,top]{\pgfuseimage{img/eclipselogo}}}
+\pgfputat{\pgfxy(7,1)}{\pgfbox[left,top]{\pgfuseimage{eclipselogo}}}
 
 \begin{itemize}
   \item IBM
