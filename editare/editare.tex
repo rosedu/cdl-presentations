@@ -11,9 +11,10 @@
 % Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
 % cap.
 \title[]{Editarea codului surs\u{a}. Vim}
-\subtitle{CDL - Cursul 2}
-\institute[]{ROSEdu}
-\author[]{Vlad Dogaru \\ \texttt{ddvlad@rosedu.org}}
+\subtitle{CDL - Cursul 3}
+\institute[CDL 2013]{ROSEdu}
+\author[]{Vlad Dogaru (The Master) \\ \texttt{ddvlad@rosedu.org} \\ Alex Juncu (The Apprentice)\\
+\texttt{alexj@rosedu.org}}
 
 \begin{document}
 
@@ -34,8 +35,12 @@
       \item vi: \texttt{b} (eventual \texttt{Esc} înainte)
       \item emacs: \texttt{Alt-b}
     \end{itemize}
+    \item vreau să execut o comandă de 10 ori
+    \begin{itemize}
+      \item vi: \texttt{10<comandă>}
+      \item emacs: \texttt{C-u10<comandă>}
+    \end{itemize}
     \pause
-    \item aș vrea să mai am un exemplu :-(
   \end{itemize}
 \end{frame}
 
@@ -46,7 +51,7 @@
     \pause
     \item modul Insert \pause \hspace{1cm} \textbf{It's evil}
     \pause
-    \item advanced movement (\^{}, \$, f, F, G, gg, 10G, :10, marks, [[)
+    \item advanced movement (\^{}, \$, f, F, G, gg, 10G, :10, \% ctrl-o)
     \pause
     \item comenzi compuse
     \pause
@@ -80,52 +85,66 @@
     \begin{itemize}
       \item but give credit where it is due
     \end{itemize}
-    \pause
-    \item $ \frac{picture}{words} = 1000 $
   \end{itemize}
+  \pause
+  $$ \frac{picture}{words} = 1000 $$
+  \pause
+But be careful!
 \end{frame}
 
 \section{Multiple files}
-\begin{frame}{Multiple files}
-  \begin{itemize}
-    \item windows
-      \begin{itemize}
-        \item creare: \texttt{:split} (\texttt{Ctrl-W s}), \texttt{:vsplit}
-        (\texttt{Ctrl-W v})
-        \item deplasare: \texttt{Ctrl-W [hjkl]}
-        \item redimensionare: \texttt{Ctrl-W [+-<>]}
-        \item ``maximize'': \texttt{Ctrl-W \_}
-        \pause
-        \item \textbf{aplicație}: man plugin
-        \pause
-      \end{itemize}
-    \item tabs
-      \begin{itemize}
-        \item un tab == una sau mai multe ferestre
-        \pause
-        \begin{itemize}
-          \item recomandabil mai multe
-          \item usually wrong: one file, one tab
-        \end{itemize}
-        \pause
-        \item new tab: \texttt{:tabnew}
-        \item next/previous: \texttt{gt}/\texttt{gT}
-        \item go to tab N: \texttt{Ngt}
-      \end{itemize}
-    \pause
-    \item so I got this setup: 6 tabs, dozens of open files... the works
-      \begin{itemize}
-        \item \texttt{:mksession} $\Rightarrow$ \texttt{Session.vim}
-        \item later: \texttt{vim -S Session.vim}
-      \end{itemize}
 
+\begin{frame}{Buffers}
+  \begin{itemize}
+    \item buffer == un fișier deschis de vim
+    \item nu trebuie obligatoriu să fie afișat
+    \item \texttt{vim a.txt b.txt c.txt} -- se deschide \texttt{a.txt}
+    \item use \texttt{:next}, \texttt{:prev} to change buffers
+    \item or \texttt{:buffer N} to skip to buffer \texttt{N}
+    \item \texttt{:e filename} creates a new buffer
+    \item \texttt{:ls} to list all buffers
+    \item \texttt{:help hidden}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Windows}
+  \begin{itemize}
+    \item creare: \texttt{:split} (\texttt{Ctrl-W s}), \texttt{:vsplit}
+    (\texttt{Ctrl-W v})
+    \item deplasare: \texttt{Ctrl-W [hjkl]}
+    \item redimensionare: \texttt{Ctrl-W [+-<>]}
+    \item ``maximize'': \texttt{Ctrl-W \_}
+    \pause
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Tabs}
+  \begin{itemize}
+    \item un tab == una sau mai multe ferestre
+    \pause
+    \begin{itemize}
+      \item recomandabil mai multe
+      \item usually wrong: one file, one tab
+    \end{itemize}
+    \pause
+    \item new tab: \texttt{:tabnew}
+    \item next/previous: \texttt{gt}/\texttt{gT}
+    \item go to tab N: \texttt{Ngt}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Sessions}
+  \begin{itemize}
+    \item so I got this setup: 6 tabs, dozens of open files... the works
+    \item \texttt{:mksession} $\Rightarrow$ \texttt{Session.vim}
+    \item later: \texttt{vim -S}
   \end{itemize}
 \end{frame}
 
 \section{Bigger projects}
-\begin{frame}{cscope}
+\begin{frame}{ctags/cscope}
   \begin{itemize}
-    \item utilizar pentru analiza surselor C
+    \item utilitar pentru analiza surselor C
     \item integrabil cu Vim
     \item needs a little config
     \pause
@@ -140,7 +159,7 @@
     \item știe să se uite în headere incluse (C, C++)
     \pause
       \begin{itemize}
-	\item dar cam atât
+        \item dar cam atât
       \end{itemize}
     \pause
     \item mai multe: OmniComplete

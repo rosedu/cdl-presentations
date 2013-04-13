@@ -3,7 +3,7 @@ PDF = $(addsuffix .pdf, $(BASENAME))
 TEX = $(addsuffix .tex, $(BASENAME))
 PDFLATEX = pdflatex
 OUT_DIR = texfiles
-STY_DIR = ../../template/
+STY_DIR = ../../../template/
 
 .PHONY: clean all
 
@@ -14,7 +14,7 @@ $(PDF): $(TEX)
 	# Twice, so TOC is also updated
 	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) -output-directory $(OUT_DIR) $<
 	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) -output-directory $(OUT_DIR) $<
-	mv $(OUT_DIR)/$(PDF) .
+	ln -sf $(OUT_DIR)/$(PDF) .
 
 clean:
 	rm -rf $(OUT_DIR)
