@@ -1,24 +1,7 @@
 BASENAME = design-patterns
-PDF = $(addsuffix .pdf, $(BASENAME))
-TEX = $(addsuffix .tex, $(BASENAME))
-PDFLATEX = pdflatex
-OUT_DIR = texfiles
-STY_DIR = ../../template/
-HIGHLIGHT_DIR = code
-
-.PHONY: clean all
-
-all: $(PDF)
-
-$(PDF): $(TEX) $(HIGHLIGHT_DIR)/Makefile
-	cd $(HIGHLIGHT_DIR) && make
-	test -d $(OUT_DIR) || mkdir $(OUT_DIR)
-	# Twice, so TOC is also updated
-	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) -output-directory $(OUT_DIR) $<
-	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) -output-directory $(OUT_DIR) $<
-	mv $(OUT_DIR)/$(PDF) .
-
-clean:
-	rm -rf $(OUT_DIR) *~
-	rm -f $(PDF)
-	cd $(HIGHLIGHT_DIR) && make clean
+CODEDIR = code
+CODEINPUTS = 1singleton.h 1singleton.cpp 1main.cpp\
+	     2visitor.h 2visitor2.h 2visitor.cpp 2main.cpp\
+	     3decorator.h 3decorator.cpp 3main.cpp
+DEPTH = ../../
+include $(DEPTH)/latex-beamer.mk

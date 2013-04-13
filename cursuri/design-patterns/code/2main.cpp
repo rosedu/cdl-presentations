@@ -1,5 +1,3 @@
-// Visitor Pattern
-
 int main() {
 	Visitor *visitor[2];
 	Visitable *animal[2];
