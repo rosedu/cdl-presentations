@@ -41,3 +41,11 @@ clean:
 
 %.h.tex: %.h
 	@highlight $(HIGHLIGHT_OPTS) -i $< -o $@
+
+%.patch.tex: %.patch
+	@# --force needed because we don't know type of original file
+	@highlight --force $(HIGHLIGHT_OPTS) -i $< -o $@
+
+%.txt.tex: %.txt
+	@# --force needed because we don't know type of original file
+	@highlight --force $(HIGHLIGHT_OPTS) -i $< -o $@
