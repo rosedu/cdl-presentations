@@ -5,6 +5,10 @@ PDFLATEX = pdflatex
 OUT_DIR = texfiles
 STY_DIR = $(DEPTH)/template/
 
+ifndef $(CODEDIR)
+	CODEDIR = code
+endif
+
 CODEINPUTSTEX = $(addprefix $(CODEDIR)/, $(addsuffix .tex, $(CODEINPUTS)))
 
 HIGHLIGHTSTY = highlight.sty
