@@ -1,4 +1,4 @@
-BASENAME = codingstyle
+BASENAME = coding-style
 PDF = $(addsuffix .pdf, $(BASENAME))
 TEX = $(addsuffix .tex, $(BASENAME))
 PDFLATEX = pdflatex
