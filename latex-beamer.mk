@@ -33,7 +33,7 @@ $(PDF): $(TEX) $(CODEINPUTSTEX)
 
 clean:
 	@$(RM) -r $(OUT_DIR)
-	@$(RM) $(PDF) $(CODEINPUTSTEX) $(CODEDIR)/$(HIGHLIGHTSTY)
+	@$(RM) $(PDF) $(CODEINPUTSTEX) $(CODEDIR)/$(HIGHLIGHTSTY) $(EXTRACLEAN)
 
 # highlight rules
 %.cpp.tex: %.cpp
