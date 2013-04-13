@@ -1,24 +1,21 @@
 BASENAME = diff-patch
-PDF = $(addsuffix .pdf, $(BASENAME))
-TEX = $(addsuffix .tex, $(BASENAME))
-PDFLATEX = pdflatex
-OUT_DIR = texfiles
-STY_DIR = ../template/
-HIGHLIGHT_DIR = code
+CODEINPUTS = f_modificat.txt f_original.txt diff_no_params.patch diff_c.patch diff_u.patch
+DEPTH = ../../
+EXTRACLEAN = code/diff_no_params.patch code/diff_u.patch code/diff_c.patch
+include $(DEPTH)/latex-beamer.mk
 
-.PHONY: clean all
+# extra rules
+ORIGINAL_FILE = code/f_original.txt
+MODIFIED_FILE = code/f_modificat.txt
+UPDATED_FILE  = code/f_actualizat.txt
+SOURCE_FILES := $(ORIGINAL_FILE) $(MODIFIED_FILE)
+DIFF := diff --label=$(ORIGINAL_FILE) --label=$(MODIFIED_FILE)
 
-all: $(PDF)
+code/diff_no_params.patch: $(SOURCE_FILES)
+	$(DIFF)    $^ > $@ || true
 
-$(PDF): $(TEX) $(HIGHLIGHT_DIR)/Makefile
-	cd $(HIGHLIGHT_DIR) && make
-	test -d $(OUT_DIR) || mkdir $(OUT_DIR)
-	# Twice, so TOC is also updated
-	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) -output-directory $(OUT_DIR) $<
-	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) -output-directory $(OUT_DIR) $<
-	mv $(OUT_DIR)/$(PDF) .
+code/diff_u.patch: $(SOURCE_FILES)
+	$(DIFF) -u $^ > $@ || true
 
-clean:
-	rm -rf $(OUT_DIR) *~
-	rm -f $(PDF)
-	cd $(HIGHLIGHT_DIR) && make clean
+code/diff_c.patch: $(SOURCE_FILES)
+	$(DIFF) -c $^ > $@ || true
