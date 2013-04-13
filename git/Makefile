@@ -1,12 +1,21 @@
-DIST = git
-TRASHEXT = .pdf .aux .log .nav .out .snm .toc
-TRASH = $(addprefix $(DIST), $(TRASHEXT))
+BASENAME = git
+PDF = $(addsuffix .pdf, $(BASENAME))
+TEX = $(addsuffix .tex, $(BASENAME))
+PDFLATEX = pdflatex
+OUT_DIR = texfiles
+STY_DIR = ../../template/
 
-all: $(DIST).pdf
-$(DIST).pdf: $(DIST).tex
-	pdflatex $<
-	pdflatex $< # Twice, so TOC is also updated
+.PHONY: clean all
 
-.PHONY: clean
+all: $(PDF)
+
+$(PDF): $(TEX)
+	test -d $(OUT_DIR) || mkdir $(OUT_DIR)
+	# Twice, so TOC is also updated
+	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) -output-directory $(OUT_DIR) $<
+	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) -output-directory $(OUT_DIR) $<
+	ln -sf $(OUT_DIR)/$(PDF) .
+
 clean:
-	rm -f $(TRASH)
+	$(RM) -r $(OUT_DIR)
+	$(RM) $(PDF)
