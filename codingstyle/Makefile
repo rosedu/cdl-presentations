@@ -3,7 +3,7 @@ PDF = $(addsuffix .pdf, $(BASENAME))
 TEX = $(addsuffix .tex, $(BASENAME))
 PDFLATEX = pdflatex
 OUT_DIR = texfiles
-STY_DIR = ../../template/
+STY_DIR = ../template/
 
 .PHONY: clean all
 
@@ -15,7 +15,6 @@ $(PDF): $(TEX)
 	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) -output-directory $(OUT_DIR) $<
 	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) -output-directory $(OUT_DIR) $<
 	ln -sf $(OUT_DIR)/$(PDF) .
-	evince $(OUT_DIR)/$(PDF)
 
 clean:
 	rm -rf $(OUT_DIR)
