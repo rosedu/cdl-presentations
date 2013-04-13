@@ -1,4 +1,4 @@
-DIST = d-bus
+DIST = dbus
 TRASHEXT = .pdf .aux .log .nav .out .snm .toc
 TRASH = $(addprefix $(DIST), $(TRASHEXT))
 
