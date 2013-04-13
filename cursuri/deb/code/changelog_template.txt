@@ -1,7 +1,0 @@
-package (version) distribution; urgency=urgency
-
-  * change details
-    more change details
-  * even more change details
-
- -- maintainer name <email address>[two spaces]  date
