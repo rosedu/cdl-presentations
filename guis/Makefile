@@ -1,13 +1,24 @@
-.PHONY: all
+BASENAME = guis
+PDF = $(addsuffix .pdf, $(BASENAME))
+TEX = $(addsuffix .tex, $(BASENAME))
+PDFLATEX = pdflatex
+OUT_DIR = texfiles
+STY_DIR = ../../template/
+HIGHLIGHT_DIR = code
 
-TARGET = gui.pdf
-STYLES = -s slides.style -s dejavu
+.PHONY: clean all
 
-all: $(TARGET)
+all: $(PDF)
 
-%.pdf: %.rst
-	rst2pdf $^ -b1 $(STYLES) -o $@
+$(PDF): $(TEX) $(HIGHLIGHT_DIR)/Makefile
+	cd $(HIGHLIGHT_DIR) && make
+	test -d $(OUT_DIR) || mkdir $(OUT_DIR)
+	# Twice, so TOC is also updated
+	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) -output-directory $(OUT_DIR) $<
+	TEXINPUTS=$(STY_DIR)//: $(PDFLATEX) -output-directory $(OUT_DIR) $<
+	#mv $(OUT_DIR)/$(PDF) .
 
 clean:
-	$(RM) $(TARGET)
-
+	$(RM) -r $(OUT_DIR)
+	$(RM) $(PDF)
+	cd $(HIGHLIGHT_DIR) && make clean
