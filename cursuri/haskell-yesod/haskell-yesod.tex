@@ -1,0 +1,410 @@
+% vim: set tw=78 aw sw=2 sts=2 noet:
+\documentclass{beamer}
+
+\usepackage[utf8x]{inputenc} % diacritice
+\usepackage[romanian]{babel}
+
+\usepackage{color}			 % highlight
+\usepackage{alltt}			 % highlight
+\usepackage{code/highlight}
+
+\usepackage{hyperref}        % folositi \url{http://...}
+% sau \href{http://...}{Nume Link}
+\mode<presentation>
+\usetheme{CDL}
+
+% Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
+% cap.
+\title[Haskell-Yesod]{Haskell. Yesod}
+\subtitle{Yesod :: Haskell $\rightarrow$ Web}
+\institute[ROSEdu]{ROSEdu}
+\author[MM]{Mihai Maruseac \texttt{mihai@rosedu.org}}
+
+\setbeamertemplate{frametitle continuation}[from second]
+\setbeamertemplate{footline}[frame number]
+
+\pgfdeclareimage[height=7cm]{langrankbig}{img/langrankbig}
+\pgfdeclareimage[height=7cm]{langs}{img/langs}
+\pgfdeclareimage[height=3cm]{yesod}{img/yesod}
+\pgfdeclareimage[height=3cm]{xkcd}{img/xkcd}
+\pgfdeclareimage[height=5cm]{high}{img/high}
+\pgfdeclareimage[height=2cm]{string}{img/string}
+\pgfdeclareimage[height=2cm]{neo}{img/neo}
+\pgfdeclareimage[height=4cm]{pong}{img/pong}
+\pgfdeclareimage[height=7cm]{sttos}{img/sttos}
+\pgfdeclareimage[height=5cm]{mightynginx}{img/mightynginx}
+\pgfdeclareimage[height=3cm]{boilerplate}{img/boilerplate}
+\pgfdeclareimage{hwn}{img/hwn}
+\pgfdeclareimage[height=3cm]{hcar}{img/hcar}
+\pgfdeclareimage[height=3cm]{cat}{img/cat}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Language popularity}
+  \center
+  \pgfuseimage{langrankbig}
+\end{frame}
+
+\begin{frame}{Language matrix}
+  \center
+  \pgfuseimage{langs}
+\end{frame}
+
+\begin{frame}{Why?}
+  \begin{block}{Alan Perlis}
+   \textit{A language that doesn't affect the way you think about programming, is not
+   worth knowing.}
+  \end{block}
+  \pause
+  \begin{block}{Ludwig Wittgenstein}
+   \textit{The limits of my language mean the limits of my world.}
+  \end{block}
+  \pause
+  \begin{block}{Benjamin Lee Whorf}
+   \textit{Language shapes the way we think, and determines what we can think
+   about.}
+  \end{block}
+\end{frame}
+
+\begin{frame}{History}
+  \begin{itemize}[<+->]
+    \item 1930s, Alonzo Church, $\lambda$-calculus
+    \item 1950s, John McCarthy, \texttt{LISP}
+    \begin{itemize}
+      \item \texttt{LISP} $\rightarrow$ \texttt{Scheme}, \texttt{Dylan},
+      \texttt{Scala}, \texttt{Racket}
+    \end{itemize}
+    \item 1960s, \texttt{IPL}, \texttt{APL}
+    \item 1970s, \texttt{FP}, John Bachus
+    \begin{itemize}
+      \item \texttt{Can Programming Be Liberated From the von Neumann Style? A
+      Functional Style and its Algebra of Programs}
+      \item \texttt{APL}, \texttt{FP} $\rightarrow$ \texttt{J}
+    \end{itemize}
+    \item 1970s, Robin Milner, \texttt{ML}
+    \item 1970s, David Turner, \texttt{Miranda}
+    \item 1990s, committee, \texttt{Haskell}
+    \begin{itemize}
+      \item open standard for functional programming research
+      \item \textit{Avoid success at all costs.}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Community}
+  \begin{itemize}[<+->]
+    \item \#haskell
+    \item lambdabot
+    \item /r/haskell
+    \item Stack Overflow
+    \item blogs
+    \item Haskell Weekly News (HWN)
+  \end{itemize}
+  \only<6->{\begin{center} \pgfuseimage{hwn} \end{center}}
+\end{frame}
+
+\begin{frame}{Community (2)}
+  \begin{itemize}[<+->]
+    \item Haskell Community and Activities Report (HCAR)
+    \item The Monad Reader (TMR)
+    \item Cartesian Closed Comic (CCC)
+    \item Haskell Wiki, Haskell Wikibooks
+    \item Haskellers
+    \item hpaste
+    \item hoogle, hayoo
+  \end{itemize}
+  \only<1>{\vspace{-3cm} \begin{center} \pgfuseimage{hcar} \end{center}}
+\end{frame}
+
+\begin{frame}{Famous Users}
+  \begin{itemize}[<+->]
+    \item NASA
+    \item Galois
+    \item Jane Street
+    \item Microsoft Research
+    \item Google, Facebook
+    \item \texttt{Hermit Reasoner}, \texttt{Protege}
+    \item \texttt{perl6}
+    \item new languages: \texttt{Elm}, \texttt{Idris}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{GHC. GHCi}
+  \begin{itemize}[<+->]
+    \item multiple compilers
+    \item GHC = \textit{The Glorious Glasgow Haskell Compilation System}
+    \item \texttt{compiler} - \texttt{ghc}
+    \begin{itemize}
+      \item \texttt{C--}
+      \item \texttt{LLVM}
+    \end{itemize}
+    \item \texttt{interpreter} - \texttt{ghci}
+    \begin{itemize}
+      \item rapid prototyping
+      \item testing
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Functional Programming}
+  \begin{itemize}[<+->]
+    \item every input has a corresponding input
+    \item $ f(x) = x + 1$
+    \begin{itemize}
+      \item no side effects
+      \item order does not matter
+      \item easy concurrency
+    \end{itemize}
+    \item functions are values
+    \item function composition
+    \item $g(x) = x * 3$, $g(f(x)) = 3 * x + 3$
+  \end{itemize}
+  \pause
+  \input{code/function-composition.hs}
+\end{frame}
+
+\begin{frame}{Static Typing}
+  \begin{itemize}
+    \item everything has a type
+    \item powerful type inferrence
+    \item proof lies in code (iif using proper type encodings)
+    \begin{itemize}
+      \item code compiles $\rightarrow$ 95\% bug-free
+    \end{itemize}
+    \item \texttt{:t} in \texttt{ghci}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Types as Documentation}
+  \input{code/types1.hs}
+  \pause\\
+  \input{code/types2.hs}
+\end{frame}
+
+\begin{frame}{Puzzle Programming}
+  \input{code/types3.hs}
+  \pause \\
+  \input{code/types4.hs}
+\end{frame}
+
+\begin{frame}{Type Searching}
+  \begin{itemize}
+    \item \texttt{hoogle}
+    \item \texttt{hayoo}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Purity}
+  \begin{itemize}[<+->]
+    \item we need functions with side effects
+    \item \texttt{getLine}, \texttt{print}, $\ldots$
+    \item program has a \texttt{main} function
+  \end{itemize}
+  \pause
+  \input{code/types5.hs}
+  \pause
+  \begin{itemize}[<+->]
+    \item safety
+    \item no more launch missiles by mistake
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Laziness}
+  \begin{itemize}[<+->]
+    \item infinite data structures
+    \item circular definitions
+    \item streams
+  \end{itemize}
+  \pause
+  \input{code/fibo.hs}
+\end{frame}
+
+\begin{frame}{Declarative Programming}
+  \begin{itemize}[<+->]
+    \item focus on \textbf{what} instead of \textbf{how}
+    \item provable code (induction)
+  \end{itemize}
+  \pause
+  \input{code/qsort.hs}
+\end{frame}
+
+\begin{frame}{Declaring Types. Pattern Matching}
+  \begin{itemize}[<+->]
+    \item program can define own types
+    \item constructors
+    \item constructors are functions
+    \item generics
+    \item deconstruct types in functions
+  \end{itemize}
+  \pause
+  \input{code/newtypes1.hs}
+  \only<5->{\vspace{-0cm} \begin{center} \pgfuseimage{cat} \end{center}}
+  \pause
+  \input{code/newtypes2.hs}
+\end{frame}
+
+\begin{frame}{Yesod is...}
+  \begin{itemize}[<+->]
+    \item Haskell web framework
+    \item type-safe
+    \item high performance
+    \item RESTful web application
+  \end{itemize}
+  \vspace{-3cm}
+  \hspace{6cm}
+  \pgfuseimage{yesod}
+\end{frame}
+
+\begin{frame}{Why :: Type Safety (1)}
+  \pgfuseimage{xkcd}
+  \\
+  \url{http://xkcd.com/327/}
+\end{frame}
+
+\begin{frame}{Why :: Type Safety (2)}
+  \begin{center}
+  \pgfuseimage{high}
+  \end{center}
+    URL, HTML, JavaScript, CSS, SQL, $\ldots$
+\end{frame}
+
+\begin{frame}{Why :: Type Safety (3)}
+  \begin{center}
+  \pgfuseimage{string}
+  \end{center}
+  \href{http://yannesposito.com/Scratch/en/blog/Yesod-tutorial-for-newbies/}{yannesposito.com}
+\end{frame}
+
+\begin{frame}{Compiler is Your Ally}
+  \begin{itemize}[<+->]
+    \item Haskell philosophy
+    \item \textit{If it compiles, it must work properly}
+    \item \textit{Force runtime bugs to be compile-time errors}
+    \item Exploit awesome type system $\ldots$
+    \item $\ldots$ and type inference
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Awesome Type System and Type Inference}
+  \begin{itemize}[<+->]
+    \item proper links
+    \item no XSS attacks
+    \item character encoding easy as $\pi e$
+    \item no more \texttt{Robert'); DROP TABLE}
+    \item dodge as many bullets as possible
+  \end{itemize}
+  \only<5>{\begin{center}\pgfuseimage{neo}\end{center}}
+\end{frame}
+
+\begin{frame}{Why :: Asynchronous}
+  \begin{itemize}[<+->]
+    \item Web is async
+    \item Haskell runtime is async
+    \item lightweight green threads
+    \item event-based system calls
+    \item non-blocking code
+    \item async is really easy
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Why :: Performance}
+  \begin{center}\pgfuseimage{pong}\end{center}
+  \begin{itemize}[<+->]
+    \item async I/O
+    \item high-performance libraries: \texttt{ByteString},
+    \texttt{iterattees}, $\ldots$
+    \item GHC compiler magic
+    \item C speed has been reached
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Warp Speed Ahead}
+  \begin{center}\pgfuseimage{sttos}\end{center}
+\end{frame}
+
+\begin{frame}{Warp Speed Ahead :: The Real One}
+  \begin{itemize}[<+->]
+    \item \texttt{Warp} - high-performance HTTP library
+    \item Yesod and \texttt{mighty} built on top of it
+    \item \texttt{mighty} on par with \texttt{nginx}
+  \end{itemize}
+  \only<3>{\begin{center}\pgfuseimage{mightynginx}\end{center}}
+\end{frame}
+
+\begin{frame}{Why :: No boilerplate}
+  \begin{center}\pgfuseimage{boilerplate}\end{center}
+  \pause
+  \begin{itemize}[<+->]
+    \item templates, routes, database connections, $\ldots$
+    \item remember DRY principle
+    \item \textit{Can we get rid of it?}
+    \item DSLs = Domain Specific Languages
+    \item compile-time checked for bugs
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Why :: Widgets and Composability}
+  \begin{itemize}[<+->]
+    \item small parts of application
+    \item footer, header, \texttt{Scroll to top} button, $\ldots$
+    \item bits of HTML, CSS, Javascript, $\ldots$
+    \item some in \texttt{<header>...</header>}
+    \item some in \texttt{<body>...</body>}
+    \item compose them nicely
+    \item compile unique and compressed CSS file
+    \item reuse resources
+  \end{itemize}
+  \only<6->{\texttt{mainWdg = menuWdg >> contentWdg >> footerWdg}}
+\end{frame}
+
+\begin{frame}{Shakesperean Name Convention}
+  \begin{description}
+    \item[CSS] Cassius and Lucius
+    \item[JavaScript] Julius
+    \item[HTML] Hamlet
+  \end{description}
+  \input{code/yesod.hs}
+\end{frame}
+
+\begin{frame}{Why :: Community}
+  \begin{itemize}
+    \item \href{http://stackoverflow.com/questions/tagged/yesod}{Stack Overflow}
+    \item \href{http://groups.google.com/group/yesodweb}{Yesod Google Group}
+    \item \href{http://www.yesodweb.com/wiki}{Yesod Wiki}
+    \item \href{http://www.reddit.com/r/haskell/}{Haskell Reddit}
+    \item IRC channel: \#yesod on Freenode
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Why :: Other reasons}
+  \begin{itemize}
+    \item incredible development speed
+    \item many Haskell advances come from Yesod developers
+    \item scaffolding: \texttt{yesod init} and \texttt{yesod devel} for the
+    first site
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Weaknesses}
+  \begin{itemize}
+    \item nontechnical
+    \pause
+    \item hard to understand Haskell
+    \item too few Haskell programmers
+    \item Haskell community smaller than community for other languages
+    \item no \texttt{heroku} yet
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Resources}
+  \begin{itemize}
+    \item \href{http://learnyouahaskell.com/}{Learn You a Haskell}
+    \item \href{http://book.realworldhaskell.org/read/}{Real World Haskell}
+    \item \href{http://www.yesodweb.com/book}{Yesod Book}
+    \item \href{http://www.yesodweb.com/page/screencasts}{Yesod Screencasts}
+  \end{itemize}
+\end{frame}
+
+\end{document}
