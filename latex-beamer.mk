@@ -55,3 +55,6 @@ clean:
 
 %.html.tex: %.html
 	@highlight -S html $(HIGHLIGHT_OPTS) -i $< -o $@
+
+%.hs.tex: %.hs
+	@highlight -S hs $(HIGHLIGHT_OPTS) -i $< -o $@
