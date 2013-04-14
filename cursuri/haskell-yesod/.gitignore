@@ -2,3 +2,14 @@ code/highlight.sty
 code/model.py.tex
 code/template.html.tex
 code/view.py.tex
+code/fibo.hs.tex
+code/function-composition.hs.tex
+code/newtypes1.hs.tex
+code/newtypes2.hs.tex
+code/qsort.hs.tex
+code/types1.hs.tex
+code/types2.hs.tex
+code/types3.hs.tex
+code/types4.hs.tex
+code/types5.hs.tex
+code/yesod.hs.tex
