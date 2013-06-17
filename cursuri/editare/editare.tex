@@ -2,7 +2,7 @@
 \documentclass{beamer}
 
 \usepackage[utf8x]{inputenc} % diacritice
-\usepackage[romanian]{babel}
+\usepackage[english]{babel}
 \usepackage{hyperref}        % folositi \url{http://...}
 % sau \href{http://...}{Nume Link}
 \mode<presentation>
@@ -10,10 +10,10 @@
 
 % Titlul nu foloseşte Unicode pentru că e o problemă căreia nu i-am dat de
 % cap.
-\title[]{Editarea codului surs\u{a}. Vim}
-\subtitle{CDL - Cursul 3}
+\title[]{Source Code Editors. Vim}
+%\subtitle{CDL - Cursul 3}
 \institute[CDL 2013]{ROSEdu}
-\author[]{Vlad Dogaru (The Master) \\ \texttt{ddvlad@rosedu.org} \\ Alex Juncu (The Apprentice)\\
+\author[]{Vlad Dogaru \\ \texttt{ddvlad@rosedu.org} \\ Alex Juncu \\
 \texttt{alexj@rosedu.org}}
 
 \begin{document}
@@ -24,21 +24,22 @@
 
 \begin{frame}{FFS, Why Vim?}
   \begin{itemize}
-    \item pentru că asta știu eu :-)
+    \pause
+    \item because that's what we know and use :-)
     \pause
     \item try Emacs, seriously
     \pause
-    \item nu sunt chiar atât de diferite
+    \item Vim and Emacs are not that different
     \pause
-    \item vreau să sar la începutul cuvântului
+    \item need to get to the beginning of the word
     \begin{itemize}
-      \item vi: \texttt{b} (eventual \texttt{Esc} înainte)
+      \item vi: \texttt{b} (be sure to \texttt{Esc} if needed)
       \item emacs: \texttt{Alt-b}
     \end{itemize}
-    \item vreau să execut o comandă de 10 ori
+    \item need to execute the same command 10 times
     \begin{itemize}
-      \item vi: \texttt{10<comandă>}
-      \item emacs: \texttt{C-u10<comandă>}
+      \item vi: \texttt{10<command>}
+      \item emacs: \texttt{C-u10<command>}
     \end{itemize}
     \pause
   \end{itemize}
@@ -49,19 +50,19 @@
   \begin{itemize}
     \item hjkl \pause \hspace{1cm} \textbf{Use them}
     \pause
-    \item modul Insert \pause \hspace{1cm} \textbf{It's evil}
+    \item Insert mode \pause \hspace{1cm} \textbf{It's evil}
     \pause
     \item advanced movement (\^{}, \$, f, F, G, gg, 10G, :10, \% ctrl-o)
     \pause
-    \item comenzi compuse
+    \item compound commands
     \pause
     \begin{itemize}
-      \item \texttt{d} -- șterge
+      \item \texttt{d} -- delete
       \begin{itemize}
-        \item ce?
+        \item delete \emph{what}?
         \pause
-        \item contează ce urmează: \texttt{d\$}, \texttt{df(}, \texttt{di(},
-          \texttt{dG}, \texttt{d\`{}a}
+        \item it matters what follows after \texttt{d}: \texttt{d\$},
+          \texttt{df(}, \texttt{di(}, \texttt{dG}, \texttt{d\`{}a}
       \end{itemize}
     \end{itemize}
     \pause
@@ -79,8 +80,8 @@
 \begin{frame}{Configuration}
   \begin{itemize}
     \item defaults just won't cut it
-    \item e dificil să scriem propriul config
-    \item copiem de la alții
+    \item it's hard to write a config from scratch
+    \item use other configs as a starting point
     \pause
     \begin{itemize}
       \item but give credit where it is due
@@ -90,15 +91,24 @@
   $$ \frac{picture}{words} = 1000 $$
   \pause
 But be careful!
+  \begin{itemize}
+    \item You still need to know your way in a default environment.
+    \pause
+    \item Bonus points if your config is usable by others.
+    \pause
+    \begin{itemize}
+      \item \emph{Don't} remap \texttt{i}.
+    \end{itemize}
+  \end{itemize}
 \end{frame}
 
 \section{Multiple files}
 
 \begin{frame}{Buffers}
   \begin{itemize}
-    \item buffer == un fișier deschis de vim
-    \item nu trebuie obligatoriu să fie afișat
-    \item \texttt{vim a.txt b.txt c.txt} -- se deschide \texttt{a.txt}
+    \item buffer == an open file (Vim speak)
+    \item buffers are not always displayed
+    \item \texttt{vim a.txt b.txt c.txt} -- you see \texttt{a.txt}
     \item use \texttt{:next}, \texttt{:prev} to change buffers
     \item or \texttt{:buffer N} to skip to buffer \texttt{N}
     \item \texttt{:e filename} creates a new buffer
@@ -109,21 +119,21 @@ But be careful!
 
 \begin{frame}{Windows}
   \begin{itemize}
-    \item creare: \texttt{:split} (\texttt{Ctrl-W s}), \texttt{:vsplit}
+    \item create: \texttt{:split} (\texttt{Ctrl-W s}), \texttt{:vsplit}
     (\texttt{Ctrl-W v})
-    \item deplasare: \texttt{Ctrl-W [hjkl]}
-    \item redimensionare: \texttt{Ctrl-W [+-<>]}
-    \item ``maximize'': \texttt{Ctrl-W \_}
+    \item move between windows: \texttt{Ctrl-W [hjkl]}
+    \item resize: \texttt{Ctrl-W [+-<>]}
+    \item ``maximize'': \texttt{Ctrl-W \_} or \texttt{:only}
     \pause
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Tabs}
   \begin{itemize}
-    \item un tab == una sau mai multe ferestre
+    \item tab == one or more open windows
     \pause
     \begin{itemize}
-      \item recomandabil mai multe
+      \item preferable more than one
       \item usually wrong: one file, one tab
     \end{itemize}
     \pause
@@ -144,25 +154,25 @@ But be careful!
 \section{Bigger projects}
 \begin{frame}{ctags/cscope}
   \begin{itemize}
-    \item utilitar pentru analiza surselor C
-    \item integrabil cu Vim
+    \item C source code analyzer
+    \item can be integrated with Vim
     \item needs a little config
     \pause
-    \item \textbf{exemplu:} surse Pidgin, \texttt{pidgin/gtkblist.c}
+    \item \textbf{example:} Pidgin source code, \texttt{pidgin/gtkblist.c}
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Autocomplete}
   \begin{itemize}
-    \item \texttt{Ctrl-N} și \texttt{Ctrl-P} în mod Insert
-    \item nu numai pentru cod
-    \item știe să se uite în headere incluse (C, C++)
+    \item \texttt{Ctrl-N} and \texttt{Ctrl-P} in Insert mode
+    \item useful not only for code
+    \item can look inside headers (C, C++)
     \pause
       \begin{itemize}
-        \item dar cam atât
+        \item but that's about as smart as it gets
       \end{itemize}
     \pause
-    \item mai multe: OmniComplete
+    \item fancier stuff: OmniComplete, YouCompleteMe
   \end{itemize}
 \end{frame}
 
