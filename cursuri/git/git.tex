@@ -23,11 +23,9 @@
 \pgfdeclareimage[height=5cm]{vd02}{img/versionare-dummy-02}
 \pgfdeclareimage[height=6cm]{ae}{img/all-equal}
 \pgfdeclareimage[height=6cm]{dict}{img/dictator}
-\pgfdeclareimage[height=6cm]{objs}{img/objs}
 \pgfdeclareimage[height=4cm]{snapshots}{img/snapshots}
 \pgfdeclareimage[height=3cm]{parent}{img/parent}
 \pgfdeclareimage[height=6cm]{tags}{img/tags}
-\pgfdeclareimage[height=6cm]{zones}{img/zones}
 \pgfdeclareimage[height=1cm]{wtc}{img/wtc}
 \pgfdeclareimage[height=8cm]{bm}{img/bm}
 \pgfdeclareimage[width=5cm]{decentr}{img/decentr}
@@ -36,6 +34,14 @@
 \pgfdeclareimage[height=6cm]{gh}{img/gh}
 \pgfdeclareimage[height=6cm]{gpr}{img/gpr}
 \pgfdeclareimage[height=8cm]{git}{img/git}
+\pgfdeclareimage[height=8cm]{online}{img/online}
+\pgfdeclareimage[height=6cm]{fork}{img/fork}
+\pgfdeclareimage[height=6cm]{clone}{img/clone}
+\pgfdeclareimage[height=6cm]{repo}{img/repo}
+\pgfdeclareimage[height=6cm]{add}{img/add}
+\pgfdeclareimage[height=6cm]{commit}{img/commit}
+\pgfdeclareimage[height=6cm]{push}{img/push}
+\pgfdeclareimage[height=6cm]{pr}{img/pr}
 
 \begin{document}
 
@@ -100,7 +106,11 @@
 \end{frame}
 
 \begin{frame}{GitHub}
-  TODO: intro in GitHub
+  \begin{itemize}
+    \item \href{http://https://github.com/}{https://github.com/}
+    \item \href{http://osrc.dfm.io/}{http://osrc.dfm.io/}
+    \item \href{http://song-of-github.herokuapp.com/}{http://song-of-github.herokuapp.com/}
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Initial Config :: SSH key}
@@ -121,7 +131,9 @@
 \end{frame}
 
 \begin{frame}{GitHub :: online editing}
-  TODO
+  \begin{center}
+    \pgfuseimage{online}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Initial Config}
@@ -139,11 +151,16 @@
 \end{frame}
 
 \begin{frame}{GitHub :: Forking}
-  TODO
+  \begin{center}
+    \pgfuseimage{fork}
+  \end{center}
 \end{frame}
 
 \begin{frame}{GitHub :: Cloning}
-  TODO
+  \texttt{git clone URL}
+  \begin{center}
+    \pgfuseimage{clone}
+  \end{center}
 \end{frame}
 
 \begin{frame}{All repositories are created equal...}
@@ -159,7 +176,10 @@
 \end{frame}
 
 \begin{frame}{First Commit :: Making and Adding Changes}
-  TODO
+  \texttt{git add}
+  \begin{center}
+    \pgfuseimage{add}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Binary Files}
@@ -195,8 +215,11 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}{First Commit :: Making and Adding Changes}
-  TODO
+\begin{frame}{First Commit :: Commiting Changes}
+  \texttt{git commit}
+  \begin{center}
+    \pgfuseimage{commit}
+  \end{center}
 \end{frame}
 
 \begin{frame}{Commits}
@@ -225,21 +248,21 @@
 \end{frame}
 
 \begin{frame}{First Push}
-  TODO
+  \texttt{git push}
+  \begin{center}
+    \pgfuseimage{push}
+  \end{center}
 \end{frame}
 
 \begin{frame}{GitHub :: Pull Requests}
-  TODO
+  \begin{center}
+    \pgfuseimage{pr}
+  \end{center}
 \end{frame}
 
 \begin{frame}{The Entire Picture}
-  TODO
-\end{frame}
-
-\begin{frame}{Usual Commands}
-  % TODO: obsoleted by above??
   \begin{center}
-    \pgfuseimage{zones}
+    \pgfuseimage{repo}
   \end{center}
 \end{frame}
 
@@ -328,8 +351,11 @@
 \end{frame}
 
 \begin{frame}{Conflicts}
-  TODO: solvable conflicts
-  TODO: to be solved conflicts
+  \begin{itemize}
+    \item what happens when editing same file?
+    \pause
+    \item Git manages conflicts as far as possible
+  \end{itemize}
 \end{frame}
 
 \begin{frame}{Other Cool Git Features}
