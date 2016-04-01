@@ -1,0 +1,60 @@
+$ python
+[...]
+Type "help", "copyright", "credits" or "license" for more information.
+>>> print "Hello, World!"
+Hello, World!
+>>>
+
+$ python -c 'print "Hello, World!"'
+Hello, World!
+
+$ python -c 'print "A"*50'
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+$ python -c 'print hex(123)'
+0x7b
+
+$ python -c 'print 0x42'
+66
+
+$ python -c 'print ord("A")'
+65
+
+$ python -c 'print chr(65)'
+A
+
+$ python -c 'print chr(0x41)'
+A
+
+$ python -c 'print len("Hello, World!")'
+13
+
+$ python -c 'print "Hello, World!"[0:2]'
+He
+
+$ python -c 'print "Hello, World!"[2:]'
+llo, World!
+
+$ python -c 'print "Hello, World!"[:4]'
+Hell
+
+$ python -c 'print "Hello, World!"[:-1]'
+Hello, World
+
+$ python -c 'print "Hello, World!"[3:-1]'
+lo, World
+
+$ python -c 'print "Hello, World!".split(" ")'
+['Hello,', 'World!']
+
+$ python -c 'print "Hello, World!".split(" ")[0]'
+Hello,
+
+$ python -c 'print "Hello, World!".split(" ")[1]'
+World!
+
+$ python -c 'print len("Hello, World!".split(" "))'
+2
+
+$ python -c 'print len("Hello, dear World!".split(" "))'
+3
