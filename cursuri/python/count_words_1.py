@@ -25,7 +25,8 @@ def get_words_in_file(filename):
     words = []
     f = open(filename, "rt")
     for line in f:
-        words.append(line.split())
+        words.extend(line.split())
+    f.close()
     return words
 
 
